@@ -1,0 +1,1724 @@
+[
+  {
+    "id": 1,
+    "emoji": "⏱️",
+    "nameAr": "الأزمنة",
+    "nameEn": "Tenses",
+    "page": {
+      "tag": "الوحدة الأولى",
+      "mascot": "📅",
+      "strategies": [
+        {
+          "id": "u1s1",
+          "theme": "sc-theme-blue",
+          "icon": "🕐",
+          "title": "المضارع البسيط",
+          "subtitle": "Present Simple",
+          "badge": "Tense 1/6",
+          "usage": "يُعبِّر عن حقائق علمية، وعادات متكررة، وروتين يومي.",
+          "keywords": [
+            {
+              "f": "Always",
+              "b": "دائماً — 100%"
+            },
+            {
+              "f": "Usually",
+              "b": "عادةً — ~80%"
+            },
+            {
+              "f": "Often",
+              "b": "كثيراً — ~70%"
+            },
+            {
+              "f": "Sometimes",
+              "b": "أحياناً — ~50%"
+            },
+            {
+              "f": "Rarely",
+              "b": "نادراً — ~20%"
+            },
+            {
+              "f": "Never",
+              "b": "أبداً — 0%"
+            },
+            {
+              "f": "Every day / week",
+              "b": "كل يوم / أسبوع"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "I / You / We / They",
+              "form": "verb (base)",
+              "ex": "We always <strong>study</strong> in the library.",
+              "note": ""
+            },
+            {
+              "subj": "He / She / It",
+              "form": "verb + <span class=\"s\">s/es</span>",
+              "ex": "She <em>usually</em> <strong>meets</strong> them on Tuesdays.",
+              "note": ""
+            },
+            {
+              "subj": "Negative",
+              "form": "do/does + not + verb",
+              "ex": "He does<strong>n't</strong> <strong>play</strong> football.",
+              "note": ""
+            },
+            {
+              "subj": "Question",
+              "form": "Do/Does + S + verb?",
+              "ex": "<strong>Does</strong> she <strong>study</strong> every day?",
+              "note": ""
+            }
+          ],
+          "exception": {
+            "title": "⚠️ كيف تضيف (s/es) للمفرد؟",
+            "body": "<strong>s</strong> عادةً: play → plays, work → works<br>\n                <strong>es</strong> إذا انتهى بـ (o, ch, sh, ss, x): go → goes, watch → watches<br>\n                <strong>ies</strong> إذا انتهى بـ (y) مسبوقاً بساكن: cry → cries, study → studies"
+          },
+          "practice": [
+            {
+              "q": "We usually ....... in the library.",
+              "opts": [
+                "studies",
+                "studying",
+                "studied",
+                "study"
+              ],
+              "c": 3,
+              "expl": "الفاعل جمع (We)، لذا الفعل يبقى مجرداً: <strong>study</strong>. كلمة usually تدل على المضارع البسيط."
+            },
+            {
+              "q": "She …….. to school every morning.",
+              "opts": [
+                "go",
+                "going",
+                "goes",
+                "is go"
+              ],
+              "c": 2,
+              "expl": "الفاعل مفرد (She) → نضيف es للفعل go: <strong>goes</strong>."
+            }
+          ]
+        },
+        {
+          "id": "u1s2",
+          "theme": "sc-theme-teal",
+          "icon": "▶️",
+          "title": "المضارع المستمر",
+          "subtitle": "Present Continuous / Progressive",
+          "badge": "Tense 2/6",
+          "usage": "يُعبِّر عما يحدث الآن في لحظة الكلام، أو ترتيبات المستقبل القريبة.",
+          "keywords": [
+            {
+              "f": "Now",
+              "b": "الآن"
+            },
+            {
+              "f": "At the moment",
+              "b": "في هذه اللحظة"
+            },
+            {
+              "f": "Look! / Listen!",
+              "b": "يلفت الانتباه للحاضر"
+            },
+            {
+              "f": "Today / Tonight",
+              "b": "اليوم / الليلة"
+            },
+            {
+              "f": "These days",
+              "b": "هذه الأيام"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "I",
+              "form": "am + verb<span class=\"s\">+ing</span>",
+              "ex": "I <strong>am reading</strong> a book now."
+            },
+            {
+              "subj": "He / She / It",
+              "form": "is + verb<span class=\"s\">+ing</span>",
+              "ex": "Adam <strong>is studying</strong> at this moment."
+            },
+            {
+              "subj": "You / We / They",
+              "form": "are + verb<span class=\"s\">+ing</span>",
+              "ex": "They <strong>are meeting</strong> tonight."
+            },
+            {
+              "subj": "Negative",
+              "form": "am/is/are + not + v.ing",
+              "ex": "She <strong>isn't sleeping</strong> now."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ أفعال لا تأتي في صيغة المستمر (Stative Verbs)",
+            "body": "أفعال الحواس والمشاعر والملكية لا تُستخدم في صيغة المستمر عادةً:<br>know, understand, love, hate, want, need, believe, have (ملكية)<br><em>خطأ:</em> I am knowing the answer. ✗<br><em>صح:</em> I know the answer. ✓"
+          },
+          "practice": [
+            {
+              "q": "Adam ....... a book now.",
+              "opts": [
+                "reads",
+                "reading",
+                "is reads",
+                "is reading"
+              ],
+              "c": 3,
+              "expl": "now دليل على المضارع المستمر. Adam مفرد → is + reading = <strong>is reading</strong>."
+            },
+            {
+              "q": "Look! The children …….. football.",
+              "opts": [
+                "play",
+                "played",
+                "are playing",
+                "plays"
+              ],
+              "c": 2,
+              "expl": "Look! تلفت الانتباه للحاضر → مضارع مستمر: <strong>are playing</strong>."
+            }
+          ]
+        },
+        {
+          "id": "u1s3",
+          "theme": "sc-theme-red",
+          "icon": "⏪",
+          "title": "الماضي البسيط",
+          "subtitle": "Past Simple",
+          "badge": "Tense 3/6",
+          "usage": "يُعبِّر عن حدث وقع وانتهى تماماً في الماضي.",
+          "keywords": [
+            {
+              "f": "Yesterday",
+              "b": "أمس"
+            },
+            {
+              "f": "Last (week/year)",
+              "b": "الأسبوع / السنة الماضية"
+            },
+            {
+              "f": "... ago",
+              "b": "منذ... (two days ago)"
+            },
+            {
+              "f": "In 2020",
+              "b": "في تاريخ ماضٍ"
+            },
+            {
+              "f": "Once / One day",
+              "b": "ذات مرة"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "Regular Verbs",
+              "form": "verb + <span class=\"s\">ed</span>",
+              "ex": "She <strong>studied</strong> hard last year."
+            },
+            {
+              "subj": "Irregular Verbs",
+              "form": "Verb2 (تصريف 2)",
+              "ex": "They <strong>went</strong> to Egypt last summer."
+            },
+            {
+              "subj": "Negative",
+              "form": "did not + verb (base)",
+              "ex": "He did<strong>n't arrive</strong> yesterday."
+            },
+            {
+              "subj": "Question",
+              "form": "Did + S + verb (base)?",
+              "ex": "<strong>Did</strong> you <strong>study</strong> last night?"
+            }
+          ],
+          "exception": {
+            "title": "⚠️ التصريف الثاني لأهم الأفعال الشاذة",
+            "body": "go→went · come→came · take→took · give→gave<br>\n                see→saw · know→knew · write→wrote · say→said<br>\n                make→made · have→had · be→was/were · buy→bought"
+          },
+          "practice": [
+            {
+              "q": "They ……. yesterday morning.",
+              "opts": [
+                "arrive",
+                "arrived",
+                "are arriving",
+                "were arrived"
+              ],
+              "c": 1,
+              "expl": "yesterday يدل على الماضي البسيط. arrive فعل منتظم: <strong>arrived</strong>."
+            },
+            {
+              "q": "Two students ….. a speech last night.",
+              "opts": [
+                "gave",
+                "have given",
+                "are giving",
+                "give"
+              ],
+              "c": 0,
+              "expl": "last night = الماضي البسيط. give فعل شاذ تصريفه الثاني: <strong>gave</strong>."
+            }
+          ]
+        },
+        {
+          "id": "u1s4",
+          "theme": "sc-theme-purple",
+          "icon": "⏳",
+          "title": "الماضي المستمر والماضي التام",
+          "subtitle": "Past Continuous & Past Perfect",
+          "badge": "Tense 4/6",
+          "usage": "الماضي المستمر: حدث طويل في الماضي اقتطع حدث آخر جزءاً منه. الماضي التام: لترتيب حدثين، الأقدم يأخذ الماضي التام.",
+          "keywords": [
+            {
+              "f": "While",
+              "b": "بينما → يأتي بعدها مستمر (was/were + ing)"
+            },
+            {
+              "f": "When",
+              "b": "عندما → يأتي بعدها ماضٍ بسيط (V2)"
+            },
+            {
+              "f": "After",
+              "b": "بعد → الحدث الأول ماضٍ تام"
+            },
+            {
+              "f": "Before",
+              "b": "قبل → الحدث الأول ماضٍ تام"
+            },
+            {
+              "f": "Because",
+              "b": "لأن → السبب الأقدم = ماضٍ تام"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "ماضٍ مستمر — I/He/She/It",
+              "form": "was + verb<span class=\"s\">+ing</span>",
+              "ex": "She <strong>was sleeping</strong> when he called."
+            },
+            {
+              "subj": "ماضٍ مستمر — You/We/They",
+              "form": "were + verb<span class=\"s\">+ing</span>",
+              "ex": "They <strong>were playing</strong> when it rained."
+            },
+            {
+              "subj": "ماضٍ تام — All Subjects",
+              "form": "had + <span class=\"s\">V3</span>",
+              "ex": "Tom passed because he <strong>had revised</strong> well."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ الفارق بين While و When",
+            "body": "<strong>While</strong> تليها جملة الحدث الطويل (ماضٍ مستمر): <em>While I was cooking…</em><br>\n                <strong>When</strong> تليها جملة الحدث القصير الذي قطع الاستمرارية (ماضٍ بسيط): <em>…the phone rang</em><br>\n                كلاهما يمكن استخدامه مع الحدث القصير: <em>When I came home, she was sleeping.</em>"
+          },
+          "practice": [
+            {
+              "q": "While I ……, he called me.",
+              "opts": [
+                "sleep",
+                "slept",
+                "is sleeping",
+                "was sleeping"
+              ],
+              "c": 3,
+              "expl": "بعد While نختار الماضي المستمر (الحدث الطويل): <strong>was sleeping</strong>."
+            },
+            {
+              "q": "Tom answered easily because he ……. well.",
+              "opts": [
+                "has revised",
+                "revise",
+                "had revised",
+                "revised"
+              ],
+              "c": 2,
+              "expl": "المذاكرة حدثت قبل الإجابة → ماضٍ تام: <strong>had revised</strong>."
+            }
+          ]
+        },
+        {
+          "id": "u1s5",
+          "theme": "sc-theme-green",
+          "icon": "✅",
+          "title": "المضارع التام",
+          "subtitle": "Present Perfect",
+          "badge": "Tense 5/6",
+          "usage": "يُعبِّر عن حدث وقع في الماضي لكن له تأثير أو علاقة بالحاضر.",
+          "keywords": [
+            {
+              "f": "Already",
+              "b": "بالفعل ← في الجمل المثبتة"
+            },
+            {
+              "f": "Just",
+              "b": "للتو ← حدث منذ لحظات"
+            },
+            {
+              "f": "Yet",
+              "b": "بعد ← في النهاية، للنفي والسؤال"
+            },
+            {
+              "f": "Ever",
+              "b": "في حياتك ← للسؤال والنفي"
+            },
+            {
+              "f": "Never",
+              "b": "لم... قط"
+            },
+            {
+              "f": "Since",
+              "b": "منذ + نقطة زمنية (since 2020)"
+            },
+            {
+              "f": "For",
+              "b": "لمدة + فترة (for 3 years)"
+            },
+            {
+              "f": "Lately / Recently",
+              "b": "مؤخراً"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "I / You / We / They",
+              "form": "have + <span class=\"s\">V3</span>",
+              "ex": "We <strong>have finished</strong> the project."
+            },
+            {
+              "subj": "He / She / It",
+              "form": "has + <span class=\"s\">V3</span>",
+              "ex": "She <strong>has visited</strong> London twice."
+            },
+            {
+              "subj": "Negative",
+              "form": "have/has + not + V3",
+              "ex": "I <strong>haven't seen</strong> him lately."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ Since vs For — سؤال الامتحان الأكثر شيوعاً",
+            "body": "<strong>Since</strong> + نقطة زمنية محددة: since Monday, since 2018, since I was a child<br>\n                <strong>For</strong> + مدة زمنية: for two hours, for a week, for a long time<br>\n                <em>اختبر نفسك:</em> I haven't seen her _____ last Friday. → <strong>since</strong>"
+          },
+          "practice": [
+            {
+              "q": "She …… her work yet.",
+              "opts": [
+                "didn't finish",
+                "hasn't finished",
+                "doesn't finish",
+                "isn't finishing"
+              ],
+              "c": 1,
+              "expl": "yet في النهاية مع النفي → مضارع تام: <strong>hasn't finished</strong>."
+            },
+            {
+              "q": "I have lived here …… 2010.",
+              "opts": [
+                "for",
+                "since",
+                "ago",
+                "during"
+              ],
+              "c": 1,
+              "expl": "2010 نقطة زمنية محددة → <strong>since</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "You are very late, Matt. We ……for over an hour.",
+          "opts": [
+            "are waiting",
+            "had waited",
+            "waited",
+            "have been waiting"
+          ],
+          "c": 3,
+          "expl": "for + مدة مستمرة حتى الآن → مضارع تام مستمر: <strong>have been waiting</strong>."
+        },
+        {
+          "q": "When she …….. from her trip, we will have a party.",
+          "opts": [
+            "returns",
+            "will return",
+            "returned",
+            "is returning"
+          ],
+          "c": 0,
+          "expl": "الجملة الثانية مستقبل (will have) → جملة When تأخذ مضارعاً بسيطاً: <strong>returns</strong>."
+        },
+        {
+          "q": "22",
+          "opts": [
+            "22",
+            "2662",
+            "2662",
+            "26"
+          ],
+          "correct": 0,
+          "expl": "5165151"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "emoji": "🔗",
+    "nameAr": "الروابط الزمنية",
+    "nameEn": "Time Connectors",
+    "page": {
+      "tag": "الوحدة الثانية",
+      "mascot": "⏰",
+      "strategies": [
+        {
+          "id": "u2s1",
+          "theme": "sc-theme-blue",
+          "icon": "🔗",
+          "title": "القاعدة الذهبية للروابط الزمنية",
+          "subtitle": "Time Connectors Golden Rule",
+          "badge": "Core Rule",
+          "usage": "الرابط الزمني يوحِّد الزمن بين الجملتين. الزمن الأساسي للجملة الأولى يحدد الزمن في الجملة الثانية.",
+          "keywords": [
+            {
+              "f": "After",
+              "b": "بعد"
+            },
+            {
+              "f": "Before",
+              "b": "قبل"
+            },
+            {
+              "f": "When",
+              "b": "عندما"
+            },
+            {
+              "f": "While",
+              "b": "بينما"
+            },
+            {
+              "f": "As soon as",
+              "b": "بمجرد أن"
+            },
+            {
+              "f": "Until / Till",
+              "b": "حتى"
+            },
+            {
+              "f": "By the time",
+              "b": "بحلول الوقت الذي"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "ماضٍ ↔ ماضٍ",
+              "form": "V2  |  V2",
+              "ex": "He <strong>studied</strong> hard before he <strong>got</strong> the job."
+            },
+            {
+              "subj": "مضارع ↔ مستقبل",
+              "form": "V1  |  will + V",
+              "ex": "When I <strong>arrive</strong>, I <strong>will call</strong> you."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ حالة خاصة: الفراغ يأتي بعد الرابط مباشرةً (بدون فاعل)",
+            "body": "إذا جاء الفراغ بعد الرابط الزمني مباشرةً <strong>بدون فاعل</strong>، نختار الفعل + <strong>ing</strong>:<br>\n                Before <strong>going</strong> to bed, brush your teeth.<br>\n                After <strong>finishing</strong> work, he went home."
+          },
+          "practice": [
+            {
+              "q": "Paul studied before he …… to Marketing.",
+              "opts": [
+                "changes",
+                "is changing",
+                "changed",
+                "has changed"
+              ],
+              "c": 2,
+              "expl": "studied = ماضٍ → الفعل الثاني يكون ماضياً: <strong>changed</strong>."
+            },
+            {
+              "q": "Before ……. to bed, remember to brush your teeth.",
+              "opts": [
+                "go",
+                "to go",
+                "going",
+                "gone"
+              ],
+              "c": 2,
+              "expl": "فراغ بعد Before بدون فاعل → نختار: <strong>going</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "As soon as she ……. home, she started cooking.",
+          "opts": [
+            "arrives",
+            "arrived",
+            "will arrive",
+            "is arriving"
+          ],
+          "c": 1,
+          "expl": "الجملة الثانية ماضٍ (started) → الأولى ماضٍ: <strong>arrived</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "emoji": "❓",
+    "nameAr": "جمل الشرط",
+    "nameEn": "Conditional Sentences",
+    "page": {
+      "tag": "الوحدة الثالثة",
+      "mascot": "🎯",
+      "strategies": [
+        {
+          "id": "u3s1",
+          "theme": "sc-theme-blue",
+          "icon": "🔢",
+          "title": "الحالات الأربعة لجملة الشرط",
+          "subtitle": "The Four Conditionals",
+          "badge": "If Conditions",
+          "usage": "جملة الشرط تتكون من جزأين: جملة الشرط (If clause) وجملة الجواب (Main clause). الحالة تتغير حسب درجة احتمال الحدث أو وقته.",
+          "keywords": [
+            {
+              "f": "If / Unless",
+              "b": "إذا / إلا إذا"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "الحالة الصفرية — حقيقة",
+              "form": "If + مضارع → مضارع",
+              "ex": "If you <strong>heat</strong> water to 100°C, it <strong>boils</strong>."
+            },
+            {
+              "subj": "الحالة الأولى — احتمال",
+              "form": "If + مضارع → will + V",
+              "ex": "If it <strong>rains</strong>, I <strong>will stay</strong> home."
+            },
+            {
+              "subj": "الحالة الثانية — تخيل",
+              "form": "If + ماضٍ → would + V",
+              "ex": "If I <strong>were</strong> you, I <strong>would accept</strong> it."
+            },
+            {
+              "subj": "الحالة الثالثة — ندم",
+              "form": "If + ماضٍ تام → would have + V3",
+              "ex": "If he <strong>had tried</strong>, he <strong>would have succeeded</strong>."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ ملاحظتان لا تُنسيان",
+            "body": "1. في الحالة الثانية (التخيلية): استخدم <strong>were</strong> مع جميع الضمائر (If I <strong>were</strong>, If he <strong>were</strong>).<br>\n                2. <strong>Unless</strong> = If...not → لا تضع not بعدها: Unless he <strong>studies</strong>, he will fail."
+          },
+          "practice": [
+            {
+              "q": "If it rains tomorrow, I ……. my raincoat.",
+              "opts": [
+                "wear",
+                "am wear",
+                "will wear",
+                "going to wear"
+              ],
+              "c": 2,
+              "expl": "مضارع (rains) في جملة الشرط → will + فعل في جملة الجواب: <strong>will wear</strong>."
+            },
+            {
+              "q": "If I …… you, I would accept the offer.",
+              "opts": [
+                "be",
+                "am",
+                "been",
+                "were"
+              ],
+              "c": 3,
+              "expl": "would accept = حالة ثانية تخيلية → نستخدم <strong>were</strong>."
+            },
+            {
+              "q": "If he …… harder, he would have passed.",
+              "opts": [
+                "works",
+                "will work",
+                "worked",
+                "had worked"
+              ],
+              "c": 3,
+              "expl": "would have passed = حالة ثالثة (ندم) → ماضٍ تام: <strong>had worked</strong>."
+            }
+          ]
+        },
+        {
+          "id": "u3s2",
+          "theme": "sc-theme-purple",
+          "icon": "🌟",
+          "title": "التمني (Wish / If Only)",
+          "subtitle": "Expressing Wishes",
+          "badge": "Wishes",
+          "usage": "للتعبير عن تمنٍّ لشيء غير حقيقي في الحاضر، أو ندمٍ على شيء مضى.",
+          "keywords": [
+            {
+              "f": "I wish",
+              "b": "أتمنى / ليت"
+            },
+            {
+              "f": "If only",
+              "b": "ليت / لو أن (تعبير أقوى)"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "تمنٍّ للحاضر (مستحيل الآن)",
+              "form": "Wish + ماضٍ بسيط",
+              "ex": "I wish she <strong>were</strong> here with me now."
+            },
+            {
+              "subj": "ندم على الماضي",
+              "form": "Wish + had + <span class=\"s\">V3</span>",
+              "ex": "I wish I <strong>had studied</strong> harder last year."
+            }
+          ],
+          "exception": null,
+          "practice": [
+            {
+              "q": "I miss my friend. If only he …… here now.",
+              "opts": [
+                "were",
+                "had been",
+                "will be",
+                "is"
+              ],
+              "c": 0,
+              "expl": "تمنٍّ للحاضر (now) → ماضٍ بسيط: <strong>were</strong>."
+            },
+            {
+              "q": "I wish I …… harder. Instead, I'd hang out.",
+              "opts": [
+                "Would work",
+                "Was working",
+                "Have worked",
+                "Had worked"
+              ],
+              "c": 3,
+              "expl": "Instead يدل على ندم الماضي → ماضٍ تام: <strong>had worked</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "Unless he ……. now, he will miss the bus.",
+          "opts": [
+            "leave",
+            "leaves",
+            "will leave",
+            "left"
+          ],
+          "c": 1,
+          "expl": "Unless = If...not → مضارع في جملة الشرط: <strong>leaves</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "emoji": "🔍",
+    "nameAr": "جمل الوصل",
+    "nameEn": "Relative Clauses",
+    "page": {
+      "tag": "الوحدة الرابعة",
+      "mascot": "🔗",
+      "strategies": [
+        {
+          "id": "u4s1",
+          "theme": "sc-theme-green",
+          "icon": "🔍",
+          "title": "ضمائر الوصل",
+          "subtitle": "Relative Pronouns",
+          "badge": "Relative Clauses",
+          "usage": "ضمائر الوصل تربط بين جملتين وتعود على اسم محدد (مرجع) قبلها.",
+          "keywords": [
+            {
+              "f": "Who",
+              "b": "للعاقل — فاعل في جملة الوصل"
+            },
+            {
+              "f": "Whom",
+              "b": "للعاقل — مفعول أو بعد حرف جر"
+            },
+            {
+              "f": "Which",
+              "b": "لغير العاقل (أشياء/حيوانات)"
+            },
+            {
+              "f": "Whose",
+              "b": "الملكية (اسم يمتلك اسماً آخر)"
+            },
+            {
+              "f": "That",
+              "b": "بديل لـ who/which — إجباري بعد all"
+            },
+            {
+              "f": "Where",
+              "b": "للأماكن"
+            },
+            {
+              "f": "When",
+              "b": "للأوقات"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "Who",
+              "form": "للعاقل",
+              "ex": "The man <strong>who</strong> called me is my teacher."
+            },
+            {
+              "subj": "Whom",
+              "form": "للعاقل + جر",
+              "ex": "The person with <strong>whom</strong> I work is kind."
+            },
+            {
+              "subj": "Which",
+              "form": "لغير العاقل",
+              "ex": "The book <strong>which</strong> I bought is interesting."
+            },
+            {
+              "subj": "Whose",
+              "form": "الملكية",
+              "ex": "The boy <strong>whose</strong> bike was stolen is sad."
+            },
+            {
+              "subj": "That",
+              "form": "بديل، إجباري بعد all",
+              "ex": "All <strong>that</strong> he said was true."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ متى تستخدم Whom وليس Who؟",
+            "body": "استخدم <strong>Whom</strong> إذا:<br>\n                1. سبقها حرف جر: with <strong>whom</strong>, to <strong>whom</strong><br>\n                2. كانت مفعولاً به في جملة الوصل<br>\n                وتذكر: بعد <strong>all</strong> → that وجوباً: All <strong>that</strong> glitters is not gold."
+          },
+          "practice": [
+            {
+              "q": "The boy, …… bicycle was stolen, got a new one.",
+              "opts": [
+                "who",
+                "that",
+                "which",
+                "whose"
+              ],
+              "c": 3,
+              "expl": "اسم يملك اسماً (الولد يملك الدراجة) → <strong>whose</strong>."
+            },
+            {
+              "q": "I'm sure all …… you told me was true.",
+              "opts": [
+                "what",
+                "who",
+                "whose",
+                "that"
+              ],
+              "c": 3,
+              "expl": "بعد all وجوباً → <strong>that</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "The person …… I deal with is not here today.",
+          "opts": [
+            "with whom",
+            "with who",
+            "whom with",
+            "who with"
+          ],
+          "c": 0,
+          "expl": "حرف الجر (with) يسبق ضمير الوصل للعاقل → <strong>with whom</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "emoji": "👤",
+    "nameAr": "الضمائر",
+    "nameEn": "Pronouns",
+    "page": {
+      "tag": "الوحدة الخامسة",
+      "mascot": "🪞",
+      "strategies": [
+        {
+          "id": "u5s1",
+          "theme": "sc-theme-gold",
+          "icon": "👤",
+          "title": "الضمائر الملكية والانعكاسية",
+          "subtitle": "Possessives & Reflexives",
+          "badge": "Pronouns",
+          "usage": "تُحدد ملكية الشيء أو تُشير إلى عودة الفعل على الفاعل نفسه.",
+          "keywords": [
+            {
+              "f": "Possessive Adj.",
+              "b": "صفة ملكية ← يأتي بعدها اسم دائماً\nmy/your/his/her/our/their"
+            },
+            {
+              "f": "Possessive Pron.",
+              "b": "ضمير ملكية ← لا يأتي بعده اسم\nmine/yours/his/hers/ours/theirs"
+            },
+            {
+              "f": "Reflexive",
+              "b": "ضمير انعكاسي ← يعود على الفاعل\nmyself/yourself/himself/herself/ourselves/themselves"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "Possessive Adj.",
+              "form": "صفة + اسم (noun)",
+              "ex": "This is <strong>my</strong> book. (my ← قبل book)"
+            },
+            {
+              "subj": "Possessive Pron.",
+              "form": "وحده، بدون اسم بعده",
+              "ex": "This book is <strong>mine</strong>. (mine ← لا يأتي بعده اسم)"
+            },
+            {
+              "subj": "Reflexive",
+              "form": "فاعل = مفعول به",
+              "ex": "She hurt <strong>herself</strong> while cooking."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ كيف تختار بسرعة في الامتحان؟",
+            "body": "هل يأتي بعد الفراغ اسم (noun)؟<br>\n                ← نعم: اختر صفة ملكية (my, his, her...)<br>\n                ← لا: اختر ضمير ملكية مستقلاً (mine, his, hers...)<br>\n                هل الفاعل والمفعول به نفس الشخص؟ → اختر انعكاسياً (himself, herself...)"
+          },
+          "practice": [
+            {
+              "q": "The red car parked outside is ……",
+              "opts": [
+                "me",
+                "my",
+                "mine",
+                "myself"
+              ],
+              "c": 2,
+              "expl": "لا يأتي بعد الفراغ اسم → ضمير ملكية مستقل: <strong>mine</strong>."
+            },
+            {
+              "q": "Ahmed injured …… while playing football.",
+              "opts": [
+                "he",
+                "him",
+                "himself",
+                "his"
+              ],
+              "c": 2,
+              "expl": "الفاعل (Ahmed) = المفعول به → انعكاسي: <strong>himself</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "Could you give …… the pen, please?",
+          "opts": [
+            "I",
+            "my",
+            "me",
+            "mine"
+          ],
+          "c": 2,
+          "expl": "بعد الفعل give نحتاج ضميراً مفعولاً به: <strong>me</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "emoji": "🔢",
+    "nameAr": "المعدود وغير المعدود",
+    "nameEn": "Countable & Uncountable",
+    "page": {
+      "tag": "الوحدة السادسة",
+      "mascot": "🧮",
+      "strategies": [
+        {
+          "id": "u6s1",
+          "theme": "sc-theme-red",
+          "icon": "🔢",
+          "title": "محددات الكمية",
+          "subtitle": "Quantifiers",
+          "badge": "Count/Uncount",
+          "usage": "نستخدم محددات كمية مختلفة حسب نوع الاسم (معدود / غير معدود).",
+          "keywords": [
+            {
+              "f": "Many",
+              "b": "كثير ← للمعدود فقط (Many books)"
+            },
+            {
+              "f": "Few",
+              "b": "قليل ← للمعدود (Few students)"
+            },
+            {
+              "f": "A few",
+              "b": "بعض (إيجابي) ← للمعدود (A few ideas)"
+            },
+            {
+              "f": "Much",
+              "b": "كثير ← لغير المعدود فقط (Much water)"
+            },
+            {
+              "f": "Little",
+              "b": "قليل ← لغير المعدود (Little time)"
+            },
+            {
+              "f": "A little",
+              "b": "بعض (إيجابي) ← لغير المعدود"
+            },
+            {
+              "f": "Some",
+              "b": "بعض ← للاثنين، في المثبت والعروض"
+            },
+            {
+              "f": "Any",
+              "b": "أي ← للاثنين، في النفي والسؤال"
+            },
+            {
+              "f": "A lot of / Lots of",
+              "b": "كثير جداً ← للاثنين"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "المعدود (Countable)",
+              "form": "Many / Few / A few / Several",
+              "ex": "<strong>Many</strong> students passed the exam."
+            },
+            {
+              "subj": "غير المعدود (Uncountable)",
+              "form": "Much / Little / A little",
+              "ex": "There isn't <strong>much</strong> water left."
+            },
+            {
+              "subj": "للاثنين",
+              "form": "Some / Any / A lot of",
+              "ex": "Do you have <strong>any</strong> milk? — Yes, <strong>some</strong>."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ Some في السؤال",
+            "body": "نستخدم <strong>some</strong> في السؤال عند تقديم عرض أو طلب مهذب:<br>\n                Would you like <strong>some</strong> coffee? (عرض) ✓<br>\n                Do you have <strong>any</strong> coffee? (سؤال عادي) ✓"
+          },
+          "practice": [
+            {
+              "q": "There isn't …… sugar in my tea.",
+              "opts": [
+                "many",
+                "few",
+                "much",
+                "a number of"
+              ],
+              "c": 2,
+              "expl": "sugar غير معدود والجملة منفية → <strong>much</strong>."
+            },
+            {
+              "q": "Would you like …… coffee?",
+              "opts": [
+                "any",
+                "many",
+                "some",
+                "few"
+              ],
+              "c": 2,
+              "expl": "عرض مهذب → <strong>some</strong> حتى في السؤال."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "We have very …… apples left, so buy more.",
+          "opts": [
+            "little",
+            "a little",
+            "few",
+            "much"
+          ],
+          "c": 2,
+          "expl": "apples معدود + معنى سلبي (قليل جداً) → <strong>few</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "emoji": "🌈",
+    "nameAr": "الصفات والظروف",
+    "nameEn": "Adjectives & Adverbs",
+    "page": {
+      "tag": "الوحدة السابعة",
+      "mascot": "✨",
+      "strategies": [
+        {
+          "id": "u7s1",
+          "theme": "sc-theme-purple",
+          "icon": "📊",
+          "title": "درجات المقارنة والتفضيل",
+          "subtitle": "Degrees of Comparison",
+          "badge": "Comparison",
+          "usage": "نستخدم درجات المقارنة لمقارنة شخصين أو شيئين (Comparative) أو للتفضيل على مجموعة (Superlative).",
+          "keywords": [
+            {
+              "f": "Comparative (...than)",
+              "b": "مقارنة بين اثنين"
+            },
+            {
+              "f": "Superlative (the...)",
+              "b": "الأفضل بين مجموعة"
+            },
+            {
+              "f": "as ... as",
+              "b": "بنفس الدرجة: as tall as"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "قصيرة (1-2 مقطع)",
+              "form": "adj + <span class=\"s\">er</span> / the + adj + <span class=\"s\">est</span>",
+              "ex": "tall → <strong>taller</strong> than / <strong>the tallest</strong>"
+            },
+            {
+              "subj": "طويلة (3+ مقاطع)",
+              "form": "more + adj / the most + adj",
+              "ex": "beautiful → <strong>more beautiful</strong> / <strong>the most beautiful</strong>"
+            },
+            {
+              "subj": "الظرف (Adverb)",
+              "form": "more + adv / the most + adv",
+              "ex": "He plays <strong>well</strong> → <strong>better</strong> → <strong>the best</strong>"
+            }
+          ],
+          "exception": {
+            "title": "⚠️ صفات شاذة لا تأخذ er/est",
+            "body": "good → <strong>better</strong> → <strong>the best</strong><br>\n                bad  → <strong>worse</strong>  → <strong>the worst</strong><br>\n                far  → <strong>farther/further</strong> → <strong>the farthest/furthest</strong><br>\n                <em>ملاحظة: adj وصف اسم — adverb وصف فعل: She sings <strong>well</strong> (not good).</em>"
+          },
+          "practice": [
+            {
+              "q": "This is the …… movie I have ever seen.",
+              "opts": [
+                "more interesting",
+                "most interesting",
+                "interesting",
+                "interested"
+              ],
+              "c": 1,
+              "expl": "تفضيل على مجموعة + صفة طويلة: <strong>most interesting</strong> (the موجودة في السؤال)."
+            },
+            {
+              "q": "My score is …… than yours.",
+              "opts": [
+                "bad",
+                "worse",
+                "worst",
+                "more bad"
+              ],
+              "c": 1,
+              "expl": "مقارنة بين اثنين + صفة شاذة: bad → <strong>worse</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "He plays tennis very ……",
+          "opts": [
+            "good",
+            "well",
+            "better",
+            "best"
+          ],
+          "c": 1,
+          "expl": "وصف الفعل plays → نستخدم الظرف: <strong>well</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "emoji": "⚡",
+    "nameAr": "الأفعال + To أو Ing",
+    "nameEn": "Verb Patterns",
+    "page": {
+      "tag": "الوحدة الثامنة",
+      "mascot": "🔧",
+      "strategies": [
+        {
+          "id": "u8s1",
+          "theme": "sc-theme-gold",
+          "icon": "⚡",
+          "title": "أنماط الأفعال (Verb Patterns)",
+          "subtitle": "Verb + Infinitive or Gerund",
+          "badge": "Verb Patterns",
+          "usage": "بعض الأفعال تتبعها حتماً صيغة (to + مصدر)، وأخرى تتبعها صيغة (v.ing). اعرف الفعل الأول لتعرف الصيغة التالية.",
+          "keywords": [
+            {
+              "f": "→ v.ing",
+              "b": "enjoy, finish, mind, avoid, suggest, consider, keep, risk, practise"
+            },
+            {
+              "f": "→ to + v",
+              "b": "want, need, decide, plan, hope, agree, refuse, promise, offer"
+            },
+            {
+              "f": "→ الاثنين (معنى مختلف)",
+              "b": "remember, forget, stop, try"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "Gerund (v.ing)",
+              "form": "Verb + v.ing",
+              "ex": "I enjoy <strong>reading</strong> novels."
+            },
+            {
+              "subj": "Infinitive (to+v)",
+              "form": "Verb + to + V",
+              "ex": "He decided <strong>to travel</strong> abroad."
+            },
+            {
+              "subj": "Stop (فرق المعنى)",
+              "form": "stop + v.ing = توقف",
+              "ex": "She stopped <strong>smoking</strong>. (تركت التدخين)"
+            },
+            {
+              "subj": "",
+              "form": "stop + to + V = توقف كي",
+              "ex": "She stopped <strong>to smoke</strong>. (توقفت لتدخن)"
+            }
+          ],
+          "exception": {
+            "title": "⚠️ Remember & Forget",
+            "body": "<strong>Remember + v.ing</strong>: تذكر شيئاً حدث سابقاً — I remember <strong>meeting</strong> him.<br>\n                <strong>Remember + to+V</strong>: لا تنسَ أن تفعل — Remember <strong>to lock</strong> the door.<br>\n                <strong>Forget + v.ing</strong>: نسي شيئاً حدث — I'll never forget <strong>seeing</strong> that movie.<br>\n                <strong>Forget + to+V</strong>: نسي أن يفعل — He forgot <strong>to buy</strong> milk."
+          },
+          "practice": [
+            {
+              "q": "She finished …… her homework.",
+              "opts": [
+                "do",
+                "to do",
+                "doing",
+                "did"
+              ],
+              "c": 2,
+              "expl": "finish يتبعه v.ing: <strong>doing</strong>."
+            },
+            {
+              "q": "We decided …… a new car.",
+              "opts": [
+                "buy",
+                "buying",
+                "to buy",
+                "bought"
+              ],
+              "c": 2,
+              "expl": "decide يتبعه to + مصدر: <strong>to buy</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "Would you mind …… the window?",
+          "opts": [
+            "open",
+            "to open",
+            "opening",
+            "opened"
+          ],
+          "c": 2,
+          "expl": "mind يتبعه v.ing: <strong>opening</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "emoji": "🎛️",
+    "nameAr": "الأفعال الناقصة",
+    "nameEn": "Modal Auxiliaries",
+    "page": {
+      "tag": "الوحدة التاسعة",
+      "mascot": "🎯",
+      "strategies": [
+        {
+          "id": "u9s1",
+          "theme": "sc-theme-green",
+          "icon": "🎛️",
+          "title": "درجات الإلزام والإذن والنصيحة",
+          "subtitle": "Modal Auxiliaries",
+          "badge": "Modals",
+          "usage": "الأفعال الناقصة تُعبِّر عن درجات مختلفة من الإلزام أو المنع أو الاحتمال أو النصيحة.",
+          "keywords": [
+            {
+              "f": "Must",
+              "b": "إلزام ذاتي قوي جداً"
+            },
+            {
+              "f": "Have to",
+              "b": "إلزام خارجي (قانون/قاعدة)"
+            },
+            {
+              "f": "Mustn't",
+              "b": "تحريم ومنع تام ⛔"
+            },
+            {
+              "f": "Don't have to",
+              "b": "ليس ضرورياً (اختياري) — لا يعني ممنوع!"
+            },
+            {
+              "f": "Should / Ought to",
+              "b": "نصيحة وتوصية"
+            },
+            {
+              "f": "Can / Could",
+              "b": "قدرة / إذن مهذب"
+            },
+            {
+              "f": "May / Might",
+              "b": "احتمال (may أقوى من might)"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "إلزام",
+              "form": "must / have to + V",
+              "ex": "You <strong>must</strong> wear a seatbelt. (قانون)"
+            },
+            {
+              "subj": "تحريم",
+              "form": "mustn't + V",
+              "ex": "You <strong>mustn't</strong> park here. (ممنوع)"
+            },
+            {
+              "subj": "اختياري",
+              "form": "don't have to + V",
+              "ex": "You <strong>don't have to</strong> come early."
+            },
+            {
+              "subj": "نصيحة",
+              "form": "should + V",
+              "ex": "You <strong>should</strong> see a doctor."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ الفرق الحاسم: Mustn't vs Don't have to",
+            "body": "<strong>Mustn't</strong> = ممنوع، محظور، لا تفعل (forbidden): You mustn't smoke here.<br>\n                <strong>Don't have to</strong> = ليس ضرورياً، يمكنك أن تفعل أو لا (not necessary): You don't have to wear a tie."
+          },
+          "practice": [
+            {
+              "q": "You …… park here. It is illegal.",
+              "opts": [
+                "must",
+                "shouldn't",
+                "mustn't",
+                "don't have to"
+              ],
+              "c": 2,
+              "expl": "illegal = غير قانوني = ممنوع تماماً → <strong>mustn't</strong>."
+            },
+            {
+              "q": "Tomorrow is a holiday, so we …… wake up early.",
+              "opts": [
+                "mustn't",
+                "don't have to",
+                "should",
+                "can't"
+              ],
+              "c": 1,
+              "expl": "عطلة = ليس ضرورياً الاستيقاظ → <strong>don't have to</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "You …… read this book. It's really good.",
+          "opts": [
+            "should",
+            "mustn't",
+            "needn't",
+            "might"
+          ],
+          "c": 0,
+          "expl": "توصية لأن الكتاب جيد → <strong>should</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "emoji": "🔀",
+    "nameAr": "حروف العطف",
+    "nameEn": "Conjunctions",
+    "page": {
+      "tag": "الوحدة العاشرة",
+      "mascot": "🔗",
+      "strategies": [
+        {
+          "id": "u10s1",
+          "theme": "sc-theme-teal",
+          "icon": "🔀",
+          "title": "حروف العطف والربط",
+          "subtitle": "Conjunctions",
+          "badge": "Linking Words",
+          "usage": "تربط الجمل وتوضح العلاقة المنطقية بينها (سبب / نتيجة / تناقض / شرط).",
+          "keywords": [
+            {
+              "f": "And",
+              "b": "إضافة — He is smart and hardworking."
+            },
+            {
+              "f": "But",
+              "b": "تناقض — He is rich but unhappy."
+            },
+            {
+              "f": "Although / Though",
+              "b": "رغم أن — Although it rained, we went."
+            },
+            {
+              "f": "So",
+              "b": "نتيجة — I was tired, so I slept."
+            },
+            {
+              "f": "Because",
+              "b": "سبب — I slept because I was tired."
+            },
+            {
+              "f": "Unless",
+              "b": "إلا إذا (= if not) — Unless he tries, he'll fail."
+            },
+            {
+              "f": "However",
+              "b": "ومع ذلك — It was cold. However, we went."
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "تناقض",
+              "form": "S + V, but + S + V",
+              "ex": "He is rich, <strong>but</strong> he is unhappy."
+            },
+            {
+              "subj": "رغم",
+              "form": "Although + S + V, S + V",
+              "ex": "<strong>Although</strong> she was tired, she kept working."
+            },
+            {
+              "subj": "سبب/نتيجة",
+              "form": "S + V because / so + S + V",
+              "ex": "I stayed home <strong>because</strong> it rained."
+            },
+            {
+              "subj": "شرط سلبي",
+              "form": "Unless + V (مضارع), will + V",
+              "ex": "<strong>Unless</strong> you hurry, you'll miss the bus."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ although vs but vs however",
+            "body": "<strong>Although</strong> = رابط داخل نفس الجملة: Although it was cold, I went.<br>\n                <strong>But</strong> = بين جملتين مستقلتين: It was cold, but I went.<br>\n                <strong>However</strong> = يبدأ جملة جديدة مع فصلة منقوطة أو فاصل: It was cold; however, I went."
+          },
+          "practice": [
+            {
+              "q": "We can't go to the beach …… the weather improves.",
+              "opts": [
+                "if",
+                "unless",
+                "because",
+                "although"
+              ],
+              "c": 1,
+              "expl": "لن نذهب إلا إذا تحسن الجو → <strong>unless</strong>."
+            },
+            {
+              "q": "I studied all night, …… I passed easily.",
+              "opts": [
+                "because",
+                "although",
+                "so",
+                "but"
+              ],
+              "c": 2,
+              "expl": "النجاح نتيجة للمذاكرة → <strong>so</strong>."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "He was very tired, …… he kept working.",
+          "opts": [
+            "so",
+            "because",
+            "but",
+            "unless"
+          ],
+          "c": 2,
+          "expl": "تناقض بين التعب والاستمرار → <strong>but</strong>."
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "emoji": "📎",
+    "nameAr": "المبني للمجهول والكلام المنقول",
+    "nameEn": "Passive & Reported Speech",
+    "page": {
+      "tag": "الوحدة الحادية عشرة",
+      "mascot": "📋",
+      "strategies": [
+        {
+          "id": "u11s1",
+          "theme": "sc-theme-blue",
+          "icon": "🔄",
+          "title": "المبني للمجهول",
+          "subtitle": "Passive Voice",
+          "badge": "Passive",
+          "usage": "نستخدمه حين يكون المفعول به أهم من الفاعل، أو حين لا نعرف الفاعل أو لا نريد ذكره.",
+          "keywords": [
+            {
+              "f": "المضارع البسيط",
+              "b": "am / is / are + V3"
+            },
+            {
+              "f": "المضارع المستمر",
+              "b": "am / is / are + being + V3"
+            },
+            {
+              "f": "الماضي البسيط",
+              "b": "was / were + V3"
+            },
+            {
+              "f": "الماضي التام",
+              "b": "had + been + V3"
+            },
+            {
+              "f": "المستقبل",
+              "b": "will + be + V3"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "مضارع",
+              "form": "am/is/are + V3",
+              "ex": "English <strong>is spoken</strong> worldwide."
+            },
+            {
+              "subj": "ماضٍ",
+              "form": "was/were + V3",
+              "ex": "The pyramids <strong>were built</strong> thousands of years ago."
+            },
+            {
+              "subj": "مستقبل",
+              "form": "will + be + V3",
+              "ex": "The report <strong>will be sent</strong> tomorrow."
+            }
+          ],
+          "exception": {
+            "title": "⚠️ كيف تحول من المعلوم للمجهول؟",
+            "body": "المفعول به → فاعل جديد | الفاعل → by + ... (اختياري)<br>\n                Active:  They <u>built</u> this bridge in 1990.<br>\n                Passive: This bridge <strong>was built</strong> in 1990 (by them)."
+          },
+          "practice": [
+            {
+              "q": "The Mona Lisa …… by Leonardo da Vinci.",
+              "opts": [
+                "painted",
+                "is painted",
+                "was painted",
+                "has painted"
+              ],
+              "c": 2,
+              "expl": "حدث في الماضي + مبني للمجهول: <strong>was painted</strong>."
+            },
+            {
+              "q": "Many emails …… every day in the company.",
+              "opts": [
+                "send",
+                "sent",
+                "are sent",
+                "were sent"
+              ],
+              "c": 2,
+              "expl": "كل يوم = مضارع + جمع (emails) → <strong>are sent</strong>."
+            }
+          ]
+        },
+        {
+          "id": "u11s2",
+          "theme": "sc-theme-purple",
+          "icon": "🗣️",
+          "title": "الكلام المنقول",
+          "subtitle": "Reported Speech",
+          "badge": "Reported",
+          "usage": "لنقل ما قاله شخص بالكلام غير المباشر، نُرجع الزمن خطوةً للخلف.",
+          "keywords": [
+            {
+              "f": "is / are",
+              "b": "→ was / were"
+            },
+            {
+              "f": "am",
+              "b": "→ was"
+            },
+            {
+              "f": "will",
+              "b": "→ would"
+            },
+            {
+              "f": "can",
+              "b": "→ could"
+            },
+            {
+              "f": "have/has",
+              "b": "→ had"
+            },
+            {
+              "f": "play (مضارع)",
+              "b": "→ played (ماضٍ)"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "فعل القول",
+              "form": "said / told + that",
+              "ex": "She <strong>said that</strong> she was tired."
+            },
+            {
+              "subj": "تغيير الزمن",
+              "form": "إرجاع الزمن للماضي",
+              "ex": "\"I will come\" → He said he <strong>would</strong> come."
+            }
+          ],
+          "exception": null,
+          "practice": [
+            {
+              "q": "Mona said, \"I will call you.\" → Mona said she …… call me.",
+              "opts": [
+                "will",
+                "would",
+                "can",
+                "is going to"
+              ],
+              "c": 1,
+              "expl": "will في الكلام المباشر → <strong>would</strong> في المنقول."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "\"I can swim,\" said Tom. → Tom said he …… swim.",
+          "opts": [
+            "can",
+            "could",
+            "will",
+            "would"
+          ],
+          "c": 1,
+          "expl": "can في المباشر → <strong>could</strong> في المنقول."
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "emoji": "✍️",
+    "nameAr": "تحليل الكتابة",
+    "nameEn": "Writing Analysis",
+    "page": {
+      "tag": "الوحدة الثانية عشرة",
+      "mascot": "📝",
+      "strategies": [
+        {
+          "id": "u12s1",
+          "theme": "sc-theme-purple",
+          "icon": "✍️",
+          "title": "ترتيب الجملة والفقرة",
+          "subtitle": "Sentence & Paragraph Order",
+          "badge": "Writing",
+          "usage": "الكتابة الأكاديمية تتطلب ترتيباً منطقياً للجملة وبناءً هرمياً للفقرة.",
+          "keywords": [
+            {
+              "f": "ترتيب الجملة",
+              "b": "S → V → O → Place → Time"
+            },
+            {
+              "f": "Topic Sentence",
+              "b": "المقدمة: الفكرة الرئيسية"
+            },
+            {
+              "f": "Supporting",
+              "b": "الصلب: أدلة وأمثلة"
+            },
+            {
+              "f": "Conclusion",
+              "b": "الخاتمة: النتيجة أو التلخيص"
+            },
+            {
+              "f": "First / Then / Finally",
+              "b": "كلمات الترتيب المنطقي"
+            }
+          ],
+          "formulas": [
+            {
+              "subj": "ترتيب الجملة",
+              "form": "Subject + Verb + Object + Place + Time",
+              "ex": "She studies English at home every day."
+            },
+            {
+              "subj": "ترتيب الفقرة",
+              "form": "Topic → Supporting (First…Then…) → Conclusion",
+              "ex": "Making tea is easy. First, boil water…"
+            }
+          ],
+          "exception": {
+            "title": "⚠️ نقاط أساسية في الكتابة الأكاديمية",
+            "body": "1. لا تبدأ الجملة بـ And أو But (في الكتابة الرسمية).<br>\n                2. استخدم <strong>However</strong> و<strong>Furthermore</strong> بدلاً منهما.<br>\n                3. تذكر: كل فقرة = فكرة واحدة فقط."
+          },
+          "practice": [
+            {
+              "q": "Choose the CORRECT ORDER:\n(1) Then, pour it into a cup with a teabag.\n(2) Now, you can remove the teabag and drink it.\n(3) First, you heat the water.\n(4) Making a cup of tea is easy.",
+              "opts": [
+                "(4)→(3)→(2)→(1)",
+                "(4)→(1)→(2)→(3)",
+                "(3)→(1)→(4)→(2)",
+                "(4)→(3)→(1)→(2)"
+              ],
+              "c": 3,
+              "expl": "المقدمة (4) → الخطوة الأولى (3) → الخطوة التالية (1) → النتيجة (2)."
+            }
+          ]
+        }
+      ],
+      "quizzes": [
+        {
+          "q": "Choose the correct order: Peru / rated / is / among the top nations / most affected / by climate change.",
+          "opts": [
+            "Peru rated is among...",
+            "Is Peru rated among...",
+            "Peru is rated among the top nations most affected by climate change.",
+            "By climate change, Peru is most..."
+          ],
+          "c": 2,
+          "expl": "S (Peru) + V-Passive (is rated) + complement: <strong>Peru is rated among the top nations most affected by climate change.</strong>"
+        }
+      ]
+    }
+  }
+]
