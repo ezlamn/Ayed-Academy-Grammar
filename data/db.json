@@ -74,7 +74,7 @@
           ],
           "exception": {
             "title": "⚠️ كيف تضيف (s/es) للمفرد؟",
-            "body": "<strong>s</strong> عادةً: play → plays, work → works<br>\n                <strong>es</strong> إذا انتهى بـ (o, ch, sh, ss, x): go → goes, watch → watches<br>\n                <strong>ies</strong> إذا انتهى بـ (y) مسبوقاً بساكن: cry → cries, study → studies"
+            "body": "<strong>s</strong> عادةً: <span dir=\"ltr\">play → plays, work → works</span><br>\n                <strong>es</strong> إذا انتهى بـ <span dir=\"ltr\">(o, ch, sh, ss, x)</span>: <span dir=\"ltr\">go → goes, watch → watches</span><br>\n                <strong>ies</strong> إذا انتهى بـ <span dir=\"ltr\">(y)</span> مسبوقاً بساكن: <span dir=\"ltr\">cry → cries, study → studies</span>"
           },
           "practice": [
             {
@@ -155,7 +155,7 @@
           ],
           "exception": {
             "title": "⚠️ أفعال لا تأتي في صيغة المستمر (Stative Verbs)",
-            "body": "أفعال الحواس والمشاعر والملكية لا تُستخدم في صيغة المستمر عادةً:<br>know, understand, love, hate, want, need, believe, have (ملكية)<br><em>خطأ:</em> I am knowing the answer. ✗<br><em>صح:</em> I know the answer. ✓"
+            "body": "أفعال الحواس والمشاعر والملكية لا تُستخدم في صيغة المستمر عادةً:<br><span dir=\"ltr\">know, understand, love, hate, want, need, believe, have</span> (ملكية)<br><em>خطأ:</em> <span dir=\"ltr\">I am knowing the answer. ✗</span><br><em>صح:</em> <span dir=\"ltr\">I know the answer. ✓</span>"
           },
           "practice": [
             {

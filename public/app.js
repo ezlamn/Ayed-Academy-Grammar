@@ -228,8 +228,8 @@ function renderStrategy(strat, si) {
   const fRows = (strat.formulas || []).map(f => `
     <div class="formula-block" dir="ltr">
       <div class="fb-subj" dir="rtl">${f.subj}</div>
-      <div class="fb-form" dir="ltr">${f.form}</div>
-      <div class="fb-ex" dir="ltr">${f.ex}</div>
+      <div class="fb-form" dir="ltr"><span>${f.form}</span></div>
+      <div class="fb-ex" dir="ltr"><span>${f.ex}</span></div>
     </div>
   `).join('');
 
