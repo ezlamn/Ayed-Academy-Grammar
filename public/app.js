@@ -402,6 +402,16 @@ function bindTools() {
     if (!GS.ui.highlightMode) return;
     const sel = window.getSelection();
     if (!sel || sel.isCollapsed) return;
+
+    try {
+      const range = sel.getRangeAt(0);
+      expandRangeToWordBoundaries(range);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } catch (e) {
+      console.warn("Failed to expand selection to word boundaries:", e);
+    }
+
     pageContent.contentEditable = 'true';
     document.execCommand('hiliteColor', false, 'rgba(245,166,35,0.35)');
     pageContent.contentEditable = 'false';
@@ -750,3 +760,31 @@ updateProgress = function() {
   $('sidebar-overall-fill').style.width = pct + '%';
   $('sidebar-overall-lbl').textContent = 'الإنجاز الكلي: ' + pct + '%';
 };
+
+// ── HIGHLIGHT SELECTION HELPER FOR CURSIVE SCRIPTS ──
+function expandRangeToWordBoundaries(range) {
+  // Expand start boundary backward
+  if (range.startContainer.nodeType === Node.TEXT_NODE) {
+    const text = range.startContainer.textContent;
+    let offset = range.startOffset;
+    while (offset > 0 && !isWordBoundary(text[offset - 1])) {
+      offset--;
+    }
+    range.setStart(range.startContainer, offset);
+  }
+
+  // Expand end boundary forward
+  if (range.endContainer.nodeType === Node.TEXT_NODE) {
+    const text = range.endContainer.textContent;
+    let offset = range.endOffset;
+    while (offset < text.length && !isWordBoundary(text[offset])) {
+      offset++;
+    }
+    range.setEnd(range.endContainer, offset);
+  }
+}
+
+function isWordBoundary(char) {
+  // Define word boundaries: whitespace, punctuation, quotes, brackets, and Arabic symbols
+  return /[\s\.,\/#!$%\^&\*;:{}=\-_`~()\[\]{}«»؟?،؛"']/.test(char);
+}
