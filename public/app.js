@@ -360,37 +360,47 @@ function bindTools() {
   const modebar = $('mode-bar');
   const modeText= $('mode-bar-text');
 
-  $('btn-zoom-in').addEventListener('click', () => {
-    GS.ui.fontSize = Math.min(22, GS.ui.fontSize + 1);
-    pageContent.style.fontSize = GS.ui.fontSize + 'px';
-  });
-  $('btn-zoom-out').addEventListener('click', () => {
-    GS.ui.fontSize = Math.max(12, GS.ui.fontSize - 1);
-    pageContent.style.fontSize = GS.ui.fontSize + 'px';
-  });
+  // Helper: bind a button id if it exists (mobile versions may not exist on desktop)
+  const bindBtn = (id, fn) => { const el = $(id); if (el) el.addEventListener('click', fn); };
 
-  hlBtn.addEventListener('click', () => {
+  // Zoom (desktop + mobile)
+  const doZoomIn  = () => { GS.ui.fontSize = Math.min(22, GS.ui.fontSize + 1); pageContent.style.fontSize = GS.ui.fontSize + 'px'; };
+  const doZoomOut = () => { GS.ui.fontSize = Math.max(12, GS.ui.fontSize - 1); pageContent.style.fontSize = GS.ui.fontSize + 'px'; };
+  bindBtn('btn-zoom-in',     doZoomIn);
+  bindBtn('btn-zoom-out',    doZoomOut);
+  bindBtn('mob-btn-zoom-in',  doZoomIn);
+  bindBtn('mob-btn-zoom-out', doZoomOut);
+
+  // Mobile notes button
+  bindBtn('mob-btn-notes', openNotes);
+
+  const doHighlight = () => {
     GS.ui.highlightMode = !GS.ui.highlightMode;
     GS.ui.eraserMode = false;
     updateToolState();
     if (GS.ui.highlightMode) showToast('🖍️', 'حدد أي نص لتظليله');
-  });
-
-  erBtn.addEventListener('click', () => {
+  };
+  const doErase = () => {
     GS.ui.eraserMode = !GS.ui.eraserMode;
     GS.ui.highlightMode = false;
     updateToolState();
     if (GS.ui.eraserMode) showToast('🧽', 'انقر على أي نص مُظلَّل لإزالته');
-  });
-
-  clrBtn.addEventListener('click', () => {
+  };
+  const doClearHl = () => {
     if (!confirm('مسح جميع التظليلات في هذا الدرس؟')) return;
     const uid = GS.UNITS[GS.currentUnit].id;
     delete GS.student.highlights[uid];
     localStorage.setItem('gs_highlights', JSON.stringify(GS.student.highlights));
     loadUnit(GS.currentUnit);
     showToast('🗑️', 'تم مسح التظليلات', 't-success');
-  });
+  };
+
+  hlBtn.addEventListener('click', doHighlight);
+  erBtn.addEventListener('click', doErase);
+  clrBtn.addEventListener('click', doClearHl);
+  bindBtn('mob-btn-highlight', doHighlight);
+  bindBtn('mob-btn-eraser',    doErase);
+  bindBtn('mob-btn-clear-hl',  doClearHl);
 
   $('mode-bar-close').addEventListener('click', () => {
     GS.ui.highlightMode = false;
@@ -443,11 +453,23 @@ function bindTools() {
 function updateToolState() {
   const hlBtn   = $('btn-highlight');
   const erBtn   = $('btn-eraser');
+  const clrBtn  = $('btn-clear-hl');
   const modebar = $('mode-bar');
   const modeText= $('mode-bar-text');
 
+  // Desktop toolbar
   hlBtn.classList.toggle('active', GS.ui.highlightMode);
   erBtn.classList.toggle('active-eraser', GS.ui.eraserMode);
+
+  // Mobile toolbar — mirror desktop state
+  const mobHl  = $('mob-btn-highlight');
+  const mobEr  = $('mob-btn-eraser');
+  const mobClr = $('mob-btn-clear-hl');
+  if (mobHl)  mobHl.classList.toggle('active', GS.ui.highlightMode);
+  if (mobEr)  mobEr.classList.toggle('active-eraser', GS.ui.eraserMode);
+  // Sync eraser/clear visibility on mobile toolbar
+  if (mobEr)  mobEr.classList.toggle('hidden', !erBtn || erBtn.classList.contains('hidden'));
+  if (mobClr) mobClr.classList.toggle('hidden', !clrBtn || clrBtn.classList.contains('hidden'));
 
   if (GS.ui.highlightMode) {
     modebar.classList.remove('hidden','eraser');

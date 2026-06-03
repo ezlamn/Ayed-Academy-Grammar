@@ -1091,3 +1091,265 @@ body.dark-mode .chat-typing { background: #243047; }
 .chatbot-input:focus { border-color: var(--gold); }
 .chatbot-send { width: 40px; height: 40px; background: linear-gradient(135deg, var(--gold), #e09212); border-radius: 50%; color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.2s; flex-shrink: 0; }
 .chatbot-send:hover { transform: scale(1.1); box-shadow: 0 4px 15px rgba(245,166,35,0.5); }
+
+/* ================================================================
+   RESPONSIVE DESIGN — MOBILE FIRST
+   Breakpoints:
+     Mobile S : < 480px
+     Mobile L : 480px – 768px
+     Tablet   : 768px – 1024px
+     Desktop  : > 1024px (default styles above)
+   ================================================================ */
+
+/* ── BOTTOM FLOATING TOOLBAR (Mobile Only) ── */
+.mobile-toolbar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  z-index: 200;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 0.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+body.dark-mode .mobile-toolbar {
+  background: rgba(30, 30, 36, 0.95);
+  border-top-color: var(--border);
+}
+.mobile-toolbar .rtool-btn {
+  width: 44px; height: 44px;
+  border-radius: var(--r-md);
+  font-size: 1.25rem;
+}
+
+/* ── TABLET: 768px – 1024px ── */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-w: 240px;
+    --toolbar-w: 48px;
+  }
+
+  .page-content { padding: 1.5rem; }
+
+  .unit-header { padding: 1.5rem 2rem; }
+  .unit-h-title { font-size: 1.6rem; }
+  .unit-h-mascot { font-size: 3.5rem; }
+
+  .sc-body { grid-template-columns: 200px 1fr; }
+
+  .formula-block { flex-direction: column; }
+  .fb-subj {
+    min-width: unset; width: 100%;
+    padding: 0.85rem 1rem;
+    border-left: none; border-bottom: 4px solid var(--gold);
+    font-size: 0.95rem;
+  }
+  .fb-form {
+    min-width: unset; border-left: none; border-right: none;
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+    padding: 0.85rem 1rem; font-size: 1rem;
+    justify-content: flex-start;
+  }
+  .fb-form::before {
+    content: '⬇'; left: 50%; top: -12px;
+    transform: translateX(-50%);
+  }
+  .fb-ex { padding: 0.85rem 1rem; font-size: 0.92rem; }
+
+  .topbar-center { display: none; }
+}
+
+/* ── MOBILE: < 768px ── */
+@media (max-width: 768px) {
+  :root {
+    --topbar-h: 54px;
+    --sidebar-w: 100%;
+  }
+
+  /* ── Body: account for bottom toolbar ── */
+  body { overflow: hidden; }
+  #app { height: 100vh; }
+  .app-body {
+    height: calc(100vh - var(--topbar-h) - 60px);
+    margin-bottom: 60px;
+  }
+
+  /* ── Show mobile toolbar, hide desktop toolbar ── */
+  .mobile-toolbar { display: flex; }
+  .right-toolbar { display: none; }
+
+  /* ── Topbar ── */
+  .topbar { padding: 0 0.75rem; }
+  .topbar-center { display: none; }
+  .topbar-right { gap: 0.35rem; }
+  .brand-name { display: none; }
+  .student-chip { padding: 3px 8px 3px 3px; }
+  #student-name-display { max-width: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8rem; }
+  .progress-pill { width: 80px; }
+
+  /* ── Sidebar: Full-screen Drawer ── */
+  .units-panel {
+    position: fixed;
+    top: var(--topbar-h); left: 0; right: 0; bottom: 60px;
+    transform: translateX(100%);
+    z-index: 300;
+    width: 100%;
+    border-radius: 0;
+  }
+  .units-panel.open { transform: translateX(0); }
+  .units-panel .panel-head { padding: 1rem 1.25rem 0.75rem; }
+
+  /* ── Content Area ── */
+  .content-area { width: 100%; }
+  .page-content { padding: 1rem; max-width: 100%; }
+
+  /* ── Unit Header ── */
+  .unit-header {
+    padding: 1.25rem 1rem;
+    border-radius: var(--r-lg);
+    margin-bottom: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .unit-h-mascot { position: absolute; right: 1rem; top: 1rem; font-size: 2.5rem; opacity: 0.4; }
+  .unit-h-title { font-size: 1.4rem; }
+  .unit-h-en { font-size: 0.85rem; }
+  .unit-tag { font-size: 0.65rem; }
+
+  /* ── Strategy Card ── */
+  .strategy-card { margin-bottom: 1.25rem; border-radius: var(--r-lg); }
+  .sc-header { padding: 0.85rem 1rem; }
+  .sc-title { font-size: 1rem; }
+  .sc-subtitle { font-size: 0.75rem; }
+  .sc-header-icon { font-size: 1.25rem; }
+  .sc-badge { font-size: 0.62rem; padding: 2px 7px; }
+
+  /* ── Card Body: stack vertically ── */
+  .sc-body { grid-template-columns: 1fr; }
+  .sc-keywords {
+    border-left: none; border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 1rem;
+  }
+  .kw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .kw-reveal { margin-bottom: 0; }
+  .sc-content { padding: 1rem; gap: 1rem; }
+
+  /* ── Formula Blocks ── */
+  .formula-visual-wrap { gap: 0.75rem; }
+  .formula-v-title { font-size: 0.95rem; }
+  .formula-block { flex-direction: column; }
+  .fb-subj {
+    min-width: unset; width: 100%;
+    padding: 0.75rem 1rem;
+    border-left: none; border-bottom: 3px solid var(--gold);
+    font-size: 0.9rem; text-align: right;
+  }
+  .fb-form {
+    min-width: unset; border-left: none; border-right: none;
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+    padding: 0.75rem 1rem; font-size: 0.95rem;
+    justify-content: flex-start;
+  }
+  .fb-form::before {
+    content: '⬇'; left: 50%; top: -12px;
+    transform: translateX(-50%);
+  }
+  .fb-ex { padding: 0.75rem 1rem; font-size: 0.88rem; line-height: 1.55; }
+
+  /* ── Exception Box ── */
+  .exception-box { padding: 1rem 1rem; }
+  .ex-title { font-size: 0.95rem; }
+  .ex-body { font-size: 0.88rem; line-height: 1.85; }
+
+  /* ── Mini Quiz ── */
+  .mini-quiz-wrap { padding: 1rem; border-radius: var(--r-md); }
+  .mini-q-text { font-size: 0.95rem; padding: 0.6rem 0.8rem; }
+  .mini-opts { grid-template-columns: 1fr; gap: 0.5rem; }
+  .mini-opt { padding: 0.6rem 0.8rem; font-size: 0.9rem; }
+
+  /* ── Bottom Nav ── */
+  .bottom-nav { padding: 0.65rem 0.75rem; }
+  .bottom-btn { padding: 0.5rem 0.75rem; font-size: 0.8rem; gap: 0.3rem; }
+  .bottom-btn span:last-child { display: none; }
+  .bottom-unit-indicator { font-size: 0.82rem; }
+
+  /* ── Splash Card ── */
+  .splash-card { padding: 2rem 1.5rem; max-width: 95%; }
+  .splash-headline { font-size: 1.5rem; }
+  .splash-sub { font-size: 0.9rem; }
+  .splash-brand { font-size: 1.4rem; }
+  .splash-book { font-size: 2.8rem; }
+  .splash-logo-wrap { margin-bottom: 1.75rem; }
+  .splash-cta { font-size: 1.05rem; padding: 1rem; }
+  .s-stat { padding: 0 1rem; font-size: 0.82rem; }
+  .s-stat span { font-size: 1.2rem; }
+
+  /* ── Mode Bar ── */
+  .mode-bar { padding: 7px 1rem; font-size: 0.82rem; }
+
+  /* ── Quiz Modal ── */
+  .quiz-overlay { padding: 0; align-items: flex-end; }
+  .quiz-modal {
+    max-width: 100%; max-height: 90vh;
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+  }
+  .quiz-modal-header { padding: 1rem 1.25rem; }
+  .quiz-modal-body { padding: 1rem; }
+  .quiz-opts-grid { grid-template-columns: 1fr; }
+  .quiz-q-text { font-size: 1rem; }
+  .q-opt { font-size: 0.9rem; padding: 0.7rem 0.9rem; }
+
+  /* ── Notes Panel ── */
+  .notes-panel { width: 100%; }
+
+  /* ── FAB Scroll ── */
+  .fab-scroll { bottom: 4.5rem; left: 1rem; width: 44px; height: 44px; font-size: 1.2rem; }
+
+  /* ── Unit end CTA ── */
+  .unit-end-cta { padding: 1.5rem 1rem; border-radius: var(--r-lg); }
+  .unit-end-cta button { padding: 0.75rem 1.75rem; font-size: 0.95rem; }
+}
+
+/* ── MOBILE S: < 480px ── */
+@media (max-width: 480px) {
+  .page-content { padding: 0.75rem; }
+  .unit-header { padding: 1rem 0.85rem; }
+  .unit-h-title { font-size: 1.2rem; }
+  .kw-grid { grid-template-columns: 1fr; }
+  .sc-header { padding: 0.75rem 0.85rem; }
+  .sc-content { padding: 0.85rem; }
+  .formula-block { border-radius: var(--r-sm); }
+  .fb-subj, .fb-form, .fb-ex { padding: 0.65rem 0.85rem; }
+  .fb-form { font-size: 0.9rem; }
+  .fb-ex { font-size: 0.82rem; }
+  .splash-card { padding: 1.5rem 1.25rem; }
+  .splash-headline { font-size: 1.3rem; }
+  .bottom-btn span:first-child { font-size: 0.7rem; }
+}
+
+/* ── TOUCH DEVICE: hide hover states ── */
+@media (hover: none) {
+  .mini-opt:hover:not(:disabled) { transform: none; }
+  .q-opt:hover:not(:disabled) { transform: none; }
+  .splash-cta:hover { transform: none; }
+  .unit-end-cta button:hover { transform: none; }
+}
+
+/* ── LANDSCAPE MOBILE ── */
+@media (max-width: 768px) and (orientation: landscape) {
+  .app-body { height: calc(100vh - var(--topbar-h) - 52px); margin-bottom: 52px; }
+  .units-panel { top: var(--topbar-h); bottom: 52px; }
+  .mobile-toolbar { height: 52px; }
+  .unit-header { flex-direction: row; align-items: center; }
+  .unit-h-mascot { position: static; font-size: 2.5rem; opacity: 0.9; }
+  .page-content { padding: 0.75rem 1rem; }
+}
