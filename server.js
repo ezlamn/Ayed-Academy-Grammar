@@ -10,8 +10,13 @@ const DB_FILE = path.join(__dirname, 'data', 'db.json');
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Serve index.html from root
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Ensure data and uploads dirs exist
 if (!fs.existsSync(path.join(__dirname, 'data'))) fs.mkdirSync(path.join(__dirname, 'data'));
@@ -65,5 +70,5 @@ app.post('/api/upload', upload.single('media'), (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
-  console.log(`Admin dashboard at http://localhost:${PORT}/admin.html`);
+  console.log(`Admin dashboard at http://localhost:${PORT}/public/admin.html`);
 });

@@ -1,5 +1,6 @@
 # Dependency directories
 node_modules/
+package-lock.json
 
 # User uploads (ignore uploaded files, keep the folder)
 uploads/*
