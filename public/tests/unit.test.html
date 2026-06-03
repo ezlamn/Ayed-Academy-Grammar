@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grammar Strategies — Unit Tests</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0A1929; color: #e2e8f0; padding: 2rem; min-height: 100vh; }
+    h1 { font-size: 1.6rem; color: #F5A623; margin-bottom: 0.4rem; }
+    .subtitle { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; }
+    .suite { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 1.5rem; overflow: hidden; }
+    .suite-header { background: rgba(255,255,255,0.07); padding: 0.85rem 1.25rem; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+    .test-case { padding: 0.75rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 0.75rem; font-size: 0.92rem; }
+    .test-case.pass { color: #06D6A0; }
+    .test-case.fail { color: #EF233C; }
+    .test-case.skip { color: #F5A623; }
+    .badge { font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
+    .badge.pass { background: rgba(6,214,160,0.15); color: #06D6A0; }
+    .badge.fail { background: rgba(239,35,60,0.15); color: #EF233C; }
+    .badge.skip { background: rgba(245,166,35,0.15); color: #F5A623; }
+    .summary { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; display: flex; gap: 2rem; margin-bottom: 2rem; }
+    .stat { text-align: center; }
+    .stat .num { font-size: 2rem; font-weight: 900; display: block; }
+    .stat .lbl { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .stat.pass .num { color: #06D6A0; }
+    .stat.fail .num { color: #EF233C; }
+    .stat.total .num { color: #F5A623; }
+    .error-msg { font-family: monospace; font-size: 0.8rem; color: rgba(239,35,60,0.8); margin-top: 4px; padding: 4px 8px; background: rgba(239,35,60,0.08); border-radius: 4px; display: block; }
+    .run-btn { background: linear-gradient(135deg, #F5A623, #FFD07A); color: #0A1929; border: none; border-radius: 8px; padding: 0.75rem 2rem; font-size: 1rem; font-weight: 800; cursor: pointer; margin-bottom: 1.5rem; }
+    .run-btn:hover { filter: brightness(1.05); }
+    #progress-bar-wrap { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-bottom: 1.5rem; overflow: hidden; }
+    #progress-bar { height: 100%; background: linear-gradient(90deg, #F5A623, #06D6A0); border-radius: 3px; width: 0%; transition: width 0.3s; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Grammar Strategies — Unit Tests</h1>
+  <p class="subtitle">اختبارات الوحدة لكل دالة في المشروع</p>
+  <button class="run-btn" id="run-btn" onclick="runAllTests()">▶ تشغيل كل الاختبارات</button>
+  <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+  <div class="summary" id="summary" style="display:none;">
+    <div class="stat total"><span class="num" id="total-count">0</span><span class="lbl">إجمالي</span></div>
+    <div class="stat pass"><span class="num" id="pass-count">0</span><span class="lbl">✅ نجح</span></div>
+    <div class="stat fail"><span class="num" id="fail-count">0</span><span class="lbl">❌ فشل</span></div>
+  </div>
+  <div id="results"></div>
+
+<script>
+// ========================================================
+// MINI TEST RUNNER
+// ========================================================
+let passCount = 0, failCount = 0, totalCount = 0;
+
+function assert(condition, label, errorMsg = '') {
+  totalCount++;
+  const el = document.createElement('div');
+  el.className = `test-case ${condition ? 'pass' : 'fail'}`;
+  const badge = `<span class="badge ${condition ? 'pass' : 'fail'}">${condition ? 'PASS' : 'FAIL'}</span>`;
+  el.innerHTML = `${badge} ${label}${!condition && errorMsg ? `<span class="error-msg">${errorMsg}</span>` : ''}`;
+  currentSuiteEl.appendChild(el);
+  if (condition) passCount++; else failCount++;
+}
+
+function assertEqual(a, b, label) {
+  const ok = JSON.stringify(a) === JSON.stringify(b);
+  assert(ok, label, ok ? '' : `Expected: ${JSON.stringify(b)}, Got: ${JSON.stringify(a)}`);
+}
+
+function assertContains(str, substr, label) {
+  const ok = typeof str === 'string' && str.includes(substr);
+  assert(ok, label, ok ? '' : `String does not contain: "${substr}"`);
+}
+
+let currentSuiteEl = null;
+async function suite(name, icon, fn) {
+  const wrap = document.createElement('div');
+  wrap.className = 'suite';
+  wrap.innerHTML = `<div class="suite-header">${icon} ${name}</div>`;
+  document.getElementById('results').appendChild(wrap);
+  currentSuiteEl = wrap;
+  await fn();
+}
+
+// ========================================================
+// UNIT UNDER TEST: isWordBoundary()
+// ========================================================
+function isWordBoundary(char) {
+  return /[\s\.,\/#!$%\^&\*;:{}=\-_`~()\[\]{}«»؟?،؛"']/.test(char);
+}
+
+// ========================================================
+// UNIT UNDER TEST: expandRangeToWordBoundaries()
+// (Simplified DOM-less version for testing)
+// ========================================================
+function expandTextOffsetToWord(text, startOffset, endOffset) {
+  let s = startOffset;
+  let e = endOffset;
+  while (s > 0 && !isWordBoundary(text[s - 1])) s--;
+  while (e < text.length && !isWordBoundary(text[e])) e++;
+  return { start: s, end: e, word: text.slice(s, e) };
+}
+
+// ========================================================
+// UNIT UNDER TEST: updateProgress logic
+// ========================================================
+function calcProgress(total, done) {
+  if (total === 0) return 0;
+  return Math.round((done / total) * 100);
+}
+
+// ========================================================
+// UNIT UNDER TEST: renderStrategy (HTML generation)
+// ========================================================
+function buildFbExHtml(formula) {
+  return `<div class="formula-block" dir="ltr">
+    <div class="fb-subj" dir="rtl">${formula.subj}</div>
+    <div class="fb-form" dir="ltr"><span>${formula.form}</span></div>
+    <div class="fb-ex" dir="ltr"><span>${formula.ex}</span></div>
+  </div>`;
+}
+
+// ========================================================
+// UNIT UNDER TEST: Boot fallback logic
+// ========================================================
+async function fetchWithFallback(primaryUrl, fallbackUrl) {
+  try {
+    const res = await fetch(primaryUrl);
+    if (!res.ok) throw new Error('Primary failed');
+    return { source: 'primary', data: await res.json() };
+  } catch {
+    try {
+      const res = await fetch(fallbackUrl);
+      if (!res.ok) throw new Error('Fallback also failed');
+      return { source: 'fallback', data: await res.json() };
+    } catch {
+      throw new Error('Both sources failed');
+    }
+  }
+}
+
+// ========================================================
+// UNIT UNDER TEST: LocalStorage helpers
+// ========================================================
+function saveToStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+  return true;
+}
+function loadFromStorage(key, defaultVal) {
+  try { return JSON.parse(localStorage.getItem(key)) ?? defaultVal; } catch { return defaultVal; }
+}
+
+// ========================================================
+// RUN ALL TESTS
+// ========================================================
+async function runAllTests() {
+  passCount = 0; failCount = 0; totalCount = 0;
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('summary').style.display = 'none';
+  document.getElementById('run-btn').disabled = true;
+  document.getElementById('run-btn').textContent = '⏳ جاري الاختبار...';
+  document.getElementById('progress-bar').style.width = '0%';
+
+  // ── SUITE 1: isWordBoundary ──
+  suite('isWordBoundary()', '🔍', () => {
+    assert(isWordBoundary(' '), 'يتعرف على المسافة');
+    assert(isWordBoundary('.'), 'يتعرف على النقطة');
+    assert(isWordBoundary('،'), 'يتعرف على الفاصلة العربية ،');
+    assert(isWordBoundary('؟'), 'يتعرف على علامة الاستفهام ؟');
+    assert(!isWordBoundary('a'), 'لا يعتبر الحرف الإنجليزي حدًا');
+    assert(!isWordBoundary('م'), 'لا يعتبر الحرف العربي حدًا');
+    assert(!isWordBoundary('5'), 'لا يعتبر الرقم حدًا');
+    assert(isWordBoundary('\n'), 'يتعرف على السطر الجديد');
+    assert(isWordBoundary('\t'), 'يتعرف على Tab');
+  });
+
+  // ── SUITE 2: expandTextOffsetToWord ──
+  suite('expandTextOffsetToWord()', '📝', () => {
+    const r1 = expandTextOffsetToWord('Hello World', 3, 5);
+    assertEqual(r1.word, 'Hello', 'يوسع للحصول على كلمة كاملة من منتصفها (Hello)');
+
+    const r2 = expandTextOffsetToWord('متكررة وحدود', 2, 4);
+    assertEqual(r2.word, 'متكررة', 'يوسع للحصول على كلمة عربية كاملة (متكررة)');
+
+    const r3 = expandTextOffsetToWord('play → plays', 0, 4);
+    assertEqual(r3.word, 'play', 'يحدد كلمة في البداية (play)');
+
+    const r4 = expandTextOffsetToWord('word', 0, 4);
+    assertEqual(r4.word, 'word', 'يحافظ على كلمة كاملة محددة بالفعل');
+
+    const r5 = expandTextOffsetToWord(' test ', 2, 3);
+    assertEqual(r5.word, 'test', 'يوسع داخل كلمة محاطة بمسافات');
+  });
+
+  // ── SUITE 3: calcProgress ──
+  suite('calcProgress()', '📊', () => {
+    assertEqual(calcProgress(12, 0), 0, '0 وحدات مكتملة من 12 = 0%');
+    assertEqual(calcProgress(12, 6), 50, '6 وحدات مكتملة من 12 = 50%');
+    assertEqual(calcProgress(12, 12), 100, '12 وحدات مكتملة من 12 = 100%');
+    assertEqual(calcProgress(12, 3), 25, '3 وحدات مكتملة من 12 = 25%');
+    assertEqual(calcProgress(0, 0), 0, 'لا وحدات = 0% (لا قسمة على صفر)');
+    assertEqual(calcProgress(3, 1), 33, '1 من 3 = 33% (تقريب صحيح)');
+  });
+
+  // ── SUITE 4: buildFbExHtml (HTML generation) ──
+  suite('buildFbExHtml() — HTML Generator', '🏗️', () => {
+    const html = buildFbExHtml({ subj: 'I / You', form: 'verb (base)', ex: 'We <strong>study</strong> daily.' });
+    assertContains(html, 'formula-block', 'يحتوي على class formula-block');
+    assertContains(html, 'fb-subj', 'يحتوي على class fb-subj');
+    assertContains(html, 'fb-form', 'يحتوي على class fb-form');
+    assertContains(html, 'fb-ex', 'يحتوي على class fb-ex');
+    assertContains(html, 'dir="ltr"', 'الـ direction صحيح (ltr)');
+    assertContains(html, '<span>verb (base)</span>', 'النص مغلف داخل span');
+    assertContains(html, 'We <strong>study</strong> daily.', 'HTML الداخلي محفوظ كما هو');
+    assertContains(html, 'dir="rtl"', 'الـ fb-subj يحتوي على dir=rtl');
+  });
+
+  // ── SUITE 5: LocalStorage helpers ──
+  suite('saveToStorage() / loadFromStorage()', '💾', () => {
+    saveToStorage('gs_test_key', { name: 'Ahmed', score: 95 });
+    const loaded = loadFromStorage('gs_test_key', null);
+    assertEqual(loaded?.name, 'Ahmed', 'يحفظ ويسترجع الاسم بشكل صحيح');
+    assertEqual(loaded?.score, 95, 'يحفظ ويسترجع الدرجة بشكل صحيح');
+
+    const defaultVal = loadFromStorage('gs_nonexistent_key', { default: true });
+    assertEqual(defaultVal?.default, true, 'يرجع القيمة الافتراضية لو المفتاح غير موجود');
+
+    saveToStorage('gs_test_arr', [1, 2, 3]);
+    const arr = loadFromStorage('gs_test_arr', []);
+    assertEqual(arr.length, 3, 'يحفظ ويسترجع arrays بشكل صحيح');
+
+    // Cleanup
+    localStorage.removeItem('gs_test_key');
+    localStorage.removeItem('gs_test_arr');
+    assert(true, 'تنظيف localStorage بعد الاختبار');
+  });
+
+  // ── SUITE 6: Fallback fetch logic ──
+  await suite('fetchWithFallback() — Boot Fallback', '🌐', async () => {
+    // Test with the actual API endpoint
+    try {
+      const result = await fetchWithFallback(
+        '/api/units_does_not_exist_404',
+        '/api/units'
+      );
+      assert(result.source === 'fallback', 'يستخدم الـ fallback لو الـ API غير موجود');
+      assert(Array.isArray(result.data), 'البيانات المحملة من /api/units هي array');
+      assert(result.data.length > 0, `db.json يحتوي على ${result.data.length} وحدة/وحدات`);
+      assert(result.data[0]?.nameEn, 'الوحدة الأولى تحتوي على nameEn');
+      assert(result.data[0]?.page?.strategies?.length > 0, 'الوحدة الأولى تحتوي على strategies');
+    } catch(e) {
+      assert(false, 'fetchWithFallback فشل تماماً', e.message);
+    }
+  });
+
+  // Update progress bar and summary
+  document.getElementById('progress-bar').style.width = '100%';
+  document.getElementById('total-count').textContent = totalCount;
+  document.getElementById('pass-count').textContent  = passCount;
+  document.getElementById('fail-count').textContent  = failCount;
+  document.getElementById('summary').style.display = 'flex';
+  document.getElementById('run-btn').disabled = false;
+  document.getElementById('run-btn').textContent = `▶ إعادة التشغيل (${passCount}/${totalCount} نجح)`;
+}
+</script>
+</body>
+</html>

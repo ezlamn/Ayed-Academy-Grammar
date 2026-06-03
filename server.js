@@ -12,6 +12,13 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/tests', express.static(path.join(__dirname, 'public', 'tests')));
+
+// Expose db.json read-only for test runners
+app.get('/data/db.json', (req, res) => {
+  try { res.json(JSON.parse(fs.readFileSync(DB_FILE, 'utf8'))); }
+  catch (err) { res.status(500).json({ error: 'Failed to read database' }); }
+});
 
 // Serve index.html from root
 app.get('/', (req, res) => {

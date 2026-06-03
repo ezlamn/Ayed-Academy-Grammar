@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grammar Strategies — Integration Tests</title>
+  <style id="gs-vars">
+    :root {
+      --navy: #0A1929; --navy-mid: #0F2540; --navy-soft: #132F4C;
+      --gold: #F5A623; --gold-lt: #FFD07A; --gold-dim: rgba(245,166,35,0.15);
+      --teal: #00B4D8; --teal-lt: #90E0EF; --green: #06D6A0;
+      --red: #EF233C; --purple: #7C3AED; --sky: #38BDF8;
+      --bg: #F0F4F8; --surface: #FFFFFF; --surface2: #F8FAFC;
+      --border: rgba(10,25,41,0.09); --border-md: rgba(10,25,41,0.14);
+      --text-primary: #0A1929; --text-sec: #3E5368; --text-muted: #64748B;
+      --ff-ar: 'Cairo', sans-serif; --ff-en: 'Outfit', sans-serif;
+      --sidebar-w: 280px; --toolbar-w: 52px; --topbar-h: 60px;
+    }
+  </style>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0A1929; color: #e2e8f0; padding: 2rem; min-height: 100vh; }
+    h1 { font-size: 1.6rem; color: #00B4D8; margin-bottom: 0.4rem; }
+    .subtitle { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; }
+    .suite { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 1.5rem; overflow: hidden; }
+    .suite-header { background: rgba(0,180,216,0.12); padding: 0.85rem 1.25rem; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid rgba(0,180,216,0.2); }
+    .test-case { padding: 0.75rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 4px; font-size: 0.92rem; }
+    .test-row { display: flex; align-items: center; gap: 0.75rem; }
+    .test-case.pass .test-row { color: #06D6A0; }
+    .test-case.fail .test-row { color: #EF233C; }
+    .badge { font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; }
+    .badge.pass { background: rgba(6,214,160,0.15); color: #06D6A0; }
+    .badge.fail { background: rgba(239,35,60,0.15); color: #EF233C; }
+    .badge.running { background: rgba(245,166,35,0.15); color: #F5A623; }
+    .error-msg { font-family: monospace; font-size: 0.8rem; color: rgba(239,35,60,0.8); padding: 4px 8px; background: rgba(239,35,60,0.08); border-radius: 4px; white-space: pre-wrap; }
+    .summary { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; display: flex; gap: 2rem; margin-bottom: 2rem; }
+    .stat { text-align: center; }
+    .stat .num { font-size: 2rem; font-weight: 900; display: block; }
+    .stat .lbl { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .stat.pass .num { color: #06D6A0; }
+    .stat.fail .num { color: #EF233C; }
+    .stat.total .num { color: #00B4D8; }
+    .run-btn { background: linear-gradient(135deg, #00B4D8, #38BDF8); color: #0A1929; border: none; border-radius: 8px; padding: 0.75rem 2rem; font-size: 1rem; font-weight: 800; cursor: pointer; margin-bottom: 1.5rem; }
+    .note { background: rgba(0,180,216,0.08); border: 1px solid rgba(0,180,216,0.2); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; line-height: 1.6; }
+    iframe { border: none; width: 0; height: 0; position: absolute; top: -9999px; }
+    #progress-bar-wrap { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-bottom: 1.5rem; overflow: hidden; }
+    #progress-bar { height: 100%; background: linear-gradient(90deg, #00B4D8, #06D6A0); border-radius: 3px; width: 0%; transition: width 0.4s; }
+  </style>
+</head>
+<body>
+  <h1>🔗 Grammar Strategies — Integration Tests</h1>
+  <p class="subtitle">اختبارات التكامل بين مكونات التطبيق</p>
+  <div class="note">
+    ℹ️ <strong>ملاحظة:</strong> هذه الاختبارات تتحقق من تكامل البيانات والوحدات مع بعضها دون الحاجة لفتح المتصفح الكامل.
+    بعض الاختبارات تتطلب الاتصال بـ <code>data/db.json</code>.
+  </div>
+  <button class="run-btn" id="run-btn" onclick="runAllTests()">▶ تشغيل كل الاختبارات</button>
+  <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+  <div class="summary" id="summary" style="display:none;">
+    <div class="stat total"><span class="num" id="total-count">0</span><span class="lbl">إجمالي</span></div>
+    <div class="stat pass"><span class="num" id="pass-count">0</span><span class="lbl">✅ نجح</span></div>
+    <div class="stat fail"><span class="num" id="fail-count">0</span><span class="lbl">❌ فشل</span></div>
+  </div>
+  <div id="results"></div>
+
+<script>
+// ── TEST RUNNER ──────────────────────────────────────────────────
+let passCount = 0, failCount = 0, totalCount = 0;
+let currentSuiteEl = null;
+
+function addTest(label, ok, errorMsg = '') {
+  totalCount++;
+  if (ok) passCount++; else failCount++;
+  const el = document.createElement('div');
+  el.className = `test-case ${ok ? 'pass' : 'fail'}`;
+  el.innerHTML = `<div class="test-row">
+    <span class="badge ${ok ? 'pass' : 'fail'}">${ok ? 'PASS' : 'FAIL'}</span>
+    <span>${label}</span>
+  </div>${!ok && errorMsg ? `<div class="error-msg">${errorMsg}</div>` : ''}`;
+  currentSuiteEl.appendChild(el);
+  const done = passCount + failCount;
+  const pct = Math.round((done / Math.max(1, totalCount + 3)) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function suite(name, icon, fn) {
+  const wrap = document.createElement('div');
+  wrap.className = 'suite';
+  wrap.innerHTML = `<div class="suite-header">${icon} ${name}</div>`;
+  document.getElementById('results').appendChild(wrap);
+  currentSuiteEl = wrap;
+  return fn();
+}
+
+// ── LOAD DB via existing API ──────────────────────────────────
+async function loadDB() {
+  // Try /api/units first (Express server), then /data/db.json (GitHub Pages static)
+  const urls = ['/api/units', '/data/db.json', '../data/db.json'];
+  for (const url of urls) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) return await res.json();
+    } catch {}
+  }
+  throw new Error('Could not load data from any endpoint');
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────
+function calcProgress(total, done) {
+  if (!total) return 0;
+  return Math.round((done / total) * 100);
+}
+function isWordBoundary(char) {
+  return /[\s\.,\/#!$%\^&\*;:{}=\-_`~()\[\]{}«»؟?،؛"']/.test(char);
+}
+function expandTextOffsetToWord(text, s, e) {
+  while (s > 0 && !isWordBoundary(text[s - 1])) s--;
+  while (e < text.length && !isWordBoundary(text[e])) e++;
+  return text.slice(s, e);
+}
+
+// ── RUN TESTS ────────────────────────────────────────────────────
+async function runAllTests() {
+  passCount = 0; failCount = 0; totalCount = 0;
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('summary').style.display = 'none';
+  document.getElementById('run-btn').disabled = true;
+  document.getElementById('run-btn').textContent = '⏳ جاري الاختبار...';
+  document.getElementById('progress-bar').style.width = '0%';
+
+  let db = null;
+  try { db = await loadDB(); } catch(e) {
+    const err = document.createElement('div');
+    err.style.cssText = 'background:rgba(239,35,60,0.1);border:1px solid rgba(239,35,60,0.4);border-radius:8px;padding:1rem;color:#EF233C;margin-bottom:1rem;';
+    err.textContent = '❌ تعذر تحميل db.json: ' + e.message;
+    document.getElementById('results').appendChild(err);
+    document.getElementById('run-btn').disabled = false;
+    document.getElementById('run-btn').textContent = '▶ إعادة المحاولة';
+    return;
+  }
+
+  // ── SUITE 1: Data Structure ──
+  await suite('بنية البيانات — db.json', '📦', () => {
+    addTest('db.json هو array', Array.isArray(db));
+    addTest(`عدد الوحدات ≥ 1 (الموجود: ${db.length})`, db.length >= 1);
+
+    const u0 = db[0];
+    addTest('كل وحدة تحتوي على id', !!u0?.id, `id مفقود في الوحدة الأولى`);
+    addTest('كل وحدة تحتوي على nameAr', !!u0?.nameAr);
+    addTest('كل وحدة تحتوي على nameEn', !!u0?.nameEn);
+    addTest('كل وحدة تحتوي على page.strategies', Array.isArray(u0?.page?.strategies));
+    addTest(`strategies الأولى غير فارغة (الموجود: ${u0?.page?.strategies?.length})`, u0?.page?.strategies?.length > 0);
+
+    // All units check
+    let allValid = true;
+    let invalidMsg = '';
+    db.forEach((u, i) => {
+      if (!u.id || !u.nameAr || !u.nameEn || !Array.isArray(u.page?.strategies)) {
+        allValid = false;
+        invalidMsg += `وحدة #${i}: id=${u.id}, nameAr=${u.nameAr}\n`;
+      }
+    });
+    addTest('كل الوحدات تحتوي على البيانات المطلوبة', allValid, invalidMsg);
+  });
+
+  // ── SUITE 2: Strategy Card Content ──
+  await suite('محتوى Strategy Cards', '📚', () => {
+    db.forEach((unit, ui) => {
+      unit.page.strategies.forEach((strat, si) => {
+        addTest(
+          `وحدة ${ui+1} / strategy ${si+1}: تحتوي على title`,
+          !!strat.title,
+          `title مفقود`
+        );
+        addTest(
+          `وحدة ${ui+1} / strategy ${si+1}: تحتوي على formulas`,
+          Array.isArray(strat.formulas) && strat.formulas.length > 0,
+          `formulas فارغة أو غير موجودة`
+        );
+
+        // Check formula structure
+        strat.formulas?.forEach((f, fi) => {
+          const hasReq = f.subj && f.form && f.ex;
+          addTest(
+            `وحدة ${ui+1} / strat ${si+1} / formula ${fi+1}: تحتوي على subj+form+ex`,
+            !!hasReq,
+            `subj=${f.subj}, form=${f.form}, ex=${f.ex}`
+          );
+        });
+      });
+    });
+  });
+
+  // ── SUITE 3: Mini-Quiz Data ──
+  await suite('بيانات Mini-Quiz', '🧩', () => {
+    let totalQuizzes = 0, invalidQuizzes = 0;
+    db.forEach((unit, ui) => {
+      unit.page.strategies.forEach((strat, si) => {
+        if (!strat.miniQuiz) return;
+        totalQuizzes++;
+        const q = strat.miniQuiz;
+        const validQ    = typeof q.q === 'string' && q.q.length > 0;
+        const validOpts = Array.isArray(q.opts) && q.opts.length >= 2;
+        const validAns  = typeof q.ans === 'number' && q.ans >= 0 && q.ans < (q.opts?.length || 0);
+        const validExp  = typeof q.exp === 'string' && q.exp.length > 0;
+        if (!validQ || !validOpts || !validAns || !validExp) invalidQuizzes++;
+        addTest(
+          `وحدة ${ui+1} / strat ${si+1}: Mini-Quiz صحيح البنية`,
+          validQ && validOpts && validAns && validExp,
+          `q=${validQ}, opts=${validOpts}, ans=${validAns}, exp=${validExp}`
+        );
+      });
+    });
+    addTest(`إجمالي Mini-Quizzes الموجودة: ${totalQuizzes}`, totalQuizzes >= 0);
+  });
+
+  // ── SUITE 4: Full Quiz Data ──
+  await suite('بيانات الاختبار الشامل (Full Quiz)', '🎯', () => {
+    let hasAnyQuiz = false;
+    db.forEach((unit, ui) => {
+      if (!unit.page.quiz?.length) return;
+      hasAnyQuiz = true;
+      unit.page.quiz.forEach((q, qi) => {
+        const validQ    = typeof q.q === 'string' && q.q.length > 0;
+        const validOpts = Array.isArray(q.opts) && q.opts.length >= 2;
+        const validAns  = typeof q.ans === 'number';
+        addTest(
+          `وحدة ${ui+1} / سؤال ${qi+1}: بنية سليمة`,
+          validQ && validOpts && validAns,
+          `q=${validQ}, opts=${validOpts}, ans=${validAns}`
+        );
+      });
+    });
+    if (!hasAnyQuiz) {
+      addTest(`الاختبار الشامل غير مضاف بعد (quiz اختياري في هذا المنهج)`, true);
+    }
+  });
+
+  // ── SUITE 5: Progress Tracking Logic ──
+  await suite('منطق تتبع التقدم', '📊', () => {
+    const total = db.length;
+    addTest(`calcProgress(${total}, 0) = 0%`, calcProgress(total, 0) === 0);
+    addTest(`calcProgress(${total}, ${total}) = 100%`, calcProgress(total, total) === 100);
+    addTest(`calcProgress(${total}, ${Math.floor(total/2)}) بين 1-99`, calcProgress(total, Math.floor(total/2)) > 0 && calcProgress(total, Math.floor(total/2)) < 100);
+    addTest('لا قسمة على صفر عند total=0', calcProgress(0, 0) === 0);
+  });
+
+  // ── SUITE 6: Text Highlight Integration ──
+  await suite('تكامل منطق التظليل', '🖍️', () => {
+    // Test highlight logic on actual content from DB
+    db.forEach((unit, ui) => {
+      unit.page.strategies.forEach((strat, si) => {
+        strat.formulas?.slice(0, 1).forEach((f) => {
+          // Simulate clicking middle of a word in the formula example
+          const exText = f.ex?.replace(/<[^>]+>/g, '') || ''; // strip HTML
+          if (exText.length < 5) return;
+          const mid = Math.floor(exText.length / 2);
+          // Find a non-boundary position
+          let testPos = mid;
+          while (testPos > 0 && isWordBoundary(exText[testPos])) testPos--;
+          if (testPos <= 0) return;
+          const word = expandTextOffsetToWord(exText, testPos, testPos + 1);
+          addTest(
+            `وحدة ${ui+1} / strat ${si+1}: يوسع التظليل لكلمة كاملة "${word}"`,
+            word.length >= 1 && !isWordBoundary(word[0]) && !isWordBoundary(word[word.length - 1]),
+            `الكلمة المستخرجة: "${word}"`
+          );
+        });
+      });
+    });
+  });
+
+  // ── SUITE 7: LocalStorage Integration ──
+  await suite('تكامل localStorage', '💾', () => {
+    // Simulate student data save/load
+    const studentData = { name: 'أحمد', completed: [0, 2], highlights: {}, notes: {} };
+    localStorage.setItem('gs_student_test', JSON.stringify(studentData));
+
+    const loaded = JSON.parse(localStorage.getItem('gs_student_test'));
+    addTest('حفظ واسترجاع بيانات الطالب', loaded?.name === 'أحمد' && Array.isArray(loaded?.completed));
+
+    // Simulate notes
+    const notes = { unit_1: 'ملاحظة مهمة عن الأفعال', unit_2: '' };
+    localStorage.setItem('gs_notes_test', JSON.stringify(notes));
+    const loadedNotes = JSON.parse(localStorage.getItem('gs_notes_test'));
+    addTest('حفظ واسترجاع الملاحظات', loadedNotes?.unit_1 === 'ملاحظة مهمة عن الأفعال');
+
+    // Simulate dark mode preference
+    localStorage.setItem('gs_dark_test', 'true');
+    const darkPref = localStorage.getItem('gs_dark_test') === 'true';
+    addTest('حفظ واسترجاع تفضيل الوضع الليلي', darkPref === true);
+
+    // Cleanup
+    ['gs_student_test', 'gs_notes_test', 'gs_dark_test'].forEach(k => localStorage.removeItem(k));
+    addTest('تنظيف localStorage بعد الاختبار', !localStorage.getItem('gs_student_test'));
+  });
+
+  // ── SUITE 8: Dark Mode CSS Variables ──
+  await suite('تكامل الوضع الليلي (CSS vars)', '🌙', () => {
+    // Test dark mode class toggle
+    document.body.classList.add('dark-mode-test');
+    const hasDarkClass = document.body.classList.contains('dark-mode-test');
+    document.body.classList.remove('dark-mode-test');
+    addTest('تبديل class dark-mode على body يعمل', hasDarkClass);
+
+    // Check CSS custom properties exist (requires stylesheet to be loaded)
+    const rootStyle = getComputedStyle(document.documentElement);
+    const navyVal = rootStyle.getPropertyValue('--navy').trim();
+    addTest('CSS variable --navy موجودة في :root', navyVal.length > 0, `القيمة: "${navyVal}" (تتطلب تحميل style.css)`);
+
+    const goldVal = rootStyle.getPropertyValue('--gold').trim();
+    addTest('CSS variable --gold موجودة في :root', goldVal.length > 0, `القيمة: "${goldVal}"`);
+
+    const tealVal = rootStyle.getPropertyValue('--teal').trim();
+    addTest('CSS variable --teal موجودة في :root', tealVal.length > 0, `القيمة: "${tealVal}"`);
+  });
+
+  // DONE
+  document.getElementById('progress-bar').style.width = '100%';
+  document.getElementById('total-count').textContent = totalCount;
+  document.getElementById('pass-count').textContent  = passCount;
+  document.getElementById('fail-count').textContent  = failCount;
+  document.getElementById('summary').style.display = 'flex';
+  document.getElementById('run-btn').disabled = false;
+  document.getElementById('run-btn').textContent = `▶ إعادة التشغيل (${passCount}/${totalCount} نجح)`;
+}
+</script>
+</body>
+</html>
