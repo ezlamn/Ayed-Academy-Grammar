@@ -30,10 +30,20 @@ const unitsNav    = $('units-nav');
 async function boot() {
   try {
     const res = await fetch('/api/units');
+    if (!res.ok) throw new Error('API server returned error');
     GS.UNITS = await res.json();
     initSplash();
   } catch (err) {
-    alert('فشل الاتصال بالسيرفر! تأكد من تشغيل server.js');
+    console.warn('Failed to connect to local API server, trying static fallback...', err);
+    try {
+      const res = await fetch('data/db.json');
+      if (!res.ok) throw new Error('Static db.json not found');
+      GS.UNITS = await res.json();
+      initSplash();
+    } catch (fallbackErr) {
+      console.error('All data loading attempts failed:', fallbackErr);
+      alert('فشل تحميل البيانات! تأكد من تشغيل السيرفر محلياً أو وجود ملف data/db.json');
+    }
   }
 }
 
