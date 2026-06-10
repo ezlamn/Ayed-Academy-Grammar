@@ -2,15 +2,28 @@
 // ADMIN DASHBOARD LOGIC
 // ============================================
 
-let db = []; // Full units array
+let ALL_DATA = { grammar: [], reading: [], listening: [], tests: [] };
+let currentTrack = 'grammar';
+let db = []; // The currently selected track's array
+
 let editingUnitIndex = -1;
 let editingStrategyIndex = -1;
-let currentUnit = null; // Copy of unit being edited
-let currentStrategy = null; // Copy of strategy being edited
+let currentUnit = null; 
+let currentStrategy = null; 
 
 // ── INIT ──
 async function init() {
   await fetchDB();
+  
+  const trackSelector = document.getElementById('track-selector');
+  if (trackSelector) {
+    trackSelector.addEventListener('change', (e) => {
+      currentTrack = e.target.value;
+      db = ALL_DATA[currentTrack] || [];
+      renderUnitsList();
+    });
+  }
+
   renderUnitsList();
   bindModals();
   bindTabs();
@@ -27,16 +40,22 @@ async function init() {
 async function fetchDB() {
   try {
     const res = await fetch('/api/units');
-    db = await res.json();
+    ALL_DATA = await res.json();
+    if (Array.isArray(ALL_DATA)) {
+      // Fallback if migration failed or it's old format
+      ALL_DATA = { grammar: ALL_DATA, reading: [], listening: [], tests: [] };
+    }
+    db = ALL_DATA[currentTrack] || [];
   } catch (e) { showToast('خطأ في جلب البيانات من السيرفر', true); }
 }
 
 async function saveToBackend() {
   try {
+    ALL_DATA[currentTrack] = db; // Sync current track back to main object
     const res = await fetch('/api/units', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(db)
+      body: JSON.stringify(ALL_DATA)
     });
     if (res.ok) showToast('تم الحفظ بنجاح في قاعدة البيانات ✅');
     else showToast('فشل الحفظ!', true);
@@ -286,17 +305,20 @@ document.getElementById('add-formula-btn').onclick = () => {
 function renderPracticeList() {
   const c = document.getElementById('practice-list'); c.innerHTML = '';
   (currentStrategy.practice||[]).forEach((pq,i) => {
-    c.innerHTML += `<div class="list-item"><div><b>${pq.q}</b></div> <button class="btn btn-danger btn-sm" onclick="currentStrategy.practice.splice(${i},1);renderPracticeList()">✕</button></div>`;
+    c.innerHTML += `<div class="list-item"><div><b>${pq.q}</b> <br> <small style="color:gray">${pq.audioUrl ? '🔊 يحوي ملف صوتي' : ''}</small></div> <button class="btn btn-danger btn-sm" onclick="currentStrategy.practice.splice(${i},1);renderPracticeList()">🗑️</button></div>`;
   });
 }
 document.getElementById('add-practice-btn').onclick = () => {
-  const q = prompt('نص السؤال (اترك فراغاً بنقاط .......):'); if(!q) return;
+  const q = prompt('نص السؤال (ضع فراغ بـ .......):'); if(!q) return;
+  const audioUrl = prompt('رابط مقطع الصوت للسؤال (اختياري، اترك فارغاً إذا لا يوجد):');
   const optStr = prompt('الخيارات مفصولة بفاصلة (مثال: is,are,am):'); if(!optStr) return;
   const opts = optStr.split(',').map(s=>s.trim());
   const c = parseInt(prompt(`رقم الإجابة الصحيحة (0 إلى ${opts.length-1}):`));
   const expl = prompt('الشرح:');
   if(!currentStrategy.practice) currentStrategy.practice=[];
-  currentStrategy.practice.push({q, opts, c, expl}); renderPracticeList();
+  const newQ = {q, opts, c, expl};
+  if(audioUrl) newQ.audioUrl = audioUrl.trim();
+  currentStrategy.practice.push(newQ); renderPracticeList();
 }
 
 // ── UI HELPERS ──

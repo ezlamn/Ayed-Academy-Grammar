@@ -25,7 +25,15 @@
     <!-- Main Content -->
     <main class="main-content">
       <header class="topbar">
-        <h1>إدارة المحتوى والمناهج (CRUD)</h1>
+        <div>
+          <h1>إدارة المحتوى والمناهج (CRUD)</h1>
+          <select id="track-selector" style="margin-top: 10px; padding: 5px 10px; font-family: 'Cairo'; border-radius: 5px; font-size: 1rem;">
+            <option value="grammar">📖 استراتيجيات الجرامر</option>
+            <option value="reading">📚 استراتيجيات الريدينق</option>
+            <option value="listening">🎧 استراتيجيات الليسينيق</option>
+            <option value="tests">📝 50 نموذج اختبار شامل</option>
+          </select>
+        </div>
         <div class="topbar-actions">
           <button class="btn btn-primary" id="add-unit-btn">+ إضافة وحدة جديدة</button>
         </div>

@@ -1,0 +1,268 @@
+/* ================================================================
+   TREE DIAGRAM CSS — Visual Grammar Formula Display
+   Cambridge-Inspired Tree Chart for Tense Formulas
+   Grammar Strategies — Ayed Academy
+   ================================================================ */
+
+/* ── WRAPPER ── */
+.tree-formula-wrap {
+  margin: 1.5rem 0;
+  direction: ltr;
+}
+.tree-formula-title {
+  font-weight: 800;
+  color: var(--navy);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+body.dark-mode .tree-formula-title { color: #fff; }
+
+/* ── TREE LAYOUT: center trunk ── */
+.tree-diagram {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-height: 120px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 2px solid var(--border);
+  box-shadow: var(--sh-sm);
+  background: var(--surface);
+}
+
+/* ── LEFT PANEL: Keywords (كلمات دالة) ── */
+.td-keywords {
+  background: var(--navy);
+  padding: 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+  min-width: 130px;
+  border-left: 4px solid var(--gold);
+  position: relative;
+}
+.td-keywords::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--gold);
+}
+.td-kw-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.td-kw-item {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--r-sm);
+  padding: 0.4rem 0.8rem;
+  font-family: var(--ff-en);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ── CENTER: Branching Tree ── */
+.td-tree {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0.5rem;
+  background: var(--surface2);
+  position: relative;
+}
+
+/* Subject groups column */
+.td-subjects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+.td-subject-group {
+  background: rgba(0, 119, 182, 0.08);
+  color: var(--navy);
+  border-radius: var(--r-md);
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.5;
+  border: 1px solid rgba(0, 119, 182, 0.2);
+  position: relative;
+}
+body.dark-mode .td-subject-group {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.td-subject-group small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Connector lines */
+.td-connectors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-self: stretch;
+  padding: 0.5rem 0;
+  gap: 0.5rem;
+  position: relative;
+}
+.td-connector-line {
+  flex: 1;
+  border-top: 2px dashed rgba(10,25,41,0.2);
+  margin: auto 0;
+  min-width: 20px;
+}
+body.dark-mode .td-connector-line { border-top-color: rgba(255,255,255,0.15); }
+
+/* Auxiliary (was / were / have) bubbles */
+.td-aux-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 0 0.3rem;
+  align-self: stretch;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.td-aux {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--r-pill);
+  font-family: var(--ff-en);
+  font-weight: 900;
+  font-size: 1rem;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+.td-aux.was { background: linear-gradient(135deg, #0077B6, #00B4D8); color: #fff; }
+.td-aux.were { background: linear-gradient(135deg, #5B21B6, #7C3AED); color: #fff; }
+.td-aux.have { background: linear-gradient(135deg, #05A881, #06D6A0); color: var(--navy); }
+.td-aux.has { background: linear-gradient(135deg, #F5A623, #FFD07A); color: var(--navy); }
+.td-aux.had { background: linear-gradient(135deg, #BE123C, #EF233C); color: #fff; }
+.td-aux.will { background: linear-gradient(135deg, #0F2540, #1a3a6b); color: #fff; }
+.td-aux.generic {
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  color: #fff;
+  font-size: 0.88rem;
+}
+
+/* ── RIGHT PANEL: Verb Formula + Example ── */
+.td-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 1.2rem;
+  flex: 1.5;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* Formula pill */
+.td-formula-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(245, 166, 35, 0.15);
+  border-radius: var(--r-pill);
+  padding: 0.5rem 1.2rem;
+  font-family: var(--ff-en);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--navy);
+  direction: ltr;
+  align-self: flex-start;
+}
+body.dark-mode .td-formula-pill { color: #fff; background: rgba(245, 166, 35, 0.2); }
+.td-formula-pill .hl { color: var(--red); font-size: 1.2em; }
+.td-formula-plus { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
+
+/* Example sentence with MCQ opts */
+.td-example {
+  font-family: var(--ff-en);
+  font-size: 0.95rem;
+  color: var(--text-sec);
+  direction: ltr;
+  text-align: left;
+  line-height: 1.5;
+  background: var(--surface2);
+  border-left: 3px solid var(--gold);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.td-example strong { color: var(--navy); font-weight: 900; }
+body.dark-mode .td-example strong { color: #fff; }
+.td-example em { color: var(--purple); font-style: normal; font-weight: 700; }
+
+/* ── MULTI-GROUP TREE: when there are 2+ aux groups ── */
+.td-group-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+}
+
+/* ── EXTRA ROW (e.g. Past Perfect "had + V3") ── */
+.td-extra-row {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1.5px dashed var(--border);
+}
+.td-extra-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .tree-diagram {
+    flex-direction: column;
+  }
+  .td-keywords {
+    border-left: none;
+    border-bottom: 4px solid var(--gold);
+    min-width: unset;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.8rem 1rem;
+  }
+  .td-keywords::after { display: none; }
+  .td-tree { padding: 1rem; flex-wrap: wrap; }
+  .td-right { border-right: none; border-top: 1px solid var(--border); padding: 0.8rem 1rem; }
+}

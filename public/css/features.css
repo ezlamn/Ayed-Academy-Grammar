@@ -1,0 +1,93 @@
+/* ================================================================
+   FEATURES.CSS — Dark Mode, FAB, Highlight, Gamification & SRS
+   Grammar Strategies — Ayed Academy
+   ================================================================ */
+
+/* ── DARK MODE ── */
+body.dark-mode {
+  --bg: #121212; --surface: #1e1e24; --surface2: #2b2b36;
+  --border: rgba(255,255,255,0.08); --text-primary: #f3f4f6;
+  --text-sec: #9ca3af; --text-muted: #6b7280;
+  --gold: #fbbf24; --green: #10b981; --red: #ef4444;
+  --sh-sm: 0 1px 2px rgba(0,0,0,0.5);
+  --sh-md: 0 4px 6px -1px rgba(0,0,0,0.5);
+  --sh-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+}
+body.dark-mode .topbar { background: #18181b; border-bottom: 1px solid var(--border); }
+body.dark-mode .units-panel { background: #1e1e24; border-left: 1px solid var(--border); }
+body.dark-mode .unit-nav-item:hover { background: rgba(255,255,255,0.05); }
+body.dark-mode .unit-nav-item.active { background: rgba(251,191,36,0.1); border-color: var(--gold); }
+body.dark-mode .strategy-card { background: #1e1e24; border-color: var(--border); box-shadow: var(--sh-md); }
+body.dark-mode .formula-block { background: #1e1e24; border-color: var(--border); }
+body.dark-mode .fb-subj { background: #2563eb; color: #fff; }
+body.dark-mode .fb-form { background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); color: var(--gold); }
+body.dark-mode .fb-ex { color: var(--text-primary); }
+body.dark-mode .mini-q-text { background: transparent; color: var(--text-primary); }
+body.dark-mode .mini-opt { background: #2b2b36; color: var(--text-primary); border-color: var(--border); }
+body.dark-mode .mini-opt:hover { background: rgba(251,191,36,0.1); border-color: var(--gold); }
+body.dark-mode .bottom-nav { background: #18181b; border-top: 1px solid var(--border); }
+body.dark-mode .right-toolbar { background: #1e1e24; border: 1px solid var(--border); }
+body.dark-mode .rtool-btn:hover { background: rgba(255,255,255,0.1); }
+body.dark-mode .notes-panel { background: #1e1e24; }
+body.dark-mode .notes-area { background: #121212; color: var(--text-primary); }
+body.dark-mode .quiz-modal { background: #1e1e24; border: 1px solid var(--border); }
+body.dark-mode .quiz-modal-header { border-bottom: 1px solid var(--border); }
+body.dark-mode .quiz-q-card { background: #2b2b36; border: 1px solid var(--border); }
+body.dark-mode .q-opt { background: #1e1e24; border-color: var(--border); color: var(--text-primary); }
+body.dark-mode .q-opt:hover:not([disabled]) { border-color: var(--gold); background: rgba(251,191,36,0.05); }
+body.dark-mode .q-opt.selected { background: rgba(251,191,36,0.15); border-color: var(--gold); }
+body.dark-mode .score-screen { background: #2b2b36; border: 1px solid var(--border); }
+body.dark-mode .exception-box { background: rgba(239,35,60,0.08); border-right-color: #ff5f73; }
+body.dark-mode .ex-title { color: #ff5f73; }
+body.dark-mode .ex-body { color: var(--text-primary); }
+body.dark-mode .ex-body strong { color: #ff8b94; background: rgba(239,35,60,0.2); }
+body.dark-mode .ex-body em { color: #fff; }
+body.dark-mode .mobile-toolbar { background: rgba(30,30,36,0.95); border-top-color: var(--border); }
+body.dark-mode .ls-split-left { background: #1a2540; }
+body.dark-mode .rd-split-left { background: #064e3b15; }
+body.dark-mode .listening-audio-wrap { background: linear-gradient(135deg, #1e1e24 0%, #2b2b36 100%); border-color: rgba(251,191,36,0.25); }
+
+/* Dark Toggle Button */
+.dark-toggle {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: white; width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1.1rem; transition: all 0.3s ease;
+}
+.dark-toggle:hover { background: rgba(245,166,35,0.3); transform: rotate(20deg); }
+
+/* ── SCROLL TO TOP FAB ── */
+.fab-scroll {
+  position: fixed; bottom: 2rem; left: 2rem; width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--gold), #e09212);
+  color: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; box-shadow: 0 4px 20px rgba(245,166,35,0.5); cursor: pointer;
+  transition: all 0.3s ease; z-index: 990; border: none;
+  opacity: 0; pointer-events: none; transform: translateY(20px);
+}
+.fab-scroll.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.fab-scroll:hover { transform: scale(1.1) rotate(-10deg); box-shadow: 0 8px 30px rgba(245,166,35,0.6); }
+
+/* ── OVERALL PROGRESS BAR (Sidebar) ── */
+.overall-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 50px; height: 14px; overflow: hidden; margin-bottom: 0.6rem; position: relative; }
+.overall-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--green)); border-radius: 50px; transition: width 0.8s ease; width: 0%; }
+.overall-bar-label { color: var(--gold); font-weight: 800; font-size: 1rem; }
+
+/* ── FLOATING XP ANIMATION ── */
+.floating-xp {
+  position: fixed; color: var(--gold); font-weight: 900; font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); pointer-events: none; z-index: 9999;
+  animation: floatUp 1s ease-out forwards;
+}
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(0) scale(0.5); }
+  20% { opacity: 1; transform: translateY(-20px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-60px) scale(1); }
+}
+
+/* ── SRS BUTTONS ── */
+.srs-buttons { display: flex; gap: 5px; margin-top: 15px; }
+.srs-btn { flex: 1; border: none; padding: 5px; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem; }
+.srs-hard { background: #e74c3c; }
+.srs-good { background: #f39c12; }
+.srs-easy { background: #2ecc71; }

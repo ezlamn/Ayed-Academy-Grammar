@@ -1,0 +1,152 @@
+/* ================================================================
+   BASE.CSS — Design Tokens, Reset, Typography & Animations
+   Grammar Strategies — Ayed Academy
+   ================================================================ */
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Core Palette */
+  --navy:      #0A1929;
+  --navy-mid:  #0F2540;
+  --navy-soft: #132F4C;
+  --gold:      #F5A623;
+  --gold-lt:   #FFD07A;
+  --gold-dim:  rgba(245,166,35,0.15);
+  --teal:      #00B4D8;
+  --teal-lt:   #90E0EF;
+  --green:     #06D6A0;
+  --green-dim: rgba(6,214,160,0.12);
+  --red:       #EF233C;
+  --red-dim:   rgba(239,35,60,0.1);
+  --purple:    #7C3AED;
+  --sky:       #38BDF8;
+
+  /* Surface */
+  --bg:        #F0F4F8;
+  --surface:   #FFFFFF;
+  --surface2:  #F8FAFC;
+  --border:    rgba(10,25,41,0.09);
+  --border-md: rgba(10,25,41,0.14);
+
+  /* Text */
+  --text-primary: #0A1929;
+  --text-sec:     #3E5368;
+  --text-muted:   #64748B;
+  --text-inv:     #FFFFFF;
+
+  /* Typography */
+  --ff-ar:  'Cairo', sans-serif;
+  --ff-en:  'Outfit', sans-serif;
+
+  /* Radius */
+  --r-xs:  4px;
+  --r-sm:  8px;
+  --r-md:  12px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --sh-xs:  0 1px 4px rgba(10,25,41,0.07);
+  --sh-sm:  0 2px 10px rgba(10,25,41,0.09);
+  --sh-md:  0 6px 20px rgba(10,25,41,0.12);
+  --sh-lg:  0 16px 48px rgba(10,25,41,0.16);
+  --sh-xl:  0 32px 80px rgba(10,25,41,0.22);
+
+  /* Animation */
+  --ease:   cubic-bezier(0.4, 0, 0.2, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* Sizing */
+  --topbar-h: 60px;
+  --sidebar-w: 280px;
+  --toolbar-w: 52px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-ar);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.hidden { display: none !important; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, textarea { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(10,25,41,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(10,25,41,0.28); }
+
+/* ── GLOBAL ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in { animation: fadeUp 0.45s var(--ease) both; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.65rem 1.4rem; border-radius: var(--r-md);
+  font-weight: 700; font-size: 0.9rem; transition: all 0.2s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+  color: var(--navy); box-shadow: 0 4px 16px rgba(245,166,35,0.35);
+}
+.btn-primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.btn-secondary {
+  background: var(--surface2); color: var(--text-sec);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--border); }
+.btn-sm { padding: 0.4rem 0.9rem; font-size: 0.82rem; }
+
+/* ── SCORE SCREEN ── */
+.score-screen {
+  text-align: center; padding: 2.5rem 1.5rem;
+  background: var(--surface); border: 2px solid var(--gold);
+  border-radius: var(--r-xl); box-shadow: var(--sh-lg);
+}
+.score-donut-wrap { position: relative; width: 140px; height: 140px; margin: 0 auto 1.5rem; }
+.score-donut {
+  width: 140px; height: 140px; border-radius: 50%;
+  background: conic-gradient(var(--green) 0% var(--pct,0%), var(--border) var(--pct,0%) 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.score-donut::before {
+  content: ''; position: absolute; inset: 16px; background: var(--surface); border-radius: 50%;
+}
+.score-num {
+  position: relative; z-index: 1;
+  font-family: var(--ff-en); font-size: 1.8rem; font-weight: 900;
+  color: var(--text-primary);
+}
+.score-msg { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.score-sub { color: var(--text-muted); font-size: 0.95rem; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+  background: var(--navy); color: #fff;
+  padding: 0.85rem 1.4rem; border-radius: var(--r-md);
+  display: flex; align-items: center; gap: 0.6rem;
+  box-shadow: var(--sh-lg); font-size: 0.92rem; font-weight: 600;
+  animation: fadeUp 0.3s var(--ease);
+}
+.toast.t-success { background: var(--green); color: var(--navy); }
+.toast.t-error { background: var(--red); }
+
+/* ── MEDIA BOXES ── */
+.media-box { margin: 1rem 0; border-radius: 8px; overflow: hidden; max-width: 100%; border: 1px solid rgba(255,255,255,0.1); }
+.media-box img { max-width: 100%; height: auto; display: block; }
+.media-box audio { width: 100%; display: block; outline: none; background: rgba(255,255,255,0.05); }

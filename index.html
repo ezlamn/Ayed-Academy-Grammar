@@ -8,7 +8,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="public/style.css"/>
+
+  <!-- CSS — Organized Structure -->
+  <link rel="stylesheet" href="public/css/base.css"/>
+  <link rel="stylesheet" href="public/css/layout.css"/>
+  <link rel="stylesheet" href="public/css/components.css"/>
+  <link rel="stylesheet" href="public/css/features.css"/>
+  <link rel="stylesheet" href="public/css/tracks.css"/>
+  <link rel="stylesheet" href="public/css/tree-diagram.css"/>
+
+  <!-- Firebase & External Scripts -->
+  <script type="module" src="public/firebase-config.js"></script>
+  <script src="public/mock_exam.js"></script>
+  <script src="public/analytics.js"></script>
 </head>
 <body>
 
@@ -33,14 +45,27 @@
       </div>
     </div>
     <h1 class="splash-headline">مرحباً بك في رحلة التعلم 🎓</h1>
-    <p class="splash-sub">أدخل اسمك لنتابع تقدمك في المنهج</p>
-    <div class="name-input-wrap">
-      <input type="text" id="student-name-input" class="name-input" placeholder="اكتب اسمك هنا..."/>
+    <p class="splash-sub">أنشئ حساباً لحفظ تقدمك السحابي أو ادخل كزائر</p>
+    
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login">تسجيل دخول</button>
+      <button class="auth-tab" id="tab-guest">دخول كزائر</button>
     </div>
-    <button class="splash-cta" id="splash-start">
-      <span>ابدأ رحلة التعلم</span>
-      <span class="cta-arrow">←</span>
-    </button>
+
+    <div id="auth-login-form">
+      <input type="email" id="student-email" class="name-input" placeholder="البريد الإلكتروني"/>
+      <input type="password" id="student-password" class="name-input" placeholder="كلمة المرور" style="margin-top:0.5rem;"/>
+      <button class="splash-cta" id="splash-start-login" style="margin-top:1rem;">
+        <span>دخول / إنشاء حساب</span>
+      </button>
+    </div>
+
+    <div id="auth-guest-form" class="hidden">
+      <input type="text" id="student-name-input" class="name-input" placeholder="اكتب اسمك هنا..."/>
+      <button class="splash-cta" id="splash-start" style="margin-top:1rem;">
+        <span>دخول محلي (بدون حفظ سحابي)</span>
+      </button>
+    </div>
     <div class="splash-stats-row">
       <div class="s-stat"><span>12</span> وحدة</div>
       <div class="s-divider"></div>
@@ -51,10 +76,52 @@
   </div>
 </div>
 
+</div>
+
 <!-- ============================================================
-     MAIN APPLICATION
+     MAIN DASHBOARD (Track Selection)
+     ============================================================ -->
+<div id="main-dashboard" class="hidden">
+  <div class="dash-header">
+    <div class="dash-logo">📘 عايد أكاديمي</div>
+    <div class="dash-title">منصة اختبار STEP المتكاملة</div>
+    <div class="dash-subtitle">اختر القسم الذي تريد دراسته اليوم</div>
+  </div>
+  <div class="dash-grid">
+    <div class="dash-card" data-track="grammar">
+      <div class="dash-icon">📖</div>
+      <h3>استراتيجيات الجرامر</h3>
+      <p>شرح تفصيلي لقواعد اللغة الإنجليزية بأسلوب تفاعلي.</p>
+    </div>
+    <div class="dash-card" data-track="reading">
+      <div class="dash-icon">📚</div>
+      <h3>استراتيجيات الريدينق</h3>
+      <p>تدريب على فهم المقروء والتعامل مع القطع الطويلة.</p>
+    </div>
+    <div class="dash-card" data-track="listening">
+      <div class="dash-icon">🎧</div>
+      <h3>استراتيجيات الليسينيق</h3>
+      <p>تدريب على مهارات الاستماع والمحادثات الإنجليزية.</p>
+    </div>
+    <div class="dash-card" data-track="tests">
+      <div class="dash-icon">📝</div>
+      <h3>محاكاة الاختبار (Mock Exam)</h3>
+      <p>اختبار شامل بمؤقت زمني يحاكي اختبار STEP الحقيقي.</p>
+    </div>
+  </div>
+  
+  <div id="analytics-container"></div>
+  
+  <div class="dash-footer">
+    <button id="dash-logout" class="dash-logout-btn">تسجيل الخروج</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN APPLICATION (Learning UI)
      ============================================================ -->
 <div id="app" class="hidden">
+  <button id="btn-back-dash" class="btn-back-dash" title="العودة للرئيسية">🏠</button>
 
   <!-- ── TOP BAR ── -->
   <header class="topbar" id="topbar">
@@ -211,6 +278,17 @@
 <!-- ── CONFETTI ── -->
 <canvas id="confetti-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;"></canvas>
 
-<script src="public/app.js"></script>
+<!-- JS Modules — in dependency order -->
+<script src="public/js/state.js"></script>
+<script src="public/js/gamification.js"></script>
+<script src="public/js/ui.js"></script>
+<script src="public/js/auth.js"></script>
+<script src="public/js/dashboard.js"></script>
+<script src="public/js/units.js"></script>
+<script src="public/js/tree-diagram.js"></script>
+<script src="public/js/renderers.js"></script>
+<script src="public/js/tools.js"></script>
+<script src="public/js/quiz.js"></script>
+<script src="public/js/app.js"></script>
 </body>
 </html>
