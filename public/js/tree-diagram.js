@@ -1,146 +1,182 @@
-/* ================================================================
-   TREE-DIAGRAM.JS — Infographic Grammar Poster Builder
-   Renders strategy.formulas as a poster-style infographic:
-   [icon] [subject chip] ⋯ [formula pill] │ [example]
-   + dashed tip banner (Arabic) at the bottom.
-   Grammar Strategies — Ayed Academy
-   ================================================================ */
-
 /**
- * renderTreeDiagram(strat)
- * Builds the full infographic board from strat.formulas.
- * Row types are detected from the subject label:
- *   - "Negative / نفي"   → green row with − icon
- *   - "Question / سؤال"  → purple row with ? icon
- *   - anything else       → blue subject row
+ * tree-diagram.js
+ * Generates the Premium Cambridge-style syntax tree infographic.
  */
-function renderTreeDiagram(strat) {
-  const formulas = strat.formulas || [];
-  if (!formulas.length) return '';
 
-  const subjIcons = ['👥', '👤', '🗣️', '✳️', '🔹', '🔸'];
-  const exIcons   = ['📖', '📅', '✏️', '🔖', '💬', '📌'];
-  let subjCount = 0;
+// ── MAIN RENDERER ─────────────────────────────────────────
+function renderTreeDiagram(content) {
+  let html = `<div class="cg-wrapper">`;
 
-  const rows = formulas.map(f => {
-    const type = tdxRowType(f.subj || '');
-    let icon, exIcon, aux = '', chipSub = '';
+  // Optional Header
+  if (content.title) {
+    html += `
+      <div class="cg-header">
+        <span class="cg-header-icon" data-icon="git-merge"></span>
+        <span>${content.title}</span>
+      </div>`;
+  }
 
-    if (type === 'neg') {
-      icon = '−'; exIcon = '❎';
-      aux = tdxAuxOf(f.form);
-      if (!/[؀-ۿ]/.test(f.subj)) chipSub = 'النفي';
-    } else if (type === 'q') {
-      icon = '?'; exIcon = '❓';
-      aux = tdxAuxOf(f.form);
-      if (!/[؀-ۿ]/.test(f.subj)) chipSub = 'السؤال';
-    } else {
-      icon = subjIcons[Math.min(subjCount, subjIcons.length - 1)];
-      exIcon = exIcons[subjCount % exIcons.length];
-      subjCount++;
+  // Scroll container for mobile swipeability
+  html += `<div class="cg-container scroll-x snap-scroll">`;
+
+  if (content.treeDiagram) {
+    html += buildFromConfig(content.treeDiagram, content.keywords || []);
+  } else {
+    // Legacy fallback for old data structures
+    html += buildLegacyFallback(content);
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+// ── BUILD FROM RICH CONFIG (treeDiagram key) ──────────────────
+function buildFromConfig(cfg, keywords) {
+  const numGroups = (cfg.groups || []).length;
+  // Make the brace height dynamic but constrained
+  const braceHeight = numGroups > 1 ? `calc(100% - 3rem)` : '0';
+
+  let flowHtml = `<div class="cg-flow">`;
+
+  // 1. LEFT SIDE: Groups (Subjects + Auxiliaries)
+  flowHtml += `<div class="cg-groups">`;
+  (cfg.groups || []).forEach(group => {
+    flowHtml += `<div class="cg-group">`;
+    
+    // Subject Node
+    flowHtml += `<div class="cg-node cg-node-subj">`;
+    flowHtml += `<div class="cg-subj-list">` + group.subjects.join('<span class="cg-comma">, </span>') + `</div>`;
+    if (group.label) {
+      flowHtml += `<div class="cg-subj-label">${group.label}</div>`;
+    }
+    flowHtml += `</div>`; // .cg-node-subj
+
+    // Horizontal Line connecting Subj to Aux
+    flowHtml += `<div class="cg-connector-hz"></div>`;
+
+    // Auxiliary Node
+    const auxLower = group.auxiliary.toLowerCase().trim();
+    let auxClass = 'aux-generic';
+    if (['was','were','have','has','had','will','am','is','are','do','does','did'].includes(auxLower)) {
+      auxClass = `aux-${auxLower}`;
+    }
+    flowHtml += `<div class="cg-node cg-node-aux ${auxClass}">${group.auxiliary}</div>`;
+
+    flowHtml += `</div>`; // .cg-group
+  });
+  flowHtml += `</div>`; // .cg-groups
+
+  // 2. MIDDLE: Brace Connector (Pure CSS curves)
+  if (numGroups > 1) {
+    flowHtml += `
+      <div class="cg-brace-wrapper">
+        <div class="cg-brace-top"></div>
+        <div class="cg-brace-mid" style="height: ${braceHeight};"></div>
+        <div class="cg-brace-bot"></div>
+        <div class="cg-brace-join"></div>
+      </div>
+    `;
+  } else {
+    // Single row, just a straight line
+    flowHtml += `
+      <div class="cg-brace-wrapper single">
+        <div class="cg-connector-hz long"></div>
+      </div>
+    `;
+  }
+
+  // 3. RIGHT SIDE: Result (Formula + Example)
+  flowHtml += `<div class="cg-result">`;
+  
+  if (cfg.result) {
+    // Formula Node
+    if (cfg.result.formula) {
+      let fHtml = cfg.result.formula.replace(/\+/g, '<span class="cg-plus">+</span>');
+      if (fHtml.includes('ing')) fHtml = fHtml.replace('ing', '<span class="cg-hl-ing">ing</span>');
+      if (fHtml.includes('ed')) fHtml = fHtml.replace('ed', '<span class="cg-hl-ed">ed</span>');
+      flowHtml += `<div class="cg-node cg-node-formula">${fHtml}</div>`;
     }
 
-    return tdxRow({
-      type, icon, exIcon, aux,
-      chip: f.subj || '',
-      chipSub,
-      form: f.form || '',
-      ex: f.ex || '',
-      note: f.note || ''
-    });
-  }).join('');
+    // Example Box
+    if (cfg.result.example) {
+      let exText = cfg.result.example;
+      keywords.forEach(kw => {
+        const regex = new RegExp(`\\b${kw}\\b`, 'gi');
+        exText = exText.replace(regex, `<strong>${kw}</strong>`);
+      });
 
-  return `
-    <div class="tdx-board">
-      ${tdxHeader(strat)}
-      <div class="tdx-rows" dir="ltr">${rows}</div>
-      ${tdxTip(strat)}
-    </div>
-  `;
-}
-
-// ── Row type from the subject label ───────────────────────────
-function tdxRowType(subj) {
-  const s = subj.toLowerCase();
-  if (s.includes('negative') || subj.includes('نفي')) return 'neg';
-  if (s.includes('question') || subj.includes('سؤال') || subj.includes('استفهام')) return 'q';
-  return 'subj';
-}
-
-// ── Extract the auxiliary chip (e.g. "do/does") from a formula ─
-function tdxAuxOf(form) {
-  const plain = tdxPlain(form);
-  if (!plain.includes('+')) return '';
-  const first = plain.split('+')[0].trim();
-  return (first.length > 0 && first.length <= 12) ? first : '';
-}
-
-function tdxPlain(html) {
-  return (html || '').replace(/<[^>]+>/g, '');
-}
-
-// ── Formula pill formatting: highlight endings, style the + ──
-function tdxFormatForm(form) {
-  return (form || '')
-    .replace(/<span class="s">([\s\S]*?)<\/span>/g, '<b class="tdx-hl">$1</b>')
-    .replace(/\+/g, '<span class="tdx-plus">+</span>');
-}
-
-// ── Poster header: "Present Simple" with accent last word ─────
-function tdxHeader(strat) {
-  const en = (strat.subtitle || '').trim();
-  if (!en) return '';
-  const words = en.split(/\s+/);
-  const last = words.length > 1 ? words.pop() : '';
-  return `
-    <div class="tdx-header">
-      <span class="tdx-flair" aria-hidden="true"><i></i><i></i><i></i></span>
-      <div class="tdx-title-wrap">
-        <div class="tdx-title" dir="ltr">
-          ${words.join(' ')}${last ? ` <span class="accent">${last}</span>` : ''}
-          <span class="tdx-spark" aria-hidden="true">✦</span>
+      flowHtml += `
+        <div class="cg-node cg-node-example">
+          <div class="cg-ex-icon" data-icon="lightbulb"></div>
+          <div class="cg-ex-text">${exText}</div>
         </div>
-        <div class="tdx-title-underline"><i></i></div>
-      </div>
-    </div>
-  `;
-}
+      `;
+    }
+  }
 
-// ── One poster row ─────────────────────────────────────────────
-function tdxRow(cfg) {
-  const hasExample = !!cfg.ex;
-  return `
-    <div class="tdx-row tdx-${cfg.type}">
-      <div class="tdx-left">
-        <span class="tdx-badge">${cfg.icon}</span>
-        <span class="tdx-chip">${cfg.chip}${cfg.chipSub ? `<small>${cfg.chipSub}</small>` : ''}</span>
-        <span class="tdx-dots"></span>
-        ${cfg.aux ? `<span class="tdx-aux" dir="ltr">${cfg.aux}</span><span class="tdx-dots tdx-dots-sm"></span>` : ''}
-        <span class="tdx-pill" dir="ltr">${tdxFormatForm(cfg.form)}</span>
-      </div>
-      ${hasExample ? `
-        <div class="tdx-sep"></div>
-        <div class="tdx-right">
-          <span class="tdx-ex-icon">${cfg.exIcon}</span>
-          <div class="tdx-ex-body">
-            <div class="tdx-ex" dir="ltr">${cfg.ex}</div>
-            ${cfg.note ? `<div class="tdx-note">${cfg.note}</div>` : ''}
+  flowHtml += `</div>`; // .cg-result
+  flowHtml += `</div>`; // .cg-flow
+
+  // 4. EXTRAS (Exceptions / Notes at the bottom)
+  if (cfg.extras && cfg.extras.length > 0) {
+    flowHtml += `<div class="cg-extras-container">`;
+    cfg.extras.forEach(extra => {
+      let fHtml = extra.formula.replace(/\+/g, '<span class="cg-plus">+</span>');
+      flowHtml += `
+        <div class="cg-extra-row">
+          <div class="cg-extra-label">${extra.label}</div>
+          <div class="cg-extra-content">
+            <div class="cg-node cg-node-aux cg-small">${extra.auxiliary}</div>
+            <div class="cg-connector-hz cg-short"></div>
+            <div class="cg-node cg-node-formula cg-small">${fHtml}</div>
           </div>
         </div>
-      ` : ''}
-    </div>
-  `;
+      `;
+    });
+    flowHtml += `</div>`;
+  }
+
+  return flowHtml;
 }
 
-// ── Dashed tip banner (Arabic) — uses strat.tip or strat.usage ─
-function tdxTip(strat) {
-  const tip = strat.tip || strat.usage;
-  if (!tip) return '';
-  return `
-    <div class="tdx-tip">
-      <span class="tdx-tip-icon">💡</span>
-      <div class="tdx-tip-text">${tip}</div>
-      <span class="tdx-tip-pen" aria-hidden="true">✍️</span>
+// ── FALLBACK FOR OLDER DATA ───────────────────────────────────────
+function buildLegacyFallback(content) {
+  if (!content.tree) return '';
+  let html = `<div class="cg-flow legacy-flow">`;
+  html += `<div class="td-tree">`;
+  
+  Object.keys(content.tree).forEach(subj => {
+    let aux = content.tree[subj];
+    let subjList = subj.split(',').join('<span class="cg-comma">, </span>');
+    html += `
+      <div class="td-subject-group">
+        <div class="cg-node cg-node-subj td-subject-label">${subjList}</div>
+        <div class="td-connector">
+          <div class="td-connector-dot"></div>
+          <div class="td-connector-line"></div>
+        </div>
+        <div class="td-aux-col">
+          <div class="cg-node cg-node-aux td-aux">${aux}</div>
+        </div>
+      </div>
+    `;
+  });
+  
+  html += `</div>`; // .td-tree
+  
+  // Right Box
+  let rHtml = content.formula.replace(/\+/g, '<span class="cg-plus">+</span>');
+  html += `
+    <div class="td-right">
+      <div class="cg-node cg-node-formula td-formula-pill">${rHtml}</div>
+      <div class="cg-node cg-node-example td-example">${content.example}</div>
     </div>
   `;
+  
+  html += `</div>`; // .legacy-flow
+  return html;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { renderTreeDiagram };
 }

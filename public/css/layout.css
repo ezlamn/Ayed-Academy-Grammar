@@ -157,12 +157,13 @@ html.dark-mode .o3 { background: rgba(78, 205, 230, 0.1); }
 /* Breadcrumb */
 .breadcrumb {
   display: flex; align-items: center; gap: 0.4rem;
-  color: var(--text-muted); font-size: 0.8rem;
+  color: var(--text-muted); font-size: var(--fs-base);
   background: var(--surface2); border: 1px solid var(--border);
   padding: 0.3rem 0.75rem; border-radius: var(--r-pill);
+  flex-wrap: wrap; /* Prevent overflow on 375px */
 }
-.bc-sep { opacity: 0.4; }
-#bc-unit { font-weight: 700; color: var(--accent); }
+.bc-sep { opacity: 0.4; flex-shrink: 0; }
+#bc-unit { font-weight: 700; color: var(--accent); white-space: nowrap; }
 #bc-strat { font-weight: 600; color: var(--text-sec); }
 
 /* Student chip */

@@ -308,15 +308,11 @@ function stepStratPrev(stratId) {
 function renderReadingUnit(unit) {
   const p = unit.page || {};
 
-  if (unit.type === 'vocab' && p.vocabCategories) {
-    return renderVocabUnit(unit);
-  }
-
   let html = `
     <div class="reading-unit animate-in">
       <div class="rd-section-header">
-        <div class="rd-header-ar">${unit.title.split(':')[1] || unit.title}</div>
-        <div class="rd-header-en">( READING STRATEGY )</div>
+        <div class="rd-header-ar">قسم القراءة</div>
+        <div class="rd-header-en">( READING )</div>
         <div class="rd-header-icon" style="width:32px; height:32px;">${window.getIcon('openBook')}</div>
       </div>
   `;
@@ -324,42 +320,50 @@ function renderReadingUnit(unit) {
   html += renderVideoLibrary(unit);
 
   (p.strategies || []).forEach((s, si) => {
-    html += `
-      <div class="rd-strategy-section sc-collapsed" id="${s.id}" style="animation-delay:${si * 0.07}s">
-        <div class="rd-strategy-banner ${s.theme}" title="اضغط للفتح / الإغلاق">
-          <span>${s.icon}</span> ${s.title}
-          <span class="rd-strategy-subtitle">${s.subtitle}</span>
-          ${scCaret()}
+    let practiceHtml = '';
+    if (s.practice && s.practice.length > 0) {
+      practiceHtml = `
+        <div class="mini-quiz-wrap" style="margin-top: 1rem;">
+          <div class="mini-quiz-header"><span style="width:16px; display:inline-block;">${window.getIcon('lightbulb')}</span> تدريب سريع</div>
+          ${s.practice.map((pq, pi) => {
+            const qid = `${s.id}-p${pi}`;
+            return `
+              <div class="rd-split">
+                <div class="rd-split-left" dir="ltr" style="text-align:left;">
+                  <div class="rd-passage">${pq.passage || ''}</div>
+                </div>
+                <div class="rd-split-right">
+                  <div class="rd-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
+                  <div class="ls-radio-opts">
+                    ${pq.opts.map((o, oi) => `
+                      <label class="ls-radio-opt">
+                        <input type="radio" name="rd-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
+                        <span class="ls-radio-letter">${['A', 'B', 'C', 'D'][oi]}</span>
+                        <span class="ls-radio-text" dir="ltr" style="text-align:left;">${o}</span>
+                      </label>
+                    `).join('')}
+                  </div>
+                  <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+                  <div class="mini-expl" id="mq-expl-${qid}" style="direction:rtl; text-align:right;">
+                    <div class="expl-text">${pq.expl}</div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
         </div>
-        ${s.videoUrl ? renderVideoBox(s.videoUrl, '🎬 شرح بالفيديو') : ''}
-        <div class="rd-usage-box">${s.usage.replace(/\\n/g, '<br>')}</div>
-        ${s.keywords && s.keywords.length > 0 ? `
-          <div class="rd-keywords-grid">
-            ${s.keywords.map(kw => `
-              <div class="rd-kw-row">
-                <span class="rd-kw-en" dir="ltr">${kw.f}</span>
-                <span class="rd-arrow">←</span>
-                <span class="rd-kw-ar">${kw.b}</span>
-              </div>
-              <div class="rd-split-right">
-                <div class="rd-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
-                <div class="ls-radio-opts">
-                  ${pq.opts.map((o, oi) => `
-                    <label class="ls-radio-opt">
-                      <input type="radio" name="rd-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
-                      <span class="ls-radio-letter">${['A', 'B', 'C', 'D'][oi]}</span>
-                      <span class="ls-radio-text" dir="ltr" style="text-align:left;">${o}</span>
-                    </label>
-                  `).join('')}
-                </div>
-                <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
-                <div class="mini-expl" id="mq-expl-${qid}" style="direction:rtl; text-align:right;">
-                  <div class="expl-text">${pq.expl}</div>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('')}
+      `;
+    }
+
+    const kwHtml = (s.keywords || []).length > 0 ? `
+      <div class="rd-keywords-grid">
+        ${s.keywords.map(kw => `
+          <div class="rd-kw-row">
+            <span class="rd-kw-en" dir="ltr">${kw.f}</span>
+            <span class="rd-arrow">←</span>
+            <span class="rd-kw-ar">${kw.b}</span>
+          </div>
+        `).join('')}
       </div>
     ` : '';
 
@@ -373,12 +377,12 @@ function renderReadingUnit(unit) {
               <div class="sc-title">${s.title}</div>
               <div class="sc-subtitle">${s.subtitle}</div>
             </div>
-            <span class="sc-badge">READING</span>
+            <span>READING</span>
           </div>
           
           <div class="db-content">
             <div class="usage-banner" style="position:relative;">
-              <div class="usage-text">${s.usage.replace(/\\n/g, '<br>')}</div>
+              <div class="usage-text">${s.usage.replace(/\n/g, '<br>')}</div>
               <button class="tts-btn" onclick="playTTS(this)" data-text="${s.usage.replace(/"/g, '&quot;')}" title="استمع للشرح">
                 <span style="width:18px; height:18px; display:inline-block;">${window.getIcon('volume')}</span>
               </button>
@@ -473,77 +477,65 @@ function renderListeningUnit(unit) {
 function renderListeningStrategy(s, si) {
   const letters = ['a', 'b', 'c', 'd'];
 
-  if (s.practice && s.practice.length > 0 && s.practice[0].audioUrl) {
-    const practiceQs = s.practice.map((pq, pi) => {
-      const qid = `${s.id}-p${pi}`;
-      return `
-        <div class="ls-split-wrap mini-q" id="mq-wrap-${qid}">
-          <div class="ls-split-left">
-            <div class="ls-split-instructions">
-              You will hear a conversation. Listen carefully and answer the question. You will hear it only once. You now have 15 seconds.
-            </div>
-            <div class="listening-audio-wrap">
-              <audio controls src="${pq.audioUrl}"></audio>
-            </div>
-          </div>
-          <div class="ls-split-right">
-            <div class="ls-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
-            <div class="ls-radio-opts">
-              ${pq.opts.map((o, oi) => `
-                <label class="ls-radio-opt">
-                  <input type="radio" name="ls-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
-                  <span class="ls-radio-letter">${letters[oi]}</span>
-                  <span class="ls-radio-text" dir="ltr">${o}</span>
-                </label>
-              `).join('')}
-            </div>
-            <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
-            <div class="mini-expl" id="mq-expl-${qid}">
-              <div class="expl-text">${pq.expl}</div>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
+  // Step 1: Concept & Exception
+  const exceptionHtml = s.exception ? `
+    <div class="ls-exception-box" style="margin-top:1rem;">
+      <div class="ls-exception-title">${s.exception.title}</div>
+      <div class="ls-exception-body">${s.exception.body}</div>
+    </div>
+  ` : '';
 
-    return `
-      <div class="ls-strategy-section animate-in sc-collapsed" id="${s.id}" style="animation-delay:${si * 0.07}s">
-        <div class="ls-strategy-banner ${s.theme}" title="اضغط للفتح / الإغلاق">
-          <span>${s.icon}</span> ${s.title}
-          <span class="ls-strategy-subtitle">${s.subtitle}</span>
-          ${scCaret()}
-        </div>
-        ${s.videoUrl ? renderVideoBox(s.videoUrl, '🎬 شرح بالفيديو') : ''}
-        <div class="ls-usage-box">${s.usage}</div>
-        ${renderRuleBox(s.exception)}
-        ${practiceQs}
+  // Step 2: Keywords Sidebar
+  const kwHtml = (s.keywords || []).length > 0 ? s.keywords.map(kw => `
+    <div class="flip-card-kw" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" dir="ltr">${kw.f}</div>
+        <div class="flip-card-back">${kw.b}</div>
       </div>
     </div>
   `).join('') : '';
 
-  return `
-    <div class="ls-strategy-section animate-in sc-collapsed" id="${s.id}" style="animation-delay:${si * 0.07}s">
-      <div class="ls-strategy-banner ${s.theme}" title="اضغط للفتح / الإغلاق">
-        <span>${s.icon}</span> ${s.title}
-        <span class="ls-strategy-subtitle">${s.subtitle}</span>
-        ${scCaret()}
-      </div>
-      <div class="ls-usage-box">${s.usage}</div>
-      ${s.keywords && s.keywords.length > 0 ? `
-        <div class="ls-keywords-grid">
-          ${s.keywords.map(kw => `
-            <div class="ls-kw-row">
-              <span class="ls-kw-en" dir="ltr">${kw.f}</span>
-              <span class="ls-arrow">←</span>
-              <span class="ls-kw-ar">${kw.b}</span>
+  // Step 3: Practice
+  let practiceHtml = '';
+  if (s.practice && s.practice.length > 0) {
+    const isConvPractice = s.practice[0].audioUrl && s.practice[0].passageText === undefined;
+    
+    if (isConvPractice) {
+      practiceHtml = s.practice.map((pq, pi) => {
+        const qid = `${s.id}-p${pi}`;
+        return `
+          <div class="ls-split-wrap mini-q" id="mq-wrap-${qid}">
+            <div class="ls-split-left">
+              <div class="ls-split-instructions">
+                You will hear a conversation. Listen carefully and answer the question. You will hear it only once. You now have 15 seconds.
+              </div>
+              <div class="listening-audio-wrap">
+                <audio controls src="${pq.audioUrl}"></audio>
+              </div>
             </div>
-          `).join('')}
-        </div>
-      ` : ''}
-      ${renderRuleBox(s.exception)}
-      ${s.practice && s.practice.length > 0 ? `
-        <div class="mini-quiz-wrap" style="margin-top:1.5rem;">
-          <div class="mini-quiz-header"><span>💡</span> جرّب بنفسك! <span class="mq-badge">تدريب</span></div>
+            <div class="ls-split-right">
+              <div class="ls-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
+              <div class="ls-radio-opts">
+                ${pq.opts.map((o, oi) => `
+                  <label class="ls-radio-opt">
+                    <input type="radio" name="ls-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
+                    <span class="ls-radio-letter">${letters[oi]}</span>
+                    <span class="ls-radio-text" dir="ltr">${o}</span>
+                  </label>
+                `).join('')}
+              </div>
+              <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+              <div class="mini-expl" id="mq-expl-${qid}">
+                <div class="expl-text">${pq.expl}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    } else {
+      practiceHtml = `
+        <div class="mini-quiz-wrap" style="margin-top:0;">
+          <div class="mini-quiz-header"><span style="width:16px; display:inline-block;">${window.getIcon('lightbulb')}</span> جرّب بنفسك! <span class="mq-badge">تدريب</span></div>
           ${s.practice.map((pq, pi) => {
             const qid = `${s.id}-p${pi}`;
             return `

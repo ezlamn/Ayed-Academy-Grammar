@@ -300,3 +300,7 @@
   // Public API
   window.AyIcon = { svg: svg, iconify: iconify, sweep: sweep, hydrate: hydrate, ICONS: ICONS, EMOJI_MAP: EMOJI_MAP };
 })();
+
+// Backward compatibility aliases
+window.GSIcons = window.AyIcon.ICONS;
+window.getIcon = function(name) { return window.AyIcon.svg(name); };

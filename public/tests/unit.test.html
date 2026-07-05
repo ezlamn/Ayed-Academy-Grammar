@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -66,10 +66,10 @@ test('getIcon is function',function(){ok(typeof window.getIcon==='function');});
 ['book','hat','openBook','books','headphones','target','note','home','moon','sun','highlighter','eraser','trash','zoomIn','zoomOut','upArrow','user','calendar','timer','checkCircle','xCircle','trophy','brain','sparkles','flame'].forEach(function(n){test('getIcon('+n+')',function(){has(window.getIcon(n),'<svg');});});
 test('emoji 📘 fallback',function(){has(window.getIcon('📘'),'<svg');});
 test('emoji 🎧 fallback',function(){has(window.getIcon('🎧'),'<svg');});
-test('unknown icon fallback span',function(){has(window.getIcon('xyz_unknown_9999'),'icon-fallback');});
-test('All icons have svg-icon class',function(){Object.keys(window.GSIcons).forEach(function(n){if(!window.GSIcons[n].includes('class="svg-icon"'))throw new Error(n+' missing class');});});
-test('All icons have viewBox',function(){Object.keys(window.GSIcons).forEach(function(n){if(!window.GSIcons[n].includes('viewBox'))throw new Error(n+' missing viewBox');});});
-test('All icons are 24x24',function(){Object.keys(window.GSIcons).forEach(function(n){var s=window.GSIcons[n];if(!s.includes('width="24"')||!s.includes('height="24"'))throw new Error(n+' wrong size');});});
+test('unknown icon fallback',function(){has(window.getIcon('xyz_unknown_9999'),'ay-ic-sparkles');});
+test('All icons have ay-ic class',function(){Object.keys(window.GSIcons).forEach(function(n){if(!window.getIcon(n).includes('class="ay-ic'))throw new Error(n+' missing class');});});
+test('All icons have viewBox',function(){Object.keys(window.GSIcons).forEach(function(n){if(!window.getIcon(n).includes('viewBox'))throw new Error(n+' missing viewBox');});});
+test('All icons have width/height omitted for CSS',function(){Object.keys(window.GSIcons).forEach(function(n){var s=window.getIcon(n);if(s.includes('width="24"')&&s.includes('height="24"'))throw new Error(n+' shouldn\\'t have inline size');});});
 // Suite 3: Progress
 suite('3. Progress Calculation');
 function cp(d,t){return t===0?0:Math.round((d.length/t)*100);}

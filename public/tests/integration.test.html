@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -118,7 +118,7 @@ test('SVG icons have correct class for CSS targeting', function(){
   var span=document.createElement('span');
   span.innerHTML=window.getIcon('book');
   document.body.appendChild(span);
-  ok(span.querySelector('.svg-icon'),'Expected .svg-icon class on SVG');
+  ok(span.querySelector('.ay-ic'),'Expected .ay-ic class on SVG');
   span.remove();
 });
 test('Emoji fallback injects SVG not text', function(){
