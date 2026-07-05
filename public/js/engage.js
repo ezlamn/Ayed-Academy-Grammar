@@ -358,21 +358,19 @@
   function boot() {
     wrapBind();
     wrapLoadUnit();
-    wrapRegisterAnswer();
     const app = document.getElementById('app');
     if (app) {
       const obs = new MutationObserver(() => {
         if (!app.classList.contains('hidden')) {
-          Mascot.mount();
           injectGamesButton();
-          setTimeout(() => { Mascot.react('greet'); afterRender(); }, 700);
+          afterRender();
         }
       });
       obs.observe(app, { attributes: true, attributeFilter: ['class'] });
-      if (!app.classList.contains('hidden')) { Mascot.mount(); injectGamesButton(); afterRender(); }
+      if (!app.classList.contains('hidden')) { injectGamesButton(); afterRender(); }
     }
     // Re-wrap shortly after, in case globals were (re)defined late
-    setTimeout(() => { wrapBind(); wrapLoadUnit(); wrapRegisterAnswer(); injectGamesButton(); }, 800);
+    setTimeout(() => { wrapBind(); wrapLoadUnit(); injectGamesButton(); }, 800);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
