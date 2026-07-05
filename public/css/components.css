@@ -71,7 +71,6 @@
   border-end-start-radius: var(--r-xl);
   position: sticky; top: 1rem; align-self: start;
 }
-.sc-content { border-end-end-radius: var(--r-xl); }
 .sc-keywords-title { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
 .kw-grid { display: flex; flex-direction: column; gap: 0.6rem; }
 

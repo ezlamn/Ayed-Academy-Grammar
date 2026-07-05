@@ -522,17 +522,19 @@ body { background: var(--bg); }
   color: #fff !important; border-radius: var(--r-pill) !important;
   box-shadow: 0 6px 16px rgba(124,58,237,0.30) !important;
 }
-.nb-fill-input:focus { border-color: var(--violet); box-shadow: 0 0 0 4px rgba(139,92,246,0.14); }
-.nb-fill-blank { border-bottom-color: var(--violet); color: #6D28D9; }
+/* !important below: interactive.css (indigo-toned nb-* rules) loads
+   after this file, so equal-specificity overrides need it to win. */
+.nb-fill-input:focus { border-color: var(--violet) !important; box-shadow: 0 0 0 4px rgba(139,92,246,0.14) !important; }
+.nb-fill-blank { border-bottom-color: var(--violet) !important; color: #6D28D9 !important; }
 .nb-token {
-  color: var(--text-primary); background: var(--surface);
-  border: 1.5px solid var(--border-md);
+  color: var(--text-primary) !important; background: var(--surface) !important;
+  border: 1.5px solid var(--border-md) !important;
 }
-.nb-token:hover { border-color: var(--violet); }
-.nb-token.placed { background: #F5F3FF; color: #6D28D9; border-color: rgba(139,92,246,0.30); }
-.nb-order-answer { border-color: var(--border-md); }
-.nb-order-answer.correct { background: var(--emerald-tint); border-color: var(--emerald); }
-.nb-order-answer.wrong { background: var(--rose-tint); border-color: var(--rose); }
+.nb-token:hover { border-color: var(--violet) !important; }
+.nb-token.placed { background: #F5F3FF !important; color: #6D28D9 !important; border-color: rgba(139,92,246,0.30) !important; }
+.nb-order-answer { border-color: var(--border-md) !important; }
+.nb-order-answer.correct { background: var(--emerald-tint) !important; border-color: var(--emerald) !important; }
+.nb-order-answer.wrong { background: var(--rose-tint) !important; border-color: var(--rose) !important; }
 
 /* Unit end CTA */
 .unit-end-cta {
