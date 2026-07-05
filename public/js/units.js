@@ -22,7 +22,7 @@ function buildUnitsNav() {
     `;
     el.addEventListener('click', () => {
       loadUnit(i);
-      if (window.innerWidth <= 900) closePanel();
+      if (window.innerWidth <= 768) closePanel(); // consistent with CSS mobile breakpoint
     });
     nav.appendChild(el);
   });
@@ -32,7 +32,8 @@ function buildUnitsNav() {
 function updateProgress() {
   const total = GS.UNITS.length;
   if (total === 0) return;
-  const done = GS.student.completedUnits.length;
+  const trackUnitIds = GS.UNITS.map(u => u.id);
+  const done = GS.student.completedUnits.filter(id => trackUnitIds.includes(id)).length;
   const pct = Math.round((done / total) * 100);
   $('progress-fill').style.width = pct + '%';
   $('progress-label').textContent = `${done} / ${total}`;
@@ -47,14 +48,49 @@ function updateProgress() {
 
 // ── TOPBAR BINDINGS ───────────────────────────────────────────
 function bindTopbar() {
-  $('btn-menu').addEventListener('click', () => {
-    const panel = $('units-panel');
-    const overlay = $('overlay');
-    panel.classList.toggle('open');
-    overlay.classList.toggle('hidden', !panel.classList.contains('open'));
-  });
+  const menuBtn = $('btn-menu');
+  const panel   = $('units-panel');
+  const overlay = $('overlay');
 
-  $('overlay').addEventListener('click', closePanel);
+  function isMobile() { return window.innerWidth <= 768; }
+
+  function openSidebar() {
+    if (isMobile()) {
+      panel.classList.add('open');
+      panel.classList.remove('collapsed');
+      overlay.classList.remove('hidden');
+    } else {
+      panel.classList.remove('collapsed');
+    }
+    menuBtn.classList.add('sidebar-open');
+  }
+
+  function closeSidebar() {
+    if (isMobile()) {
+      panel.classList.remove('open');
+      overlay.classList.add('hidden');
+    } else {
+      panel.classList.add('collapsed');
+    }
+    menuBtn.classList.remove('sidebar-open');
+  }
+
+  function toggleSidebar() {
+    if (isMobile()) {
+      panel.classList.contains('open') ? closeSidebar() : openSidebar();
+    } else {
+      panel.classList.contains('collapsed') ? openSidebar() : closeSidebar();
+    }
+  }
+
+  menuBtn.addEventListener('click', toggleSidebar);
+  overlay.addEventListener('click', closeSidebar);
+
+  // On desktop: sidebar starts OPEN, button shows active state
+  if (!isMobile()) {
+    panel.classList.remove('collapsed');
+    menuBtn.classList.add('sidebar-open');
+  }
 
   $('btn-prev-unit').addEventListener('click', () => {
     if (GS.currentUnit > 0) loadUnit(GS.currentUnit - 1);
@@ -65,6 +101,7 @@ function bindTopbar() {
 
   $('btn-notes-top').addEventListener('click', openNotes);
 }
+
 
 function closePanel() {
   $('units-panel').classList.remove('open');
@@ -79,8 +116,9 @@ function loadUnit(idx) {
   const pc = $('page-content');
 
   buildUnitsNav();
-  $('bc-unit').textContent = unit.page?.tag || `الوحدة ${unit.id}`;
-  $('bc-strat').textContent = unit.nameAr;
+  const trackNames = { grammar: 'الجرامر', reading: 'الريدينق', listening: 'الليسينيق', tests: 'النماذج' };
+  $('bc-unit').textContent = trackNames[GS.currentTrack] || GS.currentTrack;
+  $('bc-strat').textContent = (unit.page?.tag || `الوحدة ${unit.id}`) + ' — ' + unit.nameAr;
   $('bottom-unit-indicator').textContent = `${idx + 1} / ${GS.UNITS.length}`;
 
   const saved = GS.student.highlights[unit.id];

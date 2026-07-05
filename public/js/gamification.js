@@ -28,7 +28,7 @@ function addXP(amount, event) {
 function updateXPUI() {
   const xpDisplay = $('student-xp-display');
   if (xpDisplay) {
-    xpDisplay.innerHTML = `<span style="color:var(--gold)">⭐</span> ${GS.student.xp} XP`;
+    xpDisplay.innerHTML = `<span style="color:var(--gold)">⭐</span> ${GS.student.xp} XP <span style="opacity:0.5;margin:0 4px;">|</span> Level ${GS.student.level || 1}`;
   }
 }
 

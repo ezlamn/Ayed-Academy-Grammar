@@ -222,8 +222,8 @@ function initDashboard() {
   $('main-dashboard').classList.remove('hidden');
   
   // Show personalized greeting
-  const dashLogo = document.querySelector('.dash-logo');
-  if (dashLogo) dashLogo.textContent = `📘 أهلاً ${GS.student.name}! — عايد أكاديمي`;
+  const dashTitle = document.querySelector('.dash-title');
+  if (dashTitle) dashTitle.textContent = `أهلاً ${GS.student.name}! — كتاب STEP التفاعلي الشامل`;
 
   // Show unit count badges on cards
   document.querySelectorAll('.dash-card').forEach(card => {

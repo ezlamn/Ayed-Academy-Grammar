@@ -36,10 +36,13 @@ function renderUnit(unit) {
     <div class="unit-header animate-in">
       <div>
         <div class="unit-tag">${p.tag || ''}</div>
-        <div class="unit-h-title">${unit.emoji} ${unit.nameAr}</div>
+        <div class="unit-h-title" style="display:flex;align-items:center;gap:10px;">
+          <span style="display:inline-block; width:32px; height:32px;">${window.getIcon(unit.emoji) || ''}</span>
+          ${unit.nameAr}
+        </div>
         <div class="unit-h-en">${unit.nameEn}</div>
       </div>
-      <div class="unit-h-mascot">${p.mascot || ''}</div>
+      <div class="unit-h-mascot" style="width:56px; height:56px; opacity:0.85;">${window.getIcon(p.mascot) || ''}</div>
     </div>
   `;
 
@@ -53,7 +56,9 @@ function renderUnit(unit) {
       <div class="unit-end-cta animate-in">
         <h3>هل أنت مستعد للاختبار الشامل؟</h3>
         <p>تم تغطية جميع الاستراتيجيات. أجب عن الأسئلة لتتحقق من فهمك.</p>
-        <button id="open-big-quiz">🎯 بدء الاختبار الشامل للوحدة (${quizzes.length} أسئلة)</button>
+        <button id="open-big-quiz" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+          <span style="width:20px; height:20px;">${window.getIcon('target')}</span> بدء الاختبار الشامل للوحدة (${quizzes.length} أسئلة)
+        </button>
       </div>
     `;
   }
@@ -62,19 +67,22 @@ function renderUnit(unit) {
   bindInteractiveElements();
 }
 
-// ── RENDER GRAMMAR STRATEGY ───────────────────────────────────
+// ── RENDER GRAMMAR STRATEGY (Interactive Stepper Layout) ────────────────
 function renderStrategy(strat, si) {
   const mediaHtml = `
     ${strat.imageUrl ? `<div class="media-box"><img src="${strat.imageUrl}" alt="صورة توضيحية"></div>` : ''}
     ${strat.audioUrl ? `<div class="media-box"><audio controls src="${strat.audioUrl}"></audio></div>` : ''}
   `;
 
-  const kwHtml = (strat.keywords || []).map(kw => `
-    <div class="kw-reveal" onclick="this.classList.toggle('expanded')">
-      <div class="kw-en-box">${kw.f}</div>
-      <div class="kw-ar-box">${kw.b}</div>
+  // Keywords Sidebar Html
+  const kwHtml = (strat.keywords || []).length > 0 ? strat.keywords.map(kw => `
+    <div class="flip-card-kw" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" dir="ltr">${kw.f}</div>
+        <div class="flip-card-back">${kw.b}</div>
+      </div>
     </div>
-  `).join('');
+  `).join('') : '';
 
   const formulaHtml = (strat.formulas && strat.formulas.length > 0) ? renderTreeDiagram(strat) : '';
 
@@ -87,18 +95,17 @@ function renderStrategy(strat, si) {
 
   const letters = ['A', 'B', 'C', 'D'];
   const practiceHtml = (strat.practice && strat.practice.length > 0) ? `
-    <div class="mini-quiz-wrap">
-      <div class="mini-quiz-header">
-        <span>💡</span> جرّب بنفسك!
-        <span class="mq-badge">تدريب</span>
-      </div>
+    <div class="mini-quiz-wrap" style="margin-top:0;">
+      <div class="mini-quiz-header"><span style="width:16px; display:inline-block;">${window.getIcon('lightbulb')}</span> جرّب بنفسك! <span class="mq-badge">تدريب</span></div>
       ${strat.practice.map((pq, pi) => {
         const qid = `${strat.id}-p${pi}`;
         return `
           <div class="mini-q" id="mq-wrap-${qid}">
             ${pq.audioUrl ? `
               <div class="listening-audio-wrap">
-                <span class="listening-audio-label">🎧 استمع للمقطع أولاً</span>
+                <span class="listening-audio-label" style="display:inline-flex; align-items:center; gap:6px;">
+                  <span style="width:18px; height:18px;">${window.getIcon('headphones')}</span> استمع للمقطع أولاً
+                </span>
                 <audio controls src="${pq.audioUrl}"></audio>
               </div>
             ` : ''}
@@ -115,7 +122,6 @@ function renderStrategy(strat, si) {
             </div>
             <div class="mini-expl" id="mq-expl-${qid}">
               <div class="expl-text">${pq.expl}</div>
-              <button class="btn btn-secondary btn-sm return-rule-btn" onclick="document.getElementById('${strat.id}').scrollIntoView({behavior:'smooth'})">↩️ العودة لشرح القاعدة</button>
             </div>
           </div>
         `;
@@ -123,33 +129,137 @@ function renderStrategy(strat, si) {
     </div>
   ` : '';
 
+  // Build stepper tabs
+  const sid = strat.id;
+  const steps = [];
+  steps.push({ label: 'المفهوم', icon: 'lightbulb', id: 'concept' });
+  if (formulaHtml || exHtml) steps.push({ label: 'القاعدة', icon: 'clipboard', id: 'formula' });
+  if (practiceHtml) steps.push({ label: 'التدريب', icon: 'target', id: 'practice' });
+
+  const stepperNav = steps.map((s, i) => `
+    <button class="step-tab ${i === 0 ? 'active' : ''}" data-step="${s.id}" data-strat="${sid}" onclick="switchStratStep('${sid}', '${s.id}')">
+      <span style="width:14px;height:14px;display:inline-block;">${window.getIcon(s.icon)}</span>
+      ${s.label}
+    </button>
+  `).join('');
+
+  const progressDots = steps.map((s, i) => `
+    <span class="progress-dot ${i === 0 ? 'active' : ''}" data-step="${s.id}" data-strat="${sid}"></span>
+  `).join('');
+
   return `
-    <div class="strategy-card ${strat.theme} animate-in" id="${strat.id}" style="animation-delay:${si * 0.07}s">
-      <div class="sc-header">
-        <span class="sc-header-icon">${strat.icon}</span>
-        <div class="sc-header-texts">
-          <div class="sc-title">${strat.title}</div>
-          <div class="sc-subtitle">${strat.subtitle}</div>
+    <div class="strategy-card dashboard-layout ${strat.theme} animate-in" id="${strat.id}" style="animation-delay:${si * 0.07}s">
+      
+      <!-- Right/Main Content -->
+      <div class="db-main">
+        <div class="sc-header">
+          <span class="sc-header-icon" style="width:24px; height:24px; display:inline-block;">${window.getIcon(strat.icon) || ''}</span>
+          <div class="sc-header-texts">
+            <div class="sc-title">${strat.title}</div>
+            <div class="sc-subtitle">${strat.subtitle}</div>
+          </div>
+          <div class="practice-progress-dots">${progressDots}</div>
+          <span class="sc-badge">${strat.badge}</span>
         </div>
-        <span class="sc-badge">${strat.badge}</span>
+        
+        <!-- Stepper Navigation -->
+        <div class="stepper-nav">${stepperNav}</div>
+        
+        <div class="stepper-body">
+          <!-- Step: Concept -->
+          <div class="step-pane active" data-pane="concept" data-strat="${sid}">
+            ${mediaHtml}
+            <div class="usage-banner" style="position:relative;">
+              <div class="usage-text">${strat.usage}</div>
+              <button class="tts-btn" onclick="playTTS(this)" data-text="${strat.usage.replace(/"/g, '&quot;')}" title="استمع للشرح">
+                <span style="width:18px; height:18px; display:inline-block;">${window.getIcon('volume')}</span>
+              </button>
+            </div>
+          </div>
+          
+          ${(formulaHtml || exHtml) ? `
+          <!-- Step: Formula -->
+          <div class="step-pane" data-pane="formula" data-strat="${sid}">
+            ${formulaHtml}
+            ${exHtml}
+          </div>
+          ` : ''}
+          
+          ${practiceHtml ? `
+          <!-- Step: Practice -->
+          <div class="step-pane" data-pane="practice" data-strat="${sid}">
+            ${practiceHtml}
+          </div>
+          ` : ''}
+        </div>
+        
+        <!-- Stepper Footer -->
+        <div class="stepper-footer">
+          <button class="btn btn-secondary btn-sm" onclick="stepStratPrev('${sid}')">\u2190 السابق</button>
+          <span class="sc-step-counter" data-step-label="${sid}">1 / ${steps.length}</span>
+          <button class="btn btn-primary btn-sm" onclick="stepStratNext('${sid}')">التالي \u2192</button>
+        </div>
       </div>
-      <div class="sc-body">
-        <div class="sc-keywords">
-          <div class="kw-grid">
-            <div class="sc-keywords-title">🔑 الكلمات الدالة <small style="font-weight:400;color:rgba(255,255,255,0.4);font-size:0.65rem">(انقر للترجمة)</small></div>
+      
+      <!-- Left Sidebar (Keywords) -->
+      ${kwHtml ? `
+        <div class="db-sidebar">
+          <div class="db-sidebar-title">
+            <span style="width:18px; display:inline-block;">${window.getIcon('key')}</span>
+            الكلمات الدالة
+            <small>(اضغط للترجمة)</small>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
             ${kwHtml}
           </div>
         </div>
-        <div class="sc-content">
-          ${mediaHtml}
-          <div class="usage-banner">${strat.usage}</div>
-          ${formulaHtml}
-          ${exHtml}
-          ${practiceHtml}
-        </div>
-      </div>
+      ` : ''}
+      
     </div>
   `;
+}
+
+// ── STEPPER NAVIGATION FUNCTIONS ────────────────────────────────
+function switchStratStep(stratId, stepId) {
+  const card = document.getElementById(stratId);
+  if (!card) return;
+  
+  card.querySelectorAll('.step-tab[data-strat="' + stratId + '"]').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.step === stepId);
+  });
+  
+  card.querySelectorAll('.step-pane[data-strat="' + stratId + '"]').forEach(pane => {
+    pane.classList.toggle('active', pane.dataset.pane === stepId);
+  });
+  
+  card.querySelectorAll('.progress-dot[data-strat="' + stratId + '"]').forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.step === stepId);
+  });
+  
+  const tabs = Array.from(card.querySelectorAll('.step-tab[data-strat="' + stratId + '"]'));
+  const activeIdx = tabs.findIndex(t => t.dataset.step === stepId);
+  const label = card.querySelector('[data-step-label="' + stratId + '"]');
+  if (label) label.textContent = (activeIdx + 1) + ' / ' + tabs.length;
+}
+
+function stepStratNext(stratId) {
+  const card = document.getElementById(stratId);
+  if (!card) return;
+  const tabs = Array.from(card.querySelectorAll('.step-tab[data-strat="' + stratId + '"]'));
+  const activeIdx = tabs.findIndex(t => t.classList.contains('active'));
+  if (activeIdx < tabs.length - 1) {
+    switchStratStep(stratId, tabs[activeIdx + 1].dataset.step);
+  }
+}
+
+function stepStratPrev(stratId) {
+  const card = document.getElementById(stratId);
+  if (!card) return;
+  const tabs = Array.from(card.querySelectorAll('.step-tab[data-strat="' + stratId + '"]'));
+  const activeIdx = tabs.findIndex(t => t.classList.contains('active'));
+  if (activeIdx > 0) {
+    switchStratStep(stratId, tabs[activeIdx - 1].dataset.step);
+  }
 }
 
 // ── RENDER READING UNIT ───────────────────────────────────────
@@ -165,59 +275,92 @@ function renderReadingUnit(unit) {
       <div class="rd-section-header">
         <div class="rd-header-ar">${unit.title.split(':')[1] || unit.title}</div>
         <div class="rd-header-en">( READING STRATEGY )</div>
-        <div class="rd-header-icon">📖</div>
+        <div class="rd-header-icon" style="width:32px; height:32px;">${window.getIcon('openBook')}</div>
       </div>
   `;
 
   (p.strategies || []).forEach((s, si) => {
-    html += `
-      <div class="rd-strategy-section" id="${s.id}" style="animation-delay:${si * 0.07}s">
-        <div class="rd-strategy-banner ${s.theme}">
-          <span>${s.icon}</span> ${s.title}
-          <span class="rd-strategy-subtitle">${s.subtitle}</span>
+    // Keywords Sidebar Html
+    const kwHtml = (s.keywords || []).length > 0 ? s.keywords.map(kw => `
+      <div class="flip-card-kw" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" dir="ltr">${kw.f}</div>
+          <div class="flip-card-back">${kw.b}</div>
         </div>
-        <div class="rd-usage-box">${s.usage.replace(/\\n/g, '<br>')}</div>
-        ${s.keywords && s.keywords.length > 0 ? `
-          <div class="rd-keywords-grid">
-            ${s.keywords.map(kw => `
-              <div class="rd-kw-row">
-                <span class="rd-kw-en" dir="ltr">${kw.f}</span>
-                <span class="rd-arrow">←</span>
-                <span class="rd-kw-ar">${kw.b}</span>
+      </div>
+    `).join('') : '';
+
+    const practiceHtml = (s.practice && s.practice.length > 0) ? `
+      <div class="mini-quiz-wrap" style="margin-top:0;">
+        <div class="mini-quiz-header">
+          <span style="width:16px; height:16px; display:inline-block;">${window.getIcon('lightbulb')}</span> تدريب تطبيقي <span class="mq-badge">تدريب</span>
+        </div>
+        ${s.practice.map((pq, pi) => {
+          const qid = `${s.id}-p${pi}`;
+          return `
+            <div class="rd-split-wrap mini-q" id="mq-wrap-${qid}">
+              <div class="rd-split-left">
+                ${pq.imgUrl ? `<img src="${pq.imgUrl}" alt="Reading Passage Image" class="rd-passage-img" />` : ''}
+                <div class="rd-passage-text" dir="ltr">${formatPassageText(pq.passageText)}</div>
               </div>
-            `).join('')}
-          </div>
-        ` : ''}
-        ${s.practice && s.practice.length > 0 ? `
-          <div class="mini-quiz-wrap" style="margin-top:1.5rem;">
-            <div class="mini-quiz-header"><span>💡</span> تدريب تطبيقي <span class="mq-badge">تدريب</span></div>
-            ${s.practice.map((pq, pi) => {
-              const qid = `${s.id}-p${pi}`;
-              return `
-                <div class="rd-split-wrap mini-q" id="mq-wrap-${qid}">
-                  <div class="rd-split-left">
-                    ${pq.imgUrl ? `<img src="${pq.imgUrl}" alt="Reading Passage Image" class="rd-passage-img" />` : ''}
-                    <div class="rd-passage-text" dir="ltr">${formatPassageText(pq.passageText)}</div>
-                  </div>
-                  <div class="rd-split-right">
-                    <div class="rd-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
-                    <div class="ls-radio-opts">
-                      ${pq.opts.map((o, oi) => `
-                        <label class="ls-radio-opt">
-                          <input type="radio" name="rd-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
-                          <span class="ls-radio-letter">${['A', 'B', 'C', 'D'][oi]}</span>
-                          <span class="ls-radio-text" dir="ltr" style="text-align:left;">${o}</span>
-                        </label>
-                      `).join('')}
-                    </div>
-                    <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
-                    <div class="mini-expl" id="mq-expl-${qid}" style="direction:rtl; text-align:right;">
-                      <div class="expl-text">${pq.expl}</div>
-                    </div>
-                  </div>
+              <div class="rd-split-right">
+                <div class="rd-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
+                <div class="ls-radio-opts">
+                  ${pq.opts.map((o, oi) => `
+                    <label class="ls-radio-opt">
+                      <input type="radio" name="rd-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
+                      <span class="ls-radio-letter">${['A', 'B', 'C', 'D'][oi]}</span>
+                      <span class="ls-radio-text" dir="ltr" style="text-align:left;">${o}</span>
+                    </label>
+                  `).join('')}
                 </div>
-              `;
-            }).join('')}
+                <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+                <div class="mini-expl" id="mq-expl-${qid}" style="direction:rtl; text-align:right;">
+                  <div class="expl-text">${pq.expl}</div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    ` : '';
+
+    html += `
+      <div class="strategy-card dashboard-layout ${s.theme} animate-in" id="${s.id}" style="animation-delay:${si * 0.07}s">
+        <!-- Right/Main Content -->
+        <div class="db-main">
+          <div class="sc-header">
+            <span class="sc-header-icon" style="width:24px; height:24px; display:inline-block;">${window.getIcon(s.icon) || ''}</span>
+            <div class="sc-header-texts">
+              <div class="sc-title">${s.title}</div>
+              <div class="sc-subtitle">${s.subtitle}</div>
+            </div>
+            <span class="sc-badge">READING</span>
+          </div>
+          
+          <div class="db-content">
+            <div class="usage-banner" style="position:relative;">
+              <div class="usage-text">${s.usage.replace(/\\n/g, '<br>')}</div>
+              <button class="tts-btn" onclick="playTTS(this)" data-text="${s.usage.replace(/"/g, '&quot;')}" title="استمع للشرح">
+                <span style="width:18px; height:18px; display:inline-block;">${window.getIcon('volume')}</span>
+              </button>
+            </div>
+            
+            ${practiceHtml}
+          </div>
+        </div>
+        
+        <!-- Left Sidebar (Keywords) -->
+        ${kwHtml ? `
+          <div class="db-sidebar">
+            <div class="db-sidebar-title">
+              <span style="width:18px; display:inline-block;">${window.getIcon('key')}</span>
+              الكلمات الدالة
+              <small>(اضغط للترجمة)</small>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.6rem;">
+              ${kwHtml}
+            </div>
           </div>
         ` : ''}
       </div>
@@ -243,7 +386,7 @@ function renderListeningUnit(unit) {
       <div class="ls-section-header">
         <div class="ls-header-ar">قسم الإستماع</div>
         <div class="ls-header-en">( LISTENING )</div>
-        <div class="ls-header-icon">🎧</div>
+        <div class="ls-header-icon" style="width:32px; height:32px;">${window.getIcon('headphones')}</div>
       </div>
   `;
 
@@ -252,15 +395,15 @@ function renderListeningUnit(unit) {
       <div class="ls-info-box animate-in">
         <div class="ls-info-title">معلومات عامة عن قسم الاستماع</div>
         <div class="ls-info-rows">
-          <div class="ls-info-row"><span class="ls-info-icon">🎧</span><span class="ls-info-label">ترتيب القسم:</span><span class="ls-info-val">الأول من الاختبار</span></div>
-          <div class="ls-info-row"><span class="ls-info-icon">🎧</span><span class="ls-info-label">عدد الأسئلة:</span><span class="ls-info-val">٢٠ سؤال</span></div>
-          <div class="ls-info-row"><span class="ls-info-icon">🎧</span><span class="ls-info-label">الدرجة الكلية:</span><span class="ls-info-val">٢٠ درجة</span></div>
-          <div class="ls-info-row"><span class="ls-info-icon">🎧</span><span class="ls-info-label">مدة القسم:</span><span class="ls-info-val">٢٥ دقيقة</span></div>
+          <div class="ls-info-row"><span class="ls-info-icon" style="width:18px;">${window.getIcon('headphones')}</span><span class="ls-info-label">ترتيب القسم:</span><span class="ls-info-val">الأول من الاختبار</span></div>
+          <div class="ls-info-row"><span class="ls-info-icon" style="width:18px;">${window.getIcon('headphones')}</span><span class="ls-info-label">عدد الأسئلة:</span><span class="ls-info-val">٢٠ سؤال</span></div>
+          <div class="ls-info-row"><span class="ls-info-icon" style="width:18px;">${window.getIcon('headphones')}</span><span class="ls-info-label">الدرجة الكلية:</span><span class="ls-info-val">٢٠ درجة</span></div>
+          <div class="ls-info-row"><span class="ls-info-icon" style="width:18px;">${window.getIcon('headphones')}</span><span class="ls-info-label">مدة القسم:</span><span class="ls-info-val">٢٥ دقيقة</span></div>
         </div>
         <div class="ls-format-title">شكل الاختبار:</div>
         <div class="ls-format-body">الشاشة مقسمة لجزئين:</div>
-        <div class="ls-format-row"><span class="ls-format-icon">📋</span><span><b>الجزء الأيسر</b> يوجد به المقطع الصوتي مع مجموعة تعليمات</span></div>
-        <div class="ls-format-row"><span class="ls-format-icon">📋</span><span><b>الجزء الأيمن</b> يوجد به الأسئلة و الاختيارات</span></div>
+        <div class="ls-format-row"><span class="ls-format-icon" style="width:16px;">${window.getIcon('clipboard')}</span><span><b>الجزء الأيسر</b> يوجد به المقطع الصوتي مع مجموعة تعليمات</span></div>
+        <div class="ls-format-row"><span class="ls-format-icon" style="width:16px;">${window.getIcon('clipboard')}</span><span><b>الجزء الأيمن</b> يوجد به الأسئلة و الاختيارات</span></div>
       </div>
     `;
   }
@@ -275,7 +418,9 @@ function renderListeningUnit(unit) {
       <div class="unit-end-cta animate-in" style="margin-top:2rem;">
         <h3>هل أنت مستعد للاختبار الشامل؟</h3>
         <p>أجب عن أسئلة الاستماع بعد الاستماع لكل مقطع.</p>
-        <button id="open-big-quiz">🎯 بدء الاختبار الشامل للوحدة (${quizzes.length} أسئلة)</button>
+        <button id="open-big-quiz" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+          <span style="width:20px; height:20px;">${window.getIcon('target')}</span> بدء الاختبار الشامل للوحدة (${quizzes.length} أسئلة)
+        </button>
       </div>
     `;
   }
@@ -284,93 +429,75 @@ function renderListeningUnit(unit) {
   return html;
 }
 
-// ── RENDER LISTENING STRATEGY ─────────────────────────────────
+// ── RENDER LISTENING STRATEGY (Dashboard Split Layout) ────────────
 function renderListeningStrategy(s, si) {
   const letters = ['a', 'b', 'c', 'd'];
-
-  if (s.practice && s.practice.length > 0 && s.practice[0].audioUrl) {
-    const practiceQs = s.practice.map((pq, pi) => {
-      const qid = `${s.id}-p${pi}`;
-      return `
-        <div class="ls-split-wrap mini-q" id="mq-wrap-${qid}">
-          <div class="ls-split-left">
-            <div class="ls-split-instructions">
-              You will hear a conversation. Listen carefully and answer the question. You will hear it only once. You now have 15 seconds.
-            </div>
-            <div class="listening-audio-wrap">
-              <audio controls src="${pq.audioUrl}"></audio>
-            </div>
-          </div>
-          <div class="ls-split-right">
-            <div class="ls-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
-            <div class="ls-radio-opts">
-              ${pq.opts.map((o, oi) => `
-                <label class="ls-radio-opt">
-                  <input type="radio" name="ls-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
-                  <span class="ls-radio-letter">${letters[oi]}</span>
-                  <span class="ls-radio-text" dir="ltr">${o}</span>
-                </label>
-              `).join('')}
-            </div>
-            <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
-            <div class="mini-expl" id="mq-expl-${qid}">
-              <div class="expl-text">${pq.expl}</div>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    return `
-      <div class="ls-strategy-section animate-in" id="${s.id}" style="animation-delay:${si * 0.07}s">
-        <div class="ls-strategy-banner ${s.theme}">
-          <span>${s.icon}</span> ${s.title}
-          <span class="ls-strategy-subtitle">${s.subtitle}</span>
-        </div>
-        <div class="ls-usage-box">${s.usage}</div>
-        ${s.exception ? `
-          <div class="ls-exception-box">
-            <div class="ls-exception-title">${s.exception.title}</div>
-            <div class="ls-exception-body">${s.exception.body}</div>
-          </div>
-        ` : ''}
-        ${practiceQs}
+  
+  // Step 1: Concept & Exception
+  const exceptionHtml = s.exception ? `
+    <div class="ls-exception-box" style="margin-top:1rem;">
+      <div class="ls-exception-title">${s.exception.title}</div>
+      <div class="ls-exception-body">${s.exception.body}</div>
+    </div>
+  ` : '';
+  
+  // Step 2: Keywords Sidebar
+  const kwHtml = (s.keywords || []).length > 0 ? s.keywords.map(kw => `
+    <div class="flip-card-kw" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" dir="ltr">${kw.f}</div>
+        <div class="flip-card-back">${kw.b}</div>
       </div>
-    `;
-  }
+    </div>
+  `).join('') : '';
 
-  return `
-    <div class="ls-strategy-section animate-in" id="${s.id}" style="animation-delay:${si * 0.07}s">
-      <div class="ls-strategy-banner ${s.theme}">
-        <span>${s.icon}</span> ${s.title}
-        <span class="ls-strategy-subtitle">${s.subtitle}</span>
-      </div>
-      <div class="ls-usage-box">${s.usage}</div>
-      ${s.keywords && s.keywords.length > 0 ? `
-        <div class="ls-keywords-grid">
-          ${s.keywords.map(kw => `
-            <div class="ls-kw-row">
-              <span class="ls-kw-en" dir="ltr">${kw.f}</span>
-              <span class="ls-arrow">←</span>
-              <span class="ls-kw-ar">${kw.b}</span>
+  // Step 3: Practice
+  let practiceHtml = '';
+  if (s.practice && s.practice.length > 0) {
+    // Handling both general practice and specific audio-conversation practice
+    const isConvPractice = s.practice[0].audioUrl && s.practice[0].passageText === undefined;
+    
+    if (isConvPractice) {
+      practiceHtml = s.practice.map((pq, pi) => {
+        const qid = `${s.id}-p${pi}`;
+        return `
+          <div class="ls-split-wrap mini-q" id="mq-wrap-${qid}">
+            <div class="ls-split-left">
+              <div class="ls-split-instructions">
+                You will hear a conversation. Listen carefully and answer the question. You will hear it only once. You now have 15 seconds.
+              </div>
+              <div class="listening-audio-wrap">
+                <audio controls src="${pq.audioUrl}"></audio>
+              </div>
             </div>
-          `).join('')}
-        </div>
-      ` : ''}
-      ${s.exception ? `
-        <div class="ls-exception-box">
-          <div class="ls-exception-title">${s.exception.title}</div>
-          <div class="ls-exception-body">${s.exception.body}</div>
-        </div>
-      ` : ''}
-      ${s.practice && s.practice.length > 0 ? `
-        <div class="mini-quiz-wrap" style="margin-top:1.5rem;">
-          <div class="mini-quiz-header"><span>💡</span> جرّب بنفسك! <span class="mq-badge">تدريب</span></div>
+            <div class="ls-split-right">
+              <div class="ls-split-qnum" dir="ltr" style="text-align:left;">${pi + 1} - ${pq.q}</div>
+              <div class="ls-radio-opts">
+                ${pq.opts.map((o, oi) => `
+                  <label class="ls-radio-opt">
+                    <input type="radio" name="ls-q-${qid}" data-qid="${qid}" data-idx="${oi}" style="display:none">
+                    <span class="ls-radio-letter">${letters[oi]}</span>
+                    <span class="ls-radio-text" dir="ltr">${o}</span>
+                  </label>
+                `).join('')}
+              </div>
+              <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+              <div class="mini-expl" id="mq-expl-${qid}">
+                <div class="expl-text">${pq.expl}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    } else {
+      practiceHtml = `
+        <div class="mini-quiz-wrap" style="margin-top:0;">
+          <div class="mini-quiz-header"><span style="width:16px; display:inline-block;">${window.getIcon('lightbulb')}</span> جرّب بنفسك! <span class="mq-badge">تدريب</span></div>
           ${s.practice.map((pq, pi) => {
             const qid = `${s.id}-p${pi}`;
             return `
               <div class="mini-q" id="mq-wrap-${qid}">
-                ${pq.audioUrl ? `<div class="listening-audio-wrap"><span class="listening-audio-label">🎧 استمع للمقطع أولاً</span><audio controls src="${pq.audioUrl}"></audio></div>` : ''}
+                ${pq.audioUrl ? `<div class="listening-audio-wrap"><span class="listening-audio-label" style="display:inline-flex; align-items:center; gap:6px;"><span style="width:18px;">${window.getIcon('headphones')}</span> استمع للمقطع أولاً</span><audio controls src="${pq.audioUrl}"></audio></div>` : ''}
                 <div class="mini-q-text" dir="ltr" style="text-align:left;">${pq.q}</div>
                 <div class="ls-radio-opts">
                   ${pq.opts.map((o, oi) => `
@@ -387,6 +514,47 @@ function renderListeningStrategy(s, si) {
             `;
           }).join('')}
         </div>
+      `;
+    }
+  }
+
+  return `
+    <div class="strategy-card dashboard-layout ${s.theme} animate-in" id="${s.id}" style="animation-delay:${si * 0.07}s">
+      <!-- Right/Main Content -->
+      <div class="db-main">
+        <div class="sc-header">
+          <span class="sc-header-icon" style="width:24px; height:24px; display:inline-block;">${window.getIcon(s.icon) || ''}</span>
+          <div class="sc-header-texts">
+            <div class="sc-title">${s.title}</div>
+            <div class="sc-subtitle">${s.subtitle}</div>
+          </div>
+          <span class="sc-badge">LISTENING</span>
+        </div>
+        
+        <div class="db-content">
+          <div class="usage-banner" style="position:relative;">
+            <div class="usage-text">${s.usage}</div>
+            <button class="tts-btn" onclick="playTTS(this)" data-text="${s.usage.replace(/"/g, '&quot;')}" title="استمع للشرح">
+              <span style="width:18px; height:18px; display:inline-block;">${window.getIcon('volume')}</span>
+            </button>
+          </div>
+          ${exceptionHtml}
+          ${practiceHtml}
+        </div>
+      </div>
+      
+      <!-- Left Sidebar (Keywords) -->
+      ${kwHtml ? `
+        <div class="db-sidebar">
+          <div class="db-sidebar-title">
+            <span style="width:18px; display:inline-block;">${window.getIcon('key')}</span>
+            الكلمات الدالة
+            <small>(اضغط للترجمة)</small>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            ${kwHtml}
+          </div>
+        </div>
       ` : ''}
     </div>
   `;
@@ -400,7 +568,7 @@ function renderVocabUnit(unit) {
       <div class="ls-section-header">
         <div class="ls-header-ar">كلمات الأماكن</div>
         <div class="ls-header-en">( PLACES WORDS )</div>
-        <div class="ls-header-icon">🗺️</div>
+        <div class="ls-header-icon" style="width:32px; height:32px;">${window.getIcon('map')}</div>
       </div>
   `;
 
@@ -414,7 +582,7 @@ function renderVocabUnit(unit) {
               <div class="flashcard-inner">
                 <div class="flashcard-front" style="border-bottom-color: ${cat.color}">
                   <span class="fc-en" dir="ltr">${w.en}</span>
-                  <span class="fc-hint">اضغط للترجمة 👆</span>
+                  <span class="fc-hint" style="display:flex;align-items:center;gap:4px;justify-content:center;">اضغط للترجمة <span style="width:14px;">${window.getIcon('pointer')}</span></span>
                 </div>
                 <div class="flashcard-back" style="background: ${cat.color}15">
                   <span class="fc-ar">${w.ar}</span>
@@ -423,7 +591,7 @@ function renderVocabUnit(unit) {
                     <button class="srs-btn srs-good" onclick="event.stopPropagation(); processSRS('${w.en}', 'good')">جيد</button>
                     <button class="srs-btn srs-easy" onclick="event.stopPropagation(); processSRS('${w.en}', 'easy')">سهل</button>
                   </div>
-                  <button class="fc-sound-btn" onclick="event.stopPropagation(); playVocabSound('${w.en.replace(/'/g, "\\'")}')">🔊</button>
+                  <button class="fc-sound-btn" style="width:24px; height:24px; display:inline-block;" onclick="event.stopPropagation(); playVocabSound('${w.en.replace(/'/g, "\\'")}')">${window.getIcon('volume')}</button>
                 </div>
               </div>
             </div>

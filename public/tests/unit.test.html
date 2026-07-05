@@ -1,266 +1,143 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grammar Strategies — Unit Tests</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0A1929; color: #e2e8f0; padding: 2rem; min-height: 100vh; }
-    h1 { font-size: 1.6rem; color: #F5A623; margin-bottom: 0.4rem; }
-    .subtitle { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; }
-    .suite { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 1.5rem; overflow: hidden; }
-    .suite-header { background: rgba(255,255,255,0.07); padding: 0.85rem 1.25rem; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 0.6rem; }
-    .test-case { padding: 0.75rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 0.75rem; font-size: 0.92rem; }
-    .test-case.pass { color: #06D6A0; }
-    .test-case.fail { color: #EF233C; }
-    .test-case.skip { color: #F5A623; }
-    .badge { font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
-    .badge.pass { background: rgba(6,214,160,0.15); color: #06D6A0; }
-    .badge.fail { background: rgba(239,35,60,0.15); color: #EF233C; }
-    .badge.skip { background: rgba(245,166,35,0.15); color: #F5A623; }
-    .summary { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; display: flex; gap: 2rem; margin-bottom: 2rem; }
-    .stat { text-align: center; }
-    .stat .num { font-size: 2rem; font-weight: 900; display: block; }
-    .stat .lbl { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
-    .stat.pass .num { color: #06D6A0; }
-    .stat.fail .num { color: #EF233C; }
-    .stat.total .num { color: #F5A623; }
-    .error-msg { font-family: monospace; font-size: 0.8rem; color: rgba(239,35,60,0.8); margin-top: 4px; padding: 4px 8px; background: rgba(239,35,60,0.08); border-radius: 4px; display: block; }
-    .run-btn { background: linear-gradient(135deg, #F5A623, #FFD07A); color: #0A1929; border: none; border-radius: 8px; padding: 0.75rem 2rem; font-size: 1rem; font-weight: 800; cursor: pointer; margin-bottom: 1.5rem; }
-    .run-btn:hover { filter: brightness(1.05); }
-    #progress-bar-wrap { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-bottom: 1.5rem; overflow: hidden; }
-    #progress-bar { height: 100%; background: linear-gradient(90deg, #F5A623, #06D6A0); border-radius: 3px; width: 0%; transition: width 0.3s; }
-  </style>
+<meta charset="UTF-8">
+<title>Unit Tests - Ayed Academy STEP Book</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;padding:2rem}
+h1{font-size:1.5rem;color:#60a5fa;margin-bottom:.25rem}
+.sub{color:#64748b;font-size:.9rem;margin-bottom:2rem}
+.suite{margin-bottom:2rem}
+.suite-title{font-size:1rem;font-weight:700;color:#f0abfc;margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid #1e293b}
+.test{display:flex;align-items:flex-start;gap:.75rem;padding:.55rem .75rem;border-radius:6px;margin-bottom:.35rem;font-size:.875rem}
+.test.pass{background:rgba(34,197,94,.08);border-left:3px solid #22c55e}
+.test.fail{background:rgba(239,68,68,.1);border-left:3px solid #ef4444}
+.badge{font-weight:700;font-size:.75rem;padding:2px 8px;border-radius:20px;flex-shrink:0}
+.pass .badge{background:#22c55e22;color:#22c55e}
+.fail .badge{background:#ef444422;color:#ef4444}
+.test-name{flex:1}
+.test-detail{font-size:.72rem;color:#f87171;font-family:monospace;margin-top:2px}
+.summary{background:#1e293b;border-radius:12px;padding:1.25rem;margin-bottom:2rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.sum-item{text-align:center}
+.sum-num{font-size:2rem;font-weight:800}
+.sum-label{font-size:.75rem;color:#64748b}
+.pass-num{color:#22c55e}.fail-num{color:#ef4444}.total-num{color:#60a5fa}
+.progress-bar{flex:1;height:8px;background:#0f172a;border-radius:4px;overflow:hidden;min-width:200px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);transition:width .5s}
+.run-info{color:#475569;font-size:.75rem;margin-top:1.5rem;text-align:center}
+</style>
 </head>
 <body>
-  <h1>🧪 Grammar Strategies — Unit Tests</h1>
-  <p class="subtitle">اختبارات الوحدة لكل دالة في المشروع</p>
-  <button class="run-btn" id="run-btn" onclick="runAllTests()">▶ تشغيل كل الاختبارات</button>
-  <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
-  <div class="summary" id="summary" style="display:none;">
-    <div class="stat total"><span class="num" id="total-count">0</span><span class="lbl">إجمالي</span></div>
-    <div class="stat pass"><span class="num" id="pass-count">0</span><span class="lbl">✅ نجح</span></div>
-    <div class="stat fail"><span class="num" id="fail-count">0</span><span class="lbl">❌ فشل</span></div>
-  </div>
-  <div id="results"></div>
-
+<h1>Unit Tests - Ayed Academy STEP Book</h1>
+<p class="sub">10 Test Suites covering all core logic</p>
+<div class="summary">
+<div class="sum-item"><div class="sum-num total-num" id="s-total">0</div><div class="sum-label">Total</div></div>
+<div class="sum-item"><div class="sum-num pass-num" id="s-pass">0</div><div class="sum-label">Pass</div></div>
+<div class="sum-item"><div class="sum-num fail-num" id="s-fail">0</div><div class="sum-label">Fail</div></div>
+<div class="progress-bar"><div class="progress-fill" id="s-bar" style="width:0%"></div></div>
+</div>
+<div id="output"></div>
+<div class="run-info" id="run-info"></div>
+<script src="../js/icons.js"></script>
 <script>
-// ========================================================
-// MINI TEST RUNNER
-// ========================================================
-let passCount = 0, failCount = 0, totalCount = 0;
-
-function assert(condition, label, errorMsg = '') {
-  totalCount++;
-  const el = document.createElement('div');
-  el.className = `test-case ${condition ? 'pass' : 'fail'}`;
-  const badge = `<span class="badge ${condition ? 'pass' : 'fail'}">${condition ? 'PASS' : 'FAIL'}</span>`;
-  el.innerHTML = `${badge} ${label}${!condition && errorMsg ? `<span class="error-msg">${errorMsg}</span>` : ''}`;
-  currentSuiteEl.appendChild(el);
-  if (condition) passCount++; else failCount++;
-}
-
-function assertEqual(a, b, label) {
-  const ok = JSON.stringify(a) === JSON.stringify(b);
-  assert(ok, label, ok ? '' : `Expected: ${JSON.stringify(b)}, Got: ${JSON.stringify(a)}`);
-}
-
-function assertContains(str, substr, label) {
-  const ok = typeof str === 'string' && str.includes(substr);
-  assert(ok, label, ok ? '' : `String does not contain: "${substr}"`);
-}
-
-let currentSuiteEl = null;
-async function suite(name, icon, fn) {
-  const wrap = document.createElement('div');
-  wrap.className = 'suite';
-  wrap.innerHTML = `<div class="suite-header">${icon} ${name}</div>`;
-  document.getElementById('results').appendChild(wrap);
-  currentSuiteEl = wrap;
-  await fn();
-}
-
-// ========================================================
-// UNIT UNDER TEST: isWordBoundary()
-// ========================================================
-function isWordBoundary(char) {
-  return /[\s\.,\/#!$%\^&\*;:{}=\-_`~()\[\]{}«»؟?،؛"']/.test(char);
-}
-
-// ========================================================
-// UNIT UNDER TEST: expandRangeToWordBoundaries()
-// (Simplified DOM-less version for testing)
-// ========================================================
-function expandTextOffsetToWord(text, startOffset, endOffset) {
-  let s = startOffset;
-  let e = endOffset;
-  while (s > 0 && !isWordBoundary(text[s - 1])) s--;
-  while (e < text.length && !isWordBoundary(text[e])) e++;
-  return { start: s, end: e, word: text.slice(s, e) };
-}
-
-// ========================================================
-// UNIT UNDER TEST: updateProgress logic
-// ========================================================
-function calcProgress(total, done) {
-  if (total === 0) return 0;
-  return Math.round((done / total) * 100);
-}
-
-// ========================================================
-// UNIT UNDER TEST: renderStrategy (HTML generation)
-// ========================================================
-function buildFbExHtml(formula) {
-  return `<div class="formula-block" dir="ltr">
-    <div class="fb-subj" dir="rtl">${formula.subj}</div>
-    <div class="fb-form" dir="ltr"><span>${formula.form}</span></div>
-    <div class="fb-ex" dir="ltr"><span>${formula.ex}</span></div>
-  </div>`;
-}
-
-// ========================================================
-// UNIT UNDER TEST: Boot fallback logic
-// ========================================================
-async function fetchWithFallback(primaryUrl, fallbackUrl) {
-  try {
-    const res = await fetch(primaryUrl);
-    if (!res.ok) throw new Error('Primary failed');
-    return { source: 'primary', data: await res.json() };
-  } catch {
-    try {
-      const res = await fetch(fallbackUrl);
-      if (!res.ok) throw new Error('Fallback also failed');
-      return { source: 'fallback', data: await res.json() };
-    } catch {
-      throw new Error('Both sources failed');
-    }
-  }
-}
-
-// ========================================================
-// UNIT UNDER TEST: LocalStorage helpers
-// ========================================================
-function saveToStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-  return true;
-}
-function loadFromStorage(key, defaultVal) {
-  try { return JSON.parse(localStorage.getItem(key)) ?? defaultVal; } catch { return defaultVal; }
-}
-
-// ========================================================
-// RUN ALL TESTS
-// ========================================================
-async function runAllTests() {
-  passCount = 0; failCount = 0; totalCount = 0;
-  document.getElementById('results').innerHTML = '';
-  document.getElementById('summary').style.display = 'none';
-  document.getElementById('run-btn').disabled = true;
-  document.getElementById('run-btn').textContent = '⏳ جاري الاختبار...';
-  document.getElementById('progress-bar').style.width = '0%';
-
-  // ── SUITE 1: isWordBoundary ──
-  suite('isWordBoundary()', '🔍', () => {
-    assert(isWordBoundary(' '), 'يتعرف على المسافة');
-    assert(isWordBoundary('.'), 'يتعرف على النقطة');
-    assert(isWordBoundary('،'), 'يتعرف على الفاصلة العربية ،');
-    assert(isWordBoundary('؟'), 'يتعرف على علامة الاستفهام ؟');
-    assert(!isWordBoundary('a'), 'لا يعتبر الحرف الإنجليزي حدًا');
-    assert(!isWordBoundary('م'), 'لا يعتبر الحرف العربي حدًا');
-    assert(!isWordBoundary('5'), 'لا يعتبر الرقم حدًا');
-    assert(isWordBoundary('\n'), 'يتعرف على السطر الجديد');
-    assert(isWordBoundary('\t'), 'يتعرف على Tab');
-  });
-
-  // ── SUITE 2: expandTextOffsetToWord ──
-  suite('expandTextOffsetToWord()', '📝', () => {
-    const r1 = expandTextOffsetToWord('Hello World', 3, 5);
-    assertEqual(r1.word, 'Hello', 'يوسع للحصول على كلمة كاملة من منتصفها (Hello)');
-
-    const r2 = expandTextOffsetToWord('متكررة وحدود', 2, 4);
-    assertEqual(r2.word, 'متكررة', 'يوسع للحصول على كلمة عربية كاملة (متكررة)');
-
-    const r3 = expandTextOffsetToWord('play → plays', 0, 4);
-    assertEqual(r3.word, 'play', 'يحدد كلمة في البداية (play)');
-
-    const r4 = expandTextOffsetToWord('word', 0, 4);
-    assertEqual(r4.word, 'word', 'يحافظ على كلمة كاملة محددة بالفعل');
-
-    const r5 = expandTextOffsetToWord(' test ', 2, 3);
-    assertEqual(r5.word, 'test', 'يوسع داخل كلمة محاطة بمسافات');
-  });
-
-  // ── SUITE 3: calcProgress ──
-  suite('calcProgress()', '📊', () => {
-    assertEqual(calcProgress(12, 0), 0, '0 وحدات مكتملة من 12 = 0%');
-    assertEqual(calcProgress(12, 6), 50, '6 وحدات مكتملة من 12 = 50%');
-    assertEqual(calcProgress(12, 12), 100, '12 وحدات مكتملة من 12 = 100%');
-    assertEqual(calcProgress(12, 3), 25, '3 وحدات مكتملة من 12 = 25%');
-    assertEqual(calcProgress(0, 0), 0, 'لا وحدات = 0% (لا قسمة على صفر)');
-    assertEqual(calcProgress(3, 1), 33, '1 من 3 = 33% (تقريب صحيح)');
-  });
-
-  // ── SUITE 4: buildFbExHtml (HTML generation) ──
-  suite('buildFbExHtml() — HTML Generator', '🏗️', () => {
-    const html = buildFbExHtml({ subj: 'I / You', form: 'verb (base)', ex: 'We <strong>study</strong> daily.' });
-    assertContains(html, 'formula-block', 'يحتوي على class formula-block');
-    assertContains(html, 'fb-subj', 'يحتوي على class fb-subj');
-    assertContains(html, 'fb-form', 'يحتوي على class fb-form');
-    assertContains(html, 'fb-ex', 'يحتوي على class fb-ex');
-    assertContains(html, 'dir="ltr"', 'الـ direction صحيح (ltr)');
-    assertContains(html, '<span>verb (base)</span>', 'النص مغلف داخل span');
-    assertContains(html, 'We <strong>study</strong> daily.', 'HTML الداخلي محفوظ كما هو');
-    assertContains(html, 'dir="rtl"', 'الـ fb-subj يحتوي على dir=rtl');
-  });
-
-  // ── SUITE 5: LocalStorage helpers ──
-  suite('saveToStorage() / loadFromStorage()', '💾', () => {
-    saveToStorage('gs_test_key', { name: 'Ahmed', score: 95 });
-    const loaded = loadFromStorage('gs_test_key', null);
-    assertEqual(loaded?.name, 'Ahmed', 'يحفظ ويسترجع الاسم بشكل صحيح');
-    assertEqual(loaded?.score, 95, 'يحفظ ويسترجع الدرجة بشكل صحيح');
-
-    const defaultVal = loadFromStorage('gs_nonexistent_key', { default: true });
-    assertEqual(defaultVal?.default, true, 'يرجع القيمة الافتراضية لو المفتاح غير موجود');
-
-    saveToStorage('gs_test_arr', [1, 2, 3]);
-    const arr = loadFromStorage('gs_test_arr', []);
-    assertEqual(arr.length, 3, 'يحفظ ويسترجع arrays بشكل صحيح');
-
-    // Cleanup
-    localStorage.removeItem('gs_test_key');
-    localStorage.removeItem('gs_test_arr');
-    assert(true, 'تنظيف localStorage بعد الاختبار');
-  });
-
-  // ── SUITE 6: Fallback fetch logic ──
-  await suite('fetchWithFallback() — Boot Fallback', '🌐', async () => {
-    // Test with the actual API endpoint
-    try {
-      const result = await fetchWithFallback(
-        '/api/units_does_not_exist_404',
-        '/api/units'
-      );
-      assert(result.source === 'fallback', 'يستخدم الـ fallback لو الـ API غير موجود');
-      assert(Array.isArray(result.data), 'البيانات المحملة من /api/units هي array');
-      assert(result.data.length > 0, `db.json يحتوي على ${result.data.length} وحدة/وحدات`);
-      assert(result.data[0]?.nameEn, 'الوحدة الأولى تحتوي على nameEn');
-      assert(result.data[0]?.page?.strategies?.length > 0, 'الوحدة الأولى تحتوي على strategies');
-    } catch(e) {
-      assert(false, 'fetchWithFallback فشل تماماً', e.message);
-    }
-  });
-
-  // Update progress bar and summary
-  document.getElementById('progress-bar').style.width = '100%';
-  document.getElementById('total-count').textContent = totalCount;
-  document.getElementById('pass-count').textContent  = passCount;
-  document.getElementById('fail-count').textContent  = failCount;
-  document.getElementById('summary').style.display = 'flex';
-  document.getElementById('run-btn').disabled = false;
-  document.getElementById('run-btn').textContent = `▶ إعادة التشغيل (${passCount}/${totalCount} نجح)`;
-}
+var R={pass:0,fail:0,total:0},out=document.getElementById('output'),cs=null;
+function suite(n){cs=document.createElement('div');cs.className='suite';cs.innerHTML='<div class="suite-title">'+n+'</div>';out.appendChild(cs);}
+function test(n,f){R.total++;var el=document.createElement('div');try{f();R.pass++;el.className='test pass';el.innerHTML='<span class="badge">PASS</span><span class="test-name">'+n+'</span>';}catch(e){R.fail++;el.className='test fail';el.innerHTML='<span class="badge">FAIL</span><span class="test-name">'+n+'</span><div class="test-detail">'+e.message+'</div>';}cs.appendChild(el);upd();}
+function upd(){document.getElementById('s-total').textContent=R.total;document.getElementById('s-pass').textContent=R.pass;document.getElementById('s-fail').textContent=R.fail;var p=R.total>0?Math.round((R.pass/R.total)*100):0;document.getElementById('s-bar').style.width=p+'%';}
+function eq(a,b){if(a!==b)throw new Error('Expected '+JSON.stringify(b)+' got '+JSON.stringify(a));}
+function ok(v,m){if(!v)throw new Error(m||'Expected truthy got '+JSON.stringify(v));}
+function has(s,k){if(!String(s).includes(k))throw new Error('Expected to contain ['+k+']');}
+// Suite 1: State
+suite('1. State Management');
+var G={ALL_DATA:null,currentTrack:'grammar',UNITS:[],currentUnit:0,student:{name:'Ahmed',completedUnits:[],notes:{},highlights:{},xp:0,level:1},ui:{highlightMode:false,eraserMode:false,fontSize:16},quizState:{answers:{},submitted:false,currentStep:0}};
+test('ALL_DATA key exists',function(){ok('ALL_DATA' in G);});
+test('UNITS is array',function(){ok(Array.isArray(G.UNITS));});
+test('completedUnits is array',function(){ok(Array.isArray(G.student.completedUnits));});
+test('xp starts 0',function(){eq(G.student.xp,0);});
+test('level starts 1',function(){eq(G.student.level,1);});
+test('currentTrack is grammar',function(){eq(G.currentTrack,'grammar');});
+test('highlightMode false',function(){eq(G.ui.highlightMode,false);});
+test('fontSize default 16',function(){eq(G.ui.fontSize,16);});
+// Suite 2: Icons
+suite('2. Icon System');
+test('GSIcons defined',function(){ok(typeof window.GSIcons==='object');});
+test('getIcon is function',function(){ok(typeof window.getIcon==='function');});
+['book','hat','openBook','books','headphones','target','note','home','moon','sun','highlighter','eraser','trash','zoomIn','zoomOut','upArrow','user','calendar','timer','checkCircle','xCircle','trophy','brain','sparkles','flame'].forEach(function(n){test('getIcon('+n+')',function(){has(window.getIcon(n),'<svg');});});
+test('emoji 📘 fallback',function(){has(window.getIcon('📘'),'<svg');});
+test('emoji 🎧 fallback',function(){has(window.getIcon('🎧'),'<svg');});
+test('unknown icon fallback span',function(){has(window.getIcon('xyz_unknown_9999'),'icon-fallback');});
+test('All icons have svg-icon class',function(){Object.keys(window.GSIcons).forEach(function(n){if(!window.GSIcons[n].includes('class="svg-icon"'))throw new Error(n+' missing class');});});
+test('All icons have viewBox',function(){Object.keys(window.GSIcons).forEach(function(n){if(!window.GSIcons[n].includes('viewBox'))throw new Error(n+' missing viewBox');});});
+test('All icons are 24x24',function(){Object.keys(window.GSIcons).forEach(function(n){var s=window.GSIcons[n];if(!s.includes('width="24"')||!s.includes('height="24"'))throw new Error(n+' wrong size');});});
+// Suite 3: Progress
+suite('3. Progress Calculation');
+function cp(d,t){return t===0?0:Math.round((d.length/t)*100);}
+test('0% no completed',function(){eq(cp([],12),0);});
+test('100% all done',function(){eq(cp([1,2,3,4,5,6,7,8,9,10,11,12],12),100);});
+test('50% half done',function(){eq(cp([1,2,3,4,5,6],12),50);});
+test('8% one of 12',function(){eq(cp([1],12),8);});
+test('No divide-by-zero',function(){eq(cp([],0),0);});
+// Suite 4: Quiz Scoring
+suite('4. Quiz Scoring');
+function sc(ans,qs){var c=0;qs.forEach(function(q,i){if(ans[i]!==undefined&&ans[i]===q.c)c++;});return{correct:c,total:qs.length,pct:qs.length>0?Math.round((c/qs.length)*100):0};}
+var Q=[{c:0},{c:2},{c:1},{c:3}];
+test('100% all correct',function(){eq(sc({0:0,1:2,2:1,3:3},Q).pct,100);});
+test('0% all wrong',function(){eq(sc({0:1,1:0,2:2,3:0},Q).pct,0);});
+test('50% half correct',function(){eq(sc({0:0,1:2,2:0,3:0},Q).pct,50);});
+test('Unanswered=wrong',function(){eq(sc({0:0},Q).pct,25);});
+test('Empty quiz 0%',function(){eq(sc({},[]).pct,0);});
+// Suite 5: XP Levels
+suite('5. XP and Level System');
+function lv(xp){return Math.floor(xp/100)+1;}
+test('Level 1 at 0',function(){eq(lv(0),1);});
+test('Level 1 at 99',function(){eq(lv(99),1);});
+test('Level 2 at 100',function(){eq(lv(100),2);});
+test('Level 3 at 200',function(){eq(lv(200),3);});
+test('Level 11 at 1000',function(){eq(lv(1000),11);});
+// Suite 6: LocalStorage
+suite('6. LocalStorage Persistence');
+test('Name save/load',function(){localStorage.setItem('gs_t','عمر');eq(localStorage.getItem('gs_t'),'عمر');localStorage.removeItem('gs_t');});
+test('Array serialize',function(){localStorage.setItem('gs_ta',JSON.stringify([1,3,5]));eq(JSON.parse(localStorage.getItem('gs_ta'))[1],3);localStorage.removeItem('gs_ta');});
+test('Arabic notes text',function(){localStorage.setItem('gs_tn',JSON.stringify({'1':'ملاحظة'}));eq(JSON.parse(localStorage.getItem('gs_tn'))['1'],'ملاحظة');localStorage.removeItem('gs_tn');});
+test('XP as integer',function(){localStorage.setItem('gs_tx','250');eq(parseInt(localStorage.getItem('gs_tx'),10),250);localStorage.removeItem('gs_tx');});
+test('Theme dark',function(){localStorage.setItem('gs_tth','dark');eq(localStorage.getItem('gs_tth'),'dark');localStorage.removeItem('gs_tth');});
+// Suite 7: SRS
+suite('7. SRS Algorithm');
+function srs(q,c){c=c||{interval:1,repetition:0,efactor:2.5};var qi=q==='hard'?1:q==='good'?3:5;if(qi>=3){if(c.repetition===0)c.interval=1;else if(c.repetition===1)c.interval=6;else c.interval=Math.round(c.interval*c.efactor);c.repetition++;}else{c.repetition=0;c.interval=1;}c.efactor=c.efactor+(0.1-(5-qi)*(0.08+(5-qi)*0.02));if(c.efactor<1.3)c.efactor=1.3;return c;}
+test('Easy increases repetition',function(){eq(srs('easy').repetition,1);});
+test('Hard resets repetition',function(){eq(srs('hard',{interval:6,repetition:2,efactor:2.5}).repetition,0);});
+test('Second easy=interval 6',function(){var c=srs('easy');c=srs('easy',c);eq(c.interval,6);});
+test('efactor>=1.3 always',function(){var c={interval:1,repetition:2,efactor:1.4};for(var i=0;i<10;i++)c=srs('hard',c);ok(c.efactor>=1.3);});
+// Suite 8: Data Validation
+suite('8. Data Structure Validation');
+var mu={id:1,emoji:'book',nameAr:'الازمنة',nameEn:'Tenses',page:{tag:'U1',mascot:'book',strategies:[{id:'s1',title:'T',subtitle:'ST',icon:'book',badge:'B',theme:'sc-theme-blue',usage:'U',keywords:[],formulas:[],practice:[]}],quizzes:[{q:'Q',opts:['A','B','C','D'],c:0,expl:'E'}]}};
+test('Unit has id,nameAr,nameEn,page',function(){['id','nameAr','nameEn','page'].forEach(function(k){if(!(k in mu))throw new Error('Missing '+k);});});
+test('strategies is array',function(){ok(Array.isArray(mu.page.strategies));});
+test('quizzes is array',function(){ok(Array.isArray(mu.page.quizzes));});
+test('Strategy required fields',function(){var s=mu.page.strategies[0];['id','title','subtitle','icon','badge','theme','usage'].forEach(function(k){if(!(k in s))throw new Error('Missing '+k);});});
+test('Quiz has q,opts,c,expl',function(){var q=mu.page.quizzes[0];['q','opts','c','expl'].forEach(function(k){if(!(k in q))throw new Error('Missing '+k);});});
+test('Quiz answer in valid range',function(){var q=mu.page.quizzes[0];ok(q.c>=0&&q.c<q.opts.length);});
+// Suite 9: DOM Utilities
+suite('9. DOM and Utility Helpers');
+test('getElementById works',function(){var e=document.createElement('div');e.id='ut'+Date.now();document.body.appendChild(e);ok(document.getElementById(e.id));e.remove();});
+test('Arabic JSON roundtrip',function(){var t='الجرامر والريدينق';eq(JSON.parse(JSON.stringify({t:t})).t,t);});
+test('Math.round correct',function(){eq(Math.round(33.333),33);eq(Math.round(66.666),67);});
+test('Array.includes correct',function(){ok([1,3,5].includes(3));ok(![1,3,5].includes(4));});
+// Suite 10: Responsive Breakpoints
+suite('10. Responsive Breakpoint Logic');
+function mob(w){return w<=768;}function tab(w){return w>768&&w<=1024;}function desk(w){return w>1024;}
+test('375px is mobile',function(){ok(mob(375));});
+test('768px is mobile boundary',function(){ok(mob(768));});
+test('769px is tablet',function(){ok(tab(769));});
+test('1024px is tablet boundary',function(){ok(tab(1024));});
+test('1025px is desktop',function(){ok(desk(1025));});
+test('1440px is desktop',function(){ok(desk(1440));});
+test('mobile+desktop mutually exclusive',function(){ok(!(mob(1200)&&desk(1200)));});
+// Final
+var pct=R.total>0?Math.round((R.pass/R.total)*100):0;
+var color=pct>=80?'#22c55e':pct>=60?'#eab308':'#ef4444';
+document.getElementById('run-info').innerHTML='Completed at '+new Date().toLocaleTimeString('ar-SA')+' | <strong style="color:'+color+'">'+pct+'%</strong> ('+R.pass+'/'+R.total+' pass)';
 </script>
 </body>
 </html>

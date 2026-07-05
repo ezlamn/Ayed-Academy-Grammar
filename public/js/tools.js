@@ -198,3 +198,89 @@ function expandRangeToWordBoundaries(range) {
 function isWordBoundary(char) {
   return /[\s\.,\/#!$%\^&\*;:{}=\-_`~()\[\]{}«»؟?،؛"']/.test(char);
 }
+
+// ── STEPPER LOGIC (Interactive CD) ────────────────────────────
+window.goToStep = function(stratId, stepIndex) {
+  const stepper = document.getElementById(stratId);
+  if (!stepper) return;
+  const currentStep = parseInt(stepper.getAttribute('data-current-step'));
+  if (currentStep === stepIndex) return;
+
+  // Update tabs
+  stepper.querySelectorAll('.step-tab').forEach(t => t.classList.remove('active'));
+  const targetTab = stepper.querySelector(`.step-tab[data-step="${stepIndex}"]`);
+  if (targetTab) targetTab.classList.add('active');
+
+  // Update panes
+  stepper.querySelectorAll('.step-pane').forEach(p => {
+    p.classList.remove('active');
+    p.style.animation = 'none'; // reset animation
+    p.offsetHeight; // trigger reflow
+  });
+  const targetPane = stepper.querySelector(`.step-pane[data-step="${stepIndex}"]`);
+  if (targetPane) {
+    targetPane.classList.add('active');
+    targetPane.style.animation = ''; // restore animation
+  }
+
+  // Update state and footer buttons
+  stepper.setAttribute('data-current-step', stepIndex);
+  const totalSteps = parseInt(stepper.getAttribute('data-total-steps'));
+  
+  const prevBtn = stepper.querySelector('.btn-step-prev');
+  const nextBtn = stepper.querySelector('.btn-step-next');
+  
+  if (prevBtn) prevBtn.disabled = (stepIndex === 1);
+  if (nextBtn) {
+    if (stepIndex === totalSteps) {
+      nextBtn.disabled = true;
+      nextBtn.style.opacity = '0.5';
+    } else {
+      nextBtn.disabled = false;
+      nextBtn.style.opacity = '1';
+    }
+  }
+};
+
+window.changeStep = function(stratId, dir) {
+  const stepper = document.getElementById(stratId);
+  if (!stepper) return;
+  const currentStep = parseInt(stepper.getAttribute('data-current-step'));
+  const totalSteps = parseInt(stepper.getAttribute('data-total-steps'));
+  
+  let newStep = currentStep + dir;
+  if (newStep >= 1 && newStep <= totalSteps) {
+    window.goToStep(stratId, newStep);
+  }
+};
+
+// ── TEXT TO SPEECH (TTS) ──────────────────────────────────────
+window.playTTS = function(btnElement) {
+  const text = btnElement.getAttribute('data-text');
+  if (!text) return;
+  
+  // Clean up text
+  const cleanText = text.replace(/<[^>]*>?/gm, '');
+
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel(); // Stop any ongoing speech
+    
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    const isArabic = /[\u0600-\u06FF]/.test(cleanText);
+    utterance.lang = isArabic ? 'ar-SA' : 'en-US';
+    utterance.rate = isArabic ? 0.85 : 0.9;
+    
+    btnElement.classList.add('playing');
+    
+    utterance.onend = () => {
+      btnElement.classList.remove('playing');
+    };
+    utterance.onerror = () => {
+      btnElement.classList.remove('playing');
+    };
+    
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("المتصفح لا يدعم القراءة الصوتية.");
+  }
+};

@@ -25,70 +25,105 @@ function renderTreeDiagram(strat) {
 
 // ── BUILD FROM RICH CONFIG (treeDiagram key) ──────────────────
 function buildFromConfig(cfg, keywords) {
-  // Build the main groups tree (was/were split, etc.)
+  const numGroups = (cfg.groups || []).length;
+  
   const groupsHtml = (cfg.groups || []).map(group => {
     const auxWord = group.aux ? group.aux.toLowerCase().split(' ')[0] : 'generic';
     return `
-      <div class="td-group-row" style="display:flex; align-items:center; gap:0; margin-bottom:0.6rem;">
-        <div class="td-subject-group">
-          ${group.subjects.join('<br>')}
-          ${group.label ? `<small>${group.label}</small>` : ''}
+      <div class="cg-group">
+        <div class="cg-subj">
+          <div class="cg-subj-list">${group.subjects.join('<span class="cg-comma">, </span>')}</div>
+          ${group.label ? `<div class="cg-subj-label">${group.label}</div>` : ''}
         </div>
-        <div style="width:22px; border-top:2px dashed rgba(10,25,41,0.25); align-self:center;"></div>
-        <div class="td-aux ${auxWord}">${group.aux}</div>
+        <div class="cg-line-hz"></div>
+        <div class="cg-aux aux-${auxWord}">${group.aux}</div>
       </div>
     `;
   }).join('');
 
-  // Main formula pill
+  let braceHtml = '';
+  if (numGroups > 1) {
+    braceHtml = `
+      <div class="cg-brace-wrapper">
+        <div class="cg-brace"></div>
+      </div>
+    `;
+  } else {
+    braceHtml = `
+      <div class="cg-brace-wrapper" style="padding:0; margin: 0 0.5rem;">
+        <div class="cg-line-hz" style="width: 30px; align-self: center;"></div>
+      </div>
+    `;
+  }
+
+  // Formula pill
   const formulaHtml = cfg.formula ? `
-    <div class="td-formula-pill">
+    <div class="cg-formula">
       ${cfg.formula
-        .replace(/\+/g, '<span class="td-formula-plus"> + </span>')
-        .replace(/\b(ing)\b/g, '<span class="hl">$1</span>')
-        .replace(/\b(V3|V2|ed)\b/g, '<span class="hl">$1</span>')}
+        .replace(/\+/g, '<span class="cg-plus"> + </span>')
+        .replace(/\b(ing)\b/g, '<span class="cg-hl-ing">$1</span>')
+        .replace(/\b(V3|V2|ed)\b/g, '<span class="cg-hl-ed">$1</span>')}
     </div>
   ` : '';
 
-  // Main example
-  const exHtml = cfg.example ? `<div class="td-example">${cfg.example}</div>` : '';
+  // Example
+  const exHtml = cfg.example ? `
+    <div class="cg-example">
+      <span class="cg-ex-icon">💡</span>
+      <span class="cg-ex-text">${cfg.example}</span>
+    </div>
+  ` : '';
 
-  // Extra rows (e.g. Past Perfect "had + V3")
+  // Extra rows
   const extraHtml = (cfg.extraRows || []).map(row => {
     const auxWord = row.aux ? row.aux.toLowerCase() : 'generic';
     const rowFormula = (row.formula || '')
-      .replace(/\+/g, '<span class="td-formula-plus"> + </span>')
-      .replace(/\b(ing)\b/g, '<span class="hl">$1</span>')
-      .replace(/\b(V3|V2|ed)\b/g, '<span class="hl">$1</span>');
+      .replace(/\+/g, '<span class="cg-plus"> + </span>')
+      .replace(/\b(ing)\b/g, '<span class="cg-hl-ing">$1</span>')
+      .replace(/\b(V3|V2|ed)\b/g, '<span class="cg-hl-ed">$1</span>');
+      
     return `
-      <div class="td-extra-row">
-        <div class="td-extra-label">${row.label || ''}</div>
-        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-top:0.4rem;">
-          <div class="td-subject-group" style="font-size:0.78rem; min-width:100px;">${(row.subjects || []).join(', ')}</div>
-          <div style="width:14px; border-top:2px dashed rgba(10,25,41,0.2); align-self:center;"></div>
-          <div class="td-aux ${auxWord}" style="padding:0.3rem 0.7rem; font-size:0.88rem;">${row.aux}</div>
-          <div class="td-formula-pill" style="font-size:0.85rem; padding:0.3rem 0.8rem;">${rowFormula}</div>
+      <div class="cg-extra-row">
+        <div class="cg-extra-label">${row.label || ''}</div>
+        <div class="cg-extra-content">
+          <div class="cg-subj cg-small">${(row.subjects || []).join(', ')}</div>
+          <div class="cg-line-hz cg-short"></div>
+          <div class="cg-aux aux-${auxWord} cg-small">${row.aux}</div>
+          <div class="cg-line-hz cg-short"></div>
+          <div class="cg-formula cg-small">${rowFormula}</div>
         </div>
-        ${row.example ? `<div class="td-example" style="margin-top:0.4rem;">${row.example}</div>` : ''}
+        ${row.example ? `
+          <div class="cg-example cg-small">
+            <span class="cg-ex-icon">💡</span>
+            <span class="cg-ex-text">${row.example}</span>
+          </div>
+        ` : ''}
       </div>
     `;
   }).join('');
 
   return `
-    <div class="tree-formula-wrap">
-      <div class="tree-formula-title">📌 التكوين الجرافيكي للقاعدة:</div>
-      <div class="tree-diagram">
-        <div class="td-tree">
-          <div style="display:flex; flex-direction:column; gap:0.2rem; flex-shrink:0;">
+    <div class="cg-wrapper">
+      <div class="cg-header">
+        <span class="cg-header-icon" data-icon="gitBranch"></span>
+        <span class="cg-header-text">الخريطة الذهنية للقاعدة (Mind Map)</span>
+      </div>
+      
+      <div class="cg-container scroll-x">
+        <div class="cg-flow">
+          <div class="cg-groups">
             ${groupsHtml}
           </div>
-          <div style="width:18px; border-top:2px dashed rgba(10,25,41,0.2); align-self:center; flex-shrink:0;"></div>
-          <div class="td-right" style="border-right:none; gap:0.5rem;">
+          
+          ${braceHtml}
+          
+          <div class="cg-result">
             ${formulaHtml}
             ${exHtml}
-            ${extraHtml}
           </div>
         </div>
+        
+        ${extraHtml ? `<div class="cg-extras-container">${extraHtml}</div>` : ''}
       </div>
     </div>
   `;
@@ -105,24 +140,36 @@ function buildFromFormulas(formulas, keywords) {
     const auxWord = auxMatch ? auxMatch[1].toLowerCase() : '';
     const auxClass = auxWord || 'generic';
 
-    // Clean up the form for display (strip html tags for the pill display)
-    const cleanForm = f.form
-      .replace(/<span class="s">(.*?)<\/span>/g, '<span class="hl">$1</span>')
-      .replace(/<[^>]+>/g, '');
-
+    // Clean up the form for display
+    const formParts = f.form.replace(/<[^>]+>/g, '').split('+');
+    const mainAuxPart = formParts[0].trim();
+    const restOfFormula = formParts.slice(1).join(' + ').trim();
+    
+    // We create a uniform flex row for the mind map
     return `
-      <div class="td-group-row" style="display:flex; align-items:center; gap:0; margin-bottom:0.5rem;">
-        <div class="td-subject-group" style="min-width:130px; font-size:0.78rem;">
+      <div class="td-group-row" style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; width: 100%;">
+        <div class="td-subject-group" style="flex:0 0 120px; font-size:0.85rem; text-align:center; padding:0.6rem; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface2);">
           ${f.subj.replace(/\//g, ' /<br>')}
         </div>
-        <div style="width:16px; border-top:2px dashed rgba(10,25,41,0.2); align-self:center; flex-shrink:0;"></div>
-        ${auxWord ? `<div class="td-aux ${auxClass}" style="flex:0; padding:0.4rem 0.7rem; min-width:52px; font-size:0.88rem;">${f.form.replace(/<[^>]+>/g, '').split('+')[0].trim()}</div>` : ''}
-        <div style="width:12px; border-top:2px dashed rgba(10,25,41,0.2); align-self:center; flex-shrink:0;"></div>
-        <div style="font-family:var(--ff-en); font-weight:700; font-size:0.85rem; color:var(--text-sec); padding:0 0.4rem; flex:1;">
-          <div class="td-formula-pill" style="font-size:0.85rem; padding:0.3rem 0.7rem; margin-bottom:0.3rem;">
+        
+        <div style="flex:0 0 20px; border-top:1.5px solid var(--gold-lt); position:relative;">
+          <div style="position:absolute; right:-4px; top:-4.5px; width:9px; height:9px; border-radius:50%; background:var(--gold-lt);"></div>
+        </div>
+        
+        ${auxWord ? `
+        <div class="td-aux ${auxClass}" style="flex:0 0 70px; padding:0.5rem; font-size:0.9rem; border-radius:var(--r-md);">
+          ${mainAuxPart}
+        </div>
+        <div style="flex:0 0 20px; border-top:1.5px solid var(--gold-lt); position:relative;">
+          <div style="position:absolute; right:-4px; top:-4.5px; width:9px; height:9px; border-radius:50%; background:var(--gold-lt);"></div>
+        </div>
+        ` : ''}
+        
+        <div style="flex:1; display:flex; flex-direction:column; gap:0.4rem;">
+          <div class="td-formula-pill" style="font-size:0.88rem; padding:0.38rem 0.85rem; align-self:flex-start; margin:0;">
             ${f.form}
           </div>
-          <div class="td-example">${f.ex}</div>
+          ${f.ex ? `<div class="td-example" style="margin:0; font-size:0.84rem;">${f.ex}</div>` : ''}
         </div>
       </div>
     `;
@@ -130,9 +177,9 @@ function buildFromFormulas(formulas, keywords) {
 
   return `
     <div class="tree-formula-wrap">
-      <div class="tree-formula-title">📌 التكوين الجرافيكي للقاعدة:</div>
-      <div class="tree-diagram" style="flex-direction:column;">
-        <div class="td-tree" style="flex-direction:column; gap:0; padding:1rem;">
+      <div class="tree-formula-title" style="margin-bottom: 1.5rem;">📌 التكوين الجرافيكي للقاعدة (Mind Map):</div>
+      <div class="tree-diagram" style="flex-direction:column; background:transparent; border:none; box-shadow:none; direction:ltr;">
+        <div class="td-tree" style="flex-direction:column; gap:0.5rem; padding:0; background:transparent;">
           ${rowsHtml}
         </div>
       </div>

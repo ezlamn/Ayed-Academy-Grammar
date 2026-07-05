@@ -30,10 +30,8 @@ const $ = id => document.getElementById(id);
 const pageContent = () => $('page-content');
 const unitsNav    = () => $('units-nav');
 
-// ── AUDIO FX ───────────────────────────────────────────────────
+// ── AUDIO FX (disabled) ────────────────────────────────────────
 const FX = {
-  correct: new Audio('data:audio/wav;base64,UklGRmQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTwBAACAeXp8fIN/gIB9g4WJh4qNj46LjZKSkpCQk5eZlpednZ6bnaGjpKSjp6uqrKuur7Kzs7S2t7e3t7e4vL29vb6/wMDAwcHDxMTExcXGxsfHyMjJycrKy8vMzMzNzc7Oz8/P0NDR0dLS09PT1NTU1dXV1tbW19fX2NjY2dnZ2tra29vb3Nzc3d3d3t7e39/f4ODg4eHh4uLi4+Pj5OTk5eXl5ubm5+fn6Ojo6enp6urq6+vr7Ozs7e3t7u7u7+/v8PDw8fHx8vLy8/Pz9PT09fX19vb29/f3+Pj4+fn5+vr6+/v7/Pz8/f39/v7+//7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+'),
-  wrong: new Audio('data:audio/wav;base64,UklGRmQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTwBAACAeXp8fIN/gIB9g4WJh4qNj46LjZKSkpCQk5eZlpednZ6bnaGjpKSjp6uqrKuur7Kzs7S2t7e3t7e4vL29vb6/wMDAwcHDxMTExcXGxsfHyMjJycrKy8vMzMzNzc7Oz8/P0NDR0dLS09PT1NTU1dXV1tbW19fX2NjY2dnZ2tra29vb3Nzc3d3d3t7e39/f4ODg4eHh4uLi4+Pj5OTk5eXl5ubm5+fn6Ojo6enp6urq6+vr7Ozs7e3t7u7u7+/v8PDw8fHx8vLy8/Pz9PT09fX19vb29/f3+Pj4+fn5+vr6+/v7/Pz8/f39/v7+//7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+'),
+  correct: { play: () => Promise.resolve(), currentTime: 0 },
+  wrong:   { play: () => Promise.resolve(), currentTime: 0 },
 };
-FX.correct.volume = 0.5;
-FX.wrong.volume = 0.4;

@@ -28,7 +28,10 @@ async function boot() {
 function initApp() {
   const name = GS.student.name;
   $('student-name-display').textContent = name;
-  $('student-avatar').textContent = name.charAt(0);
+  // Avatar: show first letter of name (element has gradient bg from CSS)
+  const avatarEl = $('student-avatar');
+  avatarEl.textContent = '';  // clear any icon
+  avatarEl.textContent = name.charAt(0).toUpperCase();
 
   // Create XP Display next to name if it doesn't exist
   if (!$('student-xp-display')) {

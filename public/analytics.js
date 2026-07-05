@@ -34,31 +34,48 @@ window.SmartAnalytics = {
     const dashContainer = document.getElementById('analytics-container');
     if (!dashContainer) return;
     
-    let html = `<div class="analytics-card" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
-      <h3 style="color: var(--gold); margin-bottom: 1rem;">📊 التحليل الذكي لمستواك</h3>
-      <div class="analytics-bars">`;
-      
-    for (let cat in this.data) {
-      const stats = this.data[cat];
-      const percent = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
-      html += `
-        <div style="margin-bottom: 1rem;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-            <span style="color: white; text-transform: uppercase;">${cat}</span>
-            <span style="color: #aaa;">${percent}%</span>
+    // Check if we have any data
+    const totalQuestions = Object.values(this.data).reduce((acc, curr) => acc + curr.total, 0);
+    const totalCorrect = Object.values(this.data).reduce((acc, curr) => acc + curr.correct, 0);
+    const overallPct = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+    
+    const advice = this.getAdvice();
+    
+    let html = `
+      <div class="dash-card" style="margin-top: 2rem; cursor: default; text-align: right; max-width: 100%;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h3 style="color: var(--text-primary); font-size:1.25rem; margin-bottom:0.4rem; display:flex; align-items:center; gap:8px;">
+              <span style="color:var(--accent);">${window.getIcon ? window.getIcon('target') : '🎯'}</span>
+              التحليل الذكي لمستواك
+            </h3>
+            <p style="color: var(--text-muted); font-size:0.9rem; max-width:600px;">
+              إجمالي الإنجاز: <strong style="color:var(--text-primary); font-family:var(--ff-en);">${overallPct}%</strong> 
+              (${totalCorrect}/${totalQuestions} سؤال)
+            </p>
           </div>
-          <div style="width: 100%; background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden;">
-            <div style="width: ${percent}%; background: ${percent < 50 ? '#e74c3c' : percent < 80 ? '#f39c12' : '#2ecc71'}; height: 100%;"></div>
-          </div>
+          <button id="open-user-dashboard" class="btn btn-primary" style="display:flex; align-items:center; gap:8px;">
+            <span style="width:18px;height:18px;display:inline-block;">${window.getIcon ? window.getIcon('target') : '📊'}</span>
+            عرض نتائج الأداء التفصيلية
+          </button>
         </div>
-      `;
-    }
-    html += `</div>
-      <div style="margin-top: 1.5rem; color: #ddd; font-size: 0.95rem; line-height: 1.6; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
-        ${this.getAdvice()}
+        
+        ${totalQuestions > 0 ? `
+          <div style="margin-top: 1.25rem; padding: 1rem 1.25rem; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--r-md); color: var(--text-sec); font-size: 0.9rem; line-height: 1.6;">
+            ${advice}
+          </div>
+        ` : ''}
       </div>
-    </div>`;
+    `;
     
     dashContainer.innerHTML = html;
+    
+    const btn = document.getElementById('open-user-dashboard');
+    if (btn) {
+      btn.onclick = () => {
+        document.getElementById('main-dashboard').classList.add('hidden');
+        if (typeof openUserDashboard === 'function') openUserDashboard();
+      };
+    }
   }
 };

@@ -53,35 +53,47 @@ function launchConfetti() {
 
 // ── NEW FEATURES: Dark Mode, Scroll-to-Top FAB ────────────────
 function initNewFeatures() {
-  // 1. Dark Mode
+  // 1. Dark Mode — null-safe (admin.html doesn't have dark-toggle)
   const darkToggle = $('dark-toggle');
-  const savedTheme = localStorage.getItem('gs_theme');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-    darkToggle.textContent = '☀️';
+  if (darkToggle) {
+    const savedTheme = localStorage.getItem('gs_theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+      darkToggle.innerHTML = window.getIcon('sun');
+    } else {
+      darkToggle.innerHTML = window.getIcon('moon');
+    }
+
+    darkToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark-mode');
+      if (document.documentElement.classList.contains('dark-mode')) {
+        localStorage.setItem('gs_theme', 'dark');
+        darkToggle.innerHTML = window.getIcon('sun');
+      } else {
+        localStorage.setItem('gs_theme', 'light');
+        darkToggle.innerHTML = window.getIcon('moon');
+      }
+    });
+  } else {
+    // Apply saved theme even without toggle (e.g. admin page)
+    if (localStorage.getItem('gs_theme') === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+    }
   }
 
-  darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    if (document.body.classList.contains('dark-mode')) {
-      localStorage.setItem('gs_theme', 'dark');
-      darkToggle.textContent = '☀️';
-    } else {
-      localStorage.setItem('gs_theme', 'light');
-      darkToggle.textContent = '🌙';
-    }
-  });
-
-  // 2. Scroll to Top FAB
+  // 2. Scroll to Top FAB — use direct element reference (more reliable than e.target)
   const fabScroll = $('fab-scroll');
-  $('page-content').addEventListener('scroll', (e) => {
-    if (e.target.scrollTop > 300) {
-      fabScroll.classList.add('visible');
-    } else {
-      fabScroll.classList.remove('visible');
-    }
-  });
-  fabScroll.addEventListener('click', () => {
-    $('page-content').scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  const pageContent = $('page-content');
+  if (fabScroll && pageContent) {
+    pageContent.addEventListener('scroll', () => {
+      if (pageContent.scrollTop > 300) {
+        fabScroll.classList.add('visible');
+      } else {
+        fabScroll.classList.remove('visible');
+      }
+    });
+    fabScroll.addEventListener('click', () => {
+      pageContent.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 }

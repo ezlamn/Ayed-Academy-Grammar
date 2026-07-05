@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Load Tests - Ayed Academy STEP Book</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;padding:2rem}
+h1{font-size:1.5rem;color:#60a5fa;margin-bottom:.25rem}
+.sub{color:#64748b;font-size:.9rem;margin-bottom:2rem}
+.suite{margin-bottom:2rem}
+.suite-title{font-size:1rem;font-weight:700;color:#f0abfc;margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid #1e293b}
+.test{display:flex;align-items:flex-start;gap:.75rem;padding:.55rem .75rem;border-radius:6px;margin-bottom:.35rem;font-size:.875rem}
+.test.pass{background:rgba(34,197,94,.08);border-left:3px solid #22c55e}
+.test.fail{background:rgba(239,68,68,.1);border-left:3px solid #ef4444}
+.test.warn{background:rgba(234,179,8,.08);border-left:3px solid #eab308}
+.badge{font-weight:700;font-size:.75rem;padding:2px 8px;border-radius:20px;flex-shrink:0}
+.pass .badge{background:#22c55e22;color:#22c55e}
+.fail .badge{background:#ef444422;color:#ef4444}
+.warn .badge{background:#eab30822;color:#eab308}
+.test-name{flex:1}
+.test-detail{font-size:.72rem;color:#94a3b8;font-family:monospace;margin-top:2px}
+.summary{background:#1e293b;border-radius:12px;padding:1.25rem;margin-bottom:2rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.sum-item{text-align:center}
+.sum-num{font-size:2rem;font-weight:800}
+.sum-label{font-size:.75rem;color:#64748b}
+.pass-num{color:#22c55e}.fail-num{color:#ef4444}.total-num{color:#60a5fa}.warn-num{color:#eab308}
+.progress-bar{flex:1;height:8px;background:#0f172a;border-radius:4px;overflow:hidden;min-width:200px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);transition:width .5s}
+.run-info{color:#475569;font-size:.75rem;margin-top:1.5rem;text-align:center}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.metric-card{background:#1e293b;border-radius:10px;padding:1rem;border:1px solid #334155}
+.metric-val{font-size:1.5rem;font-weight:800;color:#60a5fa}
+.metric-label{font-size:.75rem;color:#64748b;margin-top:.25rem}
+.metric-status{font-size:.75rem;margin-top:.5rem;font-weight:600}
+.metric-status.good{color:#22c55e}
+.metric-status.warn{color:#eab308}
+.metric-status.bad{color:#ef4444}
+</style>
+</head>
+<body>
+<h1>Load Tests - Ayed Academy STEP Book</h1>
+<p class="sub">Performance benchmarking and memory usage</p>
+<div class="summary">
+<div class="sum-item"><div class="sum-num total-num" id="s-total">0</div><div class="sum-label">Total</div></div>
+<div class="sum-item"><div class="sum-num pass-num" id="s-pass">0</div><div class="sum-label">Pass</div></div>
+<div class="sum-item"><div class="sum-num fail-num" id="s-fail">0</div><div class="sum-label">Fail</div></div>
+<div class="sum-item"><div class="sum-num warn-num" id="s-warn">0</div><div class="sum-label">Warn</div></div>
+<div class="progress-bar"><div class="progress-fill" id="s-bar" style="width:0%"></div></div>
+</div>
+<div class="metric-grid" id="metrics"></div>
+<div id="output"></div>
+<div class="run-info" id="run-info"></div>
+<script src="../js/icons.js"></script>
+<script>
+var R={pass:0,fail:0,warn:0,total:0},out=document.getElementById('output'),cs=null;
+function suite(n){cs=document.createElement('div');cs.className='suite';cs.innerHTML='<div class="suite-title">'+n+'</div>';out.appendChild(cs);}
+function test(n,f,detail){R.total++;var el=document.createElement('div');try{var r=f();R.pass++;el.className='test pass';el.innerHTML='<span class="badge">PASS</span><span class="test-name">'+n+'</span>'+(r?'<span class="test-detail">'+r+'</span>':'');}catch(e){if(e.warn){R.warn++;el.className='test warn';el.innerHTML='<span class="badge">WARN</span><span class="test-name">'+n+'</span><span class="test-detail">'+e.message+'</span>';}else{R.fail++;el.className='test fail';el.innerHTML='<span class="badge">FAIL</span><span class="test-name">'+n+'</span><span class="test-detail">'+e.message+'</span>';}}cs.appendChild(el);upd();}
+function asyncTest(n,prom){R.total++;var el=document.createElement('div');el.className='test';el.innerHTML='<span class="badge" style="background:#1e293b;color:#64748b">WAIT</span><span class="test-name">'+n+'</span>';cs.appendChild(el);upd();return prom.then(function(r){R.pass++;el.className='test pass';el.innerHTML='<span class="badge">PASS</span><span class="test-name">'+n+'</span>'+(r?'<span class="test-detail">'+r+'</span>':'');upd();}).catch(function(e){if(e&&e.warn){R.warn++;el.className='test warn';el.innerHTML='<span class="badge">WARN</span><span class="test-name">'+n+'</span><span class="test-detail">'+e.message+'</span>';}else{R.fail++;el.className='test fail';el.innerHTML='<span class="badge">FAIL</span><span class="test-name">'+n+'</span><span class="test-detail">'+(e?e.message:'Unknown error')+'</span>';}upd();});}
+function warn(msg){var e=new Error(msg);e.warn=true;throw e;}
+function upd(){document.getElementById('s-total').textContent=R.total;document.getElementById('s-pass').textContent=R.pass;document.getElementById('s-fail').textContent=R.fail;document.getElementById('s-warn').textContent=R.warn;var p=R.total>0?Math.round((R.pass/R.total)*100):0;document.getElementById('s-bar').style.width=p+'%';}
+function addMetric(label,val,unit,threshold,warnThreshold){var grid=document.getElementById('metrics');var c=document.createElement('div');c.className='metric-card';var status=val<=threshold?'good':val<=warnThreshold?'warn':'bad';var statusText=val<=threshold?'GOOD':val<=warnThreshold?'WARNING':'CRITICAL';c.innerHTML='<div class="metric-val">'+val+' <small style="font-size:.75rem;color:#64748b">'+unit+'</small></div><div class="metric-label">'+label+'</div><div class="metric-status '+status+'">'+statusText+'</div>';grid.appendChild(c);}
+
+// ===== SUITE 1: API Response Time =====
+suite('1. API Response Time');
+
+asyncTest('API /api/units first load < 500ms', function(){
+  var start=performance.now();
+  return fetch('/api/units').then(function(r){return r.json();}).then(function(){
+    var ms=Math.round(performance.now()-start);
+    addMetric('API First Load',ms,'ms',500,1000);
+    if(ms>1000)throw new Error(ms+'ms exceeds 1000ms critical threshold');
+    if(ms>500)warn(ms+'ms - acceptable but above 500ms target');
+    return ms+'ms response time';
+  });
+}());
+
+asyncTest('API /api/units 5x repeated calls consistent', function(){
+  var times=[];
+  var chain=Promise.resolve();
+  for(var i=0;i<5;i++){
+    chain=chain.then(function(){
+      var s=performance.now();
+      return fetch('/api/units').then(function(r){return r.json();}).then(function(){times.push(Math.round(performance.now()-s));});
+    });
+  }
+  return chain.then(function(){
+    var avg=Math.round(times.reduce(function(a,b){return a+b;},0)/times.length);
+    var max=Math.max.apply(null,times);
+    addMetric('API Avg (5 calls)',avg,'ms',500,1000);
+    addMetric('API Max (5 calls)',max,'ms',800,2000);
+    if(max>2000)throw new Error('Max response '+max+'ms exceeds 2000ms');
+    if(avg>1000)warn('Avg '+avg+'ms - above 1000ms target');
+    return 'avg:'+avg+'ms max:'+max+'ms min:'+Math.min.apply(null,times)+'ms';
+  });
+}());
+
+asyncTest('Static HTML load < 1000ms', function(){
+  var s=performance.now();
+  return fetch('/').then(function(r){return r.text();}).then(function(){
+    var ms=Math.round(performance.now()-s);
+    addMetric('HTML Static Load',ms,'ms',1000,2000);
+    if(ms>2000)throw new Error(ms+'ms too slow');
+    if(ms>1000)warn(ms+'ms above 1000ms target');
+    return ms+'ms';
+  });
+}());
+
+// ===== SUITE 2: DOM Rendering Performance =====
+suite('2. DOM Rendering Performance');
+
+test('100 icon injections < 50ms', function(){
+  var icons=Object.keys(window.GSIcons);
+  var start=performance.now();
+  var container=document.createElement('div');
+  document.body.appendChild(container);
+  for(var i=0;i<100;i++){
+    var span=document.createElement('span');
+    span.innerHTML=window.getIcon(icons[i%icons.length]);
+    container.appendChild(span);
+  }
+  var ms=Math.round(performance.now()-start);
+  container.remove();
+  addMetric('100 Icons Render',ms,'ms',50,100);
+  if(ms>100)throw new Error(ms+'ms too slow for 100 icon renders');
+  if(ms>50)warn(ms+'ms - above 50ms target');
+  return ms+'ms for 100 icons';
+});
+
+test('1000 DOM element creation < 200ms', function(){
+  var start=performance.now();
+  var frag=document.createDocumentFragment();
+  for(var i=0;i<1000;i++){
+    var el=document.createElement('div');
+    el.className='test-element';
+    el.textContent='Item '+i;
+    frag.appendChild(el);
+  }
+  var container=document.createElement('div');
+  document.body.appendChild(container);
+  container.appendChild(frag);
+  var ms=Math.round(performance.now()-start);
+  container.remove();
+  addMetric('1000 DOM Elements',ms,'ms',200,400);
+  if(ms>400)throw new Error(ms+'ms too slow');
+  if(ms>200)warn(ms+'ms above 200ms target');
+  return ms+'ms for 1000 elements';
+});
+
+test('JSON parse 1000x localStorage simulation < 100ms', function(){
+  var mockData={grammar:[],reading:[],listening:[],tests:[]};
+  for(var i=0;i<50;i++)mockData.grammar.push({id:i,nameAr:'وحدة '+i,nameEn:'Unit '+i,page:{strategies:[],quizzes:[]}});
+  var str=JSON.stringify(mockData);
+  var start=performance.now();
+  for(var j=0;j<1000;j++)JSON.parse(str);
+  var ms=Math.round(performance.now()-start);
+  addMetric('1000x JSON Parse',ms,'ms',100,200);
+  if(ms>200)throw new Error(ms+'ms too slow');
+  if(ms>100)warn(ms+'ms above 100ms target');
+  return ms+'ms for 1000 parses';
+});
+
+test('50-unit progress calculation < 5ms', function(){
+  var units=[];for(var i=0;i<50;i++)units.push(i);
+  var done=[1,3,5,7,9,11,13,15,17,19,21,23,25];
+  var start=performance.now();
+  for(var j=0;j<10000;j++){Math.round((done.length/units.length)*100);}
+  var ms=Math.round(performance.now()-start);
+  addMetric('10000x Progress Calc',ms,'ms',5,20);
+  if(ms>20)throw new Error(ms+'ms too slow');
+  if(ms>5)warn(ms+'ms above 5ms target');
+  return ms+'ms for 10000 calculations';
+});
+
+// ===== SUITE 3: Memory Usage =====
+suite('3. Memory Usage');
+
+test('Memory API available', function(){
+  if(!performance.memory){warn('performance.memory not available in this browser (Chrome only)');return 'N/A';}
+  var mb=Math.round(performance.memory.usedJSHeapSize/1048576);
+  addMetric('JS Heap Used',mb,'MB',50,100);
+  return mb+'MB used';
+});
+
+test('Icon system memory footprint', function(){
+  var icons=window.GSIcons;
+  var totalChars=Object.values(icons).reduce(function(a,b){return a+b.length;},0);
+  var kb=Math.round(totalChars/1024);
+  addMetric('Icon Strings Size',kb,'KB',50,100);
+  if(kb>100)throw new Error('Icons use '+kb+'KB - too large');
+  return kb+'KB for '+Object.keys(icons).length+' icons';
+});
+
+test('LocalStorage quota check', function(){
+  try{
+    var testKey='gs_quota_test';
+    var bigStr=new Array(1024*1024).join('x'); // 1MB
+    localStorage.setItem(testKey,bigStr);
+    localStorage.removeItem(testKey);
+    return 'localStorage supports 1MB+ strings';
+  }catch(e){
+    warn('localStorage quota may be limited: '+e.message);
+  }
+});
+
+// ===== SUITE 4: Concurrent API Calls =====
+suite('4. Concurrent API Calls (Stress Test)');
+
+asyncTest('10 concurrent API calls all succeed', function(){
+  var calls=[];
+  var start=performance.now();
+  for(var i=0;i<10;i++){calls.push(fetch('/api/units').then(function(r){return r.json();}));}
+  return Promise.all(calls).then(function(results){
+    var ms=Math.round(performance.now()-start);
+    addMetric('10 Concurrent API',ms,'ms',2000,5000);
+    if(results.length!==10)throw new Error('Not all 10 calls completed');
+    if(ms>5000)throw new Error('10 concurrent calls took '+ms+'ms - too slow');
+    if(ms>2000)warn('10 concurrent calls: '+ms+'ms - acceptable');
+    return '10 calls in '+ms+'ms';
+  });
+}());
+
+asyncTest('API data integrity under load', function(){
+  return Promise.all([fetch('/api/units').then(function(r){return r.json();}),fetch('/api/units').then(function(r){return r.json();}),fetch('/api/units').then(function(r){return r.json();})]).then(function(results){
+    var r1=JSON.stringify(results[0]);
+    var r2=JSON.stringify(results[1]);
+    var r3=JSON.stringify(results[2]);
+    if(r1!==r2||r2!==r3)throw new Error('API returns inconsistent data under concurrent load');
+    return 'All 3 concurrent calls returned identical data';
+  });
+}());
+
+// ===== SUITE 5: Render Large Dataset =====
+suite('5. Large Dataset Rendering Simulation');
+
+test('Render 50 strategy cards < 500ms', function(){
+  var container=document.createElement('div');
+  document.body.appendChild(container);
+  var start=performance.now();
+  for(var i=0;i<50;i++){
+    var card=document.createElement('div');
+    card.className='strategy-card';
+    card.innerHTML='<div class="sc-header"><span>'+window.getIcon('book')+'</span><div><div>Strategy '+i+'</div><div>Subtitle '+i+'</div></div></div>';
+    container.appendChild(card);
+  }
+  var ms=Math.round(performance.now()-start);
+  container.remove();
+  addMetric('50 Strategy Cards',ms,'ms',500,1000);
+  if(ms>1000)throw new Error(ms+'ms too slow for 50 cards');
+  if(ms>500)warn(ms+'ms above 500ms target');
+  return ms+'ms for 50 cards';
+});
+
+test('Quiz render with 20 questions < 100ms', function(){
+  var container=document.createElement('div');
+  document.body.appendChild(container);
+  var start=performance.now();
+  for(var i=0;i<20;i++){
+    var q=document.createElement('div');
+    q.className='quiz-q';
+    q.innerHTML='<div>Q'+i+': What is the correct answer?</div><div><button>A</button><button>B</button><button>C</button><button>D</button></div>';
+    container.appendChild(q);
+  }
+  var ms=Math.round(performance.now()-start);
+  container.remove();
+  addMetric('20 Quiz Questions',ms,'ms',100,200);
+  if(ms>200)throw new Error(ms+'ms too slow');
+  if(ms>100)warn(ms+'ms above 100ms target');
+  return ms+'ms for 20 questions';
+});
+
+// ===== SUITE 6: LocalStorage Performance =====
+suite('6. LocalStorage Read/Write Performance');
+
+test('Write 100 notes < 50ms', function(){
+  var start=performance.now();
+  var notes={};
+  for(var i=0;i<100;i++)notes['unit-'+i]='هذه ملاحظة للوحدة رقم '+i+' وتحتوي على نص عربي';
+  localStorage.setItem('gs_load_notes',JSON.stringify(notes));
+  var ms=Math.round(performance.now()-start);
+  localStorage.removeItem('gs_load_notes');
+  addMetric('100 Notes Write',ms,'ms',50,100);
+  if(ms>100)throw new Error(ms+'ms too slow');
+  if(ms>50)warn(ms+'ms above 50ms target');
+  return ms+'ms to write 100 notes';
+});
+
+test('Read + parse 100 notes < 20ms', function(){
+  var notes={};
+  for(var i=0;i<100;i++)notes['unit-'+i]='هذه ملاحظة للوحدة رقم '+i;
+  localStorage.setItem('gs_load_notes2',JSON.stringify(notes));
+  var start=performance.now();
+  var loaded=JSON.parse(localStorage.getItem('gs_load_notes2')||'{}');
+  var ms=Math.round(performance.now()-start);
+  localStorage.removeItem('gs_load_notes2');
+  addMetric('100 Notes Read',ms,'ms',20,50);
+  if(Object.keys(loaded).length!==100)throw new Error('Expected 100 notes, got '+Object.keys(loaded).length);
+  if(ms>50)throw new Error(ms+'ms too slow');
+  if(ms>20)warn(ms+'ms above 20ms target');
+  return ms+'ms to read 100 notes';
+});
+
+// Final
+setTimeout(function(){
+  var pct=R.total>0?Math.round((R.pass/R.total)*100):0;
+  var color=pct>=80?'#22c55e':pct>=60?'#eab308':'#ef4444';
+  document.getElementById('run-info').innerHTML='Load testing completed at '+new Date().toLocaleTimeString('ar-SA')+' | <strong style="color:'+color+'">'+pct+'%</strong> ('+R.pass+' pass / '+R.warn+' warn / '+R.fail+' fail / '+R.total+' total)';
+},5000);
+</script>
+</body>
+</html>
