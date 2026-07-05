@@ -77,6 +77,41 @@ function formatPassageText(text) {
 }
 
 // ── RENDER UNIT (dispatcher) ──────────────────────────────────
+// Shared "قاعدة" card used by grammar + listening strategies.
+// Splits the free-form body (lines separated by <br>) into rows;
+// short <strong> tokens (e.g. "s", "es", "goes") become a badge
+// pill on the trailing edge, mirroring a highlighted suffix/rule.
+const RULE_ROW_ICONS = ['👍', '⭐', '✏️', '📌', '🔎'];
+function renderRuleBox(exc) {
+  if (!exc) return '';
+  const title = (exc.title || '').replace(/^\s*⚠️\s*/, '');
+  const lines = (exc.body || '').split(/<br\s*\/?>/i).map(l => l.trim()).filter(Boolean);
+
+  const rowsHtml = lines.map((line, i) => {
+    const m = line.match(/<strong>(.*?)<\/strong>/i);
+    let badge = '', text = line;
+    if (m && m[1].replace(/<[^>]+>/g, '').trim().length <= 14 && !/\s/.test(m[1].replace(/<[^>]+>/g, '').trim())) {
+      badge = `<span class="rule-row-badge">${m[1]}</span>`;
+      text = (line.slice(0, m.index) + line.slice(m.index + m[0].length)).replace(/^[\s:،]+/, '').trim();
+    }
+    return `
+      <div class="rule-row">
+        <span class="rule-row-icon">${RULE_ROW_ICONS[i % RULE_ROW_ICONS.length]}</span>
+        <span class="rule-row-text">${text}</span>
+        ${badge}
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="rule-box">
+      <div class="rule-box-header">
+        <span class="rule-box-title">${title}</span>
+        <span class="rule-box-lamp">💡</span>
+      </div>
+      <div class="rule-box-rows">${rowsHtml}</div>
+    </div>`;
+}
+
 function renderUnit(unit) {
   const pc = $('page-content');
   if (GS.currentTrack === 'listening') {
