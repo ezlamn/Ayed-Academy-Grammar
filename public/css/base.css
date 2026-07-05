@@ -72,7 +72,6 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   min-height: 100vh;
-  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 .hidden { display: none !important; }
