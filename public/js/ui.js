@@ -79,16 +79,4 @@ function initNewFeatures() {
     }
   });
 
-  // 2. Scroll to Top FAB
-  const fabScroll = $('fab-scroll');
-  $('page-content').addEventListener('scroll', (e) => {
-    if (e.target.scrollTop > 300) {
-      fabScroll.classList.add('visible');
-    } else {
-      fabScroll.classList.remove('visible');
-    }
-  });
-  fabScroll.addEventListener('click', () => {
-    $('page-content').scrollTo({ top: 0, behavior: 'smooth' });
-  });
 }

@@ -76,6 +76,10 @@
     'skip-forward': '<polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/>',
     'play': '<polygon points="6 3 20 12 6 21 6 3"/>',
     'play-left': '<polygon points="18 3 4 12 18 21 18 3"/>',
+    'move-horizontal': '<polyline points="18 8 22 12 18 16"/><polyline points="6 8 2 12 6 16"/><line x1="2" y1="12" x2="22" y2="12"/>',
+    'diamond': '<path d="M12 2 22 12 12 22 2 12 12 2z"/>',
+    'bookmark': '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
+    'asterisk': '<path d="M12 6v12"/><path d="M17.2 9 6.8 15"/><path d="m6.8 9 10.4 6"/>',
     'alert': '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
     'shuffle': '<path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.8-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2"/><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8"/><path d="m18 14 4 4-4 4"/>',
     'link': '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
@@ -143,8 +147,8 @@
     '\u{1F4C5}': 'calendar', '\u{1F4C6}': 'calendar',
     '\u{1F550}': 'clock', '\u{1F551}': 'clock', '\u{1F552}': 'clock', '⏰': 'clock',
     '⏱': 'timer', '⏳': 'timer', '⌛': 'timer',
-    '⏸': 'pause', '⏭': 'skip-forward', '⏩': 'skip-forward',
-    '▶': 'play', '◀': 'play-left',
+    '⏸': 'pause', '⏭': 'skip-forward', '⏩': 'skip-forward', '⏪': 'play-left', '⏮': 'play-left',
+    '▶': 'play', '◀': 'play-left', '↔': 'move-horizontal',
     '⚠': 'alert',
     '\u{1F500}': 'shuffle',
     '\u{1F517}': 'link', '❓': 'help', '❔': 'help',
@@ -163,7 +167,9 @@
     '\u{1F4BE}': 'save',
     '⚙': 'settings',
     '\u{1F396}': 'medal', '\u{1F3C5}': 'medal', '\u{1F947}': 'medal',
-    '\u{1F3D7}': 'hammer', '\u{1F463}': 'footprints', '\u{1F9E9}': 'puzzle'
+    '\u{1F3D7}': 'hammer', '\u{1F463}': 'footprints', '\u{1F9E9}': 'puzzle',
+    '✳': 'asterisk', '\u{1F539}': 'diamond', '\u{1F538}': 'diamond', '\u{1F536}': 'diamond', '\u{1F537}': 'diamond',
+    '\u{1F516}': 'bookmark', '❎': 'x-circle'
   };
 
   // ── Build an <svg> markup string ─────────────────────────────
