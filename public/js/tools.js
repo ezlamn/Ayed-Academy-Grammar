@@ -28,13 +28,13 @@ function bindTools() {
     GS.ui.highlightMode = !GS.ui.highlightMode;
     GS.ui.eraserMode = false;
     updateToolState();
-    if (GS.ui.highlightMode) showToast('🖍️', 'حدد أي نص لتظليله');
+    if (GS.ui.highlightMode) showToast('highlighter', 'حدد أي نص لتظليله');
   };
   const doErase = () => {
     GS.ui.eraserMode = !GS.ui.eraserMode;
     GS.ui.highlightMode = false;
     updateToolState();
-    if (GS.ui.eraserMode) showToast('🧽', 'انقر على أي نص مُظلَّل لإزالته');
+    if (GS.ui.eraserMode) showToast('eraser', 'انقر على أي نص مُظلَّل لإزالته');
   };
   const doClearHl = () => {
     if (!confirm('مسح جميع التظليلات في هذا الدرس؟')) return;
@@ -42,7 +42,7 @@ function bindTools() {
     delete GS.student.highlights[uid];
     localStorage.setItem('gs_highlights', JSON.stringify(GS.student.highlights));
     loadUnit(GS.currentUnit);
-    showToast('🗑️', 'تم مسح التظليلات', 't-success');
+    showToast('trash', 'تم مسح التظليلات', 't-success');
   };
 
   hlBtn.addEventListener('click', doHighlight);
@@ -123,11 +123,11 @@ function updateToolState() {
 
   if (GS.ui.highlightMode) {
     modebar.classList.remove('hidden', 'eraser');
-    modeText.textContent = '🖍️  وضع التظليل مفعَّل — حدد أي نص لتظليله بالذهبي';
+    modeText.innerHTML = AyIcon.svg('highlighter') + '  وضع التظليل مفعَّل — حدد أي نص لتظليله بالذهبي';
   } else if (GS.ui.eraserMode) {
     modebar.classList.remove('hidden');
     modebar.classList.add('eraser');
-    modeText.textContent = '🧽  الممحاة مفعَّلة — انقر على أي نص مُظلَّل لإزالته';
+    modeText.innerHTML = AyIcon.svg('eraser') + '  الممحاة مفعَّلة — انقر على أي نص مُظلَّل لإزالته';
   } else {
     modebar.classList.add('hidden');
     modebar.classList.remove('eraser');

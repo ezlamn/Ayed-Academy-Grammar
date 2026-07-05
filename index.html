@@ -14,13 +14,20 @@
     rel="stylesheet">
 
   <!-- CSS — Organized Structure -->
-  <link rel="stylesheet" href="public/css/base.css?v=8" />
-  <link rel="stylesheet" href="public/css/layout.css?v=8" />
-  <link rel="stylesheet" href="public/css/components.css?v=8" />
-  <link rel="stylesheet" href="public/css/features.css?v=8" />
-  <link rel="stylesheet" href="public/css/tracks.css?v=8" />
-  <link rel="stylesheet" href="public/css/tree-diagram.css?v=8" />
-  <link rel="stylesheet" href="public/css/user-dashboard.css?v=8" />
+  <link rel="stylesheet" href="public/css/base.css"/>
+  <link rel="stylesheet" href="public/css/layout.css"/>
+  <link rel="stylesheet" href="public/css/components.css"/>
+  <link rel="stylesheet" href="public/css/features.css"/>
+  <link rel="stylesheet" href="public/css/tracks.css"/>
+  <link rel="stylesheet" href="public/css/tree-diagram.css"/>
+  <!-- Modern Soft theme — must load LAST to override -->
+  <link rel="stylesheet" href="public/css/theme-modern.css"/>
+  <link rel="stylesheet" href="public/css/interactive.css"/>
+  <link rel="stylesheet" href="public/css/engage.css"/>
+  <link rel="stylesheet" href="public/css/anim-explainer.css"/>
+
+  <!-- Icon System (SVG icons — replaces all emojis) -->
+  <script src="public/js/icons.js"></script>
 
   <!-- Firebase & External Scripts -->
   <script src="public/js/icons.js"></script>
@@ -48,11 +55,10 @@
       <div class="orb o4"></div>
     </div>
 
-    <!-- Name Entry (first-time) -->
-    <div class="splash-card" id="splash-name-screen">
-      <div class="splash-logo-wrap" style="text-align: center; margin-bottom: 1.5rem; display: flex; justify-content: center;">
-        <img src="public/assets/logo.svg" alt="أكاديمية عايد للتدريب" class="splash-logo-img" style="width: 100%; max-width: 280px; height: auto; object-fit: contain;">
-      </div>
+  <!-- Name Entry (first-time) -->
+  <div class="splash-card" id="splash-name-screen">
+    <div class="splash-logo-wrap">
+      <div class="splash-book" data-icon="book-open"></div>
       <div>
         <div class="splash-brand">أكاديمية عايد للتدريب</div>
         <div class="splash-brand-ar">كتاب STEP التفاعلي الشامل</div>
@@ -91,41 +97,78 @@
         <div class="s-stat"><span>100%</span> تفاعلي</div>
       </div>
     </div>
+    <h1 class="splash-headline">مرحباً بك في رحلة التعلم <i data-icon="graduation-cap"></i></h1>
+    <p class="splash-sub">أنشئ حساباً لحفظ تقدمك السحابي أو ادخل كزائر</p>
+
+    <!-- Welcome intro video (populated from data/config) -->
+    <div id="splash-video-slot"></div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login">تسجيل دخول</button>
+      <button class="auth-tab" id="tab-guest">دخول كزائر</button>
+    </div>
+
+    <div id="auth-login-form">
+      <input type="email" id="student-email" class="name-input" placeholder="البريد الإلكتروني"/>
+      <input type="password" id="student-password" class="name-input" placeholder="كلمة المرور" style="margin-top:0.5rem;"/>
+      <button class="splash-cta" id="splash-start-login" style="margin-top:1rem;">
+        <span>دخول / إنشاء حساب</span>
+      </button>
+    </div>
+
+    <div id="auth-guest-form" class="hidden">
+      <input type="text" id="student-name-input" class="name-input" placeholder="اكتب اسمك هنا..."/>
+      <button class="splash-cta" id="splash-start" style="margin-top:1rem;">
+        <span>دخول محلي (بدون حفظ سحابي)</span>
+      </button>
+    </div>
+    <div class="splash-stats-row">
+      <div class="s-stat"><span>12</span> وحدة</div>
+      <div class="s-divider"></div>
+      <div class="s-stat"><span>60+</span> تمريناً</div>
+      <div class="s-divider"></div>
+      <div class="s-stat"><span>100%</span> تفاعلي</div>
+    </div>
   </div>
 
   <!-- ============================================================
      MAIN DASHBOARD (Track Selection)
      ============================================================ -->
-  <div id="main-dashboard" class="hidden">
-    <div class="dash-header">
-      <div class="dash-logo" style="margin-bottom: 0.5rem; display: flex; justify-content: center;">
-        <img src="public/assets/logo.svg" alt="أكاديمية عايد للتدريب" class="dash-logo-img" style="height: 48px; max-width: 100%; width: auto; object-fit: contain;">
-      </div>
-      <div class="dash-title">كتاب STEP التفاعلي الشامل</div>
-      <div class="dash-subtitle">اختر القسم الذي تريد دراسته اليوم</div>
+<div id="main-dashboard" class="hidden">
+  <div class="dash-header">
+    <div class="dash-logo"><i data-icon="book-open"></i> عايد أكاديمي</div>
+    <div class="dash-title">منصة اختبار STEP المتكاملة</div>
+    <div class="dash-subtitle">اختر القسم الذي تريد دراسته اليوم</div>
+  </div>
+  <div class="dash-grid">
+    <div class="dash-card" data-track="grammar">
+      <div class="dash-icon" data-icon="book-open"></div>
+      <h3>استراتيجيات الجرامر</h3>
+      <p>شرح تفصيلي لقواعد اللغة الإنجليزية بأسلوب تفاعلي.</p>
     </div>
-    <div class="dash-grid">
-      <div class="dash-card" data-track="grammar">
-        <div class="dash-icon" data-icon="openBook"></div>
-        <h3>استراتيجيات الجرامر</h3>
-        <p>شرح تفصيلي لقواعد اللغة الإنجليزية بأسلوب تفاعلي.</p>
-      </div>
-      <div class="dash-card" data-track="reading">
-        <div class="dash-icon" data-icon="books"></div>
-        <h3>استراتيجيات الريدينق</h3>
-        <p>تدريب على فهم المقروء والتعامل مع القطع الطويلة.</p>
-      </div>
-      <div class="dash-card" data-track="listening">
-        <div class="dash-icon" data-icon="headphones"></div>
-        <h3>استراتيجيات الليسينيق</h3>
-        <p>تدريب على مهارات الاستماع والمحادثات الإنجليزية.</p>
-      </div>
-      <div class="dash-card" data-track="tests">
-        <div class="dash-icon" data-icon="note"></div>
-        <h3>محاكاة الاختبار (Mock Exam)</h3>
-        <p>اختبار شامل بمؤقت زمني يحاكي اختبار STEP الحقيقي.</p>
-      </div>
+    <div class="dash-card" data-track="reading">
+      <div class="dash-icon" data-icon="library"></div>
+      <h3>استراتيجيات الريدينق</h3>
+      <p>تدريب على فهم المقروء والتعامل مع القطع الطويلة.</p>
     </div>
+    <div class="dash-card" data-track="listening">
+      <div class="dash-icon" data-icon="headphones"></div>
+      <h3>استراتيجيات الليسينيق</h3>
+      <p>تدريب على مهارات الاستماع والمحادثات الإنجليزية.</p>
+    </div>
+    <div class="dash-card" data-track="tests">
+      <div class="dash-icon" data-icon="pen-line"></div>
+      <h3>محاكاة الاختبار (Mock Exam)</h3>
+      <p>اختبار شامل بمؤقت زمني يحاكي اختبار STEP الحقيقي.</p>
+    </div>
+  </div>
+  
+  <div id="analytics-container"></div>
+  
+  <div class="dash-footer">
+    <button id="dash-logout" class="dash-logout-btn">تسجيل الخروج</button>
+  </div>
+</div>
 
     <div id="analytics-container"></div>
 
@@ -240,192 +283,162 @@
   <!-- ============================================================
      MAIN APPLICATION (Learning UI)
      ============================================================ -->
-  <div id="app" class="hidden">
-    <button id="btn-back-dash" class="btn-back-dash" title="العودة للرئيسية" data-icon="home"></button>
+<div id="app" class="hidden">
+  <button id="btn-back-dash" class="btn-back-dash" title="العودة للرئيسية" data-icon="home"></button>
 
-    <!-- ── TOP BAR ── -->
-    <header class="topbar" id="topbar">
-      <div class="topbar-section topbar-left">
-        <button class="icon-btn" id="btn-menu" aria-label="القائمة">
-          <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-            <rect width="18" height="2" rx="1" fill="currentColor" />
-            <rect y="6" width="12" height="2" rx="1" fill="currentColor" />
-            <rect y="12" width="18" height="2" rx="1" fill="currentColor" />
-          </svg>
+  <!-- ── TOP BAR ── -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-section topbar-left">
+      <button class="icon-btn" id="btn-menu" aria-label="القائمة">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="12" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
+      </button>
+      <button class="dark-toggle" id="dark-toggle" title="تبديل الوضع الليلي" data-icon="moon"></button>
+      <div class="topbar-brand">
+        <span class="brand-icon" data-icon="book-open"></span>
+        <span class="brand-name">Grammar Strategies</span>
+      </div>
+    </div>
+
+    <div class="topbar-section topbar-center">
+      <div class="breadcrumb" id="breadcrumb">
+        <span id="bc-unit">الوحدة 1</span>
+        <span class="bc-sep">›</span>
+        <span id="bc-strat">الأزمنة</span>
+      </div>
+    </div>
+
+    <div class="topbar-section topbar-right">
+      <div class="student-chip" id="student-chip">
+        <div class="student-avatar" id="student-avatar">ط</div>
+        <span id="student-name-display">طالب</span>
+      </div>
+      <div class="progress-pill">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+        <span class="progress-label" id="progress-label">0 / 12</span>
+      </div>
+      <button class="icon-btn" id="btn-notes-top" aria-label="ملاحظاتي" title="ملاحظاتي" data-icon="pen-line"></button>
+    </div>
+  </header>
+
+  <!-- ── LAYOUT BODY ── -->
+  <div class="app-body">
+
+    <!-- ── LEFT SIDEBAR (Units Navigation) ── -->
+    <aside class="units-panel" id="units-panel">
+      <div class="panel-head">
+        <div class="panel-title"><i data-icon="library"></i> وحدات المنهج</div>
+        <div class="panel-progress-text" id="panel-progress-text">0% مكتمل</div>
+      </div>
+      <div class="panel-progress-bar">
+        <div class="panel-progress-inner" id="panel-progress-inner" style="width:0%"></div>
+      </div>
+      <!-- OVERALL PROGRESS TRACKER -->
+      <div style="padding: 1rem 1.25rem 0.5rem; display:none;" id="overall-prog-sidebar">
+        <div class="overall-bar-wrap">
+          <div class="overall-bar-fill" id="sidebar-overall-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Page content rendered here -->
+      <div class="page-content" id="page-content"></div>
+
+      <!-- Bottom Navigation -->
+      <div class="bottom-nav">
+        <button class="bottom-btn" id="btn-prev-unit">
+          <span data-icon="chevron-right"></span>
+          <span>الوحدة السابقة</span>
         </button>
-        <button class="dark-toggle" id="dark-toggle" title="تبديل الوضع الليلي" data-icon="moon"></button>
-        <div class="topbar-brand" style="display: flex; align-items: center; padding-left: 10px;">
-          <img src="public/assets/logo.svg" alt="Ayed Academy" class="topbar-logo-img" style="height: 28px; max-width: 100%; width: auto; object-fit: contain;">
-        </div>
+        <div class="bottom-unit-indicator" id="bottom-unit-indicator">1 / 12</div>
+        <button class="bottom-btn primary" id="btn-next-unit">
+          <span>الوحدة التالية</span>
+          <span data-icon="chevron-left"></span>
+        </button>
       </div>
 
-      <div class="topbar-section topbar-center">
-        <div class="breadcrumb" id="breadcrumb">
-          <span id="bc-unit">الوحدة 1</span>
-          <span class="bc-sep">›</span>
-          <span id="bc-strat">الأزمنة</span>
-        </div>
-      </div>
-
-      <div class="topbar-section topbar-right">
-        <div class="student-chip" id="student-chip">
-          <div class="student-avatar" id="student-avatar"></div>
-          <span id="student-name-display">طالب</span>
-        </div>
-        <div class="progress-pill">
-          <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-          <span class="progress-label" id="progress-label">0 / 12</span>
-        </div>
-        <button class="icon-btn" id="btn-notes-top" aria-label="ملاحظاتي" title="ملاحظاتي" data-icon="note"></button>
-      </div>
-    </header>
-
-    <!-- ── LAYOUT BODY ── -->
-    <div class="app-body">
-
-      <!-- ── LEFT SIDEBAR (Units Navigation) ── -->
-      <aside class="units-panel" id="units-panel">
-        <div class="panel-head">
-          <div class="panel-title" style="display:flex;align-items:center;gap:6px;"><span data-icon="books"
-              style="width:18px;"></span> وحدات المنهج</div>
-          <div class="panel-progress-text" id="panel-progress-text">0% مكتمل</div>
-        </div>
-        <div class="panel-progress-bar">
-          <div class="panel-progress-inner" id="panel-progress-inner" style="width:0%"></div>
-        </div>
-        <!-- OVERALL PROGRESS TRACKER -->
-        <div style="padding: 1rem 1.25rem 0.5rem; display:none;" id="overall-prog-sidebar">
-          <div class="overall-bar-wrap">
-            <div class="overall-bar-fill" id="sidebar-overall-fill" style="width: 0%;"></div>
-          </div>
-          <div style="text-align:center; font-size: 0.8rem; color: var(--gold); font-weight:700;"
-            id="sidebar-overall-lbl">الإنجاز الكلي: 0%</div>
-        </div>
-        <nav class="units-nav" id="units-nav"></nav>
-      </aside>
-
-      <!-- ── MOBILE OVERLAY ── -->
-      <div class="overlay hidden" id="overlay"></div>
-
-      <!-- ── MAIN CONTENT ── -->
-      <main class="content-area" id="content-area">
-        <!-- Active highlight / eraser bar -->
-        <div class="mode-bar hidden" id="mode-bar">
-          <span id="mode-bar-text">وضع التظليل مفعّل — حدد أي نص</span>
-          <button class="mode-bar-close" id="mode-bar-close">✕</button>
-        </div>
-
-        <!-- Page content rendered here -->
-        <div class="page-content" id="page-content"></div>
-
-        <!-- Bottom Navigation -->
-        <div class="bottom-nav">
-          <button class="bottom-btn" id="btn-prev-unit">
-            <span>▶</span>
-            <span>الوحدة السابقة</span>
-          </button>
-          <div class="bottom-unit-indicator" id="bottom-unit-indicator">1 / 12</div>
-          <button class="bottom-btn primary" id="btn-next-unit">
-            <span>الوحدة التالية</span>
-            <span>◀</span>
-          </button>
-        </div>
-      </main>
-
-      <!-- ── RIGHT TOOLBAR ── -->
-      <div class="right-toolbar">
-        <button class="rtool-btn" id="btn-highlight" title="تظليل النص" data-icon="highlighter"></button>
-        <button class="rtool-btn hidden" id="btn-eraser" title="ممحاة" data-icon="eraser"></button>
-        <button class="rtool-btn hidden" id="btn-clear-hl" title="مسح التظليل" data-icon="trash"></button>
-        <div class="rtool-divider"></div>
-        <button class="rtool-btn" id="btn-zoom-in" title="تكبير" data-icon="zoomIn"></button>
-        <button class="rtool-btn" id="btn-zoom-out" title="تصغير" data-icon="zoomOut"></button>
-      </div>
-
-    </div><!-- end app-body -->
-
-    <!-- ── MOBILE BOTTOM TOOLBAR ── -->
-    <div class="mobile-toolbar" id="mobile-toolbar">
-      <button class="rtool-btn" id="mob-btn-highlight" title="تظليل النص" data-icon="highlighter"></button>
-      <button class="rtool-btn hidden" id="mob-btn-eraser" title="ممحاة" data-icon="eraser"></button>
-      <button class="rtool-btn hidden" id="mob-btn-clear-hl" title="مسح التظليل" data-icon="trash"></button>
-      <div class="rtool-divider" style="width:1px;height:28px;"></div>
-      <button class="rtool-btn" id="mob-btn-zoom-in" title="تكبير" data-icon="zoomIn"></button>
-      <button class="rtool-btn" id="mob-btn-zoom-out" title="تصغير" data-icon="zoomOut"></button>
-      <div class="rtool-divider" style="width:1px;height:28px;"></div>
-      <button class="rtool-btn" id="mob-btn-notes" title="ملاحظاتي" data-icon="note"></button>
+    <!-- ── RIGHT TOOLBAR ── -->
+    <div class="right-toolbar">
+      <button class="rtool-btn" id="btn-highlight" title="تظليل النص" data-icon="highlighter"></button>
+      <button class="rtool-btn hidden" id="btn-eraser" title="ممحاة" data-icon="eraser"></button>
+      <button class="rtool-btn hidden" id="btn-clear-hl" title="مسح التظليل" data-icon="trash"></button>
+      <div class="rtool-divider"></div>
+      <button class="rtool-btn" id="btn-zoom-in" title="تكبير">＋</button>
+      <button class="rtool-btn" id="btn-zoom-out" title="تصغير">－</button>
     </div>
 
     <!-- ── SCROLL TO TOP FAB ── -->
     <button class="fab-scroll" id="fab-scroll" aria-label="العودة للأعلى" data-icon="upArrow"></button>
 
-    <!-- ── NOTES PANEL (slide-in) ── -->
-    <div class="notes-panel" id="notes-panel">
-      <div class="notes-panel-head">
-        <div class="notes-panel-title" style="display:flex;align-items:center;gap:6px;"><span data-icon="note"
-            style="width:18px;"></span> ملاحظاتي</div>
-        <button class="notes-close" id="notes-close">✕</button>
-      </div>
-      <div class="notes-unit-label" id="notes-unit-label">الوحدة الحالية</div>
-      <textarea class="notes-area" id="notes-area"
-        placeholder="اكتب ملاحظاتك وأفكارك هنا...&#10;&#10;كل ما تكتبه يحفظ تلقائياً لكل وحدة على حدة."></textarea>
-      <div class="notes-actions">
-        <button class="notes-save-btn" id="save-notes-btn">حفظ ✓</button>
-        <span class="notes-saved-indicator hidden" id="notes-saved">تم الحفظ ✓</span>
-      </div>
-    </div>
-    <div class="notes-overlay hidden" id="notes-overlay"></div>
-
-  </div><!-- end app -->
-
-  <!-- ── COMPREHENSIVE QUIZ MODAL ── -->
-  <div class="quiz-overlay hidden" id="quiz-overlay">
-    <div class="quiz-modal">
-      <div class="quiz-modal-header">
-        <div class="quiz-modal-meta">
-          <div class="quiz-unit-badge" id="quiz-unit-badge">الوحدة 1</div>
-          <div class="quiz-modal-title" style="display:flex;align-items:center;gap:6px;">الاختبار الشامل <span
-              data-icon="target" style="width:20px; color:var(--red);"></span></div>
-        </div>
-        <button class="quiz-close-btn" id="close-quiz">✕</button>
-      </div>
-      <div class="quiz-modal-body" id="quiz-body"></div>
-      <div class="quiz-modal-footer" id="quiz-footer">
-        <div class="quiz-counter" id="quiz-counter">0 / 0 سؤال</div>
-        <button class="quiz-submit-btn" id="quiz-submit">إنهاء الاختبار وعرض النتيجة</button>
-      </div>
-    </div>
+  <!-- ── MOBILE BOTTOM TOOLBAR ── -->
+  <div class="mobile-toolbar" id="mobile-toolbar">
+    <button class="rtool-btn" id="mob-btn-highlight" title="تظليل النص" data-icon="highlighter"></button>
+    <button class="rtool-btn hidden" id="mob-btn-eraser" title="ممحاة" data-icon="eraser"></button>
+    <button class="rtool-btn hidden" id="mob-btn-clear-hl" title="مسح التظليل" data-icon="trash"></button>
+    <div class="rtool-divider" style="width:1px;height:28px;"></div>
+    <button class="rtool-btn" id="mob-btn-zoom-in" title="تكبير">＋</button>
+    <button class="rtool-btn" id="mob-btn-zoom-out" title="تصغير">－</button>
+    <div class="rtool-divider" style="width:1px;height:28px;"></div>
+    <button class="rtool-btn" id="mob-btn-notes" title="ملاحظاتي" data-icon="pen-line"></button>
   </div>
 
-  <!-- ── TOAST ── -->
-  <div class="toast hidden" id="toast">
-    <span id="toast-icon"></span>
-    <span id="toast-msg"></span>
+  <!-- ── NOTES PANEL (slide-in) ── -->
+  <div class="notes-panel" id="notes-panel">
+    <div class="notes-panel-head">
+      <div class="notes-panel-title"><i data-icon="pen-line"></i> ملاحظاتي</div>
+      <button class="notes-close" id="notes-close">✕</button>
+    </div>
+    <div class="notes-unit-label" id="notes-unit-label">الوحدة الحالية</div>
+    <textarea class="notes-area" id="notes-area" placeholder="اكتب ملاحظاتك وأفكارك هنا...&#10;&#10;كل ما تكتبه يحفظ تلقائياً لكل وحدة على حدة."></textarea>
+    <div class="notes-actions">
+      <button class="notes-save-btn" id="save-notes-btn">حفظ ✓</button>
+      <span class="notes-saved-indicator hidden" id="notes-saved">تم الحفظ ✓</span>
+    </div>
   </div>
 
   <!-- ── CONFETTI ── -->
   <canvas id="confetti-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;"></canvas>
 
-  <!-- JS Modules — in dependency order -->
-  <script src="public/js/state.js"></script>
-  <script src="public/js/gamification.js"></script>
-  <script src="public/js/ui.js"></script>
-  <script src="public/js/auth.js"></script>
-  <script src="public/js/dashboard.js"></script>
-  <script src="public/js/units.js"></script>
-  <script src="public/js/tree-diagram.js"></script>
-  <script src="public/js/renderers.js"></script>
-  <script src="public/js/tools.js"></script>
-  <script src="public/js/quiz.js"></script>
-  <script src="public/js/app.js"></script>
+<!-- ── COMPREHENSIVE QUIZ MODAL ── -->
+<div class="quiz-overlay hidden" id="quiz-overlay">
+  <div class="quiz-modal">
+    <div class="quiz-modal-header">
+      <div class="quiz-modal-meta">
+        <div class="quiz-unit-badge" id="quiz-unit-badge">الوحدة 1</div>
+        <div class="quiz-modal-title">الاختبار الشامل <i data-icon="target"></i></div>
+      </div>
+      <button class="quiz-close-btn" id="close-quiz">✕</button>
+    </div>
+    <div class="quiz-modal-body" id="quiz-body"></div>
+    <div class="quiz-modal-footer" id="quiz-footer">
+      <div class="quiz-counter" id="quiz-counter">0 / 0 سؤال</div>
+      <button class="quiz-submit-btn" id="quiz-submit">إنهاء الاختبار وعرض النتيجة</button>
+    </div>
+  </div>
+</div>
 
-  <script>
-    // Inject SVGs on load
-    document.querySelectorAll('[data-icon]').forEach(el => {
-      const iconName = el.getAttribute('data-icon');
-      el.innerHTML = window.getIcon(iconName);
-    });
-  </script>
+<!-- ── TOAST ── -->
+<div class="toast hidden" id="toast">
+  <span id="toast-icon"></span>
+  <span id="toast-msg"></span>
+</div>
+
+<!-- ── CONFETTI ── -->
+<canvas id="confetti-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;"></canvas>
+
+<!-- JS Modules — in dependency order -->
+<script src="public/js/state.js"></script>
+<script src="public/js/gamification.js"></script>
+<script src="public/js/ui.js"></script>
+<script src="public/js/auth.js"></script>
+<script src="public/js/dashboard.js"></script>
+<script src="public/js/units.js"></script>
+<script src="public/js/anim-explainer.js"></script>
+<script src="public/js/tree-diagram.js"></script>
+<script src="public/js/renderers.js"></script>
+<script src="public/js/tools.js"></script>
+<script src="public/js/quiz.js"></script>
+<script src="public/js/interactive.js"></script>
+<script src="public/js/engage.js"></script>
+<script src="public/js/app.js"></script>
 </body>
 
 </html>

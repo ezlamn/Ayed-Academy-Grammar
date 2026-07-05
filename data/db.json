@@ -79,6 +79,28 @@
             },
             "practice": [
               {
+                "type": "fill",
+                "q": "✍️ He usually ___ to school by bus. (go)",
+                "answer": [
+                  "goes"
+                ],
+                "expl": "مع الفاعل المفرد (He) في المضارع البسيط نضيف es للفعل go → goes."
+              },
+              {
+                "type": "order",
+                "q": "🔀 رتّب الكلمات لتكوين جملة صحيحة:",
+                "tokens": [
+                  "She",
+                  "always",
+                  "drinks",
+                  "coffee",
+                  "in",
+                  "the",
+                  "morning"
+                ],
+                "expl": "المضارع البسيط: الفاعل المفرد (She) يأخذ الفعل + s، وظرف التكرار (always) يأتي قبل الفعل الأساسي."
+              },
+              {
                 "q": "We usually ....... in the library.",
                 "opts": [
                   "studies",
@@ -100,7 +122,9 @@
                 "c": 2,
                 "expl": "الفاعل مفرد (She) → نضيف es للفعل go: <strong>goes</strong>."
               }
-            ]
+            ],
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+            "tip": "استخدم الفعل المجرّد (base) مع <b>I / You / We / They</b>، وأضِف <b>s</b> أو <b>es</b> مع <b>He / She / It</b>."
           },
           {
             "id": "u1s2",
@@ -314,12 +338,21 @@
             "treeDiagram": {
               "groups": [
                 {
-                  "subjects": ["I", "he", "she", "it"],
+                  "subjects": [
+                    "I",
+                    "he",
+                    "she",
+                    "it"
+                  ],
                   "label": "المفرد",
                   "aux": "was"
                 },
                 {
-                  "subjects": ["you", "we", "they"],
+                  "subjects": [
+                    "you",
+                    "we",
+                    "they"
+                  ],
                   "label": "الجمع",
                   "aux": "were"
                 }
@@ -329,7 +362,9 @@
               "extraRows": [
                 {
                   "label": "الماضي التام",
-                  "subjects": ["All Subjects"],
+                  "subjects": [
+                    "All Subjects"
+                  ],
                   "aux": "had",
                   "formula": "+ V3",
                   "example": "Tom passed because he <strong>had revised</strong> well."
@@ -487,6 +522,12 @@
             ],
             "correct": 0,
             "expl": "5165151"
+          }
+        ],
+        "videos": [
+          {
+            "title": "فيديو تعريفي بالوحدة (عيّنة)",
+            "url": "https://www.w3schools.com/html/mov_bbb.mp4"
           }
         ]
       }
@@ -1959,7 +2000,14 @@
                 "expl": "أقل رقم مدون على الخريطة لمدينة ما هو 6.1 days.",
                 "imgUrl": "uploads/charts/chart_8_2.jpeg"
               }
-            ]
+            ],
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+          }
+        ],
+        "videos": [
+          {
+            "title": "فيديو تعريفي بالوحدة (عيّنة)",
+            "url": "https://www.w3schools.com/html/mov_bbb.mp4"
           }
         ]
       }
@@ -4478,7 +4526,8 @@
                 "ex": "لا تقم بالإجابة على الأسئلة الا بعد انتهاء المقطع"
               }
             ],
-            "practice": []
+            "practice": [],
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "L1S2",
@@ -4512,7 +4561,13 @@
             "practice": []
           }
         ],
-        "quizzes": []
+        "quizzes": [],
+        "videos": [
+          {
+            "title": "فيديو تعريفي بالوحدة (عيّنة)",
+            "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+          }
+        ]
       }
     },
     {
@@ -4980,5 +5035,8 @@
       }
     }
   ],
-  "tests": []
+  "tests": [],
+  "config": {
+    "introVideoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+  }
 }

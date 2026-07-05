@@ -16,6 +16,10 @@ const GS = {
     highlights: JSON.parse(localStorage.getItem('gs_highlights') || '{}'),
     xp: parseInt(localStorage.getItem('gs_xp') || '0', 10),
     level: parseInt(localStorage.getItem('gs_level') || '1', 10),
+    streak: parseInt(localStorage.getItem('gs_streak') || '0', 10),
+    bestStreak: parseInt(localStorage.getItem('gs_best_streak') || '0', 10),
+    lastActive: localStorage.getItem('gs_last_active') || '',
+    combo: 0,
   },
   ui: {
     highlightMode: false,

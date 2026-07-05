@@ -8,7 +8,14 @@ let _toastTimer;
 function showToast(icon = '', msg = '', cls = '') {
   const el = $('toast');
   el.className = 'toast ' + cls;
-  $('toast-icon').textContent = icon;
+  // icon may be an icon name (e.g. 'trophy') or a legacy emoji — both render as SVG
+  if (window.AyIcon && AyIcon.ICONS[icon]) {
+    $('toast-icon').innerHTML = AyIcon.svg(icon);
+  } else if (window.AyIcon) {
+    $('toast-icon').innerHTML = AyIcon.iconify(icon);
+  } else {
+    $('toast-icon').textContent = icon;
+  }
   $('toast-msg').textContent = msg;
   el.classList.remove('hidden');
   clearTimeout(_toastTimer);
@@ -55,45 +62,21 @@ function launchConfetti() {
 function initNewFeatures() {
   // 1. Dark Mode — null-safe (admin.html doesn't have dark-toggle)
   const darkToggle = $('dark-toggle');
-  if (darkToggle) {
-    const savedTheme = localStorage.getItem('gs_theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark-mode');
-      darkToggle.innerHTML = window.getIcon('sun');
+  const savedTheme = localStorage.getItem('gs_theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    darkToggle.innerHTML = AyIcon.svg('sun');
+  }
+
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('gs_theme', 'dark');
+      darkToggle.innerHTML = AyIcon.svg('sun');
     } else {
-      darkToggle.innerHTML = window.getIcon('moon');
+      localStorage.setItem('gs_theme', 'light');
+      darkToggle.innerHTML = AyIcon.svg('moon');
     }
+  });
 
-    darkToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark-mode');
-      if (document.documentElement.classList.contains('dark-mode')) {
-        localStorage.setItem('gs_theme', 'dark');
-        darkToggle.innerHTML = window.getIcon('sun');
-      } else {
-        localStorage.setItem('gs_theme', 'light');
-        darkToggle.innerHTML = window.getIcon('moon');
-      }
-    });
-  } else {
-    // Apply saved theme even without toggle (e.g. admin page)
-    if (localStorage.getItem('gs_theme') === 'dark') {
-      document.documentElement.classList.add('dark-mode');
-    }
-  }
-
-  // 2. Scroll to Top FAB — use direct element reference (more reliable than e.target)
-  const fabScroll = $('fab-scroll');
-  const pageContent = $('page-content');
-  if (fabScroll && pageContent) {
-    pageContent.addEventListener('scroll', () => {
-      if (pageContent.scrollTop > 300) {
-        fabScroll.classList.add('visible');
-      } else {
-        fabScroll.classList.remove('visible');
-      }
-    });
-    fabScroll.addEventListener('click', () => {
-      pageContent.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
 }

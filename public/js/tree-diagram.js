@@ -1,201 +1,146 @@
 /* ================================================================
-   TREE-DIAGRAM.JS — Visual Grammar Formula Tree Builder
-   Converts strategy.formulas data into Cambridge-style tree diagrams
+   TREE-DIAGRAM.JS — Infographic Grammar Poster Builder
+   Renders strategy.formulas as a poster-style infographic:
+   [icon] [subject chip] ⋯ [formula pill] │ [example]
+   + dashed tip banner (Arabic) at the bottom.
    Grammar Strategies — Ayed Academy
    ================================================================ */
 
 /**
  * renderTreeDiagram(strat)
- *
- * Reads strat.formulas (and optionally strat.treeDiagram) to build
- * a visual tree chart that mirrors the Cambridge/exam-style infographic.
- *
- * If strat.treeDiagram config exists → use it for full control.
- * Otherwise → fall back to auto-grouping the existing formulas array.
+ * Builds the full infographic board from strat.formulas.
+ * Row types are detected from the subject label:
+ *   - "Negative / نفي"   → green row with − icon
+ *   - "Question / سؤال"  → purple row with ? icon
+ *   - anything else       → blue subject row
  */
 function renderTreeDiagram(strat) {
-  // ── 1. If there's a rich treeDiagram config, use it ──────────
-  if (strat.treeDiagram) {
-    return buildFromConfig(strat.treeDiagram, strat.keywords);
-  }
+  const formulas = strat.formulas || [];
+  if (!formulas.length) return '';
 
-  // ── 2. Auto-group the existing formulas array ─────────────────
-  return buildFromFormulas(strat.formulas, strat.keywords);
-}
+  const subjIcons = ['👥', '👤', '🗣️', '✳️', '🔹', '🔸'];
+  const exIcons   = ['📖', '📅', '✏️', '🔖', '💬', '📌'];
+  let subjCount = 0;
 
-// ── BUILD FROM RICH CONFIG (treeDiagram key) ──────────────────
-function buildFromConfig(cfg, keywords) {
-  const numGroups = (cfg.groups || []).length;
-  
-  const groupsHtml = (cfg.groups || []).map(group => {
-    const auxWord = group.aux ? group.aux.toLowerCase().split(' ')[0] : 'generic';
-    return `
-      <div class="cg-group">
-        <div class="cg-subj">
-          <div class="cg-subj-list">${group.subjects.join('<span class="cg-comma">, </span>')}</div>
-          ${group.label ? `<div class="cg-subj-label">${group.label}</div>` : ''}
-        </div>
-        <div class="cg-line-hz"></div>
-        <div class="cg-aux aux-${auxWord}">${group.aux}</div>
-      </div>
-    `;
-  }).join('');
+  const rows = formulas.map(f => {
+    const type = tdxRowType(f.subj || '');
+    let icon, exIcon, aux = '', chipSub = '';
 
-  let braceHtml = '';
-  if (numGroups > 1) {
-    braceHtml = `
-      <div class="cg-brace-wrapper">
-        <div class="cg-brace"></div>
-      </div>
-    `;
-  } else {
-    braceHtml = `
-      <div class="cg-brace-wrapper" style="padding:0; margin: 0 0.5rem;">
-        <div class="cg-line-hz" style="width: 30px; align-self: center;"></div>
-      </div>
-    `;
-  }
+    if (type === 'neg') {
+      icon = '−'; exIcon = '❎';
+      aux = tdxAuxOf(f.form);
+      if (!/[؀-ۿ]/.test(f.subj)) chipSub = 'النفي';
+    } else if (type === 'q') {
+      icon = '?'; exIcon = '❓';
+      aux = tdxAuxOf(f.form);
+      if (!/[؀-ۿ]/.test(f.subj)) chipSub = 'السؤال';
+    } else {
+      icon = subjIcons[Math.min(subjCount, subjIcons.length - 1)];
+      exIcon = exIcons[subjCount % exIcons.length];
+      subjCount++;
+    }
 
-  // Formula pill
-  const formulaHtml = cfg.formula ? `
-    <div class="cg-formula">
-      ${cfg.formula
-        .replace(/\+/g, '<span class="cg-plus"> + </span>')
-        .replace(/\b(ing)\b/g, '<span class="cg-hl-ing">$1</span>')
-        .replace(/\b(V3|V2|ed)\b/g, '<span class="cg-hl-ed">$1</span>')}
-    </div>
-  ` : '';
-
-  // Example
-  const exHtml = cfg.example ? `
-    <div class="cg-example">
-      <span class="cg-ex-icon">💡</span>
-      <span class="cg-ex-text">${cfg.example}</span>
-    </div>
-  ` : '';
-
-  // Extra rows
-  const extraHtml = (cfg.extraRows || []).map(row => {
-    const auxWord = row.aux ? row.aux.toLowerCase() : 'generic';
-    const rowFormula = (row.formula || '')
-      .replace(/\+/g, '<span class="cg-plus"> + </span>')
-      .replace(/\b(ing)\b/g, '<span class="cg-hl-ing">$1</span>')
-      .replace(/\b(V3|V2|ed)\b/g, '<span class="cg-hl-ed">$1</span>');
-      
-    return `
-      <div class="cg-extra-row">
-        <div class="cg-extra-label">${row.label || ''}</div>
-        <div class="cg-extra-content">
-          <div class="cg-subj cg-small">${(row.subjects || []).join(', ')}</div>
-          <div class="cg-line-hz cg-short"></div>
-          <div class="cg-aux aux-${auxWord} cg-small">${row.aux}</div>
-          <div class="cg-line-hz cg-short"></div>
-          <div class="cg-formula cg-small">${rowFormula}</div>
-        </div>
-        ${row.example ? `
-          <div class="cg-example cg-small">
-            <span class="cg-ex-icon">💡</span>
-            <span class="cg-ex-text">${row.example}</span>
-          </div>
-        ` : ''}
-      </div>
-    `;
+    return tdxRow({
+      type, icon, exIcon, aux,
+      chip: f.subj || '',
+      chipSub,
+      form: f.form || '',
+      ex: f.ex || '',
+      note: f.note || ''
+    });
   }).join('');
 
   return `
-    <div class="cg-wrapper">
-      <div class="cg-header">
-        <span class="cg-header-icon" data-icon="gitBranch"></span>
-        <span class="cg-header-text">الخريطة الذهنية للقاعدة (Mind Map)</span>
-      </div>
-      
-      <div class="cg-container scroll-x">
-        <div class="cg-flow">
-          <div class="cg-groups">
-            ${groupsHtml}
-          </div>
-          
-          ${braceHtml}
-          
-          <div class="cg-result">
-            ${formulaHtml}
-            ${exHtml}
-          </div>
+    <div class="tdx-board">
+      ${tdxHeader(strat)}
+      <div class="tdx-rows" dir="ltr">${rows}</div>
+      ${tdxTip(strat)}
+    </div>
+  `;
+}
+
+// ── Row type from the subject label ───────────────────────────
+function tdxRowType(subj) {
+  const s = subj.toLowerCase();
+  if (s.includes('negative') || subj.includes('نفي')) return 'neg';
+  if (s.includes('question') || subj.includes('سؤال') || subj.includes('استفهام')) return 'q';
+  return 'subj';
+}
+
+// ── Extract the auxiliary chip (e.g. "do/does") from a formula ─
+function tdxAuxOf(form) {
+  const plain = tdxPlain(form);
+  if (!plain.includes('+')) return '';
+  const first = plain.split('+')[0].trim();
+  return (first.length > 0 && first.length <= 12) ? first : '';
+}
+
+function tdxPlain(html) {
+  return (html || '').replace(/<[^>]+>/g, '');
+}
+
+// ── Formula pill formatting: highlight endings, style the + ──
+function tdxFormatForm(form) {
+  return (form || '')
+    .replace(/<span class="s">([\s\S]*?)<\/span>/g, '<b class="tdx-hl">$1</b>')
+    .replace(/\+/g, '<span class="tdx-plus">+</span>');
+}
+
+// ── Poster header: "Present Simple" with accent last word ─────
+function tdxHeader(strat) {
+  const en = (strat.subtitle || '').trim();
+  if (!en) return '';
+  const words = en.split(/\s+/);
+  const last = words.length > 1 ? words.pop() : '';
+  return `
+    <div class="tdx-header">
+      <span class="tdx-flair" aria-hidden="true"><i></i><i></i><i></i></span>
+      <div class="tdx-title-wrap">
+        <div class="tdx-title" dir="ltr">
+          ${words.join(' ')}${last ? ` <span class="accent">${last}</span>` : ''}
+          <span class="tdx-spark" aria-hidden="true">✦</span>
         </div>
-        
-        ${extraHtml ? `<div class="cg-extras-container">${extraHtml}</div>` : ''}
+        <div class="tdx-title-underline"><i></i></div>
       </div>
     </div>
   `;
 }
 
-// ── BUILD AUTO FROM FORMULAS ARRAY ───────────────────────────
-function buildFromFormulas(formulas, keywords) {
-  if (!formulas || formulas.length === 0) return '';
-
-  // Group formulas into tree nodes (each formula = one row)
-  const rowsHtml = formulas.map(f => {
-    // Extract auxiliary verb from form string (was, were, have, has, had, will, am, is, are)
-    const auxMatch = f.form.match(/\b(was|were|have|has|had|will|am|is|are|did|do|does)\b/i);
-    const auxWord = auxMatch ? auxMatch[1].toLowerCase() : '';
-    const auxClass = auxWord || 'generic';
-
-    // Clean up the form for display
-    const formParts = f.form.replace(/<[^>]+>/g, '').split('+');
-    const mainAuxPart = formParts[0].trim();
-    const restOfFormula = formParts.slice(1).join(' + ').trim();
-    
-    // We create a uniform flex row for the mind map
-    return `
-      <div class="td-group-row" style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; width: 100%;">
-        <div class="td-subject-group" style="flex:0 0 120px; font-size:0.85rem; text-align:center; padding:0.6rem; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface2);">
-          ${f.subj.replace(/\//g, ' /<br>')}
-        </div>
-        
-        <div style="flex:0 0 20px; border-top:1.5px solid var(--gold-lt); position:relative;">
-          <div style="position:absolute; right:-4px; top:-4.5px; width:9px; height:9px; border-radius:50%; background:var(--gold-lt);"></div>
-        </div>
-        
-        ${auxWord ? `
-        <div class="td-aux ${auxClass}" style="flex:0 0 70px; padding:0.5rem; font-size:0.9rem; border-radius:var(--r-md);">
-          ${mainAuxPart}
-        </div>
-        <div style="flex:0 0 20px; border-top:1.5px solid var(--gold-lt); position:relative;">
-          <div style="position:absolute; right:-4px; top:-4.5px; width:9px; height:9px; border-radius:50%; background:var(--gold-lt);"></div>
-        </div>
-        ` : ''}
-        
-        <div style="flex:1; display:flex; flex-direction:column; gap:0.4rem;">
-          <div class="td-formula-pill" style="font-size:0.88rem; padding:0.38rem 0.85rem; align-self:flex-start; margin:0;">
-            ${f.form}
-          </div>
-          ${f.ex ? `<div class="td-example" style="margin:0; font-size:0.84rem;">${f.ex}</div>` : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
-
+// ── One poster row ─────────────────────────────────────────────
+function tdxRow(cfg) {
+  const hasExample = !!cfg.ex;
   return `
-    <div class="tree-formula-wrap">
-      <div class="tree-formula-title" style="margin-bottom: 1.5rem;">📌 التكوين الجرافيكي للقاعدة (Mind Map):</div>
-      <div class="tree-diagram" style="flex-direction:column; background:transparent; border:none; box-shadow:none; direction:ltr;">
-        <div class="td-tree" style="flex-direction:column; gap:0.5rem; padding:0; background:transparent;">
-          ${rowsHtml}
-        </div>
+    <div class="tdx-row tdx-${cfg.type}">
+      <div class="tdx-left">
+        <span class="tdx-badge">${cfg.icon}</span>
+        <span class="tdx-chip">${cfg.chip}${cfg.chipSub ? `<small>${cfg.chipSub}</small>` : ''}</span>
+        <span class="tdx-dots"></span>
+        ${cfg.aux ? `<span class="tdx-aux" dir="ltr">${cfg.aux}</span><span class="tdx-dots tdx-dots-sm"></span>` : ''}
+        <span class="tdx-pill" dir="ltr">${tdxFormatForm(cfg.form)}</span>
       </div>
+      ${hasExample ? `
+        <div class="tdx-sep"></div>
+        <div class="tdx-right">
+          <span class="tdx-ex-icon">${cfg.exIcon}</span>
+          <div class="tdx-ex-body">
+            <div class="tdx-ex" dir="ltr">${cfg.ex}</div>
+            ${cfg.note ? `<div class="tdx-note">${cfg.note}</div>` : ''}
+          </div>
+        </div>
+      ` : ''}
     </div>
   `;
 }
 
-// ── HELPER: Build a "Past Progressive" style tree (2-group split) ──
-// This is the IDEAL format for tenses with was/were or have/has split.
-// Teachers can use the treeDiagram key in db.json for this:
-//
-// "treeDiagram": {
-//   "groups": [
-//     { "subjects": ["I", "he", "she", "it"], "label": "المفرد", "aux": "was" },
-//     { "subjects": ["you", "we", "they"],    "label": "الجمع",  "aux": "were" }
-//   ],
-//   "formula": "+ verb + ing",
-//   "example": "While I <strong>was sleeping</strong>, he called me."
-// }
+// ── Dashed tip banner (Arabic) — uses strat.tip or strat.usage ─
+function tdxTip(strat) {
+  const tip = strat.tip || strat.usage;
+  if (!tip) return '';
+  return `
+    <div class="tdx-tip">
+      <span class="tdx-tip-icon">💡</span>
+      <div class="tdx-tip-text">${tip}</div>
+      <span class="tdx-tip-pen" aria-hidden="true">✍️</span>
+    </div>
+  `;
+}
