@@ -13,61 +13,6 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ==============================================================
-     1) MASCOT COMPANION
-     ============================================================== */
-  const Mascot = {
-    el: null, face: null, bubble: null, mood: 'idle', idleTimer: null, hideTimer: null,
-    LINES: {
-      greet: ['يلا بينا نتعلم! 💪', 'جاهز للوحدة دي؟ 🚀', 'أهلاً! خليك مركّز معايا 👀', 'النهارده هنكسر الدنيا! 🔥'],
-      correct: ['برافو! 👏', 'إجابة صح! 🎯', 'شاطر! كمّل 💯', 'ماشي يا وحش! 🦾', 'تمام التمام ✅'],
-      wrong: ['معلش، جرّب تاني 💛', 'قريب! ركّز شوية 🤏', 'الغلط بيعلّم — كمّل! 🌱', 'متزعلش، تاني 💪'],
-      combo: ['كومبو نار! 🔥🔥', 'ما تقفش! ⚡', 'مستحيل تتوقف 🚀', 'أنت في الزون! 🌟'],
-      level: ['مستوى جديد! 🎉', 'بتكبر بسرعة! 🏆', 'ليفل أب! 💎'],
-      idle: ['تعرف تفتح خريطة الرحلة من 🗺️؟', 'جرّب لعبة المطابقة من 🎮', 'كل إجابة سريعة = نقاط أكتر ⚡', 'راجع كلماتك من 🔁', 'خليك مواظب عشان السلسلة 🔥', 'دوس على كلمة عشان ترجمتها 👆']
-    },
-    pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; },
-    mount() {
-      if (this.el) return;
-      const wrap = document.createElement('div');
-      wrap.id = 'nb-mascot';
-      wrap.className = 'nb-mascot';
-      wrap.innerHTML = `
-        <div class="nb-mascot-bubble" id="nb-mascot-bubble"></div>
-        <button class="nb-mascot-body" id="nb-mascot-body" title="مساعدك" aria-label="المساعد">
-          <span class="nb-mascot-face">🦉</span>
-        </button>`;
-      document.body.appendChild(wrap);
-      this.el = wrap;
-      this.face = wrap.querySelector('.nb-mascot-face');
-      this.bubble = wrap.querySelector('#nb-mascot-bubble');
-      wrap.querySelector('#nb-mascot-body').addEventListener('click', () => this.say(this.pick(this.LINES.idle), 'idle'));
-      this.scheduleIdle();
-    },
-    say(text, mood = 'idle', ms = 3600) {
-      if (!this.bubble) return;
-      this.bubble.textContent = text;
-      this.bubble.classList.add('show');
-      this.el.classList.remove('happy', 'sad', 'hype');
-      if (mood === 'correct' || mood === 'level') this.el.classList.add('happy');
-      else if (mood === 'wrong') this.el.classList.add('sad');
-      else if (mood === 'combo') this.el.classList.add('hype');
-      clearTimeout(this.hideTimer);
-      this.hideTimer = setTimeout(() => { this.bubble.classList.remove('show'); this.el.classList.remove('happy', 'sad', 'hype'); }, ms);
-      this.scheduleIdle();
-    },
-    react(kind) {
-      const map = { correct: 'correct', wrong: 'wrong', combo: 'combo', level: 'level', greet: 'greet' };
-      const k = map[kind] || 'idle';
-      this.say(this.pick(this.LINES[k]), k);
-    },
-    scheduleIdle() {
-      clearTimeout(this.idleTimer);
-      this.idleTimer = setTimeout(() => { this.say(this.pick(this.LINES.idle), 'idle'); }, 35000);
-    }
-  };
-  window.Mascot = Mascot;
-
-  /* ==============================================================
      2) MOTION EVERYWHERE
      ============================================================== */
   // Scroll-reveal: stagger direct children of page-content into view
@@ -136,8 +81,6 @@
         pc.classList.add(dir > 0 ? 'nb-slide-in-r' : 'nb-slide-in-l');
       }
       afterRender();
-      // Mascot greets on unit change
-      if (window.Mascot && window.Mascot.el) setTimeout(() => Mascot.react('greet'), 400);
     };
     wrapped.__wrapped = true;
     window.loadUnit = wrapped;
@@ -155,22 +98,6 @@
     const wrapped = function () { const r = orig.apply(this, arguments); afterRender(); return r; };
     wrapped.__wrapped = true;
     window.bindInteractiveElements = wrapped;
-  }
-
-  // Wrap registerAnswer so the mascot reacts
-  function wrapRegisterAnswer() {
-    if (typeof window.registerAnswer !== 'function' || window.registerAnswer.__wrapped) return;
-    const orig = window.registerAnswer;
-    const wrapped = function (correct, event) {
-      orig.apply(this, arguments);
-      if (window.Mascot && window.Mascot.el) {
-        const combo = (typeof GS !== 'undefined' && GS.student) ? GS.student.combo : 0;
-        if (correct && combo >= 3) Mascot.react('combo');
-        else Mascot.react(correct ? 'correct' : 'wrong');
-      }
-    };
-    wrapped.__wrapped = true;
-    window.registerAnswer = wrapped;
   }
 
   /* ==============================================================
