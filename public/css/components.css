@@ -65,7 +65,7 @@
 /* Content Side */
 .sc-content { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
 .usage-banner { background: linear-gradient(135deg, rgba(0,180,216,0.07), rgba(0,180,216,0.02)); border: 1px solid rgba(0,180,216,0.2); border-radius: var(--r-md); padding: 1rem 1.25rem; font-size: 0.97rem; line-height: 1.7; color: var(--text-sec); display: flex; gap: 0.75rem; align-items: flex-start; }
-.usage-banner::before { content: '💡'; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.usage-banner::before { content: ''; width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B4D8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3Cpath d='M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; }
 
 /* ── FORMULA BLOCKS ── */
 .formula-visual-wrap { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }

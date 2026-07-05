@@ -123,7 +123,8 @@
                 "expl": "الفاعل مفرد (She) → نضيف es للفعل go: <strong>goes</strong>."
               }
             ],
-            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+            "tip": "استخدم الفعل المجرّد (base) مع <b>I / You / We / They</b>، وأضِف <b>s</b> أو <b>es</b> مع <b>He / She / It</b>."
           },
           {
             "id": "u1s2",

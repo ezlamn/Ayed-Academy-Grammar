@@ -8,7 +8,14 @@ let _toastTimer;
 function showToast(icon = '', msg = '', cls = '') {
   const el = $('toast');
   el.className = 'toast ' + cls;
-  $('toast-icon').textContent = icon;
+  // icon may be an icon name (e.g. 'trophy') or a legacy emoji — both render as SVG
+  if (window.AyIcon && AyIcon.ICONS[icon]) {
+    $('toast-icon').innerHTML = AyIcon.svg(icon);
+  } else if (window.AyIcon) {
+    $('toast-icon').innerHTML = AyIcon.iconify(icon);
+  } else {
+    $('toast-icon').textContent = icon;
+  }
   $('toast-msg').textContent = msg;
   el.classList.remove('hidden');
   clearTimeout(_toastTimer);
