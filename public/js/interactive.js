@@ -557,3 +557,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fallback: inject once the topbar exists in the DOM
   setTimeout(() => { if (document.querySelector('.topbar-left')) nbInjectTopbarButtons(); }, 600);
 });
+
+// ── COLLAPSIBLE STRATEGY CARDS ────────────────────────────────
+// All strategy sections render closed (sc-collapsed); clicking the
+// header/banner toggles them open. Works across grammar, reading
+// and listening tracks via event delegation.
+document.addEventListener('click', (e) => {
+  const head = e.target.closest && e.target.closest('.sc-header, .rd-strategy-banner, .ls-strategy-banner');
+  if (!head) return;
+  const card = head.closest('.strategy-card, .rd-strategy-section, .ls-strategy-section');
+  if (card) card.classList.toggle('sc-collapsed');
+});
