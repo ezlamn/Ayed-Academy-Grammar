@@ -28,9 +28,13 @@
 .strategy-card.sc-collapsed .sc-header { border-bottom: none; }
 
 /* ── STRATEGY CARD ── */
-.strategy-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); margin-bottom: 2rem; overflow: hidden; box-shadow: var(--sh-sm); transition: box-shadow 0.3s; }
+/* No overflow:hidden here on purpose — it would trap position:sticky
+   descendants (.sc-keywords) inside a non-scrolling box. Corners are
+   rounded explicitly on the edge children instead (below). */
+.strategy-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); margin-bottom: 2rem; box-shadow: var(--sh-sm); transition: box-shadow 0.3s; }
 .strategy-card:hover { box-shadow: var(--sh-md); }
-.sc-header { padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); }
+.sc-header { padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); border-start-start-radius: var(--r-xl); border-start-end-radius: var(--r-xl); }
+.strategy-card.sc-collapsed .sc-header { border-end-start-radius: var(--r-xl); border-end-end-radius: var(--r-xl); }
 .sc-header-icon { font-size: 1.5rem; }
 .sc-header-texts { flex: 1; }
 .sc-title { font-size: 1.1rem; font-weight: 800; }
@@ -58,10 +62,16 @@
 .sc-theme-red .sc-badge { background: rgba(255,255,255,0.15); color: #fff; }
 
 .sc-body { display: grid; grid-template-columns: 240px 1fr; }
-@media (max-width: 780px) { .sc-body { grid-template-columns: 1fr; } }
+@media (max-width: 780px) { .sc-body { grid-template-columns: 1fr; } .sc-keywords { position: static; } }
 
-/* Keywords Sidebar */
-.sc-keywords { background: var(--navy); padding: 1.25rem; border-left: 1px solid rgba(255,255,255,0.06); }
+/* Keywords Sidebar — stays pinned in view while the (usually taller)
+   rule content on the other side scrolls past it. */
+.sc-keywords {
+  background: var(--navy); padding: 1.25rem; border-left: 1px solid rgba(255,255,255,0.06);
+  border-end-start-radius: var(--r-xl);
+  position: sticky; top: 1rem; align-self: start;
+}
+.sc-content { border-end-end-radius: var(--r-xl); }
 .sc-keywords-title { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
 .kw-grid { display: flex; flex-direction: column; gap: 0.6rem; }
 

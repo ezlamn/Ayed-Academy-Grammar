@@ -175,12 +175,7 @@ function renderStrategy(strat, si) {
 
   const formulaHtml = (strat.formulas && strat.formulas.length > 0) ? renderTreeDiagram(strat) : '';
 
-  const exHtml = strat.exception ? `
-    <div class="exception-box">
-      <div class="ex-title">${strat.exception.title}</div>
-      <div class="ex-body">${strat.exception.body}</div>
-    </div>
-  ` : '';
+  const exHtml = renderRuleBox(strat.exception);
 
   const letters = ['A', 'B', 'C', 'D'];
   const practiceHtml = (strat.practice && strat.practice.length > 0) ? `
@@ -444,12 +439,7 @@ function renderListeningStrategy(s, si) {
         </div>
         ${s.videoUrl ? renderVideoBox(s.videoUrl, '🎬 شرح بالفيديو') : ''}
         <div class="ls-usage-box">${s.usage}</div>
-        ${s.exception ? `
-          <div class="ls-exception-box">
-            <div class="ls-exception-title">${s.exception.title}</div>
-            <div class="ls-exception-body">${s.exception.body}</div>
-          </div>
-        ` : ''}
+        ${renderRuleBox(s.exception)}
         ${practiceQs}
       </div>
     `;
@@ -474,12 +464,7 @@ function renderListeningStrategy(s, si) {
           `).join('')}
         </div>
       ` : ''}
-      ${s.exception ? `
-        <div class="ls-exception-box">
-          <div class="ls-exception-title">${s.exception.title}</div>
-          <div class="ls-exception-body">${s.exception.body}</div>
-        </div>
-      ` : ''}
+      ${renderRuleBox(s.exception)}
       ${s.practice && s.practice.length > 0 ? `
         <div class="mini-quiz-wrap" style="margin-top:1.5rem;">
           <div class="mini-quiz-header"><span>💡</span> جرّب بنفسك! <span class="mq-badge">تدريب</span></div>
