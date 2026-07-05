@@ -4,6 +4,11 @@
    Grammar Strategies — Ayed Academy
    ================================================================ */
 
+// ── COLLAPSE CARET (strategy cards are collapsed by default) ──
+function scCaret() {
+  return `<span class="sc-caret">${window.AyIcon ? AyIcon.svg('chevron-left') : ''}</span>`;
+}
+
 // ── VIDEO EMBED HELPER ────────────────────────────────────────
 // Supports YouTube, Vimeo, and direct uploaded files (mp4/webm/ogg).
 function getVideoEmbed(url) {
@@ -190,14 +195,15 @@ function renderStrategy(strat, si) {
   const ruleLocked = hasAnim && typeof axIsWatched === 'function' && !axIsWatched(strat.id);
 
   return `
-    <div class="strategy-card ${strat.theme} animate-in" id="${strat.id}" style="animation-delay:${si * 0.07}s">
-      <div class="sc-header">
+    <div class="strategy-card ${strat.theme} animate-in sc-collapsed" id="${strat.id}" style="animation-delay:${si * 0.07}s">
+      <div class="sc-header" title="اضغط للفتح / الإغلاق">
         <span class="sc-header-icon">${strat.icon}</span>
         <div class="sc-header-texts">
           <div class="sc-title">${strat.title}</div>
           <div class="sc-subtitle">${strat.subtitle}</div>
         </div>
         <span class="sc-badge">${strat.badge}</span>
+        ${scCaret()}
       </div>
       ${animHtml}
       <div class="sc-body${ruleLocked ? ' ax-locked' : ''}">
@@ -240,10 +246,11 @@ function renderReadingUnit(unit) {
 
   (p.strategies || []).forEach((s, si) => {
     html += `
-      <div class="rd-strategy-section" id="${s.id}" style="animation-delay:${si * 0.07}s">
-        <div class="rd-strategy-banner ${s.theme}">
+      <div class="rd-strategy-section sc-collapsed" id="${s.id}" style="animation-delay:${si * 0.07}s">
+        <div class="rd-strategy-banner ${s.theme}" title="اضغط للفتح / الإغلاق">
           <span>${s.icon}</span> ${s.title}
           <span class="rd-strategy-subtitle">${s.subtitle}</span>
+          ${scCaret()}
         </div>
         ${s.videoUrl ? renderVideoBox(s.videoUrl, '🎬 شرح بالفيديو') : ''}
         <div class="rd-usage-box">${s.usage.replace(/\\n/g, '<br>')}</div>
@@ -394,10 +401,11 @@ function renderListeningStrategy(s, si) {
     }).join('');
 
     return `
-      <div class="ls-strategy-section animate-in" id="${s.id}" style="animation-delay:${si * 0.07}s">
-        <div class="ls-strategy-banner ${s.theme}">
+      <div class="ls-strategy-section animate-in sc-collapsed" id="${s.id}" style="animation-delay:${si * 0.07}s">
+        <div class="ls-strategy-banner ${s.theme}" title="اضغط للفتح / الإغلاق">
           <span>${s.icon}</span> ${s.title}
           <span class="ls-strategy-subtitle">${s.subtitle}</span>
+          ${scCaret()}
         </div>
         ${s.videoUrl ? renderVideoBox(s.videoUrl, '🎬 شرح بالفيديو') : ''}
         <div class="ls-usage-box">${s.usage}</div>
@@ -413,10 +421,11 @@ function renderListeningStrategy(s, si) {
   }
 
   return `
-    <div class="ls-strategy-section animate-in" id="${s.id}" style="animation-delay:${si * 0.07}s">
-      <div class="ls-strategy-banner ${s.theme}">
+    <div class="ls-strategy-section animate-in sc-collapsed" id="${s.id}" style="animation-delay:${si * 0.07}s">
+      <div class="ls-strategy-banner ${s.theme}" title="اضغط للفتح / الإغلاق">
         <span>${s.icon}</span> ${s.title}
         <span class="ls-strategy-subtitle">${s.subtitle}</span>
+        ${scCaret()}
       </div>
       <div class="ls-usage-box">${s.usage}</div>
       ${s.keywords && s.keywords.length > 0 ? `

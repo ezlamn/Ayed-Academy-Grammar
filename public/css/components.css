@@ -17,6 +17,16 @@
 .unit-h-en { font-family: var(--ff-en); font-size: 1rem; color: rgba(255,255,255,0.45); }
 .unit-h-mascot { font-size: 4.5rem; opacity: 0.9; flex-shrink: 0; }
 
+/* ── COLLAPSIBLE STRATEGY SECTIONS (closed by default) ── */
+.sc-header, .rd-strategy-banner, .ls-strategy-banner { cursor: pointer; user-select: none; }
+.sc-caret { display: inline-flex; align-items: center; justify-content: center; opacity: 0.75; font-size: 1.1rem; transition: transform 0.3s ease; }
+.rd-strategy-banner .sc-caret, .ls-strategy-banner .sc-caret { margin-inline-start: auto; }
+.strategy-card:not(.sc-collapsed) .sc-header .sc-caret,
+.rd-strategy-section:not(.sc-collapsed) .rd-strategy-banner .sc-caret,
+.ls-strategy-section:not(.sc-collapsed) .ls-strategy-banner .sc-caret { transform: rotate(-90deg); }
+.sc-collapsed > *:not(.sc-header):not(.rd-strategy-banner):not(.ls-strategy-banner) { display: none !important; }
+.strategy-card.sc-collapsed .sc-header { border-bottom: none; }
+
 /* ── STRATEGY CARD ── */
 .strategy-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); margin-bottom: 2rem; overflow: hidden; box-shadow: var(--sh-sm); transition: box-shadow 0.3s; }
 .strategy-card:hover { box-shadow: var(--sh-md); }
