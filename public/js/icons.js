@@ -259,8 +259,8 @@
     st.id = 'ay-icons-style';
     st.textContent =
       '.ay-ic{width:1.1em;height:1.1em;display:inline-block;vertical-align:-0.18em;flex-shrink:0;}' +
-      '.ay-ic-wrap{display:inline-flex;align-items:center;justify-content:center;line-height:1;}' +
-      '[data-icon]{display:inline-flex;align-items:center;justify-content:center;line-height:1;font-style:normal;}';
+      '.ay-ic-wrap{display:inline-flex;align-items:center;justify-content:center;line-height:1;vertical-align:-0.18em;}' +
+      'i[data-icon],span[data-icon]{font-style:normal;line-height:1;}';
     (document.head || document.documentElement).appendChild(st);
   }
 
