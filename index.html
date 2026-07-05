@@ -16,6 +16,11 @@
   <link rel="stylesheet" href="public/css/features.css"/>
   <link rel="stylesheet" href="public/css/tracks.css"/>
   <link rel="stylesheet" href="public/css/tree-diagram.css"/>
+  <!-- Modern Soft theme — must load LAST to override -->
+  <link rel="stylesheet" href="public/css/theme-modern.css"/>
+  <link rel="stylesheet" href="public/css/interactive.css"/>
+  <link rel="stylesheet" href="public/css/engage.css"/>
+  <link rel="stylesheet" href="public/css/anim-explainer.css"/>
 
   <!-- Firebase & External Scripts -->
   <script type="module" src="public/firebase-config.js"></script>
@@ -46,7 +51,10 @@
     </div>
     <h1 class="splash-headline">مرحباً بك في رحلة التعلم 🎓</h1>
     <p class="splash-sub">أنشئ حساباً لحفظ تقدمك السحابي أو ادخل كزائر</p>
-    
+
+    <!-- Welcome intro video (populated from data/config) -->
+    <div id="splash-video-slot"></div>
+
     <div class="auth-tabs">
       <button class="auth-tab active" id="tab-login">تسجيل دخول</button>
       <button class="auth-tab" id="tab-guest">دخول كزائر</button>
@@ -285,10 +293,13 @@
 <script src="public/js/auth.js"></script>
 <script src="public/js/dashboard.js"></script>
 <script src="public/js/units.js"></script>
+<script src="public/js/anim-explainer.js"></script>
 <script src="public/js/tree-diagram.js"></script>
 <script src="public/js/renderers.js"></script>
 <script src="public/js/tools.js"></script>
 <script src="public/js/quiz.js"></script>
+<script src="public/js/interactive.js"></script>
+<script src="public/js/engage.js"></script>
 <script src="public/js/app.js"></script>
 </body>
 </html>

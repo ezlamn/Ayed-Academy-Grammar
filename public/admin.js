@@ -101,7 +101,7 @@ function openAddUnitModal() {
   currentUnit = {
     id: db.length > 0 ? Math.max(...db.map(u=>u.id||0)) + 1 : 1,
     emoji: '📝', nameAr: '', nameEn: '', color: '#3B82F6',
-    page: { tag: '', mascot: '🎓', strategies: [], quizzes: [] }
+    page: { tag: '', mascot: '🎓', strategies: [], quizzes: [], videos: [] }
   };
   populateUnitForm();
   document.getElementById('unit-modal').classList.remove('hidden');
@@ -130,9 +130,48 @@ function populateUnitForm() {
   document.getElementById('unit-name-ar').value = currentUnit.nameAr || '';
   document.getElementById('unit-name-en').value = currentUnit.nameEn || '';
   document.getElementById('unit-tag').value = currentUnit.page.tag || '';
+  if (!currentUnit.page.videos) currentUnit.page.videos = [];
+  renderVideosNestedList();
   renderStrategiesNestedList();
   renderQuizzesNestedList(); // Assuming simple implementation for now
 }
+
+// ── UNIT VIDEO LIBRARY ──
+function renderVideosNestedList() {
+  const container = document.getElementById('videos-list');
+  if (!container) return;
+  container.innerHTML = '';
+  (currentUnit.page.videos || []).forEach((v, i) => {
+    const el = document.createElement('div');
+    el.className = 'list-item';
+    el.innerHTML = `
+      <div><strong>🎬 ${v.title || 'فيديو'}</strong><br><small style="color:gray" dir="ltr">${v.url}</small></div>
+      <button class="btn btn-danger btn-sm" onclick="deleteVideo(${i})">🗑️</button>
+    `;
+    container.appendChild(el);
+  });
+}
+window.deleteVideo = (index) => {
+  currentUnit.page.videos.splice(index, 1);
+  renderVideosNestedList();
+};
+document.getElementById('add-video-btn').addEventListener('click', () => {
+  const title = prompt('عنوان الفيديو:'); if (title === null) return;
+  const url = prompt('رابط الفيديو (يوتيوب / Vimeo / ملف مرفوع):'); if (!url) return;
+  if (!currentUnit.page.videos) currentUnit.page.videos = [];
+  currentUnit.page.videos.push({ title: title.trim(), url: url.trim() });
+  renderVideosNestedList();
+});
+
+// ── WELCOME INTRO VIDEO (global config) ──
+document.getElementById('intro-video-btn').addEventListener('click', () => {
+  if (!ALL_DATA.config) ALL_DATA.config = {};
+  const current = ALL_DATA.config.introVideoUrl || '';
+  const url = prompt('رابط فيديو الترحيب على شاشة الدخول (يوتيوب / Vimeo / ملف مرفوع).\nاتركه فارغاً لإخفائه:', current);
+  if (url === null) return;
+  ALL_DATA.config.introVideoUrl = url.trim();
+  showToast(url.trim() ? 'تم تعيين فيديو الترحيب — اضغط حفظ ✅' : 'تم إزالة فيديو الترحيب — اضغط حفظ');
+});
 
 function saveUnit() {
   currentUnit.id = parseInt(document.getElementById('unit-id').value);
@@ -205,7 +244,7 @@ function openAddStrategyModal() {
   currentStrategy = {
     id: `u${currentUnit.id}s${(currentUnit.page.strategies?.length||0)+1}`,
     theme: 'sc-theme-blue', icon: '📝', title: '', subtitle: '', badge: '',
-    usage: '', imageUrl: '', audioUrl: '',
+    usage: '', videoUrl: '', imageUrl: '', audioUrl: '',
     keywords: [], formulas: [], exception: null, practice: []
   };
   populateStrategyForm();
@@ -235,6 +274,10 @@ function populateStrategyForm() {
   document.getElementById('strat-usage').value = currentStrategy.usage || '';
   
   // Media
+  document.getElementById('strat-video-url').value = currentStrategy.videoUrl || '';
+  document.getElementById('strat-video-upload').value = '';
+  document.getElementById('strat-video-preview').innerHTML = currentStrategy.videoUrl
+    ? `<div style="font-size:0.85rem;color:#16a34a">🎬 ${currentStrategy.videoUrl}</div>` : '';
   document.getElementById('strat-image-url').value = currentStrategy.imageUrl || '';
   document.getElementById('strat-audio-url').value = currentStrategy.audioUrl || '';
   document.getElementById('strat-image-upload').value = '';
@@ -258,6 +301,7 @@ function saveStrategy() {
   currentStrategy.badge = document.getElementById('strat-badge').value;
   currentStrategy.theme = document.getElementById('strat-theme').value;
   currentStrategy.usage = document.getElementById('strat-usage').value;
+  currentStrategy.videoUrl = document.getElementById('strat-video-url').value.trim();
   currentStrategy.imageUrl = document.getElementById('strat-image-url').value;
   currentStrategy.audioUrl = document.getElementById('strat-audio-url').value;
   
@@ -338,6 +382,16 @@ function bindTabs() {
   });
 }
 function bindUploads() {
+  document.getElementById('strat-video-upload').onchange = async (e) => {
+    const file = e.target.files[0]; if(!file) return;
+    showToast('جاري رفع الفيديو...');
+    const url = await uploadFile(file);
+    if(url) {
+      document.getElementById('strat-video-url').value = url;
+      document.getElementById('strat-video-preview').innerHTML = `<div style="font-size:0.85rem;color:#16a34a">🎬 ${url}</div>`;
+      showToast('تم رفع الفيديو ✅');
+    }
+  };
   document.getElementById('strat-image-upload').onchange = async (e) => {
     const file = e.target.files[0]; if(!file) return;
     const url = await uploadFile(file);

@@ -3,12 +3,28 @@
    Grammar Strategies — Ayed Academy
    ================================================================ */
 
+// ── SPLASH INTRO VIDEO ─────────────────────────────────────────
+function populateSplashVideo() {
+  const slot = $('splash-video-slot');
+  if (!slot) return;
+  const url = GS.ALL_DATA && GS.ALL_DATA.config && GS.ALL_DATA.config.introVideoUrl;
+  if (!url || typeof getVideoEmbed !== 'function') { slot.innerHTML = ''; return; }
+  const embed = getVideoEmbed(url);
+  if (!embed) { slot.innerHTML = ''; return; }
+  slot.innerHTML = `
+    <div class="splash-video-wrap">
+      <span class="splash-video-badge">▶ شاهد</span>
+      ${embed}
+    </div>`;
+}
+
 // ── BOOTSTRAP ──────────────────────────────────────────────────
 async function boot() {
   try {
     const res = await fetch('/api/units');
     if (!res.ok) throw new Error('API server returned error');
     GS.ALL_DATA = await res.json();
+    populateSplashVideo();
     initSplash();
   } catch (err) {
     console.warn('Failed to connect to local API server, trying static fallback...', err);
@@ -16,6 +32,7 @@ async function boot() {
       const res = await fetch('data/db.json');
       if (!res.ok) throw new Error('Static db.json not found');
       GS.ALL_DATA = await res.json();
+      populateSplashVideo();
       initSplash();
     } catch (fallbackErr) {
       console.error('All data loading attempts failed:', fallbackErr);
@@ -30,13 +47,26 @@ function initApp() {
   $('student-name-display').textContent = name;
   $('student-avatar').textContent = name.charAt(0);
 
-  // Create XP Display next to name if it doesn't exist
+  // Create Streak chip in the topbar (left of student chip)
+  if (!$('nb-streak-chip')) {
+    const chip = $('student-chip');
+    if (chip && chip.parentNode) {
+      const streakEl = document.createElement('div');
+      streakEl.id = 'nb-streak-chip';
+      streakEl.className = 'nb-streak-chip';
+      streakEl.innerHTML = '🔥 <span>0</span>';
+      chip.parentNode.insertBefore(streakEl, chip);
+    }
+  }
+
+  // Create XP / Level display next to name if it doesn't exist
   if (!$('student-xp-display')) {
     const xpEl = document.createElement('div');
     xpEl.id = 'student-xp-display';
-    xpEl.style.cssText = 'font-size:0.85rem; font-weight:800; background:rgba(245,166,35,0.15); padding:2px 8px; border-radius:20px; border:1px solid rgba(245,166,35,0.3);';
+    xpEl.className = 'nb-xp-display';
     $('student-name-display').parentNode.appendChild(xpEl);
   }
+  initDailyStreak();
   updateXPUI();
 
   // Update breadcrumb track name

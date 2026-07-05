@@ -4,6 +4,60 @@
    Grammar Strategies — Ayed Academy
    ================================================================ */
 
+// ── VIDEO EMBED HELPER ────────────────────────────────────────
+// Supports YouTube, Vimeo, and direct uploaded files (mp4/webm/ogg).
+function getVideoEmbed(url) {
+  if (!url) return '';
+  url = String(url).trim();
+
+  // YouTube (watch, youtu.be, shorts, embed)
+  let ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  if (ytMatch) {
+    return `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}" title="فيديو الشرح" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+  }
+
+  // Vimeo
+  let vmMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (vmMatch) {
+    return `<iframe src="https://player.vimeo.com/video/${vmMatch[1]}" title="فيديو الشرح" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+  }
+
+  // Direct file
+  return `<video controls preload="metadata" playsinline src="${url}"></video>`;
+}
+
+// ── RENDER A LABELLED VIDEO BOX (for strategy media) ──────────
+function renderVideoBox(url, label) {
+  const embed = getVideoEmbed(url);
+  if (!embed) return '';
+  return `<div class="nb-video-box"><span class="nb-video-label">${label || '🎬 فيديو الشرح'}</span>${embed}</div>`;
+}
+
+// ── RENDER UNIT VIDEO LIBRARY ─────────────────────────────────
+// Reads unit.page.videos = [{ title, url }] and renders a grid.
+function renderVideoLibrary(unit) {
+  const vids = (unit.page && unit.page.videos) || [];
+  if (!vids.length) return '';
+  const cards = vids.map(v => {
+    const embed = getVideoEmbed(v.url);
+    if (!embed) return '';
+    return `
+      <div class="nb-video-card">
+        <div class="nb-video-box">${embed}</div>
+        ${v.title ? `<div class="nb-video-card-title">▶ ${v.title}</div>` : ''}
+      </div>`;
+  }).join('');
+  if (!cards) return '';
+  return `
+    <div class="nb-video-library animate-in">
+      <div class="nb-video-library-head">
+        🎥 مكتبة فيديوهات الوحدة
+        <span class="nb-vl-badge">${vids.length} فيديو</span>
+      </div>
+      <div class="nb-video-grid">${cards}</div>
+    </div>`;
+}
+
 // ── FORMAT PASSAGE TEXT ───────────────────────────────────────
 function formatPassageText(text) {
   const lines = text.split(/\\n|\n/);
@@ -43,6 +97,8 @@ function renderUnit(unit) {
     </div>
   `;
 
+  html += renderVideoLibrary(unit);
+
   (p.strategies || []).forEach((s, si) => {
     html += renderStrategy(s, si);
   });
@@ -65,6 +121,7 @@ function renderUnit(unit) {
 // ── RENDER GRAMMAR STRATEGY ───────────────────────────────────
 function renderStrategy(strat, si) {
   const mediaHtml = `
+    ${strat.videoUrl ? renderVideoBox(strat.videoUrl, '🎬 شرح بالفيديو') : ''}
     ${strat.imageUrl ? `<div class="media-box"><img src="${strat.imageUrl}" alt="صورة توضيحية"></div>` : ''}
     ${strat.audioUrl ? `<div class="media-box"><audio controls src="${strat.audioUrl}"></audio></div>` : ''}
   `;
@@ -94,6 +151,9 @@ function renderStrategy(strat, si) {
       </div>
       ${strat.practice.map((pq, pi) => {
         const qid = `${strat.id}-p${pi}`;
+        // Dispatch to creative question types
+        if (pq.type === 'order' && typeof renderOrderQuestion === 'function') return renderOrderQuestion(pq, qid);
+        if (pq.type === 'fill'  && typeof renderFillQuestion  === 'function') return renderFillQuestion(pq, qid);
         return `
           <div class="mini-q" id="mq-wrap-${qid}">
             ${pq.audioUrl ? `
@@ -123,6 +183,12 @@ function renderStrategy(strat, si) {
     </div>
   ` : '';
 
+  // Animated explainer plays first; the rule stays locked until it
+  // finishes (or the user skips). Already-watched rules start open.
+  const hasAnim = typeof renderAnimExplainer === 'function';
+  const animHtml = hasAnim ? renderAnimExplainer(strat) : '';
+  const ruleLocked = hasAnim && typeof axIsWatched === 'function' && !axIsWatched(strat.id);
+
   return `
     <div class="strategy-card ${strat.theme} animate-in" id="${strat.id}" style="animation-delay:${si * 0.07}s">
       <div class="sc-header">
@@ -133,7 +199,8 @@ function renderStrategy(strat, si) {
         </div>
         <span class="sc-badge">${strat.badge}</span>
       </div>
-      <div class="sc-body">
+      ${animHtml}
+      <div class="sc-body${ruleLocked ? ' ax-locked' : ''}">
         <div class="sc-keywords">
           <div class="kw-grid">
             <div class="sc-keywords-title">🔑 الكلمات الدالة <small style="font-weight:400;color:rgba(255,255,255,0.4);font-size:0.65rem">(انقر للترجمة)</small></div>
@@ -169,6 +236,8 @@ function renderReadingUnit(unit) {
       </div>
   `;
 
+  html += renderVideoLibrary(unit);
+
   (p.strategies || []).forEach((s, si) => {
     html += `
       <div class="rd-strategy-section" id="${s.id}" style="animation-delay:${si * 0.07}s">
@@ -176,6 +245,7 @@ function renderReadingUnit(unit) {
           <span>${s.icon}</span> ${s.title}
           <span class="rd-strategy-subtitle">${s.subtitle}</span>
         </div>
+        ${s.videoUrl ? renderVideoBox(s.videoUrl, '🎬 شرح بالفيديو') : ''}
         <div class="rd-usage-box">${s.usage.replace(/\\n/g, '<br>')}</div>
         ${s.keywords && s.keywords.length > 0 ? `
           <div class="rd-keywords-grid">
@@ -265,6 +335,8 @@ function renderListeningUnit(unit) {
     `;
   }
 
+  html += renderVideoLibrary(unit);
+
   (p.strategies || []).forEach((s, si) => {
     html += renderListeningStrategy(s, si);
   });
@@ -327,6 +399,7 @@ function renderListeningStrategy(s, si) {
           <span>${s.icon}</span> ${s.title}
           <span class="ls-strategy-subtitle">${s.subtitle}</span>
         </div>
+        ${s.videoUrl ? renderVideoBox(s.videoUrl, '🎬 شرح بالفيديو') : ''}
         <div class="ls-usage-box">${s.usage}</div>
         ${s.exception ? `
           <div class="ls-exception-box">
@@ -517,15 +590,26 @@ function bindInteractiveElements() {
       if (selected === correct) {
         FX.correct.currentTime = 0;
         FX.correct.play().catch(e => console.log(e));
-        addXP(10, event);
+        registerAnswer(true, event);
+        if (typeof nbAwardSpeed === 'function') nbAwardSpeed(wrap, event);
         if (window.SmartAnalytics) window.SmartAnalytics.record(GS.currentTrack, true);
       } else {
         FX.wrong.currentTime = 0;
         FX.wrong.play().catch(e => console.log(e));
+        registerAnswer(false, event);
+        wrap.classList.remove('shake'); void wrap.offsetWidth; wrap.classList.add('shake');
         if (window.SmartAnalytics) window.SmartAnalytics.record(GS.currentTrack, false);
       }
     });
   });
+
+  // Animated grammar explainers (play before the rule unlocks)
+  if (typeof initAnimExplainers === 'function') initAnimExplainers(pc);
+
+  // New interactive question types (arrange / fill-in)
+  if (typeof bindNewQuestionTypes === 'function') bindNewQuestionTypes(pc);
+  // Start per-question speed timers when they scroll into view
+  if (typeof nbObserveQuestions === 'function') nbObserveQuestions(pc);
 
   const bigBtn = $('open-big-quiz');
   if (bigBtn) bigBtn.addEventListener('click', openBigQuiz);

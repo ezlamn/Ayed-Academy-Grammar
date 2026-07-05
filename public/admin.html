@@ -35,6 +35,7 @@
           </select>
         </div>
         <div class="topbar-actions">
+          <button class="btn btn-secondary" id="intro-video-btn">🎬 فيديو الترحيب</button>
           <button class="btn btn-primary" id="add-unit-btn">+ إضافة وحدة جديدة</button>
         </div>
       </header>
@@ -75,6 +76,13 @@
           <input type="text" id="unit-tag" placeholder="مثال: الوحدة الثالثة عشر">
         </div>
         
+        <hr>
+        <div class="flex-between">
+          <h3>🎥 مكتبة فيديوهات الوحدة</h3>
+          <button class="btn btn-secondary btn-sm" id="add-video-btn">+ إضافة فيديو</button>
+        </div>
+        <div id="videos-list" class="nested-list"></div>
+
         <hr>
         <div class="flex-between">
           <h3>الاستراتيجيات (شرح القواعد)</h3>
@@ -141,7 +149,13 @@
 
         <!-- Media Upload -->
         <div class="media-upload-section">
-          <h3>الوسائط (صورة / صوت)</h3>
+          <h3>الوسائط (فيديو / صورة / صوت)</h3>
+          <div class="form-group">
+            <label>🎬 فيديو الشرح — رابط يوتيوب/Vimeo أو إرفاق ملف</label>
+            <input type="text" id="strat-video-url" placeholder="https://youtu.be/... أو /uploads/video.mp4" dir="ltr" style="margin-bottom:6px;">
+            <input type="file" id="strat-video-upload" accept="video/*">
+            <div id="strat-video-preview" class="media-preview"></div>
+          </div>
           <div class="form-group">
             <label>إرفاق صورة توضيحية للشرح</label>
             <input type="file" id="strat-image-upload" accept="image/*">

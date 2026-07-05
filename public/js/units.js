@@ -43,6 +43,10 @@ function updateProgress() {
   $('overall-prog-sidebar').style.display = 'block';
   $('sidebar-overall-fill').style.width = pct + '%';
   $('sidebar-overall-lbl').textContent = 'الإنجاز الكلي: ' + pct + '%';
+
+  // Refresh gamification side-effects
+  if (window.checkBadges) checkBadges();
+  if (window.nbUpdateReviewBadge) nbUpdateReviewBadge();
 }
 
 // ── TOPBAR BINDINGS ───────────────────────────────────────────

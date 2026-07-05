@@ -1,0 +1,163 @@
+/* ================================================================
+   ENGAGE.CSS — Live Interactivity Layer (v2) styling
+   Mascot, scroll-reveal, slide transitions, step-by-step lessons,
+   games hub (Match + Quick-Fire). Soft modern look. Loaded LAST.
+   ================================================================ */
+
+/* ==============================================================
+   1) MASCOT
+   ============================================================== */
+.nb-mascot {
+  position: fixed; left: 1.1rem; bottom: 1.1rem; z-index: 980;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  pointer-events: none;
+}
+.nb-mascot-body {
+  pointer-events: auto;
+  width: 62px; height: 62px; border-radius: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--violet));
+  box-shadow: 0 10px 28px rgba(99,102,241,0.40);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; cursor: pointer; transition: transform 0.15s var(--spring);
+  animation: softBob 3s ease-in-out infinite;
+}
+.nb-mascot-body:hover { transform: translateY(-3px) scale(1.04); }
+.nb-mascot-body:active { transform: translateY(0) scale(0.97); }
+@keyframes softBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.nb-mascot-face { line-height: 1; }
+
+.nb-mascot-bubble {
+  pointer-events: none;
+  max-width: 230px; background: var(--surface); color: var(--text-primary);
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  box-shadow: var(--sh-md);
+  padding: 0.65rem 0.9rem; font-weight: 600; font-size: 0.92rem; line-height: 1.45;
+  opacity: 0; transform: translateY(8px) scale(0.9); transform-origin: bottom left;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--spring);
+  position: relative;
+}
+.nb-mascot-bubble::after {
+  content: ''; position: absolute; left: 22px; bottom: -7px;
+  width: 13px; height: 13px; background: var(--surface);
+  border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  transform: rotate(45deg);
+}
+.nb-mascot-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
+.nb-mascot.happy .nb-mascot-body { background: linear-gradient(135deg, #10B981, #34D399); box-shadow: 0 10px 28px rgba(16,185,129,0.40); animation: softHappy 0.5s var(--spring); }
+.nb-mascot.sad   .nb-mascot-body { background: linear-gradient(135deg, #EF4444, #F87171); box-shadow: 0 10px 28px rgba(239,68,68,0.35); }
+.nb-mascot.hype  .nb-mascot-body { background: linear-gradient(135deg, #8B5CF6, #A78BFA); animation: softHype 0.4s ease infinite; }
+@keyframes softHappy { 0%{transform:scale(1)} 50%{transform:scale(1.15)} 100%{transform:scale(1)} }
+@keyframes softHype { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(6deg)} }
+
+/* Keep FAB clear of the mascot */
+.fab-scroll { bottom: 6.5rem !important; }
+@media (max-width: 768px) {
+  .nb-mascot { left: 0.6rem; bottom: 4.6rem; }
+  .nb-mascot-body { width: 50px; height: 50px; font-size: 1.6rem; border-radius: 16px; }
+  .nb-mascot-bubble { max-width: 180px; font-size: 0.82rem; }
+  .fab-scroll { bottom: 9rem !important; }
+}
+
+/* ==============================================================
+   2) MOTION — reveal, slide transitions
+   ============================================================== */
+.nb-reveal { opacity: 0; transform: translateY(24px); }
+.nb-revealed {
+  opacity: 1; transform: none;
+  transition: opacity 0.5s var(--ease) var(--rev-delay,0ms), transform 0.5s var(--ease) var(--rev-delay,0ms);
+}
+
+@keyframes softSlideR { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes softSlideL { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+.nb-slide-in-r { animation: softSlideR 0.4s var(--ease); }
+.nb-slide-in-l { animation: softSlideL 0.4s var(--ease); }
+
+.strategy-card { will-change: transform; }
+
+/* ==============================================================
+   3) STEP-BY-STEP LESSON
+   ============================================================== */
+.nb-step-toggle {
+  background: var(--primary-tint) !important; color: var(--primary-deep) !important;
+  border: 1px solid rgba(99,102,241,0.25) !important; border-radius: var(--r-pill) !important;
+  box-shadow: none !important; font-weight: 700 !important;
+  align-self: flex-start; padding: 0.45rem 1.1rem !important; margin-bottom: 0.5rem;
+  transition: all 0.18s var(--ease) !important;
+}
+.nb-step-toggle:hover { background: rgba(99,102,241,0.16) !important; transform: none !important; }
+.sc-content[data-stepping] .nb-step { display: none !important; }
+.sc-content[data-stepping] .nb-step.nb-step-active {
+  display: block !important; animation: softStepIn 0.4s var(--ease);
+  outline: 2px dashed rgba(99,102,241,0.40); outline-offset: 8px; border-radius: var(--r-sm);
+}
+@keyframes softStepIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.nb-step-nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  margin-top: 1rem; padding-top: 0.85rem; border-top: 1px dashed var(--border-md);
+}
+.nb-step-count {
+  font-weight: 700; color: var(--primary-deep); background: var(--primary-tint);
+  border-radius: var(--r-pill); padding: 3px 12px;
+}
+
+/* ==============================================================
+   4) GAMES HUB
+   ============================================================== */
+.nb-games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.nb-game-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+  box-shadow: var(--sh-xs); padding: 1.4rem 1rem; text-align: center; cursor: pointer;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s;
+}
+.nb-game-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); border-color: rgba(99,102,241,0.30); }
+.nb-game-ic { font-size: 2.6rem; }
+.nb-game-name { font-weight: 800; font-size: 1.05rem; margin: 0.5rem 0 0.25rem; color: var(--ink); }
+.nb-game-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+.nb-game-result { text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--ink); line-height: 1.8; padding: 0.5rem; }
+@media (max-width: 540px) { .nb-games-grid { grid-template-columns: 1fr; } }
+
+/* ── MATCH GAME ── */
+.nb-match-hud { display: flex; justify-content: space-between; font-weight: 700; color: var(--text-sec); margin-bottom: 0.8rem; }
+.nb-match-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+.nb-match-cell {
+  min-height: 64px; background: var(--surface); border: 1.5px solid var(--border-md); border-radius: var(--r-md);
+  box-shadow: var(--sh-xs); font-weight: 700; font-size: 0.95rem; color: var(--text-primary);
+  padding: 0.5rem; transition: transform 0.15s var(--ease), background 0.15s, border-color 0.15s;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.nb-match-cell:hover:not(.done) { transform: translateY(-2px); box-shadow: var(--sh-sm); border-color: rgba(99,102,241,0.35); }
+.nb-match-cell.sel { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-deep); }
+.nb-match-cell.miss { background: var(--rose-tint); border-color: var(--rose); color: #991B1B; animation: softShake 0.4s; }
+.nb-match-cell.done { background: var(--emerald-tint); border-color: rgba(16,185,129,0.30); opacity: 0.6; cursor: default; box-shadow: none; }
+@media (max-width: 540px) { .nb-match-grid { grid-template-columns: repeat(2,1fr); } .nb-match-cell { font-size: 0.85rem; min-height: 56px; } }
+
+/* ── QUICK-FIRE ── */
+.nb-qf-hud { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.nb-qf-time {
+  font-weight: 800; font-size: 1.25rem; color: var(--primary-deep);
+  background: var(--primary-tint); border-radius: var(--r-pill);
+  padding: 3px 14px; font-family: var(--ff-en);
+}
+.nb-qf-score { font-weight: 800; color: var(--ink); }
+.nb-qf-bar { height: 8px; background: rgba(99,102,241,0.12); border-radius: var(--r-pill); overflow: hidden; margin-bottom: 1rem; }
+.nb-qf-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), var(--violet)); border-radius: var(--r-pill); transition: width 1s linear; }
+.nb-qf-q {
+  font-family: var(--ff-en); font-weight: 700; font-size: 1.15rem; color: var(--ink);
+  background: var(--surface2); border: 1px solid var(--border); border-left: 4px solid var(--primary);
+  border-radius: var(--r-sm); padding: 0.9rem 1rem; margin-bottom: 1rem; white-space: pre-wrap; line-height: 1.5;
+}
+.nb-qf-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.nb-qf-opt {
+  font-family: var(--ff-en); font-weight: 700; color: var(--text-primary); background: var(--surface);
+  border: 1.5px solid var(--border-md); border-radius: var(--r-sm); box-shadow: var(--sh-xs);
+  padding: 0.7rem 0.9rem; transition: transform 0.15s var(--ease), background 0.15s, border-color 0.15s;
+}
+.nb-qf-opt:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--sh-sm); background: var(--primary-tint); border-color: var(--primary); }
+.nb-qf-opt.ok { background: var(--emerald-tint) !important; border-color: var(--emerald) !important; color: #065F46; }
+.nb-qf-opt.no { background: var(--rose-tint) !important; border-color: var(--rose) !important; color: #991B1B; }
+@media (max-width: 540px) { .nb-qf-opts { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-reveal { opacity: 1; transform: none; }
+  .nb-mascot-body { animation: none; }
+}
