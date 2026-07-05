@@ -58,17 +58,17 @@ function initNewFeatures() {
   const savedTheme = localStorage.getItem('gs_theme');
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
-    darkToggle.textContent = '☀️';
+    darkToggle.innerHTML = AyIcon.svg('sun');
   }
 
   darkToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     if (document.body.classList.contains('dark-mode')) {
       localStorage.setItem('gs_theme', 'dark');
-      darkToggle.textContent = '☀️';
+      darkToggle.innerHTML = AyIcon.svg('sun');
     } else {
       localStorage.setItem('gs_theme', 'light');
-      darkToggle.textContent = '🌙';
+      darkToggle.innerHTML = AyIcon.svg('moon');
     }
   });
 

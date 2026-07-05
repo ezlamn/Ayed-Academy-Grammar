@@ -209,7 +209,7 @@ function renderStrategy(strat, si) {
         </div>
         <div class="sc-content">
           ${mediaHtml}
-          <div class="usage-banner">${strat.usage}</div>
+          ${formulaHtml ? '' : `<div class="usage-banner">${strat.usage}</div>`}
           ${formulaHtml}
           ${exHtml}
           ${practiceHtml}
