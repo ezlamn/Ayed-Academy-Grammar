@@ -1,0 +1,87 @@
+{
+  "id": 12,
+  "emoji": "✍️",
+  "nameAr": "تحليل الكتابة",
+  "nameEn": "Writing Analysis",
+  "page": {
+    "tag": "الوحدة الثانية عشرة",
+    "mascot": "📝",
+    "strategies": [
+      {
+        "id": "u12s1",
+        "theme": "sc-theme-purple",
+        "icon": "✍️",
+        "title": "ترتيب الجملة والفقرة",
+        "subtitle": "Sentence & Paragraph Order",
+        "badge": "Writing",
+        "usage": "الكتابة الأكاديمية تتطلب ترتيباً منطقياً للجملة وبناءً هرمياً للفقرة.",
+        "keywords": [
+          {
+            "f": "ترتيب الجملة",
+            "b": "S → V → O → Place → Time"
+          },
+          {
+            "f": "Topic Sentence",
+            "b": "المقدمة: الفكرة الرئيسية"
+          },
+          {
+            "f": "Supporting",
+            "b": "الصلب: أدلة وأمثلة"
+          },
+          {
+            "f": "Conclusion",
+            "b": "الخاتمة: النتيجة أو التلخيص"
+          },
+          {
+            "f": "First / Then / Finally",
+            "b": "كلمات الترتيب المنطقي"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "ترتيب الجملة",
+            "form": "Subject + Verb + Object + Place + Time",
+            "ex": "She studies English at home every day."
+          },
+          {
+            "subj": "ترتيب الفقرة",
+            "form": "Topic → Supporting (First…Then…) → Conclusion",
+            "ex": "Making tea is easy. First, boil water…"
+          }
+        ],
+        "exception": {
+          "title": "⚠️ نقاط أساسية في الكتابة الأكاديمية",
+          "body": "1. لا تبدأ الجملة بـ And أو But (في الكتابة الرسمية).<br>\n                2. استخدم <strong>However</strong> و<strong>Furthermore</strong> بدلاً منهما.<br>\n                3. تذكر: كل فقرة = فكرة واحدة فقط."
+        },
+        "practice": [
+          {
+            "q": "Choose the CORRECT ORDER:\n(1) Then, pour it into a cup with a teabag.\n(2) Now, you can remove the teabag and drink it.\n(3) First, you heat the water.\n(4) Making a cup of tea is easy.",
+            "opts": [
+              "(4)→(3)→(2)→(1)",
+              "(4)→(1)→(2)→(3)",
+              "(3)→(1)→(4)→(2)",
+              "(4)→(3)→(1)→(2)"
+            ],
+            "c": 3,
+            "expl": "المقدمة (4) → الخطوة الأولى (3) → الخطوة التالية (1) → النتيجة (2).",
+            "id": "q_grammar_12_001"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "Choose the correct order: Peru / rated / is / among the top nations / most affected / by climate change.",
+        "opts": [
+          "Peru rated is among...",
+          "Is Peru rated among...",
+          "Peru is rated among the top nations most affected by climate change.",
+          "By climate change, Peru is most..."
+        ],
+        "c": 2,
+        "expl": "S (Peru) + V-Passive (is rated) + complement: <strong>Peru is rated among the top nations most affected by climate change.</strong>",
+        "id": "q_grammar_12_002"
+      }
+    ]
+  }
+}

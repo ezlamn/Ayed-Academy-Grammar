@@ -32,3 +32,9 @@ pnpm-debug.log*
 # OS metadata
 .DS_Store
 Thumbs.db
+
+# Legacy and sensitive data
+data/users.json
+data/db.json
+_legacy/
+_legacy/old_data/

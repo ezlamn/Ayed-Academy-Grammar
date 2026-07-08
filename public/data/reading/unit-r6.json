@@ -1,0 +1,120 @@
+{
+  "id": "r6",
+  "title": "Sixth Strategy: Purpose",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs6",
+        "theme": "sc-theme-green",
+        "icon": "🎯",
+        "title": " Purpose",
+        "subtitle": "Sixth Strategy",
+        "usage": "الغرض من القطعة (what is the purpose of the passage? / why did the writer write the passage?)\nإذا كتب الكاتب هذه القطعة؟\nنبحث في الاختيارات عن واحدة من هذه الكلمات:\nto inform – to give information – to describe – to explain",
+        "practice": [
+          {
+            "passageId": "r6-p0-q0",
+            "passageText": "PASSAGE 1 (Hot deserts)\\n1. Hot deserts are found near the tropics of Cancer and Capricorn... 2. Hot deserts have an extreme climate and challenging environment...",
+            "q": "What is the writer’s main purpose?",
+            "opts": [
+              "to study geography",
+              "to convince",
+              "to inform",
+              "to entertain"
+            ],
+            "c": 2,
+            "expl": "الغرض إعلامي (to inform)",
+            "id": "q_reading_r6_001"
+          },
+          {
+            "passageId": "r6-p1-q0",
+            "passageText": "PASSAGE 2 (Oceans)\\n1. The oceans make up 70 percent of the planet and contain 97 percent of all the water on Earth. It also makes up the vast majority of water stores...",
+            "q": "What is the writer’s main purpose?",
+            "opts": [
+              "to recommend",
+              "to complain",
+              "to advise",
+              "to inform"
+            ],
+            "c": 3,
+            "expl": "الغرض إعلامي (to inform)",
+            "id": "q_reading_r6_002"
+          },
+          {
+            "passageId": "r6-p2-q0",
+            "passageText": "PASSAGE 3 (Agriculture in the Middle East)\\n1 From the 8th century, the medieval Islamic world underwent a transformation in agricultural practice, described by the historian Andrew Watson as the Arab agricultural revolution...",
+            "q": "What is the writer’s main purpose?",
+            "opts": [
+              "to convince",
+              "to inform",
+              "to explain",
+              "to study agriculture"
+            ],
+            "c": 1,
+            "expl": "الغرض إعلامي (to inform)",
+            "id": "q_reading_r6_003"
+          },
+          {
+            "passageId": "r6-p3-q0",
+            "passageText": "PASSAGE 4 (Loss of Energy)\\n1. No system can be perfect in the way it operates. Whenever there is a change in a system, energy is transferred and some of that energy is dissipated...",
+            "q": "What’s the writer’s main purpose?",
+            "opts": [
+              "to compare",
+              "to describe",
+              "to advise",
+              "to convince"
+            ],
+            "c": 1,
+            "expl": "الغرض الوصف (to describe)",
+            "id": "q_reading_r6_004"
+          },
+          {
+            "passageId": "r6-p4-q0",
+            "passageText": "PASSAGE 5\\nStatue of Liberty. The official name of this statue is “Liberty Enlightening the World.” It represents democracy or Liberal Thought...",
+            "q": "The purpose of the passage is to give a ……..",
+            "opts": [
+              "Narrative",
+              "Description",
+              "Definition",
+              "Compariso"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r6_005"
+          },
+          {
+            "passageId": "r6-p5-q0",
+            "passageText": "PASSAGE 6 (Importing and Exporting)\\n1. The history of importing and exporting dates back to the Roman Empire, when European and Asian traders imported and exported goods across the vast lands of Eurasia...",
+            "q": "Why did the writer write this passage?",
+            "opts": [
+              "to entertain",
+              "to persuade",
+              "to explain",
+              "to give an example"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r6_006"
+          }
+        ],
+        "keywords": [
+          {
+            "f": "to inform",
+            "b": "لإعلام (عند وجود أكثر من كلمة نختارها)"
+          },
+          {
+            "f": "to describe",
+            "b": "لوصف"
+          },
+          {
+            "f": "to explain",
+            "b": "لشرح"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Sixth Strategy: Purpose",
+  "nameEn": "Sixth Strategy: Purpose",
+  "emoji": "📖"
+}

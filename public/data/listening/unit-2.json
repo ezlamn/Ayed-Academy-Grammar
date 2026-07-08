@@ -1,0 +1,100 @@
+{
+  "id": 2,
+  "emoji": "🎯",
+  "nameAr": "مقاطع السؤال والمقاطع المتعددة",
+  "nameEn": "Single & Multiple Questions",
+  "page": {
+    "tag": "الوحدة الثانية",
+    "mascot": "🎙️",
+    "strategies": [
+      {
+        "id": "L2S1",
+        "theme": "sc-theme-red",
+        "icon": "1️⃣",
+        "title": "مقاطع السؤال الواحد",
+        "subtitle": "Single Question Clips",
+        "badge": "Strategy 2",
+        "usage": "يكون دائما سؤال مباشر. نقوم بقراءة السؤال لتحديد المعلومة المطلوبة و قراءة الاختيارات ثم انتظار تقصي المعلومة من المقطع الصوتي.",
+        "practice": [
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "What kind of project is Osama Working on?",
+            "opts": [
+              "A current events project",
+              "A business project",
+              "A family project",
+              "A history project"
+            ],
+            "c": 3,
+            "expl": "كما ستسمع في المقطع الصوتي، المشروع الذي يعمل عليه أسامة هو History project.",
+            "id": "q_listening_2_001"
+          },
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "What is the favorite sport?",
+            "opts": [
+              "football",
+              "baseball",
+              "handball",
+              "tennis"
+            ],
+            "c": 1,
+            "expl": "الإجابة الصحيحة بناءً على الحوار هي baseball.",
+            "id": "q_listening_2_002"
+          },
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "In what subject does Salah have an examination?",
+            "opts": [
+              "Geology",
+              "Psychology",
+              "Biology",
+              "Chemistry"
+            ],
+            "c": 1,
+            "expl": "ملاحظة: لو لقيت كلمة تبدأ بـ (Ps) لا ننطق الـ (P). المادة هي Psychology.",
+            "id": "q_listening_2_003"
+          }
+        ]
+      },
+      {
+        "id": "L2S2",
+        "theme": "sc-theme-teal",
+        "icon": "🔢",
+        "title": "مقاطع الأسئلة المتعددة",
+        "subtitle": "Multiple Questions Clips",
+        "badge": "Strategy 3",
+        "usage": "هنا نحتاج لتدريب العقل على الانتقاء (الفلترة) حيث نركز على المعلومات التي يسأل عنها في رأس السؤال فقط وليس كل المعلومات الموجودة في المقطع الصوتي.",
+        "practice": [
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "How much did travelers spend in 1990?",
+            "opts": [
+              "4.2 trillion dollars",
+              "3.2 trillion dollars",
+              "41.3 million dollars",
+              "46.3 million dollars"
+            ],
+            "c": 1,
+            "expl": "نركز على الرقم الذي يخص عام 1990 وهو 3.2 trillion dollars.",
+            "id": "q_listening_2_004"
+          },
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "What is the most popular country people go to?",
+            "opts": [
+              "France",
+              "U.S.A",
+              "Spain",
+              "China"
+            ],
+            "c": 0,
+            "expl": "البلد الأكثر شعبية المذكور هو فرنسا.",
+            "id": "q_listening_2_005"
+          }
+        ]
+      }
+    ],
+    "quizzes": []
+  }
+}

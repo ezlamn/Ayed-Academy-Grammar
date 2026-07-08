@@ -1,0 +1,1870 @@
+{
+  "id": "r2",
+  "title": "All Other Strategies",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs2",
+        "theme": "sc-theme-blue",
+        "icon": "📝",
+        "title": "First strategy:  Figures Analysis",
+        "subtitle": "First Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs2-p1-q1",
+            "passageText": "PASSAGE 1\n\n",
+            "q": "What percentage of spending was on food in 1929?",
+            "opts": [
+              "10%",
+              "15%",
+              "24%",
+              "27%"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_4_1.jpeg",
+            "id": "q_reading_r2_001"
+          },
+          {
+            "passageId": "rs2-p1-q2",
+            "passageText": "PASSAGE 1\n\n",
+            "q": "In which year was the percentage of spending on transportation highest?",
+            "opts": [
+              "1929",
+              "1965",
+              "2001",
+              "2011"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_4_1.jpeg",
+            "id": "q_reading_r2_002"
+          },
+          {
+            "passageId": "rs2-p2-q3",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "What was the homicide rate per 100,000 people in Europe in 2015?",
+            "opts": [
+              "2",
+              "5",
+              "12",
+              "15"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_5_1.jpeg",
+            "id": "q_reading_r2_003"
+          },
+          {
+            "passageId": "rs2-p2-q4",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "How many homicides per 100,000 people happened in Africa in 2005?",
+            "opts": [
+              "7",
+              "13",
+              "19",
+              "24"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_5_1.jpeg",
+            "id": "q_reading_r2_004"
+          },
+          {
+            "passageId": "rs2-p3-q5",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "Which year had the most pilgrims to Saudi Arabia?",
+            "opts": [
+              "2002",
+              "2008",
+              "2010",
+              "2012"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_6_1.jpeg",
+            "id": "q_reading_r2_005"
+          },
+          {
+            "passageId": "rs2-p4-q6",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "Which year represents the highest wind investment?",
+            "opts": [
+              "2002",
+              "2004",
+              "2010",
+              "2012"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_6_1.jpeg",
+            "id": "q_reading_r2_006"
+          },
+          {
+            "passageId": "rs2-p4-q7",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "Which year represents the lowest solar investment?",
+            "opts": [
+              "2004",
+              "2006",
+              "2011",
+              "2015"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_6_1.jpeg",
+            "id": "q_reading_r2_007"
+          },
+          {
+            "passageId": "rs2-p5-q8",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "How many hectares of palm area did the Private Estate reach by 2008?",
+            "opts": [
+              "1 million",
+              "2.3 million",
+              "1.3 million",
+              "3.5 million"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_7_1.jpeg",
+            "id": "q_reading_r2_008"
+          },
+          {
+            "passageId": "rs2-p5-q9",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "What year did the Government Estate reach 500,000 hectares?",
+            "opts": [
+              "1989",
+              "1997",
+              "2004",
+              "2009"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_7_1.jpeg",
+            "id": "q_reading_r2_009"
+          },
+          {
+            "passageId": "rs2-p6-q10",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "How much did the freshwater levels decrease in Syria between 1967 and 2011?",
+            "opts": [
+              "about 800 cubic meters",
+              "about 500 cubic meters",
+              "about 400 cubic meters",
+              "about 250 cubic meters"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_7_1.jpeg",
+            "id": "q_reading_r2_010"
+          },
+          {
+            "passageId": "rs2-p7-q11",
+            "passageText": "PASSAGE 7\n\n",
+            "q": "How much did life expectancy increase in Latin America between 1960 and 2010?",
+            "opts": [
+              "almost 25 years",
+              "almost 20 years",
+              "almost 15 years",
+              "almost 10 years"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_8_1.jpeg",
+            "id": "q_reading_r2_011"
+          },
+          {
+            "passageId": "rs2-p7-q12",
+            "passageText": "PASSAGE 7\n\n",
+            "q": "What was the average life expectancy at birth in Sub-Saharan Africa in 1970?",
+            "opts": [
+              "about 45",
+              "about 50",
+              "about 55",
+              "about 60"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_8_1.jpeg",
+            "id": "q_reading_r2_012"
+          },
+          {
+            "passageId": "rs2-p8-q13",
+            "passageText": "PASSAGE 8\n\n",
+            "q": "What was the lowest number of paid holidays for any city?",
+            "opts": [
+              "4.2 days",
+              "6.1 days",
+              "8.0 days",
+              "9.7 days"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": "uploads/charts/chart_8_1.jpeg",
+            "id": "q_reading_r2_013"
+          }
+        ]
+      },
+      {
+        "id": "rs3",
+        "theme": "sc-theme-gold",
+        "icon": "📝",
+        "title": "Second Strategy:    Meaning Technique",
+        "subtitle": "Second Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs3-p4-q1",
+            "passageText": "PASSAGE 4\n\n\n\n1)\tAll living organisms need food. They need it as a source of raw materials to build new cells \nand tissues as they grow. They also need food as a source of energy. Food is a kind of ‘fuel’ \nthat drives essential living processes and brings about chemical changes. Animals take \nin food, digest it and use the digested products to build their tissues or to produce energy.",
+            "q": "What word other than ‘food’ does the writer use to talk about the need of all living \nthings?",
+            "opts": [
+              "cell",
+              "fuel",
+              "material",
+              "process",
+              "are  often surprised to find that goods that are relatively inexpensive at home may carry  outrageously higher price tags in other countries. A pair of Levi's selling for $30 in the  United States might go for $63 in Tokyo or $88 in Paris. A McDonald's Big Mac selling for",
+              "modest $3.50 here in Saudi Arabia might cost $7.50 in Berlin, Germany. Conversely,",
+              "Gucci handbag going for only $140 in Milan, Italy. might fetch $240 in the United States.  In some cases, such price escalations may result from different selling strategies or  market conditions. In some instances, however, it is simply the result of the higher cost  of selling in another country – the additional cost of product modifications, shipping  and insurance, import taxes. exchange-rate fluctuations, and physical distribution."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_014"
+          },
+          {
+            "passageId": "rs3-p5-q2",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "What word other than ‘inexpensive’ the writer uses to talk about prices at home?",
+            "opts": [
+              "various",
+              "modest",
+              "additional",
+              "competitive"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_015"
+          },
+          {
+            "passageId": "rs3-p6-q3",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "1) When Mikhail Gorbachev became the leader of the Soviet Union (USSR) in 1985, no \none predicted that the end of Cold War was only six years away.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_016"
+          },
+          {
+            "passageId": "rs3-p6-q4",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "2) It all began in Poland in June 1989. A non-communist party did well in the general \nelection and people were celebrating in the streets. Everyone expected Gorbachev \nto send the army in, but he did nothing at all. European communist governments \nunder the Soviet influence started to fall one by one. In autumn 1989, East \nGermans were knocking down the Berlin Wall. Then communist governments fell \nin Hungary, Czechoslovakia and in Romania the people put the president in prison.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_017"
+          },
+          {
+            "passageId": "rs3-p6-q5",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "3) Demands for freedom soon spread to the Soviet Union and Estonia, Latvia, and \nLithuania announced their freedom from Soviet control. In December 1991. Russia \nitself followed these three and declared independence. The USSR was finished. \nGorbachev was a president without a country.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_018"
+          },
+          {
+            "passageId": "rs3-p6-q6",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "What idea do the words “declared independence” repeat?",
+            "opts": [
+              "did nothing at all",
+              "announced their freedom",
+              "put the president in prison",
+              "did well in the general election"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_019"
+          },
+          {
+            "passageId": "rs3-p7-q7",
+            "passageText": "PASSAGE 7\n\n",
+            "q": "(1) Take a moment and imagine you are traveling in a country you have never been to \nbefore. Everything about the sights, the smells, the sounds seem strange. People \nare speaking a language you do not understand and wearing clothes unlike yours. \nBut they greet you with a smile and you sense that, despite the differences you \nobserve, deep down inside these people have the same feelings as you. But is this \ntrue? Do people from opposite ends of the world really feel the same emotions? \nWhile most scholars agree that members of different cultures may vary in the \nfoods they eat, the languages they speak, and the holidays they celebrate, there \nis disagreement about how much culture shapes people’s emotions and feelings \nincluding what people feel, what they express, and what they do during an \nemotional event.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_020"
+          },
+          {
+            "passageId": "rs3-p7-q8",
+            "passageText": "PASSAGE 7\n\n",
+            "q": "What idea does the expression “opposite ends of the world” in Paragraph (1) repeat?",
+            "opts": [
+              "disagreement",
+              "strange things",
+              "different cultures",
+              "countries not visited before"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_021"
+          }
+        ]
+      },
+      {
+        "id": "rs4",
+        "theme": "sc-theme-teal",
+        "icon": "📝",
+        "title": "Third Strategy:  Referring Technique",
+        "subtitle": "Third Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs4-p7-q1",
+            "passageText": "PASSAGE 7\n\n",
+            "q": "Pizza, which originated in Italy. Is a fast food that is known and loved all around the world. \nHow did it become so popular? Part of the reason is that tourists who went to Italy \nate it there and loved it. When they returned to their countries, They looked for  Italian \nrestaurants that might have it. But much more significant in pizza becoming popular \nworldwide the fact that lots of American soldiers who were in Italy during World War II \nate it there and then wanted it when they returned to the USA. This dramatic increase in \nthe demand for pizza in the 1950s led to the development of special restaurants for pizza.",
+            "opts": [
+              "there in paragraph 1 refers to……………",
+              "the United States",
+              "a pizza restaurant",
+              "Italy",
+              "the world",
+              "that it is",
+              "formation of microscopic eggs. One of the scientists said that  there are traces of oil in the eggs, and this is what is causing the strange, orange color.",
+              "it in Paragraph (2) refers to……………...",
+              "traces of oil",
+              "a microscope",
+              "the unknown substance",
+              "one of Alaska’s laboratories"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_022"
+          }
+        ]
+      },
+      {
+        "id": "rs5",
+        "theme": "sc-theme-green",
+        "icon": "📝",
+        "title": "Fourth Strategy: Conjunctions",
+        "subtitle": "Fourth Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs5-p1-q1",
+            "passageText": "PASSAGE 1\n\n\n\n(1) Prince Henry led the way in sponsoring exploration for Portugal, a small nation next \nto Spain. First, Prince Henry’s navigators discovered and claimed the Madeira and \nAzores islands to the west and southwest of Portugal. By 1415, Portugal had expanded \ninto  Muslim North Africa, seizing the port of Ceuta on the North African coast.\n\n(2) Prince Henry saw great promise in Africa. The Portuguese could convert Africans-\nmost of whom practiced tribal religions-to Christianity. He also believed that \nin Africa  he would find the sources of riches the Muslim traders controlled.\n\n(3) Finally, Prince Henry hoped to find an easier way to reach Asia, which meant going \naround Africa. The Portuguese felt that with their expert knowledge and technology, \nthey could accomplish this feat. At Sagres, in southern Portugal, Henry gathered \nscientists, cartographers, or mapmakers, and other experts. They redesigned \nships, prepared maps, and trained captains and crews for long voyages. Henry’s \nships then slowly worked their way south to explore the western coast of Africa.\n\n(4) Henry died in 1460, but the Portuguese continued their quest. In 1488. Bartholomeu Dias \nrounded the southern tip of Africa. Despite the turbulent seas around it, the tip became \nknown as the Cape of Good Hope because it opened the way for a sea route to Asia.",
+            "q": "Which word can we use to replace the word “because” in Paragraph (4)?",
+            "opts": [
+              "although",
+              "besides",
+              "since",
+              "so"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_023"
+          },
+          {
+            "passageId": "rs5-p2-q2",
+            "passageText": "PASSAGE 2\n\n(Personal Finance)\n(Personal Finance)",
+            "q": "1.\t An annual survey in 2017 from the National Endowment for Financial Education (NEFE)\nfound Americans cited the most significant financial setbacks they experienced in 2016as \ntransportation issues (23 percent), housing repairs/ maintenance (20 percent),and \nmedical care for an injury/ illness (18 percent). If faced with a major unexpected expense, \nover one third say they would pay for it with credit cards or emergency savings–both at \n35 percent–followed by cash at 32 percent.\n2.\t The survey also found that nearly half (48 percent) of Americans admit that they are \nliving paycheck to paycheck. The main reasons people believe they are living paycheck \nto paycheck are due to credit card debt (24 percent). employment struggles (22 percent). \nand mortgage/ rent payments (18 percent). Compounding the uneasiness,  over three \nquarters (78 percent) say something causes them financial stress. Saving money (53 \npercent) tops the list, followed by managing debt (44 percent).\n3.\t «Get debt under control», says Paul Golden (a spokesman for NEFE). «Take a hard look \nat what you Owe. If there’s a clear warning sign of too much debt. take action. Set a goal \nto reduce your debt load next year by 5 to 10 percent. That might mean reducing impulse \nshopping. Six in 10 people admit they purchase on impulse and 80 percent of those regret \npurchases afterwards. When you face temptation, walk away for at least30 minutes and \nsee if you still want it and it’s a good idea».",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_024"
+          },
+          {
+            "passageId": "rs5-p2-q3",
+            "passageText": "PASSAGE 2\n\n(Personal Finance)\n(Personal Finance)",
+            "q": "Which expression can we use to replace the expression “due to” in Paragraph (2)?",
+            "opts": [
+              "however",
+              "although",
+              "meanwhile",
+              "because of",
+              "selling ketchup in glass bottles, people have  been arguing over the best way to get the condiment out of the packaging and onto their  plates. A physicist decided to apply",
+              "little science to the matter and now has found what  he calls",
+              "scientifically optimized method for getting the ketchup to flow. (2) While it may look like",
+              "liquid, ketchup is actually",
+              "non-Newtonian fluid. Instead off lowing  consistently the viscosity of these substances change with the amount of force put on them. (3) Because of the physics that govern ketchup’s viscosity, packaging them in glass bottles  makes it much harder to hit that pressure sweet spot. But if you’ re dedicated on sticking to  the classics and not switching to squeeze bottles, Stickland has developed",
+              "method based  on physics for coaxing ketchup out of the bottle, Daisy Meager reports for Munchies. (4) You have to start by giving the sauce",
+              "good shake,” Stickland says in",
+              "statement. (5) The next step is to flip the bottle upside-down (with the lid still on). Then, shake the bottle  until the ketchup has slid into its neck. Lastly, turn the bottle so that it’s pointing towards  your meal at",
+              "45-degree angle and uncap. If needed, Stickland says to give the ketchup",
+              "little “encouragement” by tapping on the bottom of the bottle-gently at first, but with  increasing force until it finally slides out and onto the plate. “The trick is to get the sauce  flowing, but not too fast.”"
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_025"
+          },
+          {
+            "passageId": "rs5-p3-q4",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "Which word can we use to replace the word “While” in Paragraph (2)?",
+            "opts": [
+              "because",
+              "although",
+              "however",
+              "besides",
+              "gasses that enter and cause harm to  people, animals, and their environment. Two of the worst types of pollution we experience  in the world are outdoor air quality in cities and indoor air Pollution. To solve the problem  of air Pollution. It is necessary to understand the causes and look for ways to fix them.",
+              "larger population, there is always",
+              "need for energy. Transportation, and  industries, which result in the spread of harmful chemicals into the air. In addition to  outdoor air pollution, there is another type of pollution. The air quality around and inside  buildings and structures is known as indoor air quality. Indoor air quality has",
+              "direct effect  on the comfort and health of the people inside",
+              "building. Some of the common sources of  indoor air pollution include chemicals and cleaning products used in homes and offices.",
+              "them cleaner.  For example, people can use less energy because the more we use sources of energy, like  electricity and gasoline, the more air Pollution we create. People can ride",
+              "bicycle or walk."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_026"
+          },
+          {
+            "passageId": "rs5-p4-q5",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "Which word can we use to replace the words “for example” in Paragraph (3)?",
+            "opts": [
+              "Therefore",
+              "Although",
+              "In particular",
+              "For instance"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_027"
+          },
+          {
+            "passageId": "rs5-p5-q6",
+            "passageText": "PASSAGE 5\n\n1) Many people know that garbage is a big problem on Earth. What many people don’t know is that \ntrash has become a problem in space too. Years of space travel have left tones of space junk” in \norbit around the planet.",
+            "q": "2) There are more than 22,000 pieces of junk in space around the earth. And these are just the items \nthat we can see from earth. There are also millions of smaller pieces of junk that we can’t see",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_028"
+          },
+          {
+            "passageId": "rs5-p5-q7",
+            "passageText": "PASSAGE 5\n\n1) Many people know that garbage is a big problem on Earth. What many people don’t know is that \ntrash has become a problem in space too. Years of space travel have left tones of space junk” in \norbit around the planet.",
+            "q": "3) To help reduce more space junk, countries around the world have agreed to limit the time their \ntools stay in space to 25 years. Each tool must be built to fall safely into the earth’s atmosphere, \nor the gases that surround the earth. After that, in the upper parts of the atmosphere, it will burn \nup.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_029"
+          },
+          {
+            "passageId": "rs5-p5-q8",
+            "passageText": "PASSAGE 5\n\n1) Many people know that garbage is a big problem on Earth. What many people don’t know is that \ntrash has become a problem in space too. Years of space travel have left tones of space junk” in \norbit around the planet.",
+            "q": "4) Scientists are suggesting different ways to clean up space junk. In England a metal object is being \ntested that can be sent into space and then pull the space junk back into the earth’s atmosphere \nwhere it would burn up. The Germans have been planning a space mission with robots that would \ncollect pieces of space trash and bring them back to Earth so that they can be safely destroyed.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_030"
+          },
+          {
+            "passageId": "rs5-p5-q9",
+            "passageText": "PASSAGE 5\n\n1) Many people know that garbage is a big problem on Earth. What many people don’t know is that \ntrash has become a problem in space too. Years of space travel have left tones of space junk” in \norbit around the planet.",
+            "q": "5) “In our opinion the problem is very challenging, and it’s quite urgent as well,” said Marco \nCastronuovo, an Italian Space Agency researcher who is working to solve the problem.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_031"
+          },
+          {
+            "passageId": "rs5-p5-q10",
+            "passageText": "PASSAGE 5\n\n1) Many people know that garbage is a big problem on Earth. What many people don’t know is that \ntrash has become a problem in space too. Years of space travel have left tones of space junk” in \norbit around the planet.",
+            "q": "Which word can we use to replace the words “as well” in paragraph (5)?",
+            "opts": [
+              "therefore",
+              "though",
+              "still",
+              "too"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_032"
+          },
+          {
+            "passageId": "rs5-p6-q11",
+            "passageText": "PASSAGE 6\n\nComputer Ethics\nComputer Ethics",
+            "q": "2) Use of the internet has led to an increase in plagiarism - this is when a person \ntakes another person’s idea/work and claims it as their own. While it is perfectly \nfine to quote another person’s idea, it is essential that some acknowledgement \nis made so that the originator of the idea is known to others. This can be done \nby a series of references at the end of a document  or footnotes on each page \nwhere a reference needs to be made. Software  exists that can scan text and \nthen look for examples of plagiarism by  searching web pages on the internet.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_033"
+          },
+          {
+            "passageId": "rs5-p6-q12",
+            "passageText": "PASSAGE 6\n\nComputer Ethics\nComputer Ethics",
+            "q": "Which word can we use to replace the word “then” at the end of Paragraph (2)?",
+            "opts": [
+              "even though",
+              "in addition",
+              "in contrast",
+              "after that"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_034"
+          },
+          {
+            "passageId": "rs5-p6-q13",
+            "passageText": "PASSAGE 6\n\nComputer Ethics\nComputer Ethics",
+            "q": "Why does the writer use the word……… in paragraph……?",
+            "opts": [
+              "Americans cited the most significant financial setbacks they  experienced in 2016as transportation issues (23 percent), housing repairs/ maintenance (20 percent), and medical care for injury illness (18 percent). If faced  with",
+              "major unexpected expense, over one third say they would pay for it with  credit cards or emergency savings both at 35 percent-followed by cash at 32  percent.",
+              "that nearly half (48 percent) of Americans admit that they  are living paycheck to paycheck. The main reasons people believe they are living  pay check to paycheck are due to credit card debt (24 percent), employment  struggles (22percent), and mortgage/rent payments (18 percent). Compounding  the uneasiness, over three quarters (78 percent) say something causes them  financial stress. Saving money (53 percent) tops the list, followed by managing  debt (44 percent). (3) “Get debt under control” says Paul Golden (a spokesman for  NEFE). “Take",
+              "hard look at what you owe. If there’s",
+              "clear warning sign of too  much debt. take action. Set",
+              "goal to reduce your debt load next year by 5 to 10  percent. That might mean reducing impulse shopping .Six in 10 people admit they  purchase on impulse and 80 percent of those regret purchases afterwards. When  you face temptation, walk away for at least 30 minutes and see if you still want it  and it’s",
+              "good idea”."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_035"
+          },
+          {
+            "passageId": "rs5-p1-q14",
+            "passageText": "PASSAGE 1\n\n",
+            "q": "Why does the writer use the word “also” in Paragraph (2)?",
+            "opts": [
+              "to give an example of the survey results",
+              "to show",
+              "list of answers reported in the survey",
+              "to give more information about the survey results",
+              "to show different results from those reported before",
+              "gasses that enter and cause  harm to people, animals, and their environment. Two of the worst types of pollution we  experience in the world are outdoor air quality in cities and indoor air Pollution. To solve  the problem of air Pollution. It is necessary to understand the causes and look for ways  to fix them.",
+              "larger population, there is always",
+              "need for energy. Transportation, and  industries, which result in the spread of harmful chemicals into the air. In addition to  outdoor air pollution, there is another type of pollution. The air quality around and inside  buildings and structures is known as indoor air quality. Indoor air quality has",
+              "direct  effect on the comfort and health of the people inside",
+              "building. Some of the common  sources of indoor air pollution include chemicals and cleaning products used in homes  and offices.",
+              "them cleaner.  For example, people can use less energy because the more we use sources of energy,  like electricity and gasoline, the more air Pollution we create. People can ride",
+              "bicycle  or walk."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_036"
+          },
+          {
+            "passageId": "rs5-p2-q15",
+            "passageText": "PASSAGE 2\n\n(Air Pollution)\n(Air Pollution)",
+            "q": "Why does the writer use the words “In addition” in Paragraph (2)?",
+            "opts": [
+              "to give more information about air pollution.",
+              "to give an example of air pollution.",
+              "to explain the result of air pollution.",
+              "to explain the cause of air pollution."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_037"
+          },
+          {
+            "passageId": "rs5-p3-q16",
+            "passageText": "PASSAGE 3\n\nSickle Cell Anemia\n     Sickle Cell Anemia",
+            "q": "1) Sickle cell anemia is a disease that damages red blood cells. The cells, which are normally \nround, become shaped like a sickle. A sickle is a crescent-shaped tool, used to harvest \ncrops. The sickle-shaped cells are fragile and die quickly. Sickle cell anemia affects about \n1 out of 12 people with African ancestry. It also affects people with South Asian, Middle \nEaster, or Mediterranean roots.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_038"
+          },
+          {
+            "passageId": "rs5-p3-q17",
+            "passageText": "PASSAGE 3\n\nSickle Cell Anemia\n     Sickle Cell Anemia",
+            "q": "2) Like other types of anemia, sickle cell anemia causes tiredness, weakness, and shortness \nof breath. It also may lead to jaundice, which is a yellowing of the skin and eyes. The pain \nmay occur in the arms, legs, stomach, or chest. A pain crisis can last from several hours \nto several days. People with sickle cell anemia also are more likely to get infections. In \naddition, children with the disease may grow more slowly than other children.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_039"
+          },
+          {
+            "passageId": "rs5-p3-q18",
+            "passageText": "PASSAGE 3\n\nSickle Cell Anemia\n     Sickle Cell Anemia",
+            "q": "3) Sickle cell anemia is a genetic disease, which means that it is handed down from parent to \nchild. For a child to have sickle cell anemia, both parents must carry the responsible gene. \nIf only one parent has the gene, the child does not get the disease. However, the child may \npass the gene on to his or her children.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_040"
+          },
+          {
+            "passageId": "rs5-p3-q19",
+            "passageText": "PASSAGE 3\n\nSickle Cell Anemia\n     Sickle Cell Anemia",
+            "q": "4) There is no way to prevent sickle cell anemia. But I think a healthy lifestyle and medications \ncan help patients to manage the symptoms.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_041"
+          },
+          {
+            "passageId": "rs5-p3-q20",
+            "passageText": "PASSAGE 3\n\nSickle Cell Anemia\n     Sickle Cell Anemia",
+            "q": "Why does the writer use the words “in addition” in paragraph 2)?",
+            "opts": [
+              "To show another result of the disease",
+              "To explain what happens to children",
+              "To explain what happens after an infection",
+              "To show children are different than their parents."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_042"
+          },
+          {
+            "passageId": "rs5-p4-q21",
+            "passageText": "PASSAGE 4\n\nChanges in Agriculture\nChanges in Agriculture",
+            "q": "1) Between 1950 and 1970, a world-wide effort to combat hunger and malnutrition led to \ndramatic improvements in farming techniques and crop yields. This effort came to be \ncalled the green revolution because it greatly increased the world’s food supply. Green \nrevolution technologies enabled many countries to end chronic food shortages and, in \nsome cases, become exporters of surplus food.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_043"
+          },
+          {
+            "passageId": "rs5-p4-q22",
+            "passageText": "PASSAGE 4\n\nChanges in Agriculture\nChanges in Agriculture",
+            "q": "2) At the heart of the green revolution was the use of high-yield varieties of seed and fertilizer. \nFor thousands of years, farmers have added essential nutrients in the form of natural \nfertilizers such as animal manure. While some farmers today still use these traditional \nmethods, many farmers use artificial fertilizers.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_044"
+          },
+          {
+            "passageId": "rs5-p4-q23",
+            "passageText": "PASSAGE 4\n\nChanges in Agriculture\nChanges in Agriculture",
+            "q": "Why does the writer use the word “while” in Paragraph (2)?",
+            "opts": [
+              "to give more information about nutrients.",
+              "to give an example of the green revolution",
+              "to show that natural fertilizers are better.",
+              "to show that artificial fertilizers are more popular",
+              "a problem. A big. potentially  deadly problem. It was so big that on this day in 1795, they offered 12.000francs to anyone  who could successfully solve it.",
+              "safely–was one shared by most of the rest of humanity,  which probably explains why its solution has been so popular and lasting: canning. When  left out, food, as we all know, goes bad.",
+              "could be dried, smoked, fermented or pickled before the invention of  canning, none of these methods were certain to be safe and they didn’t preserve flavor.  Then came Nicolas Appert,",
+              "candy maker and winner of the prize money and the title  «The Father of Canning».",
+              "in jars or cans and heating the whole set-up to",
+              "temperature  that kills bacteria and other microorganisms. As the jars/ cans cool,",
+              "vacuum seal is  formed which prevents other microorganisms from getting in.",
+              "never explain why his method worked. Appert’s  work was centered around the idea of removing air from food. Appert’s method started  with putting food in jars, which were then corked, and sealed off with",
+              "wax seal. The jars  were wrapped in canvas and then boiled.",
+              "«application of the heat in the water bath»."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_045"
+          },
+          {
+            "passageId": "rs5-p5-q24",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "Why does the writer use the word “although” in Paragraph (3)?",
+            "opts": [
+              "To show an example of how food was kept safe.",
+              "To give more information about Nicolas Appert’s work.",
+              "To prove that flavor was important in keeping food safe.",
+              "To show that these methods of keeping food safe had some issues",
+              "was used to grow crops that were  exported. The potato was the main source of food for most of the Irish people. In 1845,  disaster struck. A blight or disease destroyed the potato crop. Other crops, such as wheat  and oats, were not affected. Yet British landowners continued to ship these crops outside  Ireland, leaving little for the Irish except the blighted potatoes. The result was",
+              "terrible  famine that the Irish called the ‘Great Hunger’. In four years, about one million Irish men,  women and children died of starvation or disease. Many more emigrated to the United  States and Canada. The Great Hunger left",
+              "legacy of Irish bitterness toward the English.",
+              "the Fenian Brotherhood. Its goal was to  liberate Ireland from British rule by force. In the 1870s, moderate Irish nationalists found",
+              "rousing leader in Charles Parnell. He rallied Irish members of Parliament to press for  home rule, or local self-government. The debate dragged on for ages.",
+              "English Politics. At times, political parties were so deeply  split over the Irish question that they could not take care of other business. As prime  minister, Gladstone pushed for reforms in Ireland, he ended the use of Irish tax money  to support the British and tried to ease the hardship of Irish tenant farmers. New laws  prevented landlords from charging unfair rents and protected the rights of tenants to the  land they worked.",
+              "a home rule law. But it delayed putting the new law  into effect when World War 1 broke out that year. The southern counties of Ireland finally  became independent in 1921."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_046"
+          },
+          {
+            "passageId": "rs5-p6-q25",
+            "passageText": "PASSAGE 6\n\n(Irish Potato Famine)\n(Irish Potato Famine)",
+            "q": "Why does the  writer use the word “Yet” in Paragraph (1)?",
+            "opts": [
+              "To prove that the Irish only liked to eat potatoes most of the time",
+              "To give more information about which crops were sent to Canada",
+              "To show that crops, like wheat and oats, were also affected by disease",
+              "To show that British landowners sold good crops while people were hungry"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_047"
+          }
+        ]
+      },
+      {
+        "id": "rs6",
+        "theme": "sc-theme-purple",
+        "icon": "📝",
+        "title": "Direct",
+        "subtitle": "Fifth Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs6-p1-q1",
+            "passageText": "PASSAGE 1\n\n\n\n1) Air pollution is a major problem all over the world today. Scientific research now shows us that \nindoor air pollution may be a much greater danger than outdoor pollution. In one 2009 study, \nresearchers found 586 chemicals in the air of 52 typical homes in Arizona, USA. This led them \nto conclude that indoor air quality can be five times worse than outdoor air. Offices, factories \nand other places of work can be just as polluted as homes, maybe more so. In today’s society \nmost people spend up to 90% of their time indoors. We seal our buildings tightly to reduce \nenergy costs. Equipment and buildings themselves, give off an increasing amount of synthetic \nman-made) chemicals and gases. There is inadequate ventilation and no access to fresh air, all \nthese harmful elements are kept inside. This condition is known as “sick building syndrome” \nfurnishings in buildings, and the When condition is known as “sick building” syndrome.\n2) The sources of indoor air pollution can be easily pollen, identified. Air pollutants fall into three \nmain categories: biological particles mold, bacteria, viruses, pollen, etc.). non-biological \nparticles smoke, dust, heavy metals, radioactive isotopes, etc.), and gases carbon monoxide, \nformaldehyde, radon, etc.). In homes, there are four major sources of these pollutants: pressed \nwood products, carpets, paints, and furniture. Addition, the indoor air space of offices is full of \nvolatile organic compounds (VOCs) produced by photocopiers, computers and other equipment. \nDangerous pollutants can also be found in air-conditioned rooms in summer and rooms heated \nby coal or wood fires in winter. The kitchen is another place where the air may contain harmful \ngases from cooking stoves and non-stick Teflon) cooking pans.\n3) Poor indoor air quality can cause a number of health problems. These include asthma, allergies, \nheadaches, memory loss and fatigue tiredness). Eye and irritations can also result from bad \nindoor air. People who spend a lot of time indoors away from fresh air skin may suffer more \nfrom sore throats, colds and flu as well. The more serious long-term effects of breathing \ntoxic airborne particles include heart and respiratory diseases in addition to different kinds of \ncancer.\n4) There are a number of ways to improve our indoor air very simple and make our buildings \nhealthier. One very simple solution is to get some houseplants. In India, people are already \nusing plants to take the place of air filters. One business center in New Delhi has successfully \nused this method for fifteen years. For a building with 30 people, they used over 1,200 plants \nto clean the air. There are other things we can do in our homes. Open a few windows every day \nfor five or ten minutes to change the air and do not allow smoking inside. Do not use non-stick \ncookware. Do not use synthetic materials for carpets and buy real wood furniture. Use natural \nmaterials such as cotton and wool for curtains and bedding. Do not use toxic cleaning materials \nor paints in your home. Finally, be sure to keep heating stoves and air conditioners in good \nrepair and clean them often.",
+            "q": "According to Paragraph (1), in the 2009 study, how many chemicals did the researchers \nfind in the indoor air?",
+            "opts": [
+              "25",
+              "90",
+              "300",
+              "586"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_048"
+          },
+          {
+            "passageId": "rs6-p1-q2",
+            "passageText": "PASSAGE 1\n\n\n\n1) Air pollution is a major problem all over the world today. Scientific research now shows us that \nindoor air pollution may be a much greater danger than outdoor pollution. In one 2009 study, \nresearchers found 586 chemicals in the air of 52 typical homes in Arizona, USA. This led them \nto conclude that indoor air quality can be five times worse than outdoor air. Offices, factories \nand other places of work can be just as polluted as homes, maybe more so. In today’s society \nmost people spend up to 90% of their time indoors. We seal our buildings tightly to reduce \nenergy costs. Equipment and buildings themselves, give off an increasing amount of synthetic \nman-made) chemicals and gases. There is inadequate ventilation and no access to fresh air, all \nthese harmful elements are kept inside. This condition is known as “sick building syndrome” \nfurnishings in buildings, and the When condition is known as “sick building” syndrome.\n2) The sources of indoor air pollution can be easily pollen, identified. Air pollutants fall into three \nmain categories: biological particles mold, bacteria, viruses, pollen, etc.). non-biological \nparticles smoke, dust, heavy metals, radioactive isotopes, etc.), and gases carbon monoxide, \nformaldehyde, radon, etc.). In homes, there are four major sources of these pollutants: pressed \nwood products, carpets, paints, and furniture. Addition, the indoor air space of offices is full of \nvolatile organic compounds (VOCs) produced by photocopiers, computers and other equipment. \nDangerous pollutants can also be found in air-conditioned rooms in summer and rooms heated \nby coal or wood fires in winter. The kitchen is another place where the air may contain harmful \ngases from cooking stoves and non-stick Teflon) cooking pans.\n3) Poor indoor air quality can cause a number of health problems. These include asthma, allergies, \nheadaches, memory loss and fatigue tiredness). Eye and irritations can also result from bad \nindoor air. People who spend a lot of time indoors away from fresh air skin may suffer more \nfrom sore throats, colds and flu as well. The more serious long-term effects of breathing \ntoxic airborne particles include heart and respiratory diseases in addition to different kinds of \ncancer.\n4) There are a number of ways to improve our indoor air very simple and make our buildings \nhealthier. One very simple solution is to get some houseplants. In India, people are already \nusing plants to take the place of air filters. One business center in New Delhi has successfully \nused this method for fifteen years. For a building with 30 people, they used over 1,200 plants \nto clean the air. There are other things we can do in our homes. Open a few windows every day \nfor five or ten minutes to change the air and do not allow smoking inside. Do not use non-stick \ncookware. Do not use synthetic materials for carpets and buy real wood furniture. Use natural \nmaterials such as cotton and wool for curtains and bedding. Do not use toxic cleaning materials \nor paints in your home. Finally, be sure to keep heating stoves and air conditioners in good \nrepair and clean them often.",
+            "q": "According to Paragraph (2), which of the following are sources of VOCs?",
+            "opts": [
+              "cooking stoves and Teflon pans",
+              "photocopiers and computers",
+              "radon and formaldehyde",
+              "paints and furniture"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_049"
+          },
+          {
+            "passageId": "rs6-p1-q3",
+            "passageText": "PASSAGE 1\n\n\n\n1) Air pollution is a major problem all over the world today. Scientific research now shows us that \nindoor air pollution may be a much greater danger than outdoor pollution. In one 2009 study, \nresearchers found 586 chemicals in the air of 52 typical homes in Arizona, USA. This led them \nto conclude that indoor air quality can be five times worse than outdoor air. Offices, factories \nand other places of work can be just as polluted as homes, maybe more so. In today’s society \nmost people spend up to 90% of their time indoors. We seal our buildings tightly to reduce \nenergy costs. Equipment and buildings themselves, give off an increasing amount of synthetic \nman-made) chemicals and gases. There is inadequate ventilation and no access to fresh air, all \nthese harmful elements are kept inside. This condition is known as “sick building syndrome” \nfurnishings in buildings, and the When condition is known as “sick building” syndrome.\n2) The sources of indoor air pollution can be easily pollen, identified. Air pollutants fall into three \nmain categories: biological particles mold, bacteria, viruses, pollen, etc.). non-biological \nparticles smoke, dust, heavy metals, radioactive isotopes, etc.), and gases carbon monoxide, \nformaldehyde, radon, etc.). In homes, there are four major sources of these pollutants: pressed \nwood products, carpets, paints, and furniture. Addition, the indoor air space of offices is full of \nvolatile organic compounds (VOCs) produced by photocopiers, computers and other equipment. \nDangerous pollutants can also be found in air-conditioned rooms in summer and rooms heated \nby coal or wood fires in winter. The kitchen is another place where the air may contain harmful \ngases from cooking stoves and non-stick Teflon) cooking pans.\n3) Poor indoor air quality can cause a number of health problems. These include asthma, allergies, \nheadaches, memory loss and fatigue tiredness). Eye and irritations can also result from bad \nindoor air. People who spend a lot of time indoors away from fresh air skin may suffer more \nfrom sore throats, colds and flu as well. The more serious long-term effects of breathing \ntoxic airborne particles include heart and respiratory diseases in addition to different kinds of \ncancer.\n4) There are a number of ways to improve our indoor air very simple and make our buildings \nhealthier. One very simple solution is to get some houseplants. In India, people are already \nusing plants to take the place of air filters. One business center in New Delhi has successfully \nused this method for fifteen years. For a building with 30 people, they used over 1,200 plants \nto clean the air. There are other things we can do in our homes. Open a few windows every day \nfor five or ten minutes to change the air and do not allow smoking inside. Do not use non-stick \ncookware. Do not use synthetic materials for carpets and buy real wood furniture. Use natural \nmaterials such as cotton and wool for curtains and bedding. Do not use toxic cleaning materials \nor paints in your home. Finally, be sure to keep heating stoves and air conditioners in good \nrepair and clean them often.",
+            "q": "According to Paragraph (4), where are plants being used successfully to keep the air healthy?",
+            "opts": [
+              "in",
+              "research center in the USA",
+              "in",
+              "business center in India",
+              "in offices in America",
+              "in typical homes in Arizona"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_050"
+          },
+          {
+            "passageId": "rs6-p2-q4",
+            "passageText": "PASSAGE 2\n\n(Growth of Public Education)\n(Growth of Public Education)",
+            "q": "1) By the early 1800s, reformers persuaded many governments to set up public schools and require basic \neducation for all children. Teaching «the three Rs» – reading, writing and arithmetic – was thought to \nproduce better citizens. In addition, industrialized societies recognized the need for a literate workforce. \nSchools’ taught punctuality, obedience to authority. disciplined work habits, and patriotism. In European \nschools. children also received basic religious education.\nPublic Education Improves\n2) At first, elementary schools were primitive. Many teachers had little schooling themselves. In rural areas, \nstudents attended schools only during the times when they were not needed on the farm or in their \nparents’ shops.\n3) By the late 1880s, more and more children were in school, and the quality of elementary education \nimproved. Teachers received training at Normal here the latest ‘norms and standards’ of educational \npractices were taught. Beginning in 1879, schools to train teachers were established in France. In \nEngland, schooling girls and boys between the ages of five and ten became compulsory after 1881. \nAlso, governments began to expand secondary schools, known as high schools in the United States. \nIn secondary school, students learned the classical languages Latin and Greek, along with history and \nmathematics.\n4) In general, only middle-class families could afford to have their sons attend these schools, which trained \nstudents for more serious study or for government jobs. Middle-class girls were sent to school primarily \nin the hope that they might marry well and become better wives and mothers. Education for girls did not \ninclude subjects such as science, mathematics. Or physical education because they were not seen as \nnecessary subjects for girls to learn higher education expands.\n5) Colleges and universities expanded in this period, too. Most university students were the sons of middle-or \nupper-class families. The university curriculum emphasized ancient history and languages, philosophy, \nreligion and law. By the late 1800s, universities added courses in the sciences, especially in chemistry \nand physics at the same time, engineering schools trained students who would have the knowledge and \nskills to build the new industrial society.\n6) Some women sought greater educational opportunities. By the 1840s, a few small colleges for women \nopened, including Bedford College in England and Mount Holyoke in the United States. In 1863, the British \nreformer Emily Davies campaigned for female students to be allowed to take the entrance examinations \nfor Cambridge University. She succeeded, but as late as 1897, male Cambridge students rioted against \ngranting degrees to women.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_051"
+          },
+          {
+            "passageId": "rs6-p2-q5",
+            "passageText": "PASSAGE 2\n\n(Growth of Public Education)\n(Growth of Public Education)",
+            "q": "In 1879, where did schools to train teachers start?",
+            "opts": [
+              "England",
+              "France",
+              "United States",
+              "Greece",
+              "England",
+              "United States",
+              "France",
+              "Greece"
+            ],
+            "c": 1,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_052"
+          },
+          {
+            "passageId": "rs6-p2-q6",
+            "passageText": "PASSAGE 2\n\n(Growth of Public Education)\n(Growth of Public Education)",
+            "q": "What university course was added to the curriculum by the late 1800s?",
+            "opts": [
+              "chemistry",
+              "mathematics",
+              "religion",
+              "physical education"
+            ],
+            "c": 1,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_053"
+          },
+          {
+            "passageId": "rs6-p3-q7",
+            "passageText": "PASSAGE 3\n\nstars\nstars",
+            "q": "1) If we look at the night sky carefully, we will see that the stars are of many different colors. Some \nare red, others are yellow and some are blue. This is also shown when we take color photographs \nof the night sky. You can take such a photograph with an ordinary camera as long as it is kept \nsteady. A thirty second exposure is sufficient.\n2) Astronomers have been able to classify stars according to color. They have found that blue stars \nare the largest and red stars the smallest. However, there are a few stars which cannot be \nclassified in this way. These are the superstars. For example, Ryiejol is a blue superstar as big \nas 40.000 suns and Beetlejuice is a superstar with a size equal to 17.000 suns.\n3) Suppose an astronomer observes two stars, one brighter than the other. If neither of them is \na superstar. he will know immediately that the brighter star is closer. Astronomers have \ninstruments like light meters which can measure the brightness of a star quite accurately. It is \npossible to measure a star’s distance from the earth if astronomers know the color, brightness \nand whether or not it is a superstar.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_054"
+          },
+          {
+            "passageId": "rs6-p3-q8",
+            "passageText": "PASSAGE 3\n\nstars\nstars",
+            "q": "Which of the following colors is NOT mentioned in the passage?",
+            "opts": [
+              "green",
+              "yellow",
+              "blue",
+              "red",
+              "superstar …………",
+              "as big as the sun",
+              "smaller than the sun",
+              "as big as 17,000 suns",
+              "as big as 40.000 suns",
+              "size",
+              "color",
+              "shape",
+              "brightness"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_055"
+          },
+          {
+            "passageId": "rs6-p4-q9",
+            "passageText": "PASSAGE 4\n\nStrange Substance\nStrange Substance",
+            "q": "1) A mysterious, orange, sticky gel, found on the beaches of Kivalina, a village situated \non the Alaskan coast between Kotzebue and Point Hope, was recently the source of \nmuch interest. Many people thought that the sticky gel was some strange compound \nthat had spread as a result of a chemical reaction. Others had more farfetched \nideas about the substance’s origins ranging from aliens to volcanic remains.",
+            "opts": [
+              "……..",
+              "on the beaches of Kotzebue",
+              "on the beaches of Point Hope",
+              "close to",
+              "compound in Alaska",
+              "between Kotzebue and Point Hope"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_056"
+          }
+        ]
+      },
+      {
+        "id": "rs7",
+        "theme": "sc-theme-red",
+        "icon": "📝",
+        "title": "Strategy purpose",
+        "subtitle": "Sixth Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs7-p1-q1",
+            "passageText": "PASSAGE 1\n\n\n\n(Hot deserts)\n(Hot deserts)\n\n1.\t Hot deserts are found near the tropics of Cancer and Capricorn. The largest hot \ndesert is the Sahara in Africa which covers the whole northern part of the continent.\n\n2.\t Hot deserts have an extreme climate and challenging environment. There is very\n\nlittle plant or animal life because of the difficult climate. Few plant and animal species \nare specialized enough to survive there. Plants and animals which do survive have \nadapted to difficult conditions. The biotic (living) parts of the hot desert and the \nabiotic (non-living) parts of the hot desert rely on one another - a change in one will \nresult in a change in the other.\n\n3.\t The climate is very hot. Summer day-time temperatures can be more than 40°C. \nHowever, at night the temperature can drop below 0°C. The climate is also very dry \nwith less than 250mm of rain a year. Hot deserts have two seasons: summer, when \nthe daytime temperature is between 35 and 40°C, and winter, when the temperature \nis between 20 and 30°C.\n\n4.\t Desert soils are thin with sand and rocks and are generally grey in color. They are \nvery dry. When it does rain, they soak up the water very quickly. The surface of \nthe soil may appear crusty. This is due to the lack of rain. In summer, it is so hot \nthat the water is brought up to the surface of the soil by evaporation. As the water \nevaporates, salts are left behind on the surface.",
+            "q": "What is the writer’s main purpose?",
+            "opts": [
+              "to study geography",
+              "to convince",
+              "to inform",
+              "to entertain"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_057"
+          },
+          {
+            "passageId": "rs7-p2-q2",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "1.\t The oceans make up 70 percent of the planet and contain 97 percent of all the water on \nEarth. It also makes up the vast majority of water stores, the majority of the planet’s \nmoisture, terrestrial energy, and heat from the sun. This energy is transferred between the \nequator and the two poles by larger surface currents, by winds and deep ocean currents \ndriven by differences in ocean density. It also provides the moisture and energy for storm \nsystems and ultimately global climates.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_058"
+          },
+          {
+            "passageId": "rs7-p2-q3",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "2.\t As terrestrial creatures, humans think of the importance of the planet’s land surfaces, yet \nEarth is a planet consisting of 70 percent water. From space, the dominance of water is \nobvious because most of it is stored in Earth’s oceans.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_059"
+          },
+          {
+            "passageId": "rs7-p2-q4",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "3.\t Earth would not be the same planet without its oceans. The oceans, along with the \natmosphere, keep Earth’s surface temperatures fairly constant worldwide. Some places \non Earth reach as cold as -20 degrees Celsius, whereas other places reach as hot as \n55 degrees Celsius. Yet on other planets like Mercury, temperatures range from -180 \ndegrees Celsius to 430 degrees Celsius. 26.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_060"
+          },
+          {
+            "passageId": "rs7-p2-q5",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "What is the writer’s main purpose?",
+            "opts": [
+              "to recommend",
+              "to complain",
+              "to advise",
+              "to inform",
+              "world underwent",
+              "transformation in agricultural  practice, described by the historian Andrew Watson as the Arab agricultural revolution. This  transformation was driven by",
+              "number of factors including the diffusion of many crops and  plants along Muslim trade routes, the spread of more advanced farming techniques, and an  agricultural-economic system which promoted increased yields and efficiency. The shift in  agricultural practice changed the economy, population distribution, vegetation cover, agricultural  production, population levels, urban growth, the distribution of the labor force, cooking, diet, and  clothing across the Islamic world.",
+              "much of the Old World, and trade enabled the diffusion of many crops,  plants and farming techniques across the region, as well as the adaptation of crops, plants and  techniques from beyond the Islamic world. This diffusion introduced major crops to Europe by  way of Al-Andalus, along with the techniques for their cultivation and cuisine. Sugar cane, rice,  and cotton were among the major crops transferred, along with citrus and other fruit trees, nut  trees, vegetables such as eggplant, and spinach and the use of spices such as cumin, coriander  and cinnamon, Intensive irrigation crop rotation and agricultural manuals were widely adopted.  Irrigation, partly based on Roman technology, made use of water wheels, water mills, dams and  reservoirs."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_061"
+          },
+          {
+            "passageId": "rs7-p3-q6",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "What is the writer’s main purpose?",
+            "opts": [
+              "to convince",
+              "to inform",
+              "to explain",
+              "to study agriculture"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_062"
+          },
+          {
+            "passageId": "rs7-p4-q7",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "1.\t No system can be perfect in the way it operates. Whenever there is a change in a system, \nenergy is transferred and some of that energy is dissipated.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_063"
+          },
+          {
+            "passageId": "rs7-p4-q8",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "2.\t Dissipation is a term that is often used to describe ways in which energy is wasted. Any \nenergy that is not transferred to useful energy stores is said to be wasted because it is \nlost to the Surroundings. Electrical cables Warming up are a good example of this. It is not \nuseful to have hot wires behind a television as energy is dissipated to the surrounding air.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_064"
+          },
+          {
+            "passageId": "rs7-p4-q9",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "3.\t In a mechanical system, energy is dissipated when two surfaces rub together, work is \ndone against friction which camass heading of the two surface – so the internal (thermal) \nenergy of the surface increases adding Lubricant between the surfaces reduce this friction \nand so less heat is wasted, like on a conveyor belt for example.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_065"
+          },
+          {
+            "passageId": "rs7-p4-q10",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "4.\t In an electrical context – new types of components can be more energy – efficient, for \nexample, using LED light bulbs as opposed to filament lamps causes less energy to be \nwasted. Normally. Energy is lost by heating up the surroundings though sometimes energy \nis dissipated as sound waves.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_066"
+          },
+          {
+            "passageId": "rs7-p4-q11",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "What’s the writer’s main purpose?",
+            "opts": [
+              "to compare",
+              "to describe",
+              "to advise",
+              "to convince",
+              "sculptural artwork that France gifted  to the United States of America on October 28, 1886 as",
+              "memorial gift, with the aim of  strengthening friendship between the two countries on the occasion of the centenary of  the American Revolution 1775-1783). Surrounding the statue as",
+              "whole is",
+              "star shaped  wall",
+              "star with 10 heads). The Statue of Liberty is very popular with many visitors around  the world, especially New York City, and visitors can take",
+              "great experience by going up  to the huge crown above the statue’s head.",
+              "……..",
+              "Narrative",
+              "Description",
+              "Definition",
+              "Compariso",
+              "Exporting) (Importing and Exporting)"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_067"
+          },
+          {
+            "passageId": "rs7-p6-q12",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "1.\t The history of importing and exporting dates back to the Roman Empire, when European \nand Asian traders imported and exported goods across the vast lands of Eurasia. \nTrading along the Silk Road flourished during the thirteenth and fourteenth centuries. \nCaravans filled with imports from China and India came over the desert to Constantinople \nand Alexandria. From there, Italian ships transported the goods to European ports.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_068"
+          },
+          {
+            "passageId": "rs7-p6-q13",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "2.\t For centuries, importing and exporting has often involved middlemen, due in part to the long \ndistances traveled and different native languages spoken. The spice trade of the 1400s was no \nexception. Spices were very much in demand because Europeans had no refrigeration, which \nmeant they had to preserve meat using large amounts of salt or risk eating half-rotten flesh. \nSpices disguised the otherwise poor flavor of the meat. Europeans also used spices as medicines. \nThe European demand for spices gave rise to the spice trade. The trouble was that spices were \ndifficult to obtain because they grew in jungles half a world away from Europe. The overland \njourney to the spice-rich lands was difficult and involved many middlemen along the way. Each \nmiddleman charged a fee and thus raised the price of the spice at each point. By the end of the \njourney, the price of the spice was inflated 1,000 percent.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_069"
+          },
+          {
+            "passageId": "rs7-p6-q14",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "Why did the writer write this passage?",
+            "opts": [
+              "to entertain",
+              "to persuade",
+              "to explain",
+              "to give an example"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_070"
+          }
+        ]
+      },
+      {
+        "id": "rs8",
+        "theme": "sc-theme-blue",
+        "icon": "📝",
+        "title": "Strategy",
+        "subtitle": "Seventh Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs8-p1-q1",
+            "passageText": "PASSAGE 1\n\n\n\n(meat production)\n(meat production)",
+            "q": "What are the economics of meat?",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_071"
+          },
+          {
+            "passageId": "rs8-p1-q2",
+            "passageText": "PASSAGE 1\n\n\n\n(meat production)\n(meat production)",
+            "q": "4.\t  Food and farming is one of the biggest economic sectors in the world. We are no longer \nin the 14th century, when as much as 76% of the population worked in agriculture but \nfarming still employs more than 26% of all workers globally. And that does not include \nthe people who work along the meat supply chain: the slaughterers, packagers, retailers \nand chefs.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_072"
+          },
+          {
+            "passageId": "rs8-p1-q3",
+            "passageText": "PASSAGE 1\n\n\n\n(meat production)\n(meat production)",
+            "q": "5.\t Recently, the world’s meat production was estimated at 317 metric tons, and that is \nexpected to continue to grow. Figures for the value of the global meat industry vary wildly \nfrom $90bn to as much as $741bn, but it is in fact, closer to the upper end.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_073"
+          },
+          {
+            "passageId": "rs8-p1-q4",
+            "passageText": "PASSAGE 1\n\n\n\n(meat production)\n(meat production)",
+            "q": "6.\t  Although the number of people directly employed by farming is currently less than 2% \nin the UK, the food chain now includes the agribusiness companies, the retailers, and the \nentertainment sector. According to the UK Department for Environment, in 2014 the food \nand drink manufacturing sector contributed £27bn to the economy, and employed 3.8 \nmillion people. What about its cultural and social importance?",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_074"
+          },
+          {
+            "passageId": "rs8-p1-q5",
+            "passageText": "PASSAGE 1\n\n\n\n(meat production)\n(meat production)",
+            "q": "7.\t  Is meat still crucial to human life? Some nutritionists argue that, just because we’ve \nalways eaten meat, that doesn’t mean we always have to. If we can get all the dietary \nnutrients and protein that we need elsewhere, should we?",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_075"
+          },
+          {
+            "passageId": "rs8-p1-q6",
+            "passageText": "PASSAGE 1\n\n\n\n(meat production)\n(meat production)",
+            "q": "Which of the following is an opinion?",
+            "opts": [
+              "Meat production will continue to grow.",
+              "Few people work farming in the UK.",
+              "The meat industry is worth closer to $174 million.",
+              "In the UK, 3,8 million are employed and 27 billion is made by the food industry."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_076"
+          },
+          {
+            "passageId": "rs8-p2-q7",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "1. From 1918 to 1920 the virus known as the Spanish Flu infected 500 million people \nworldwide, killing 50 to 100 million of them. The only continent it did not reach was \nAntarctica; deaths were registered from northern Alaska to the islands of Samoa. The \nvirus began in conditions that were perfect to help it spread across the globe, turning \nthe battlefields of World War I into huge centers of infection. Though the flu had long \nbeen a familiar disease, the subtype (special type) of 1918 took scientists by surprise. \nThey were shocked as much by the speed of its spread as by the number of people it \nkilled. Though some experts believe the virus’s origins were in Europe, the theory most \naccepted today suggests that it began in the United States, and later travelled on an army \nship to the battlefields of France. From there, an army of disease germs, like enemy \nsoldiers in a secret war ‘Ashgan’, spread out through the air and infected a third of the \nworld’s population, killing between 2.5% and 5% of everyone on earth. In the future, \nsuggests the World Health Organization, there will be more and perhaps more deadly \nflu pandemics (worldwide diseases), threatening global health and security and putting \nthe future of human society at risk. The virus won’t need a great war to help it cover \nthe earth; it will be enough for one carrier to get on an airplane and, in less than 20 \nhours, cover the distance between Tokyo and New York, or between Sydney and Doha.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_077"
+          },
+          {
+            "passageId": "rs8-p2-q8",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "Which of the following statements about the Spanish Flu is an opinion?",
+            "opts": [
+              "It began in the United States.",
+              "It killed at least 50 million people.",
+              "There were no infections in Antarctica.",
+              "Now it could spread across the world in one day.",
+              "of the Cold War) (The US response to the End of the Cold War)"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_078"
+          },
+          {
+            "passageId": "rs8-p3-q9",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "1.\t When Mikhail Gorbachev became the leader of the Soviet Union (USSR) in 1985, no one predicted \nthat the end of Cold War was only six years away",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_079"
+          },
+          {
+            "passageId": "rs8-p3-q10",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "2.\t  It all began in Poland in June 1989. A non-communist party did well in the general election and \npeople were celebrating in the streets. Everyone expected Gorbachev to send the army in, but he \ndid nothing at all. European communist governments under the Soviet influence started to fall \none by one. In autumn 1989, East Germans were knocking down the Berlin Wall. Then communist \ngovernments fell in Hungary, Czechoslovakia and in Romania the people put the president in \nprison.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_080"
+          },
+          {
+            "passageId": "rs8-p3-q11",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "3.\t Demands for freedom soon spread to the Soviet Union and Estonia, Latvia, and Lithuania \nannounced their freedom from Soviet control. In December 1991. Russia itself followed these \nthree and declared independence. The USSR was finished. Gorbachev was a president without \na country.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_081"
+          },
+          {
+            "passageId": "rs8-p3-q12",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "4.\t Americans were shocked but pleased at these changes. Republicans were quick to argue that it \nwas their actions that won the Cold War. They believed their spending policies during the 1980s \nand 1990s forced the Soviets to spend too much money on expensive equipment and weapons \nfor its army. However, Professor Parker of Harvard University argues that it was a joint effort, \nstarted 25 years earlier by the Democrats when Harry Truman was president.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_082"
+          },
+          {
+            "passageId": "rs8-p3-q13",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "5.\t Other history professors pointed out that no one really won the Cold War. The United States \nspent enormous amounts of money building up their army for a war with the Soviet Union. This \nwar never came. However, thousands of American lives were lost in unnecessary wars in Korea \nand Vietnam.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_083"
+          },
+          {
+            "passageId": "rs8-p3-q14",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "Which one of the following is an opinion?",
+            "opts": [
+              "The world remains",
+              "dangerous place.",
+              "USA spent",
+              "lot of money on weapons.",
+              "Many Americans died in Vietnam.",
+              "Nobody won the Cold War"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_084"
+          },
+          {
+            "passageId": "rs8-p4-q15",
+            "passageText": "PASSAGE 4\n\nHyperinflation\nHyperinflation",
+            "q": "1.\t Because Germany had no goods to trade after its defeat in WW1, the Weimar government \nsimply printed money. For Weimar government leaders this seemed an attractive solution. \nIt paid off its debts in the failing German currency, the mark, including war loans of over \n€2200 million. The great industrialists were able to pay of all their debts as well.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_085"
+          },
+          {
+            "passageId": "rs8-p4-q16",
+            "passageText": "PASSAGE 4\n\nHyperinflation\nHyperinflation",
+            "q": "2.\t This set off a chain reaction. With so much money in circulation prices and wages rocketed, \nbut people soon realized that this money was useless. Workers needed trolleys to carry \nhome their pay. Wages began to be paid daily instead of weakly. The price of goods could \nrise between joining the back of a queue in a shop and reaching the front!",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_086"
+          },
+          {
+            "passageId": "rs8-p4-q17",
+            "passageText": "PASSAGE 4\n\nHyperinflation\nHyperinflation",
+            "q": "3.\t While you might think that the poor suffered most, some historians argue that the greatest \ncasualties were middle-class Germans - those with saving A prosperous middle-class \nfamily would find that their savings in the bank, which might have bought them a house in \n1921. by 1923 would not even buy a loaf of bread. Pensioners found that their previously \nadequate monthly pension would not even buy a cup of coffee.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_087"
+          },
+          {
+            "passageId": "rs8-p4-q18",
+            "passageText": "PASSAGE 4\n\nHyperinflation\nHyperinflation",
+            "q": "4.\t It was clear to all, both inside and outside Germany, that the situation needed urgent \naction. In August 1923 a new government under Gustav Stresemann took over He called \noff the passive resistance in the Ruhr. He called in the useless marks and burned them, \nreplacing them with a new Currency - the American-backed Retenmark. He negotiated \nto reduce Germany’s debt and receive American loans under the Dawes Plan In addition, \nGermany repaired relations with its neighbors and reopened tune with renewed trade and \nthe flow of American dollars, life improved. The economic crisis was shed very quickly. \nSome historians suggest that this is evidence that many problems were not as severe as \nits politicians had made out.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_088"
+          },
+          {
+            "passageId": "rs8-p4-q19",
+            "passageText": "PASSAGE 4\n\nHyperinflation\nHyperinflation",
+            "q": "5.\t It is also increasingly clear, however, that the hibernation had done great political damage \nto the Weimar government. Their right-wing opponents had yet another problem to blame \nthem for the movement had lost the part of the middle classes.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_089"
+          },
+          {
+            "passageId": "rs8-p4-q20",
+            "passageText": "PASSAGE 4\n\nHyperinflation\nHyperinflation",
+            "q": "Which of the following is an opinion?",
+            "opts": [
+              "From 1921-1923 the German middle class DID NOT buy houses.",
+              "Workers needed trolleys to carry home their wages",
+              "A new government took power in 1923",
+              "Germany’s problems were NOT as severe as its politicians had said"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_090"
+          },
+          {
+            "passageId": "rs8-p5-q21",
+            "passageText": "PASSAGE 5\n\n(emotions)\n(emotions)",
+            "q": "1.\t What comes to mind when you think of emotions? It’s probably happiness, sadness, or \nfear. Emotions such as happiness, anger, sadness, and fear are important emotions, but \nhuman emotional experience is vast which means that people are capable of experiencing \na wide variety of feelings.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_091"
+          },
+          {
+            "passageId": "rs8-p5-q22",
+            "passageText": "PASSAGE 5\n\n(emotions)\n(emotions)",
+            "q": "2.\t Let’s consider what emotions do and when emotions happen. According to functionalist \ntheories of emotion, emotions help people manage important tasks. Fear, for example, \nprepares the body to fight or flee; happiness rewards achieving goals and builds \nattachments to other people, but what causes emotions to happen in the first place? \nAlthough it usually feels like something in the world causes an emotion, such as a good \nhug, emotion theories argue that emotions most likely come from how we think about \nwhat is happening in the world, not what is really happening. After all, if things in the world \ndirectly caused emotions, everyone would always have the same emotion in response to \nsomething. Interest, for example, may motivate a person to learn something new, whereas \nit may not create a response in someone else.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_092"
+          },
+          {
+            "passageId": "rs8-p5-q23",
+            "passageText": "PASSAGE 5\n\n(emotions)\n(emotions)",
+            "q": "3.\t For instance, appraisal theories propose that each emotion is caused by a group of \nappraisals, which are evaluations and judgments of what events in the world mean for \nour goals and well-being. We ask ourselves, is this relevant to me? Does it further or \nobstruct my goals? Can I deal with it or do something about it? Did someone do it on \npurpose? Different emotions come from different answers to these appraisal questions.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_093"
+          },
+          {
+            "passageId": "rs8-p5-q24",
+            "passageText": "PASSAGE 5\n\n(emotions)\n(emotions)",
+            "q": "4.\t In general, emotions play important roles in everyday challenges such as responding \nto threats and building relationships. But emotions also help in other, more intellectual \nchallenges for humans. Compared with other animals, we are born with little knowledge \nbut have the potential for enormous intelligence. Emotions such as surprise, interest, \nand confusion first signal that something out of the ordinary has happened that deserves \nour attention. They then motivate us to engage with the new things that strain our \nunderstanding of the world and how it works. Emotions surely help us to fight or flee, but \nI believe that more importantly, they aid in learning, exploring, and reflecting.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_094"
+          },
+          {
+            "passageId": "rs8-p5-q25",
+            "passageText": "PASSAGE 5\n\n(emotions)\n(emotions)",
+            "q": "Which of the following is the writer’s opinion?",
+            "opts": [
+              "People experience many emotions.",
+              "People know very little at birth.",
+              "Happiness and sadness are emotions.",
+              "Emotions help us learn, explore, and reflect."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_095"
+          }
+        ]
+      },
+      {
+        "id": "rs9",
+        "theme": "sc-theme-gold",
+        "icon": "📝",
+        "title": "Strategy",
+        "subtitle": "Eighth Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs9-p1-q1",
+            "passageText": "PASSAGE 1\n\n\n\n1) The man received extensive therapy after the operation. He was able to move the \nthumb and fingers of his left hand eight months after surgery. After ten more months, \nthe patient could move the fingers of his right hand and begin to feed himself and even \nwrite to some extent considering the severity of his injury and the fact that 22months \nhad passed between his accident and the surgery, these results are remarkable.",
+            "q": "How long after his operation did it take for the man to be able to use his hands to eat by \nhimself?",
+            "opts": [
+              "8 months",
+              "10 months",
+              "18 months",
+              "22 months",
+              "compounds that the body needs in small amounts to function properly.  Humans need 13 different vitamins, which have many roles in the body. For example,  Vitamin A helps maintain good vision. Vitamin B helps form red blood cells. Vitamin K is  needed for blood to clot when you have",
+              "cut or other wound."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_096"
+          },
+          {
+            "passageId": "rs9-p2-q2",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "Why is vitamin K needed in the body?",
+            "opts": [
+              "to help muscles work normally",
+              "to help cuts stop bleeding",
+              "to make red blood cells",
+              "to improve the health of the skin",
+              "and Drug Authority SFDA) was established under the Council of  Ministers in 2004, as an independent body corporate that directly reports to The  President of Council of Ministers. The Authority’s objective is to regulate, oversee,  and control food, drugs, medical devices, as well as to set their mandatory  standard specifications, whether they are imported or locally manufactured.",
+              "from the passage that the SFDA deals with goods that are……",
+              "controlled",
+              "foreign only",
+              "Saudi and foreign",
+              "manufactured only",
+              "Ali is",
+              "famous heavyweight boxer. He was born as Cassius Clay in  Louisville, Kentucky, in the USA in 1942.",
+              "a very successful professional boxing career. In fact, he won the world  heavyweight championship three times. The first time was when he beat the former  champion, Sonny Liston, in 1964. In the same year, he became",
+              "Muslim and assumed  the name Muhammad Ali.",
+              "champion again when he beat George  Foreman in Zaire. He became champion for the third time in 1978 after beating Leon  Spinks. Ali fought his last professional fight in 1981 against Trevor Berbick and  then retired from boxing."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_097"
+          },
+          {
+            "passageId": "rs9-p4-q3",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "How old was Muhammed Ali when he became Muslim?",
+            "opts": [
+              "34",
+              "36",
+              "22",
+              "1960"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_098"
+          },
+          {
+            "passageId": "rs9-p4-q4",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "How old was Ali when he became champion for the third time?",
+            "opts": [
+              "34",
+              "36",
+              "22",
+              "62"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_099"
+          },
+          {
+            "passageId": "rs9-p5-q5",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "No matter whether you’re travelling for work or pleasure, wouldn’t you value the option to \ntailor your journey in accordance with your personal preferences and requirements? \nThat’s exact why we developed our Red Services: a range of highly practical extra \nservices that you can book along with your flight, as and when you need them.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_100"
+          },
+          {
+            "passageId": "rs9-p5-q6",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "Which method of travel does the passage talk about?",
+            "opts": [
+              "road",
+              "rail",
+              "sea",
+              "air"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_101"
+          }
+        ]
+      },
+      {
+        "id": "rs10",
+        "theme": "sc-theme-teal",
+        "icon": "📝",
+        "title": "Strategy",
+        "subtitle": "Nineth Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs10-p1-q1",
+            "passageText": "PASSAGE 1\n\n\n\n1.\t Each year, thousands of children in East Africa go blind or die because they don’t get enough \nvitamin A. Now, with the support of the Bill and Melinda Gates Foundation, Ugandan, American \nand Australian researchers are trying to develop a potential fix: a genetically modified banana \nthat packs a significantly larger vitamin A punch.\n2.\t The bananas have already been successfully tested on gerbils. Researchers created the new \nbananas by slightly tweaking its genome so that the fruit contains more alpha and beta caroteno-\nplant-synthesized substances that animals convert into vitamin A The new bananas have a slight \norange shade but taste the same as non-genetically modified bananas. Human trials just began \nin Iowa, and if they’re successful, farmers in Uganda will be growing the GMO bananas by 2020. \nAbout 70 percent of people there rely on bananas as a major staple of their diets, so delivering \nthe extra vitamin boost through the fruit should be an effective means of helping to alleviate \nvitamin A deficiency. If the GM banana scheme helps reduce death and blindness rates in Uganda, \nit could be transferred to other countries or applied to other fruits, like plantains.\n3.\t Bananas are not the only food whose yield or nutritional profile could be improved with genetic \nengineering. With climate change threatening to disrupt existing crops and growing global \npopulations demanding more of those supplies, genetic engineering could be a solution for \nmaking the most of limited space and resources. Quite a number of foods that fit this profile have \nalready been created including virus resistant squash, and disease-resistant potatoes.",
+            "q": "What is one important idea that the writer mentions?",
+            "opts": [
+              "That animals like to eat the orange bananas.",
+              "That",
+              "lack of vitamin A makes people go blind.",
+              "That children in Africa need better food.",
+              "That Uganda is",
+              "rich country in East Africa."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_102"
+          },
+          {
+            "passageId": "rs10-p1-q2",
+            "passageText": "PASSAGE 1\n\n\n\n1.\t Each year, thousands of children in East Africa go blind or die because they don’t get enough \nvitamin A. Now, with the support of the Bill and Melinda Gates Foundation, Ugandan, American \nand Australian researchers are trying to develop a potential fix: a genetically modified banana \nthat packs a significantly larger vitamin A punch.\n2.\t The bananas have already been successfully tested on gerbils. Researchers created the new \nbananas by slightly tweaking its genome so that the fruit contains more alpha and beta caroteno-\nplant-synthesized substances that animals convert into vitamin A The new bananas have a slight \norange shade but taste the same as non-genetically modified bananas. Human trials just began \nin Iowa, and if they’re successful, farmers in Uganda will be growing the GMO bananas by 2020. \nAbout 70 percent of people there rely on bananas as a major staple of their diets, so delivering \nthe extra vitamin boost through the fruit should be an effective means of helping to alleviate \nvitamin A deficiency. If the GM banana scheme helps reduce death and blindness rates in Uganda, \nit could be transferred to other countries or applied to other fruits, like plantains.\n3.\t Bananas are not the only food whose yield or nutritional profile could be improved with genetic \nengineering. With climate change threatening to disrupt existing crops and growing global \npopulations demanding more of those supplies, genetic engineering could be a solution for \nmaking the most of limited space and resources. Quite a number of foods that fit this profile have \nalready been created including virus resistant squash, and disease-resistant potatoes.",
+            "q": "What is one important idea that the writer mentions?",
+            "opts": [
+              "That Ugandans have grown bananas for centuries.",
+              "That the way we produce food is changing",
+              "That climate change is",
+              "serious global problem.",
+              "That genetically modified bananas may save lives."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_103"
+          },
+          {
+            "passageId": "rs10-p2-q3",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "1.\t In 1927. Stalin’s main aim for his country, Russia, was to modernize its industry. \nHis 5-year plans set ambitious targets for important heavy industries such as coal, \niron, oil, and electricity.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_104"
+          },
+          {
+            "passageId": "rs10-p2-q4",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "2.\t However, there was a human cost to achieving the targets set in the 5-year plans. \nThis cost was paid by the workers. Many foreign experts and engineers were called \nin by Stalin to help with work and in their letters and reports they were amazed by \nat the toughness of the Russian people and how hard they worked. The most famous \nworker was Alexei Stakhanov. In 1935, with two helpers, he managed to cut 102 tons \nof coal in one day’s work. This was fourteen times the average. Stakhanov became \na hero of the country, and the government newspapers and radio encouraged all \nRussian workers to be like him.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_105"
+          },
+          {
+            "passageId": "rs10-p2-q5",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "3.\t Life was very difficult under Stalin. Workers had targets to meet and were punished \nif they did not meet them. Factory discipline was strict, and punishments were hard \nWorkers who were late or absent would lose their jobs and sometimes their flat or \nhouse as well. On the great engineering projects, such as dams and canals, worker \nconditions were very poor and there were many accidents and deaths. It is estimated \nthat 100,000 workers died in the construction of the Belomor canal.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_106"
+          },
+          {
+            "passageId": "rs10-p2-q6",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "What is one important idea related to the workers that the writer mentions in paragraph (2)?",
+            "opts": [
+              "They had to pay money.",
+              "They became famous.",
+              "They were foreigners.",
+              "They were hard working."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_107"
+          },
+          {
+            "passageId": "rs10-p2-q7",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "What is one important idea mentioned about Alexei Stakhanov in Paragraph (2)?",
+            "opts": [
+              "He was an example of",
+              "good worker.",
+              "He had two helpers.",
+              "He worked in 1935.",
+              "He was",
+              "coal worker",
+              "seller must understand the ways that consumers in different countries  think about and use certain products before planning",
+              "marketing program. There are often  surprises. For example, the average French man uses almost twice as many cosmetics  and grooming devices as his wife. The Germans and the French eat more packaged  branded spaghetti than Italians do. Some 49 percent of Chinese eat on the way to work.  Most American women let down their hair and take off their makeup at bedtime, whereas  15 percent of Chinese women style their hair at bedtime and 11 percent put on makeup."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_108"
+          },
+          {
+            "passageId": "rs10-p4-q8",
+            "passageText": "PASSAGE 4\n\n(The Impact of Culture on Marketing Strategies)\n(The Impact of Culture on Marketing Strategies)",
+            "q": "What is one important idea about marketing in Paragraph (1)?",
+            "opts": [
+              "consumers",
+              "cosmetics",
+              "surprises",
+              "devices"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_109"
+          }
+        ]
+      },
+      {
+        "id": "rs11",
+        "theme": "sc-theme-green",
+        "icon": "📝",
+        "title": "Strategy",
+        "subtitle": "Tenth Strategy",
+        "usage": "",
+        "keywords": [],
+        "practice": [
+          {
+            "passageId": "rs11-p1-q1",
+            "passageText": "PASSAGE 1\n\n\n\n1.\t The traveler Marco Polo retuned from his famous expedition to the Far East with \nfruit-flavored ices. We know from Marco Polo that Asians had been making fruit-\nflavored ices for thousands of years, long before he reached this part of the world. \nThese delicacies became popular in France in the 1500s, but only among royalty. \nOver the next few centuries, the process of making them evolved and eventually \ncream was introduced as an ingredient. By the 1700s, people were enjoying a \ndessert that was very similar to today’s ice cream. It became a treat that could be \nenjoyed by almost anyone, not just the rich.\n\n2.\t The first wholesale manufacture of ice cream was in 1851 in Baltimore, Maryland \nby Jacob Fussel. He had a dairy business that had excess cream which he decided \nto add to his ice cream. Soon after that, his ice cream outsold all of his other dairy \nproducts.\n\n3.\t The making of ice cream slowly evolved for the next few decades. Manufacturing \nmethods and ingredients improved and refrigeration technology became cheaper \nand more efficient. By the 1920s, home refrigerators and freezers became more \ncommon. This gave the ice cream industry another boost. A problem developed \nduring World War I in the U.S., when most sugar was shipped to Europe and people \nwere therefore only allowed to buy limited amounts of it convinced the government \nthat ice cream was an “essential food”. Ice cream factories were given sugar and \nproduction continued.\n\n4.\t Sales increased in the years leading up to World War II before leveling off in the post-\nwar years. The rise of giant supermarkets created a demand for cheaper, 1960s saw \na resurgence in “premium” ice cream, while the following decades saw the market \nfragment into low-fat varieties for the health-conscious. Including frozen yogurt, \nfruit bars. ice milk, fat-free ice cream, and mass-produced ice cream, but quality \nsuffered. Many researchers stated that 60% of frozen desserts are ice cream.",
+            "q": "1. What is the best title for this passage?",
+            "opts": [
+              "Varieties of Ice Cream",
+              "The History of Ice Cream",
+              "The Demand for Ice Cream",
+              "Ice Cream During the Wars",
+              "great deal of time, but you can make your meeting run more  smoothly by following",
+              "few simple rules. First, have an agenda. This will help keep  you focused on what is important. Next, decide who needs to be involved. More  people mean less efficient discussion. Finally, keep the discussion moving. Thank  each speaker as he or she finishes and move on to the next speaker. This encourages  people to make their remarks brief. And don’t forget: what happens after",
+              "meeting  is more important than what happens during",
+              "meeting. The skills used then are  more professional and less procedural. So, no matter how well you run",
+              "meeting,  it is the work that gets done after the meeting that is important."
+            ],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_110"
+          },
+          {
+            "passageId": "rs11-p2-q2",
+            "passageText": "PASSAGE 2\n\n",
+            "q": "2. The main idea of the passage is that meetings ………….",
+            "opts": [
+              "waste",
+              "lot of time",
+              "are NOT necessary",
+              "need to be held frequently",
+              "need to be planned and organized"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_111"
+          },
+          {
+            "passageId": "rs11-p3-q3",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "1.\t If we look at the night sky carefully, we will see that the stars are of many different \ncolors. Some are red, others are yellow, and some are blue. This is also shown when \nwe take color photographs of the night sky. You can take such a photograph with an \nordinary camera as long as it is kept steady. A thirty second exposure is sufficient.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_112"
+          },
+          {
+            "passageId": "rs11-p3-q4",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "2.\t Astronomers have been able to classify stars according to color. They have found \nthat blue stars are the largest and red stars the smallest. However, there are a few \nstars which cannot be classified in this way. These are the superstars. For example, \nRyiejol is a blue superstar as big as 40,000 suns and Beetle juice is a superstar with \na size equal to 17,000 suns.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_113"
+          },
+          {
+            "passageId": "rs11-p3-q5",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "3.\t Suppose an astronomer observes two stars, one brighter than the other. If neither \nof them is a superstar, he will know immediately that the brighter star is closer. \nAstronomers have instruments like light meters which can measure the brightness \nof a star quite accurately. It is possible to measure a star’s distance from the earth \nif astronomers know the color, brightness and whether or not it is a superstar.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_114"
+          },
+          {
+            "passageId": "rs11-p3-q6",
+            "passageText": "PASSAGE 3\n\n",
+            "q": "3. What is the main idea of the passage?",
+            "opts": [
+              "Astronomers have been able to measure how far the stars are from each other.",
+              "Astronomers have certain instruments to measure the color of the stars.",
+              "We can know the color of the stars by taking",
+              "photograph of the sky at night.",
+              "Stars can be categorized according to color and size."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_115"
+          },
+          {
+            "passageId": "rs11-p4-q7",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "1.\t In 1927. Stalin’s main aim for his country, Russia, was to modernize its industry. His \n5-year plans set ambitious targets for important heavy industries such as coal, iron, oil, \nand electricity.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_116"
+          },
+          {
+            "passageId": "rs11-p4-q8",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "2.\t However, there was a human cost to achieving the targets set in the 5-year plans. This \ncost was paid by the workers. Many foreign experts and engineers were called in by Stalin \nto help with work and in their letters and reports they were amazed by at the toughness \nof the Russian people and how hard they worked. The most famous worker was Alexei \nStakhanov. In 1935, with two helpers, he managed to cut 102 tons of coal in one day’s \nwork. This was fourteen times the average. Stakhanov became a hero of the country, and \nthe government newspapers and radio encouraged all Russian workers to be like him.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_117"
+          },
+          {
+            "passageId": "rs11-p4-q9",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "3.\t Life was very difficult under Stalin. Workers had targets to meet and were punished if they \ndid not meet them. Factory discipline was strict, and punishments were hard. Workers \nwho were late or absent would lose their jobs and sometimes their flat or house as well. \nOn the great engineering projects, such as dams and canals, worker conditions were very \npoor and there were many accidents and deaths. It is estimated that 100,000 workers \ndied in the construction of the Belomor canal.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_118"
+          },
+          {
+            "passageId": "rs11-p4-q10",
+            "passageText": "PASSAGE 4\n\n",
+            "q": "4. What is the main idea of the passage?",
+            "opts": [
+              "hard work in Russia’s factories",
+              "Stalin’s successful 5-year plan",
+              "Russia’s development in 1927",
+              "life working under Stalin"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_119"
+          },
+          {
+            "passageId": "rs11-p5-q11",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "2) Quantitative observations are measurements, which by definition consist of both \na number and a unit. Examples of quantitative observations include the following \nthe melting point of crystalline sulfur is 115.21 degrees Celsius, and 35.9 grams of \ntable salt whose chemical name is sodium chloride dissolve in 100 grams of water \nat 20 degrees Celsius.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_120"
+          },
+          {
+            "passageId": "rs11-p5-q12",
+            "passageText": "PASSAGE 5\n\n",
+            "q": "7. Which sentence gives the main idea of Paragraph 2)?",
+            "opts": [
+              "Quantitative observations are measurements, which by definition consist of both",
+              "number and",
+              "unit.",
+              "Examples of quantitative observations include the following.",
+              "The melting point of crystalline sulfur is 115.21 degrees Celsius.",
+              "35.9 grams of table salt-whose chemical name is sodium chloride dissolve in 100 grams  of water at 20 degrees Celsius."
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_121"
+          },
+          {
+            "passageId": "rs11-p6-q13",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "1) At 1.05am on Sunday 13 August 1961, East German border guards and army combat \ngroups took up positions on the demarcation line at the Brandenburg Gate in central \nBerlin. In a scene repeated along the border dividing the two halves of the city, they \nripped up the paving stones and strained barbed wire between concrete posts. By \nearly morning, only 12 of the 81 street crossing points were passable (that was \nsoon cut to seven). This was phase one of the Berlin Wall.\n2)There is evidence that the building of the wall actually came as something of a  relief \nto the western powers; they had been expecting such a move and saw it, if anything, \nas evidence that no imminent attempt was likely by the Soviet Union and GDR to \nretake all Berlin; west Berlin, in other words, was safe.\n5) The fall, when it came, was quick. There were large demonstrations in the GDR in \nSeptember 1989. In October, the country’s lifelong leader, Erich Honecker, resigned. \nOn 9 November, the East German authorities lifted border controls to the west. \nincluding for private journeys to west Berlin, from 17 November. Germany was \nformally reunified just 11 months later.",
+            "opts": [],
+            "c": 0,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_122"
+          },
+          {
+            "passageId": "rs11-p6-q14",
+            "passageText": "PASSAGE 6\n\n",
+            "q": "8. Which sentence gives the main idea of Paragraph (5)?",
+            "opts": [
+              "The fall, when it came, was quick.",
+              "Germany was formally reunified just 11 months later.",
+              "There were large demonstrations in the GDR in September 1989.",
+              "In October, the country’s lifelong leader, Erik Honecker, resigned.",
+              "meaning",
+              "fuelطعام – وقود",
+              "independence announced their freedomاعالن االستقالل",
+              "conditioned مدرب",
+              "different cultures ثقافات مختلفة",
+              "content scientific محتوى تحليلي – محتوى علمي",
+              "little help from our  cells Viruses need",
+              "host to live",
+              "processing and data  collection",
+              "Closest in meaning toالمعىن",
+              "NOT plannedغير مجدول\\مخطط",
+              "Shaped َنحت – شَّكَ َل",
+              "Happyمسرور – سعيد",
+              "Taleأسطورة – حكاية",
+              "from Originatedمشتق من",
+              "Tookيفترض",
+              "Complex معقد- مركب",
+              "Enjoyed استمتع- احتفل",
+              "difficult to believeبعيد المنال – صعب االعتقاد",
+              "valueذو قيمة غذائية عالية",
+              "Multipleال تعد وال تحصي – مضاعف",
+              "Controlledترويض – خاضع للسيطرة",
+              "Human being الجنس البشري",
+              "Controlledمحكومة",
+              "Movedانتقل",
+              "Foundاكتشف – وجد",
+              "Beganقدم – بدأ",
+              "Madeاخترع – صنع",
+              "out determine / calculate يحسب- يكتشف – يحدد",
+              "out Performedتم تنفيذها",
+              "Emphasizedمركز علي",
+              "Eventsظواهر – أحداث",
+              "Complicatedمعقد",
+              "Different cultures ثقافات مختلفة- نهايات العالم المتقابلة",
+              "Changedمعدل – تغير",
+              "Removedيتم استخراجه – ازالته",
+              "مطلوب- مرغوب فيه",
+              "Explainedذكر – وضح",
+              "Registeredحجز – سجل",
+              "Difficult to believeصعب التصديق – بعيد المنال",
+              "Chunkلوح – قطعه",
+              "Quickسريع",
+              "Stopped توقف- منع",
+              "Happyسعيد",
+              "Multipleال تعد – مضاعف",
+              "Controlledترويض – مسيطر عليه",
+              "Demonstratedيوضح – يبرهن",
+              "Recordedموثق – مسجل",
+              "Feeling under pressureمثقل – الشعور بالضغط",
+              "standardsمعايير",
+              "collected جمع- حصد",
+              "طعام- غذاء",
+              "up Increaseتزداد",
+              "typicalمميز – جذاب",
+              "Shownيعرض",
+              "Illustratedيوضح",
+              "Explained َيشرح تفصيَال",
+              "Movedيهاجر",
+              "Increasedيزداد",
+              "Conditionedيتدرب بشروط",
+              "Faced troubleيعاني",
+              "Difficult to believeيصعب تصديقه",
+              "ماهر- بارع",
+              "انتشر- اندلع",
+              "Indicated  يشير- يمثل",
+              "after thatفي النهاية – بعد ذلك",
+              "Experienced اختبر- عانى",
+              "Explainedأوضح",
+              "األرض- التربة",
+              "Occupiedمأهولة",
+              "Difficult to believe صعب التصديق",
+              "Closest in meaning toالمعنى",
+              "tookأخذ",
+              "tookاستخلص",
+              "confusedمشوش / مرتبك",
+              "ocean  مائي",
+              "toxicحمضي"
+            ],
+            "c": 3,
+            "expl": "الإجابة الصحيحة بناء على القطعة.",
+            "imgUrl": null,
+            "id": "q_reading_r2_123"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "All Other Strategies",
+  "nameEn": "All Other Strategies",
+  "emoji": "📖"
+}

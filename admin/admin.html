@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="لوحة تحكم كتاب STEP التفاعلي" />
+  <link rel="icon" type="image/svg+xml" href="/public/assets/logo.svg" />
+  <title>لوحة التحكم | أكاديمية عايد — كتاب STEP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Main Site CSS Integration -->
+  <link rel="stylesheet" href="/public/css/base.css?v=11" />
+  <link rel="stylesheet" href="/public/css/layout.css?v=5" />
+  <link rel="stylesheet" href="/public/css/components.css?v=5" />
+  <link rel="stylesheet" href="/public/css/overrides.css?v=17" />
+  
+  <!-- Quill Rich Text Editor -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+  <!-- Admin Specific Overrides -->
+  <link rel="stylesheet" href="admin.css?v=5">
+  
+  <script src="/public/js/ui/icons.js"></script>
+  <script>
+    if (localStorage.getItem('gs_theme') === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+    }
+  </script>
+</head>
+<body class="app-body admin-body">
+  <div style="background-color: var(--danger, #ff4c4c); color: white; text-align: center; padding: 1rem; font-weight: bold; position: sticky; top: 0; z-index: 9999;">
+    ⚠️ تنبيه: لوحة التحكم معطلة حالياً. المشروع في مرحلة واجهة المستخدم فقط (Frontend-Only). لن يتم حفظ أي تعديلات تقوم بها هنا حتى يتم ربط الـ Backend.
+  </div>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand" style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center;">
+        <img src="/public/assets/logo.svg" alt="أكاديمية عايد للتدريب" class="admin-logo-img" style="height: auto; max-width: 90%; max-height: 50px; object-fit: contain;">
+        <h2 style="margin-top: 10px; font-size: 1.1rem; color: var(--text-muted);">لوحة التحكم</h2>
+      </div>
+      <nav class="nav-links">
+        <button class="nav-link active" data-view="units"><i data-icon="library"></i> إدارة الوحدات المنهجية</button>
+        <button class="nav-link" id="dev-mode-btn"><i data-icon="code"></i> وضع المطور (Dev Mode)</button>
+        <a href="/" class="nav-link view-site" target="_blank"><i data-icon="eye"></i> معاينة الموقع</a>
+      </nav>
+      <button class="btn btn-save-all" id="save-all-btn"><i data-icon="save"></i> حفظ التعديلات في النظام</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>إدارة المحتوى والمناهج (CRUD)</h1>
+          <select id="track-selector" style="margin-top: 10px; padding: 5px 10px; font-family: 'Cairo'; border-radius: 5px; font-size: 1rem;">
+            <option value="grammar">استراتيجيات الجرامر</option>
+            <option value="reading">استراتيجيات الريدينق</option>
+            <option value="listening">استراتيجيات الليسينيق</option>
+            <option value="tests">50 نموذج اختبار شامل</option>
+          </select>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-secondary" id="intro-video-btn"><i data-icon="clapper"></i> فيديو الترحيب</button>
+          <button class="btn btn-primary" id="add-unit-btn">+ إضافة وحدة جديدة</button>
+        </div>
+      </header>
+
+      <div class="content-area" id="content-area">
+        <!-- Units list will be rendered here -->
+        <div id="units-list" class="units-grid"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Unit Modal -->
+  <div class="modal hidden" id="unit-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="unit-modal-title">تعديل الوحدة</h2>
+        <button class="close-btn" data-close="unit-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>الرقم التعريفي (ID)</label>
+          <input type="number" id="unit-id" placeholder="مثال: 13">
+        </div>
+        <div class="form-group">
+          <label>رمز الأيقونة</label>
+          <input type="text" id="unit-emoji" placeholder="الصق رمزاً هنا — سيُعرض كأيقونة SVG تلقائياً">
+        </div>
+        <div class="form-group">
+          <label>اسم الوحدة (عربي)</label>
+          <input type="text" id="unit-name-ar" placeholder="مثال: الأسماء">
+        </div>
+        <div class="form-group">
+          <label>اسم الوحدة (إنجليزي)</label>
+          <input type="text" id="unit-name-en" placeholder="مثال: Nouns">
+        </div>
+        <div class="form-group">
+          <label>تصنيف الوحدة (Tag)</label>
+          <input type="text" id="unit-tag" placeholder="مثال: الوحدة الثالثة عشر">
+        </div>
+        
+        <hr>
+        <div class="flex-between">
+          <h3><i data-icon="video"></i> مكتبة فيديوهات الوحدة</h3>
+          <button class="btn btn-secondary btn-sm" id="add-video-btn">+ إضافة فيديو</button>
+        </div>
+        <div id="videos-list" class="nested-list"></div>
+
+        <hr>
+        <div class="flex-between">
+          <h3>الاستراتيجيات (شرح القواعد)</h3>
+          <button class="btn btn-secondary btn-sm" id="add-strategy-btn">+ إضافة استراتيجية</button>
+        </div>
+        <div id="strategies-list" class="nested-list"></div>
+
+        <hr>
+        <div class="flex-between">
+          <h3>الاختبار الشامل للوحدة</h3>
+          <button class="btn btn-secondary btn-sm" id="add-quiz-btn">+ إضافة سؤال</button>
+        </div>
+        <div id="quizzes-list" class="nested-list"></div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="save-unit-btn">حفظ الوحدة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strategy Modal -->
+  <div class="modal hidden" id="strategy-modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h2 id="strategy-modal-title">تعديل الاستراتيجية</h2>
+        <button class="close-btn" data-close="strategy-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- Basic Info -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label>عنوان الاستراتيجية</label>
+            <input type="text" id="strat-title" placeholder="المضارع التام">
+          </div>
+          <div class="form-group">
+            <label>العنوان الفرعي (Subtitle)</label>
+            <input type="text" id="strat-subtitle" placeholder="Present Perfect" dir="ltr">
+          </div>
+          <div class="form-group">
+            <label>أيقونة</label>
+            <input type="text" id="strat-icon" placeholder="الصق رمزاً — سيُعرض كأيقونة SVG">
+          </div>
+          <div class="form-group">
+            <label>الوسم (Badge)</label>
+            <input type="text" id="strat-badge" placeholder="Tense 1/6" dir="ltr">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>لون التصميم (Theme)</label>
+          <select id="strat-theme">
+            <option value="sc-theme-blue">أزرق داكن (Blue)</option>
+            <option value="sc-theme-teal">سماوي (Teal)</option>
+            <option value="sc-theme-green">أخضر (Green)</option>
+            <option value="sc-theme-red">أحمر (Red)</option>
+            <option value="sc-theme-purple">بنفسجي (Purple)</option>
+            <option value="sc-theme-gold">ذهبي (Gold)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>الاستخدام (Usage)</label>
+          <textarea id="strat-usage" rows="2"></textarea>
+        </div>
+
+        <!-- Media Upload -->
+        <div class="media-upload-section">
+          <h3>الوسائط (فيديو / صورة / صوت)</h3>
+          <div class="form-group">
+            <label><i data-icon="clapper"></i> فيديو الشرح — رابط يوتيوب/Vimeo أو إرفاق ملف</label>
+            <input type="text" id="strat-video-url" placeholder="https://youtu.be/... أو /uploads/video.mp4" dir="ltr" style="margin-bottom:6px;">
+            <input type="file" id="strat-video-upload" accept="video/*">
+            <div id="strat-video-preview" class="media-preview"></div>
+          </div>
+          <div class="form-group">
+            <label>إرفاق صورة توضيحية للشرح</label>
+            <input type="file" id="strat-image-upload" accept="image/*">
+            <input type="hidden" id="strat-image-url">
+            <div id="strat-image-preview" class="media-preview"></div>
+          </div>
+          <div class="form-group">
+            <label>إرفاق ملف صوتي للشرح (Audio)</label>
+            <input type="file" id="strat-audio-upload" accept="audio/*">
+            <input type="hidden" id="strat-audio-url">
+            <div id="strat-audio-preview" class="media-preview"></div>
+          </div>
+        </div>
+
+        <!-- Tabs for complex data -->
+        <div class="tabs">
+          <button class="tab-btn active" data-target="tab-keywords">الكلمات الدالة</button>
+          <button class="tab-btn" data-target="tab-formulas">التكوين</button>
+          <button class="tab-btn" data-target="tab-exceptions">الشواذ</button>
+          <button class="tab-btn" data-target="tab-practice">جرب بنفسك</button>
+        </div>
+
+        <div class="tab-content active" id="tab-keywords">
+          <button class="btn btn-sm btn-secondary mb-1" id="add-kw-btn">+ إضافة كلمة دالة</button>
+          <div id="kw-list"></div>
+        </div>
+
+        <div class="tab-content" id="tab-formulas">
+          <button class="btn btn-sm btn-secondary mb-1" id="add-formula-btn">+ إضافة تكوين</button>
+          <div id="formula-list"></div>
+        </div>
+
+        <div class="tab-content" id="tab-exceptions">
+          <div class="form-group">
+            <label>عنوان الشواذ والملاحظات</label>
+            <input type="text" id="ex-title" placeholder="حالة خاصة">
+          </div>
+          <div class="form-group">
+            <label>تفاصيل الشواذ (يدعم HTML)</label>
+            <textarea id="ex-body" rows="3"></textarea>
+          </div>
+          <small>اترك العنوان فارغاً إذا لم يوجد شواذ لهذه القاعدة.</small>
+        </div>
+
+        <div class="tab-content" id="tab-practice">
+          <button class="btn btn-sm btn-secondary mb-1" id="add-practice-btn">+ إضافة سؤال تطبيق مباشر</button>
+          <div id="practice-list"></div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="save-strategy-btn">حفظ الاستراتيجية</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz / Practice Modal -->
+  <div class="modal hidden" id="quiz-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="quiz-modal-title">تعديل السؤال</h2>
+        <button class="close-btn" data-close="quiz-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group" style="background:var(--bg-sec); padding:10px; border-radius:8px; margin-bottom:15px;">
+          <h4 style="margin-top:0; color:var(--text-sec);">إعدادات القطعة (لقسم القراءة)</h4>
+          <label>نص القطعة (Passage Text)</label>
+          <div id="quiz-passage-editor" style="height: 180px; background:var(--surface); color:var(--ink); font-family: inherit; direction: ltr; text-align: left; border-radius: 0 0 8px 8px; border: 1px solid var(--border);"></div>
+          
+          <label style="margin-top:10px;">صورة القطعة (اختياري)</label>
+          <input type="file" id="quiz-passage-img-upload" accept="image/*">
+          <input type="hidden" id="quiz-passage-img-url">
+          <div id="quiz-passage-img-preview" class="media-preview"></div>
+          
+          <label style="margin-top:10px;">تنسيق العرض (Layout)</label>
+          <select id="quiz-passage-layout" style="width:100%; padding:8px; border-radius:5px; background:var(--bg); color:var(--text-primary); border:1px solid var(--border);">
+            <option value="auto">تلقائي (إذا وجدت صورة = عرض كامل، غير ذلك = مقسوم)</option>
+            <option value="split">مقسوم إجبارياً (Split)</option>
+            <option value="stacked">كامل إجبارياً (Stacked)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>نص السؤال</label>
+          <textarea id="quiz-q" rows="3" placeholder="ضع فراغاً باستخدام ......."></textarea>
+        </div>
+        <div class="form-group">
+          <label>ملف صوتي مرفق (اختياري)</label>
+          <input type="file" id="quiz-audio-upload" accept="audio/*">
+          <input type="hidden" id="quiz-audio-url">
+          <div id="quiz-audio-preview" class="media-preview"></div>
+        </div>
+        <div class="form-group">
+          <label>الخيارات (قم بإضافة خيار أو أكثر)</label>
+          <div id="quiz-options-container"></div>
+          <button class="btn btn-secondary btn-sm mt-1" id="add-quiz-option-btn" style="margin-top: 10px;">+ إضافة خيار</button>
+        </div>
+        <div class="form-group" style="margin-top: 1.5rem;">
+          <label>الشرح عند الإجابة الخطأ (Explanation)</label>
+          <textarea id="quiz-expl" rows="2" placeholder="اشرح لماذا الإجابة صحيحة..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="save-quiz-btn">حفظ السؤال</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formula Modal -->
+  <div class="modal hidden" id="formula-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="formula-modal-title">تعديل التكوين (Formula)</h2>
+        <button class="close-btn" data-close="formula-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>الحالة / الفاعل (مثال: Affirmative أو He/She/It)</label>
+          <input type="text" id="formula-subj" placeholder="Subject" dir="ltr">
+        </div>
+        <div class="form-group">
+          <label>التكوين (Formula HTML)</label>
+          <textarea id="formula-form" rows="2" placeholder="<span style='color:var(--primary)'>has</span> + V3" dir="ltr"></textarea>
+          <small style="color:var(--text-muted)">يمكنك استخدام أكواد HTML لتلوين وتنسيق التكوين.</small>
+        </div>
+        <div class="form-group">
+          <label>مثال توضيحي (Example)</label>
+          <textarea id="formula-ex" rows="2" placeholder="He has worked here." dir="ltr"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="save-formula-btn">حفظ التكوين</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyword Modal -->
+  <div class="modal hidden" id="keyword-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="keyword-modal-title">إضافة كلمة دالة</h2>
+        <button class="close-btn" data-close="keyword-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>الكلمة بالإنجليزية (Front)</label>
+          <input type="text" id="keyword-f" placeholder="Recently" dir="ltr">
+        </div>
+        <div class="form-group">
+          <label>الترجمة (Back)</label>
+          <input type="text" id="keyword-b" placeholder="مؤخراً">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="save-keyword-btn">حفظ الكلمة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON Dev Mode Modal -->
+  <div class="modal hidden" id="json-modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h2>المطور (Raw JSON Dev Mode)</h2>
+        <button class="close-btn" data-close="json-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>احذر: التعديل المباشر قد يؤدي لكسر النظام. يجب أن يكون بصيغة JSON صحيحة.</label>
+          <textarea id="json-editor-textarea" rows="20" dir="ltr" style="font-family: monospace; font-size: 0.9rem; background: #0A0B0F; color: #4FC3F7;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="save-json-btn">تحديث (Apply JSON)</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/public/js/ui/icons.js"></script>
+  <!-- Quill JS -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <!-- Admin Script -->
+  <script src="admin.js?v=2"></script>
+</body>
+</html>

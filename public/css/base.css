@@ -65,14 +65,14 @@
   --r-2xl:  40px;
   --r-pill: 999px;
 
-  /* Light shadows */
-  --sh-xs: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --sh-sm: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0,0,0,0.03);
-  --sh-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.03);
-  --sh-lg: 0 12px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.03);
-  --sh-xl: 0 20px 48px rgba(0, 0, 0, 0.12);
+  /* Light shadows (Apple-style layered) */
+  --sh-xs: 0 1px 2px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.03);
+  --sh-sm: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0,0,0,0.02);
+  --sh-md: 0 4px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0,0,0,0.02);
+  --sh-lg: 0 8px 16px rgba(0, 0, 0, 0.05), 0 16px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02);
+  --sh-xl: 0 12px 24px rgba(0, 0, 0, 0.06), 0 24px 64px rgba(0, 0, 0, 0.1);
 
-  --ease:     cubic-bezier(0.2, 0, 0, 1);
+  --ease:     cubic-bezier(0.16, 1, 0.3, 1); /* Smoother apple ease */
   --spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
 
@@ -82,56 +82,59 @@
 }
 
 /* ── DESIGN TOKENS — DARK MODE ── */
-html.dark-mode {
+/* ui.js toggles on body, anti-flash sets on html — both covered */
+html.dark-mode,
+body.dark-mode {
   --bg:          #000000;
   --bg-2:        #0A0B0F;
-  --surface:     #111318;
-  --surface2:    #191B22;
-  --surface3:    #22252E;
-  --surface4:    #2E3240;
+  --surface:     #12141A;
+  --surface2:    #1A1C23;
+  --surface3:    #242730;
+  --surface4:    #2F3340;
 
-  --glass-bg:      rgba(17, 19, 24, 0.7);
+  --glass-bg:      rgba(18, 20, 26, 0.7);
   --glass-border:  rgba(255, 255, 255, 0.08);
-  --glass-card:    rgba(25, 27, 34, 0.65);
+  --glass-card:    rgba(26, 28, 35, 0.65);
 
-  --accent:      #8AB4F8;
-  --accent-lt:   #AECBFA;
-  --accent-dk:   #669DF6;
-  --accent-dim:  rgba(138, 180, 248, 0.12);
-  --accent-glow: rgba(138, 180, 248, 0.25);
+  --accent:      #60A5FA;
+  --accent-lt:   #93C5FD;
+  --accent-dk:   #3B82F6;
+  --accent-dim:  rgba(96, 165, 250, 0.12);
+  --accent-glow: rgba(96, 165, 250, 0.25);
 
-  --gold:        #FDE293;
-  --gold-lt:     #FEEFC3;
-  --gold-dim:    rgba(253, 226, 147, 0.12);
-  --gold-glow:   rgba(253, 226, 147, 0.25);
+  --gold:        #FDE047;
+  --gold-lt:     #FEF08A;
+  --gold-dim:    rgba(253, 224, 71, 0.12);
+  --gold-glow:   rgba(253, 224, 71, 0.25);
 
-  --green:       #81C995;
-  --green-dim:   rgba(129, 201, 149, 0.12);
-  --red:         #F28B82;
-  --red-dim:     rgba(242, 139, 130, 0.12);
-  --sky:         #8AB4F8;
-  --sky-dim:     rgba(138, 180, 248, 0.12);
-  --teal:        #4ECDE6;
-  --purple:      #C58AF9;
+  --green:       #4ADE80;
+  --green-dim:   rgba(74, 222, 128, 0.12);
+  --red:         #F87171;
+  --red-dim:     rgba(248, 113, 113, 0.12);
+  --sky:         #38BDF8;
+  --sky-dim:     rgba(56, 189, 248, 0.12);
+  --teal:        #2DD4BF;
+  --purple:      #C084FC;
 
   --border:      rgba(255, 255, 255, 0.08);
   --border-md:   rgba(255, 255, 255, 0.12);
   --border-lg:   rgba(255, 255, 255, 0.2);
 
-  --text-primary: #E8EAED;
-  --text-sec:     #9AA0A6;
-  --text-muted:   #80868B;
+  --text-primary: #F3F4F6;
+  --text-sec:     #9CA3AF;
+  --text-muted:   #6B7280;
   --text-inv:     #000000;
 
   --navy:       #111318;
   --navy-mid:   #191B22;
   --navy-soft:  #22252E;
 
-  --sh-xs: 0 2px 6px rgba(0, 0, 0, 0.3);
-  --sh-sm: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.04);
-  --sh-md: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.04);
-  --sh-lg: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04);
-  --sh-xl: 0 24px 60px rgba(0, 0, 0, 0.7);
+  /* Dark shadows */
+  --sh-xs: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --sh-sm: 0 2px 4px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.03);
+  --sh-md: 0 4px 8px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.03);
+  --sh-lg: 0 8px 16px rgba(0, 0, 0, 0.6), 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  --sh-xl: 0 12px 24px rgba(0, 0, 0, 0.7), 0 24px 64px rgba(0, 0, 0, 0.6);
 }
 
 /* ── RESET ── */
@@ -141,6 +144,7 @@ body {
   font-family: var(--ff-ar);
   background: var(--bg-2);
   color: var(--text-primary);
+  line-height: 1.75;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

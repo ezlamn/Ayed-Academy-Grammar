@@ -1,0 +1,110 @@
+{
+  "id": "r7",
+  "title": "Seventh Strategy: Opinion",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs7",
+        "theme": "sc-theme-purple",
+        "icon": "💭",
+        "title": " Opinion",
+        "subtitle": "Seventh Strategy",
+        "usage": "ما هو الاختيار الذي يعبّر عن رأي؟ (Which one of the following is an opinion?)\nنقوم بعمل مسح سريع للقطعة ونبحث عن واحدة من هذه الكلمات الدالة على الرأي، ثم نربط بين الرأي الموجود في القطعة والاختيارات.",
+        "practice": [
+          {
+            "passageId": "r7-p0-q0",
+            "passageText": "PASSAGE 1 (meat production)\\n4. Food and farming is one of the biggest economic sectors in the world... 7. Is meat still crucial to human life? Some nutritionists argue that, just because we’ve always eaten meat, that doesn’t mean we always have to.",
+            "q": "Which of the following is an opinion?",
+            "opts": [
+              "Meat production will continue to grow.",
+              "Few people work farming in the UK.",
+              "The meat industry is worth closer to $174 million.",
+              "In the UK, 3,8 million are employed and 27 billion is made by the food industry."
+            ],
+            "c": 0,
+            "expl": "توقع: will continue to grow",
+            "id": "q_reading_r7_001"
+          },
+          {
+            "passageId": "r7-p1-q0",
+            "passageText": "PASSAGE 2 (The Spanish Flu)\\n1. From 1918 to 1920 the virus known as the Spanish Flu infected 500 million people worldwide, killing 50 to 100 million of them... In the future, suggests the World Health Organization, there will be more and perhaps more deadly flu pandemics...",
+            "q": "Which of the following statements about the Spanish Flu is an opinion?",
+            "opts": [
+              "It began in the United States.",
+              "It killed at least 50 million people.",
+              "There were no infections in Antarctica.",
+              "Now it could spread across the world in one day."
+            ],
+            "c": 3,
+            "expl": "يعتقد أن: could spread across the world in one day",
+            "id": "q_reading_r7_002"
+          },
+          {
+            "passageId": "r7-p2-q0",
+            "passageText": "PASSAGE 3 (The US response to the End of the Cold War)\\n1. When Mikhail Gorbachev became the leader of the Soviet Union (USSR) in 1985, no one predicted that the end of Cold War was only six years away... 5. Other history professors pointed out that no one really won the Cold War.",
+            "q": "Which one of the following is an opinion?",
+            "opts": [
+              "The world remains a dangerous place.",
+              "USA spent a lot of money on weapons.",
+              "Many Americans died in Vietnam.",
+              "Nobody won the Cold War"
+            ],
+            "c": 3,
+            "expl": "أشار المؤرخون أن: Nobody won the Cold War",
+            "id": "q_reading_r7_003"
+          },
+          {
+            "passageId": "r7-p3-q0",
+            "passageText": "PASSAGE 4 Hyperinflation\\n1. Because Germany had no goods to trade after its defeat in WW1, the Weimar government simply printed money... 4. It was clear to all, both inside and outside Germany, that the situation needed urgent action... Some historians suggest that this is evidence that many problems were not as severe as its politicians had made out.",
+            "q": "Which of the following is an opinion?",
+            "opts": [
+              "From 1921-1923 the German middle class DID NOT buy houses.",
+              "Workers needed trolleys to carry home their wages",
+              "A new government took power in 1923",
+              "Germany’s problems were NOT as severe as its politicians had said"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r7_004"
+          },
+          {
+            "passageId": "r7-p4-q0",
+            "passageText": "PASSAGE 5 (emotions)\\n1. What comes to mind when you think of emotions? It’s probably happiness, sadness, or fear... Emotions surely help us to fight or flee, but I believe that more importantly, they aid in learning, exploring, and reflecting.",
+            "q": "Which of the following is the writer’s opinion?",
+            "opts": [
+              "People experience many emotions.",
+              "People know very little at birth.",
+              "Happiness and sadness are emotions.",
+              "Emotions help us learn, explore, and reflect."
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r7_005"
+          }
+        ],
+        "keywords": [
+          {
+            "f": "say - hard to say",
+            "b": "يقول - من الصعب القول"
+          },
+          {
+            "f": "believe - suggest",
+            "b": "يعتقد - يقترح"
+          },
+          {
+            "f": "argue - point out",
+            "b": "يجادل - يوضح"
+          },
+          {
+            "f": "think - expect - predict",
+            "b": "يفكر - يتوقع - يتنبأ"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Seventh Strategy: Opinion",
+  "nameEn": "Seventh Strategy: Opinion",
+  "emoji": "📖"
+}

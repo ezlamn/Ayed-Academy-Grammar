@@ -1,98 +1,45 @@
-# 📚 أكاديمية عايد — كتاب STEP التفاعلي الشامل
+# Ayed Academy - STEP English Preparation Platform
 
-منصة تعليمية تفاعلية لتعليم قواعد اللغة الإنجليزية (Grammar Strategies)، مبنية بـ Node.js + Express مع واجهة مستخدم متكاملة.
+This repository contains the **Frontend** Single Page Application (SPA) for the Ayed Academy STEP preparation platform. 
 
----
+Currently, the project is in a **Frontend-Only** architecture state to facilitate a clean handoff to the Backend development phase. 
 
-## 🚀 تشغيل المشروع (Quick Start)
+## Project Structure & Architecture
 
-### المتطلبات
-- [Node.js](https://nodejs.org/) v18 أو أحدث
+- **`index.html`**: The main entry point. It loads all UI elements and scripts.
+- **`public/js/`**: Contains all frontend logic, structured cleanly:
+  - **`core/`**: Essential logic (`dataService.js`, `app.js`, `state.js`, `dashboard.js`, `auth.js`, `analytics.js`).
+    - **`dataService.js`** is the **Abstraction Layer** for all data access. It handles fetching data from mock JSON files and uses IndexedDB locally to save student progress. No other file should call `fetch()` or `indexedDB` directly.
+  - **`features/`**: Feature-specific logic (`gamification.js`, `quiz.js`, `interactive.js`, `units.js`, `mock_exam.js`).
+  - **`ui/`**: Visual logic (`renderers.js`, `ui.js`, `icons.js`, `anim-explainer.js`, etc.).
+- **`public/data/`**: Contains mock JSON files representing the future API endpoints.
+- **`DATA_CONTRACTS.md`**: Defines the exact JSON schemas that the Backend API should eventually return.
 
-### خطوات التشغيل
+## Frontend Handoff Instructions for Backend Developer
 
-```bash
-# 1. استنساخ المشروع
-git clone https://github.com/ezlamn/Ayed-Academy-Grammar.git
-cd Ayed-Academy-Grammar
+1. **Do NOT rewrite the UI.** The frontend logic is deeply integrated with the UI (confetti, streaks, SVG icons, audio players).
+2. **Implement APIs according to `DATA_CONTRACTS.md`.**
+3. **Connect APIs in `dataService.js`.** 
+   - Replace the local `fetch('/public/data/...')` calls with real `fetch('/api/...')` endpoints.
+   - For `saveGamification` and `saveProfile`, add `POST` requests to your backend instead of (or in addition to) the local `IndexedDB` caching.
+4. **Remove or secure `IndexedDB`**: Once the backend handles user data, you can phase out IndexedDB or keep it only as an offline cache.
 
-# 2. تثبيت الاعتماديات
-npm install
+## Features Currently Mocked Locally
 
-# 3. تشغيل السيرفر
-npm start
-```
+- **Student Profile & XP**: Saved to IndexedDB via `dataService.js`.
+- **Tracks (Grammar, Reading, Listening, Composition, Vocab)**: Loaded from `/public/data/*/index.json`.
+- **Weighted Recommendation Engine**: Evaluates weak points based on STEP exam weights (Reading 40%, Grammar 30%, Listening 20%, Composition 10%).
 
-ثم افتح المتصفح على: **http://localhost:3000**
+## Setup and Run
 
----
-
-## 🗂️ هيكل المشروع
-
-```
-Ayed-Academy-Grammar/
-├── server.js             # السيرفر الرئيسي (Express)
-├── package.json          # الاعتماديات والسكريبتات
-├── index.html            # الصفحة الرئيسية
-├── data/
-│   └── db.json           # قاعدة البيانات (تُنشأ تلقائياً عند التشغيل)
-├── uploads/              # ملفات الصوت والصور (تُنشأ تلقائياً)
-├── public/
-│   ├── admin.html        # لوحة تحكم الأدمن
-│   ├── app.js            # المنطق الرئيسي للتطبيق
-│   ├── style.css         # الستايل الرئيسي
-│   ├── firebase-config.js # نظام المصادقة المحلي (بدون Firebase)
-│   ├── js/               # ملفات JavaScript المساعدة
-│   │   ├── auth.js
-│   │   ├── renderers.js
-│   │   ├── icons.js
-│   │   ├── state.js
-│   │   └── tree-diagram.js
-│   ├── css/              # ملفات CSS المساعدة
-│   └── assets/           # صور وأصول ثابتة
-└── scripts/              # سكريبتات الصيانة والبناء
-```
-
----
-
-## 🔗 الروابط المهمة
-
-| الرابط | الوصف |
-|--------|-------|
-| http://localhost:3000 | الواجهة الرئيسية للطالب |
-| http://localhost:3000/public/admin.html | لوحة تحكم الأدمن |
-
----
-
-## 🛠️ API Endpoints
-
-| Method | Endpoint | الوصف |
-|--------|----------|-------|
-| GET | `/api/units` | جلب كل الوحدات |
-| POST | `/api/units` | حفظ/تحديث الوحدات |
-| POST | `/api/upload` | رفع ملف صوتي أو صورة |
-| GET | `/data/db.json` | قراءة قاعدة البيانات |
-
----
-
-## 📝 ملاحظات
-
-- **قاعدة البيانات** (`data/db.json`) تُنشأ تلقائياً عند أول تشغيل — لا تحتاج لأي إعداد.
-- **المصادقة** تعمل محلياً بدون Firebase أو أي مفاتيح API خارجية.
-- **مجلد uploads/** يُنشأ تلقائياً ومفيش ملفات فيه مرفوعة في الـ repo.
-- المشروع يعمل **أوفلاين** بالكامل — لا يحتاج إنترنت.
-
----
-
-## 👨‍💻 التطوير
+To run the application locally, you just need a static file server:
 
 ```bash
-# تشغيل في وضع التطوير (نفس الأمر)
-npm run dev
+# Using Node.js / npx
+npx serve .
+
+# OR using Python
+python -m http.server 8000
 ```
 
----
-
-## 📄 الترخيص
-
-هذا المشروع خاص بأكاديمية عايد © 2026
+Open your browser to `http://localhost:8000`.

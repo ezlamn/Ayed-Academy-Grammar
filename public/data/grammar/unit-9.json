@@ -1,0 +1,117 @@
+{
+  "id": 9,
+  "emoji": "🎛️",
+  "nameAr": "الأفعال الناقصة",
+  "nameEn": "Modal Auxiliaries",
+  "page": {
+    "tag": "الوحدة التاسعة",
+    "mascot": "🎯",
+    "strategies": [
+      {
+        "id": "u9s1",
+        "theme": "sc-theme-green",
+        "icon": "🎛️",
+        "title": "درجات الإلزام والإذن والنصيحة",
+        "subtitle": "Modal Auxiliaries",
+        "badge": "Modals",
+        "usage": "الأفعال الناقصة تُعبِّر عن درجات مختلفة من الإلزام أو المنع أو الاحتمال أو النصيحة.",
+        "keywords": [
+          {
+            "f": "Must",
+            "b": "إلزام ذاتي قوي جداً"
+          },
+          {
+            "f": "Have to",
+            "b": "إلزام خارجي (قانون/قاعدة)"
+          },
+          {
+            "f": "Mustn't",
+            "b": "تحريم ومنع تام ⛔"
+          },
+          {
+            "f": "Don't have to",
+            "b": "ليس ضرورياً (اختياري) — لا يعني ممنوع!"
+          },
+          {
+            "f": "Should / Ought to",
+            "b": "نصيحة وتوصية"
+          },
+          {
+            "f": "Can / Could",
+            "b": "قدرة / إذن مهذب"
+          },
+          {
+            "f": "May / Might",
+            "b": "احتمال (may أقوى من might)"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "إلزام",
+            "form": "must / have to + V",
+            "ex": "You <strong>must</strong> wear a seatbelt. (قانون)"
+          },
+          {
+            "subj": "تحريم",
+            "form": "mustn't + V",
+            "ex": "You <strong>mustn't</strong> park here. (ممنوع)"
+          },
+          {
+            "subj": "اختياري",
+            "form": "don't have to + V",
+            "ex": "You <strong>don't have to</strong> come early."
+          },
+          {
+            "subj": "نصيحة",
+            "form": "should + V",
+            "ex": "You <strong>should</strong> see a doctor."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ الفرق الحاسم: Mustn't vs Don't have to",
+          "body": "<strong>Mustn't</strong> = ممنوع، محظور، لا تفعل (forbidden): You mustn't smoke here.<br>\n                <strong>Don't have to</strong> = ليس ضرورياً، يمكنك أن تفعل أو لا (not necessary): You don't have to wear a tie."
+        },
+        "practice": [
+          {
+            "q": "You …… park here. It is illegal.",
+            "opts": [
+              "must",
+              "shouldn't",
+              "mustn't",
+              "don't have to"
+            ],
+            "c": 2,
+            "expl": "illegal = غير قانوني = ممنوع تماماً → <strong>mustn't</strong>.",
+            "id": "q_grammar_9_001"
+          },
+          {
+            "q": "Tomorrow is a holiday, so we …… wake up early.",
+            "opts": [
+              "mustn't",
+              "don't have to",
+              "should",
+              "can't"
+            ],
+            "c": 1,
+            "expl": "عطلة = ليس ضرورياً الاستيقاظ → <strong>don't have to</strong>.",
+            "id": "q_grammar_9_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "You …… read this book. It's really good.",
+        "opts": [
+          "should",
+          "mustn't",
+          "needn't",
+          "might"
+        ],
+        "c": 0,
+        "expl": "توصية لأن الكتاب جيد → <strong>should</strong>.",
+        "id": "q_grammar_9_003"
+      }
+    ]
+  }
+}

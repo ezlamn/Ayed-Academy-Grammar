@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "nameAr": "الأزمنة",
+    "nameEn": "Tenses",
+    "emoji": "⏱️"
+  },
+  {
+    "id": 2,
+    "nameAr": "الروابط الزمنية",
+    "nameEn": "Time Connectors",
+    "emoji": "🔗"
+  },
+  {
+    "id": 3,
+    "nameAr": "جمل الشرط",
+    "nameEn": "Conditional Sentences",
+    "emoji": "❓"
+  },
+  {
+    "id": 4,
+    "nameAr": "جمل الوصل",
+    "nameEn": "Relative Clauses",
+    "emoji": "🔍"
+  },
+  {
+    "id": 5,
+    "nameAr": "الضمائر",
+    "nameEn": "Pronouns",
+    "emoji": "👤"
+  },
+  {
+    "id": 6,
+    "nameAr": "المعدود وغير المعدود",
+    "nameEn": "Countable & Uncountable",
+    "emoji": "🔢"
+  },
+  {
+    "id": 7,
+    "nameAr": "الصفات والظروف",
+    "nameEn": "Adjectives & Adverbs",
+    "emoji": "🌈"
+  },
+  {
+    "id": 8,
+    "nameAr": "الأفعال + To أو Ing",
+    "nameEn": "Verb Patterns",
+    "emoji": "⚡"
+  },
+  {
+    "id": 9,
+    "nameAr": "الأفعال الناقصة",
+    "nameEn": "Modal Auxiliaries",
+    "emoji": "🎛️"
+  },
+  {
+    "id": 10,
+    "nameAr": "حروف العطف",
+    "nameEn": "Conjunctions",
+    "emoji": "🔀"
+  },
+  {
+    "id": 11,
+    "nameAr": "المبني للمجهول والكلام المنقول",
+    "nameEn": "Passive & Reported Speech",
+    "emoji": "📎"
+  },
+  {
+    "id": 12,
+    "nameAr": "تحليل الكتابة",
+    "nameEn": "Writing Analysis",
+    "emoji": "✍️"
+  }
+]

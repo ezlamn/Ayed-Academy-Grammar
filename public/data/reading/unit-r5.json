@@ -1,0 +1,180 @@
+{
+  "id": "r5",
+  "title": "Fifth Strategy: Direct Questions",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs5",
+        "theme": "sc-theme-teal",
+        "icon": "❓",
+        "title": " Direct Questions",
+        "subtitle": "Fifth Strategy",
+        "usage": "استخراج المعلومات المباشرة من القطعة.\nرأس السؤال عبارة عن جزئين (جزء كلمة استفهامية – المعلومة المطلوبة)\n1. المسح: تحديد مكان المعلومة في القطعة.\n2. المطابقة: مطابقة المعلومة بين السؤال والقطعة.",
+        "practice": [
+          {
+            "passageId": "r5-p0-q0",
+            "passageText": "PASSAGE 1\\n1) Air pollution is a major problem all over the world today... In one 2009 study, researchers found 586 chemicals in the air of 52 typical homes in Arizona, USA. 2) The sources of indoor air pollution can be easily pollen, identified... Addition, the indoor air space of offices is full of volatile organic compounds (VOCs) produced by photocopiers, computers and other equipment. 4) There are a number of ways to improve our indoor air very simple and make our buildings healthier... One business center in New Delhi has successfully used this method for fifteen years. For a building with 30 people, they used over 1,200 plants to clean the air.",
+            "q": "According to Paragraph (1), in the 2009 study, how many chemicals did the researchers find in the indoor air?",
+            "opts": [
+              "25",
+              "90",
+              "300",
+              "586"
+            ],
+            "c": 3,
+            "expl": "العدد المذكور هو 586 chemicals",
+            "id": "q_reading_r5_001"
+          },
+          {
+            "passageId": "r5-p0-q1",
+            "passageText": "PASSAGE 1\\n1) Air pollution is a major problem all over the world today... In one 2009 study, researchers found 586 chemicals in the air of 52 typical homes in Arizona, USA. 2) The sources of indoor air pollution can be easily pollen, identified... Addition, the indoor air space of offices is full of volatile organic compounds (VOCs) produced by photocopiers, computers and other equipment. 4) There are a number of ways to improve our indoor air very simple and make our buildings healthier... One business center in New Delhi has successfully used this method for fifteen years. For a building with 30 people, they used over 1,200 plants to clean the air.",
+            "q": "According to Paragraph (2), which of the following are sources of VOCs?",
+            "opts": [
+              "cooking stoves and Teflon pans",
+              "photocopiers and computers",
+              "radon and formaldehyde",
+              "paints and furniture"
+            ],
+            "c": 1,
+            "expl": "مصادر الـ VOCs المذكورة هي photocopiers and computers",
+            "id": "q_reading_r5_002"
+          },
+          {
+            "passageId": "r5-p0-q2",
+            "passageText": "PASSAGE 1\\n1) Air pollution is a major problem all over the world today... In one 2009 study, researchers found 586 chemicals in the air of 52 typical homes in Arizona, USA. 2) The sources of indoor air pollution can be easily pollen, identified... Addition, the indoor air space of offices is full of volatile organic compounds (VOCs) produced by photocopiers, computers and other equipment. 4) There are a number of ways to improve our indoor air very simple and make our buildings healthier... One business center in New Delhi has successfully used this method for fifteen years. For a building with 30 people, they used over 1,200 plants to clean the air.",
+            "q": "According to Paragraph (4), where are plants being used successfully to keep the air healthy?",
+            "opts": [
+              "in a research center in the USA",
+              "in a business center in India",
+              "in offices in America",
+              "in typical homes in Arizona"
+            ],
+            "c": 1,
+            "expl": "النباتات استخدمت بنجاح في in a business center in India",
+            "id": "q_reading_r5_003"
+          },
+          {
+            "passageId": "r5-p1-q0",
+            "passageText": "PASSAGE 2 (Growth of Public Education)\\n1) By the early 1800s, reformers persuaded many governments to set up public schools... 3) By the late 1880s, more and more children were in school... Beginning in 1879, schools to train teachers were established in France... 5) Colleges and universities expanded in this period... By the late 1800s, universities added courses in the sciences, especially in chemistry and physics... 6) Some women sought greater educational opportunities... Bedford College in England and Mount Holyoke in the United States.",
+            "q": "In 1879, where did schools to train teachers start?",
+            "opts": [
+              "England",
+              "France",
+              "United States",
+              "Greece"
+            ],
+            "c": 1,
+            "expl": "بدأت في France",
+            "id": "q_reading_r5_004"
+          },
+          {
+            "passageId": "r5-p1-q1",
+            "passageText": "PASSAGE 2 (Growth of Public Education)\\n1) By the early 1800s, reformers persuaded many governments to set up public schools... 3) By the late 1880s, more and more children were in school... Beginning in 1879, schools to train teachers were established in France... 5) Colleges and universities expanded in this period... By the late 1800s, universities added courses in the sciences, especially in chemistry and physics... 6) Some women sought greater educational opportunities... Bedford College in England and Mount Holyoke in the United States.",
+            "q": "Where is Mount Holyoke College for Women",
+            "opts": [
+              "England",
+              "United States",
+              "France",
+              "Greece"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r5_005"
+          },
+          {
+            "passageId": "r5-p1-q2",
+            "passageText": "PASSAGE 2 (Growth of Public Education)\\n1) By the early 1800s, reformers persuaded many governments to set up public schools... 3) By the late 1880s, more and more children were in school... Beginning in 1879, schools to train teachers were established in France... 5) Colleges and universities expanded in this period... By the late 1800s, universities added courses in the sciences, especially in chemistry and physics... 6) Some women sought greater educational opportunities... Bedford College in England and Mount Holyoke in the United States.",
+            "q": "What university course was added to the curriculum by the late 1800s?",
+            "opts": [
+              "chemistry",
+              "mathematics",
+              "religion",
+              "physical education"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r5_006"
+          },
+          {
+            "passageId": "r5-p2-q0",
+            "passageText": "PASSAGE 3 stars\\n1) If we look at the night sky carefully, we will see that the stars are of many different colors. Some are red, others are yellow and some are blue... 2) Astronomers have been able to classify stars according to color... For example, Ryiejol is a blue superstar as big as 40.000 suns and Beetlejuice is a superstar with a size equal to 17.000 suns. 3) ...It is possible to measure a star’s distance from the earth if astronomers know the color, brightness and whether or not it is a superstar.",
+            "q": "Which of the following colors is NOT mentioned in the passage?",
+            "opts": [
+              "green",
+              "yellow",
+              "blue",
+              "red"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r5_007"
+          },
+          {
+            "passageId": "r5-p2-q1",
+            "passageText": "PASSAGE 3 stars\\n1) If we look at the night sky carefully, we will see that the stars are of many different colors. Some are red, others are yellow and some are blue... 2) Astronomers have been able to classify stars according to color... For example, Ryiejol is a blue superstar as big as 40.000 suns and Beetlejuice is a superstar with a size equal to 17.000 suns. 3) ...It is possible to measure a star’s distance from the earth if astronomers know the color, brightness and whether or not it is a superstar.",
+            "q": "According to Paragraph (2) Beetlejuice is a superstar …………",
+            "opts": [
+              "as big as the sun",
+              "smaller than the sun",
+              "as big as 17,000 suns",
+              "as big as 40.000 suns"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r5_008"
+          },
+          {
+            "passageId": "r5-p2-q2",
+            "passageText": "PASSAGE 3 stars\\n1) If we look at the night sky carefully, we will see that the stars are of many different colors. Some are red, others are yellow and some are blue... 2) Astronomers have been able to classify stars according to color... For example, Ryiejol is a blue superstar as big as 40.000 suns and Beetlejuice is a superstar with a size equal to 17.000 suns. 3) ...It is possible to measure a star’s distance from the earth if astronomers know the color, brightness and whether or not it is a superstar.",
+            "q": "According to Paragraph (2), (3)astronomers classify stars according to the following EXCEPT ………",
+            "opts": [
+              "size",
+              "color",
+              "shape",
+              "brightness"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r5_009"
+          },
+          {
+            "passageId": "r5-p3-q0",
+            "passageText": "PASSAGE 4 Strange Substance\\n1) A mysterious, orange, sticky gel, found on the beaches of Kivalina, a village situated on the Alaskan coast between Kotzebue and Point Hope, was recently the source of much interest.",
+            "q": "According to Paragraph (1), the strange, orange substance was found ……..",
+            "opts": [
+              "on the beaches of Kotzebue",
+              "on the beaches of Point Hope",
+              "close to a compound in Alaska",
+              "between Kotzebue and Point Hope"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r5_010"
+          }
+        ],
+        "keywords": [
+          {
+            "f": "When / Where / Who",
+            "b": "متى / أين / من"
+          },
+          {
+            "f": "Why / Which",
+            "b": "لماذا / أي"
+          },
+          {
+            "f": "How Much / Many / Long / Old",
+            "b": "كم التكلفة / العدد / المدة / العمر"
+          },
+          {
+            "f": "NOT mentioned / EXCEPT",
+            "b": "الاستخراج العكسي (يسأل عن المعلومة التي لم يتم ذكرها)"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Fifth Strategy: Direct Questions",
+  "nameEn": "Fifth Strategy: Direct Questions",
+  "emoji": "📖"
+}

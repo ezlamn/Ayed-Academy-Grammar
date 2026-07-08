@@ -1,0 +1,163 @@
+{
+  "id": 3,
+  "emoji": "❓",
+  "nameAr": "جمل الشرط",
+  "nameEn": "Conditional Sentences",
+  "page": {
+    "tag": "الوحدة الثالثة",
+    "mascot": "🎯",
+    "strategies": [
+      {
+        "id": "u3s1",
+        "theme": "sc-theme-blue",
+        "icon": "🔢",
+        "title": "الحالات الأربعة لجملة الشرط",
+        "subtitle": "The Four Conditionals",
+        "badge": "If Conditions",
+        "usage": "جملة الشرط تتكون من جزأين: جملة الشرط (If clause) وجملة الجواب (Main clause). الحالة تتغير حسب درجة احتمال الحدث أو وقته.",
+        "keywords": [
+          {
+            "f": "If / Unless",
+            "b": "إذا / إلا إذا"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "الحالة الصفرية — حقيقة",
+            "form": "If + مضارع → مضارع",
+            "ex": "If you <strong>heat</strong> water to 100°C, it <strong>boils</strong>."
+          },
+          {
+            "subj": "الحالة الأولى — احتمال",
+            "form": "If + مضارع → will + V",
+            "ex": "If it <strong>rains</strong>, I <strong>will stay</strong> home."
+          },
+          {
+            "subj": "الحالة الثانية — تخيل",
+            "form": "If + ماضٍ → would + V",
+            "ex": "If I <strong>were</strong> you, I <strong>would accept</strong> it."
+          },
+          {
+            "subj": "الحالة الثالثة — ندم",
+            "form": "If + ماضٍ تام → would have + V3",
+            "ex": "If he <strong>had tried</strong>, he <strong>would have succeeded</strong>."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ ملاحظتان لا تُنسيان",
+          "body": "1. في الحالة الثانية (التخيلية): استخدم <strong>were</strong> مع جميع الضمائر (If I <strong>were</strong>, If he <strong>were</strong>).<br>\n                2. <strong>Unless</strong> = If...not → لا تضع not بعدها: Unless he <strong>studies</strong>, he will fail."
+        },
+        "practice": [
+          {
+            "q": "If it rains tomorrow, I ……. my raincoat.",
+            "opts": [
+              "wear",
+              "am wear",
+              "will wear",
+              "going to wear"
+            ],
+            "c": 2,
+            "expl": "مضارع (rains) في جملة الشرط → will + فعل في جملة الجواب: <strong>will wear</strong>.",
+            "id": "q_grammar_3_001"
+          },
+          {
+            "q": "If I …… you, I would accept the offer.",
+            "opts": [
+              "be",
+              "am",
+              "been",
+              "were"
+            ],
+            "c": 3,
+            "expl": "would accept = حالة ثانية تخيلية → نستخدم <strong>were</strong>.",
+            "id": "q_grammar_3_002"
+          },
+          {
+            "q": "If he …… harder, he would have passed.",
+            "opts": [
+              "works",
+              "will work",
+              "worked",
+              "had worked"
+            ],
+            "c": 3,
+            "expl": "would have passed = حالة ثالثة (ندم) → ماضٍ تام: <strong>had worked</strong>.",
+            "id": "q_grammar_3_003"
+          }
+        ]
+      },
+      {
+        "id": "u3s2",
+        "theme": "sc-theme-purple",
+        "icon": "🌟",
+        "title": "التمني (Wish / If Only)",
+        "subtitle": "Expressing Wishes",
+        "badge": "Wishes",
+        "usage": "للتعبير عن تمنٍّ لشيء غير حقيقي في الحاضر، أو ندمٍ على شيء مضى.",
+        "keywords": [
+          {
+            "f": "I wish",
+            "b": "أتمنى / ليت"
+          },
+          {
+            "f": "If only",
+            "b": "ليت / لو أن (تعبير أقوى)"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "تمنٍّ للحاضر (مستحيل الآن)",
+            "form": "Wish + ماضٍ بسيط",
+            "ex": "I wish she <strong>were</strong> here with me now."
+          },
+          {
+            "subj": "ندم على الماضي",
+            "form": "Wish + had + <span class=\"s\">V3</span>",
+            "ex": "I wish I <strong>had studied</strong> harder last year."
+          }
+        ],
+        "exception": null,
+        "practice": [
+          {
+            "q": "I miss my friend. If only he …… here now.",
+            "opts": [
+              "were",
+              "had been",
+              "will be",
+              "is"
+            ],
+            "c": 0,
+            "expl": "تمنٍّ للحاضر (now) → ماضٍ بسيط: <strong>were</strong>.",
+            "id": "q_grammar_3_004"
+          },
+          {
+            "q": "I wish I …… harder. Instead, I'd hang out.",
+            "opts": [
+              "Would work",
+              "Was working",
+              "Have worked",
+              "Had worked"
+            ],
+            "c": 3,
+            "expl": "Instead يدل على ندم الماضي → ماضٍ تام: <strong>had worked</strong>.",
+            "id": "q_grammar_3_005"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "Unless he ……. now, he will miss the bus.",
+        "opts": [
+          "leave",
+          "leaves",
+          "will leave",
+          "left"
+        ],
+        "c": 1,
+        "expl": "Unless = If...not → مضارع في جملة الشرط: <strong>leaves</strong>.",
+        "id": "q_grammar_3_006"
+      }
+    ]
+  }
+}

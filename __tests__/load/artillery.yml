@@ -1,0 +1,16 @@
+config:
+  target: "http://127.0.0.1:3000"
+  phases:
+    - duration: 10
+      arrivalRate: 20
+      name: "Simulated Concurrent Student Load (Spike)"
+
+scenarios:
+  - name: "Student fetches UI and Grammar Data"
+    flow:
+      - get:
+          url: "/"
+      - get:
+          url: "/public/data/grammar/index.json"
+      - get:
+          url: "/public/data/reading/index.json"

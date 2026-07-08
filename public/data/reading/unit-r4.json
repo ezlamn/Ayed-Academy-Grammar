@@ -1,0 +1,208 @@
+{
+  "id": "r4",
+  "title": "Fourth Strategy: Conjunctions",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs4",
+        "theme": "sc-theme-red",
+        "icon": "🔗",
+        "title": " Conjunctions",
+        "subtitle": "Fourth Strategy",
+        "usage": "تأتي الروابط بطريقتين:\nالطريقة الأولى: بيسأل عن معنى الرابط ويمكن حفظ الجدول للتسهيل.\nWhich word can we use to replace the word...in paragraph...?",
+        "practice": [
+          {
+            "passageId": "r4-p0-q0",
+            "passageText": "PASSAGE 1\\n(1) Prince Henry led the way in sponsoring exploration for Portugal, a small nation next to Spain... (4) Henry died in 1460, but the Portuguese continued their quest. In 1488. Bartholomeu Dias rounded the southern tip of Africa. Despite the turbulent seas around it, the tip became known as the Cape of Good Hope because it opened the way for a sea route to Asia.",
+            "q": "Which word can we use to replace the word “because” in Paragraph (4)?",
+            "opts": [
+              "although",
+              "besides",
+              "since",
+              "so"
+            ],
+            "c": 2,
+            "expl": "because يمكن استبدالها بـ since",
+            "id": "q_reading_r4_001"
+          },
+          {
+            "passageId": "r4-p1-q0",
+            "passageText": "PASSAGE 2 (Personal Finance)\\n1. An annual survey in 2017 from the National Endowment for Financial Education (NEFE) found Americans cited the most significant financial setbacks... 2. The survey also found that nearly half (48 percent) of Americans admit that they are living paycheck to paycheck. The main reasons people believe they are living paycheck to paycheck are due to credit card debt (24 percent). employment struggles (22 percent). and mortgage/ rent payments (18 percent)...",
+            "q": "Which expression can we use to replace the expression “due to” in Paragraph (2)?",
+            "opts": [
+              "however",
+              "although",
+              "meanwhile",
+              "because of"
+            ],
+            "c": 3,
+            "expl": "due to يمكن استبدالها بـ because of",
+            "id": "q_reading_r4_002"
+          },
+          {
+            "passageId": "r4-p1-q1",
+            "passageText": "PASSAGE 2 (Personal Finance)\\n1. An annual survey in 2017 from the National Endowment for Financial Education (NEFE) found Americans cited the most significant financial setbacks... 2. The survey also found that nearly half (48 percent) of Americans admit that they are living paycheck to paycheck. The main reasons people believe they are living paycheck to paycheck are due to credit card debt (24 percent). employment struggles (22 percent). and mortgage/ rent payments (18 percent)...",
+            "q": "Why does the writer use the word “also” in Paragraph (2)?",
+            "opts": [
+              "to give an example of the survey results",
+              "to show a list of answers reported in the survey",
+              "to give more information about the survey results",
+              "to show different results from those reported before"
+            ],
+            "c": 1,
+            "expl": "while يمكن استبدالها بـ although",
+            "id": "q_reading_r4_003"
+          },
+          {
+            "passageId": "r4-p2-q0",
+            "passageText": "PASSAGE 3\\n(1) Since 1876, when Henry Heinz first started selling ketchup in glass bottles... (2) While it may look like a liquid, ketchup is actually a non-Newtonian fluid. Instead off lowing consistently the viscosity of these substances change with the amount of force put on them.",
+            "q": "Which word can we use to replace the word “While” in Paragraph (2)?",
+            "opts": [
+              "because",
+              "although",
+              "however",
+              "besides"
+            ],
+            "c": 3,
+            "expl": "for example يمكن استبدالها بـ for instance",
+            "id": "q_reading_r4_004"
+          },
+          {
+            "passageId": "r4-p3-q0",
+            "passageText": "PASSAGE 4 (Air Pollution)\\n(1) Air Pollution Air pollution describes the chemicals and gasses... (2) Human activities have been the main causes of air Pollution, especially in modern cities. To support a larger population, there is always a need for energy. Transportation, and industries, which result in the spread of harmful chemicals into the air. In addition to outdoor air pollution, there is another type of pollution... (3) There are some simple things people can do to help keep the air around them cleaner. For example, people can use less energy because the more we use sources of energy, like electricity and gasoline, the more air Pollution we create.",
+            "q": "Which word can we use to replace the words “for example” in Paragraph (3)?",
+            "opts": [
+              "Therefore",
+              "Although",
+              "In particular",
+              "For instance"
+            ],
+            "c": 0,
+            "expl": "in addition تعني الإضافة",
+            "id": "q_reading_r4_005"
+          },
+          {
+            "passageId": "r4-p3-q1",
+            "passageText": "PASSAGE 4 (Air Pollution)\\n(1) Air Pollution Air pollution describes the chemicals and gasses... (2) Human activities have been the main causes of air Pollution, especially in modern cities. To support a larger population, there is always a need for energy. Transportation, and industries, which result in the spread of harmful chemicals into the air. In addition to outdoor air pollution, there is another type of pollution... (3) There are some simple things people can do to help keep the air around them cleaner. For example, people can use less energy because the more we use sources of energy, like electricity and gasoline, the more air Pollution we create.",
+            "q": "Why does the writer use the words “In addition” in Paragraph (2)?",
+            "opts": [
+              "to give more information about air pollution.",
+              "to give an example of air pollution.",
+              "to explain the result of air pollution.",
+              "to explain the cause of air pollution."
+            ],
+            "c": 3,
+            "expl": "as well يمكن استبدالها بـ too",
+            "id": "q_reading_r4_006"
+          },
+          {
+            "passageId": "r4-p4-q0",
+            "passageText": "PASSAGE 5 Space Junk\\n1) Many people know that garbage is a big problem on Earth... 5) “In our opinion the problem is very challenging, and it’s quite urgent as well,” said Marco Castronuovo, an Italian Space Agency researcher who is working to solve the problem.",
+            "q": "Which word can we use to replace the words “as well” in paragraph (5)?",
+            "opts": [
+              "therefore",
+              "though",
+              "still",
+              "too"
+            ],
+            "c": 3,
+            "expl": "then يمكن استبدالها بـ after that",
+            "id": "q_reading_r4_007"
+          },
+          {
+            "passageId": "r4-p5-q0",
+            "passageText": "PASSAGE 6 Computer Ethics\\n2) Use of the internet has led to an increase in plagiarism... Software exists that can scan text and then look for examples of plagiarism by searching web pages on the internet.",
+            "q": "Which word can we use to replace the word “then” at the end of Paragraph (2)?",
+            "opts": [
+              "even though",
+              "in addition",
+              "in contrast",
+              "after that"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r4_008"
+          },
+          {
+            "passageId": "r4-p6-q0",
+            "passageText": "PASSAGE 7 Sickle Cell Anemia\\n1) Sickle cell anemia is a disease that damages red blood cells... 2) Like other types of anemia, sickle cell anemia causes tiredness, weakness, and shortness of breath... People with sickle cell anemia also are more likely to get infections. In addition, children with the disease may grow more slowly than other children.",
+            "q": "Why does the writer use the words “in addition” in paragraph 2)?",
+            "opts": [
+              "To show another result of the disease",
+              "To explain what happens to children",
+              "To explain what happens after an infection",
+              "To show children are different than their parents."
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r4_009"
+          },
+          {
+            "passageId": "r4-p7-q0",
+            "passageText": "PASSAGE 8 Changes in Agriculture\\n1) Between 1950 and 1970, a world-wide effort to combat hunger and malnutrition... 2) At the heart of the green revolution was the use of high-yield varieties of seed and fertilizer. For thousands of years, farmers have added essential nutrients in the form of natural fertilizers such as animal manure. While some farmers today still use these traditional methods, many farmers use artificial fertilizers.",
+            "q": "Why does the writer use the word “while” in Paragraph (2)?",
+            "opts": [
+              "to give more information about nutrients.",
+              "to give an example of the green revolution",
+              "to show that natural fertilizers are better.",
+              "to show that artificial fertilizers are more popular"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r4_010"
+          },
+          {
+            "passageId": "r4-p8-q0",
+            "passageText": "PASSAGE 9\\n(1) During the French Revolutionary Wars, the French army had a problem... (3) Although food could be dried, smoked, fermented or pickled before the invention of canning, none of these methods were certain to be safe and they didn’t preserve flavor. Then came Nicolas Appert...",
+            "q": "Why does the writer use the word “although” in Paragraph (3)?",
+            "opts": [
+              "To show an example of how food was kept safe.",
+              "To give more information about Nicolas Appert’s work.",
+              "To prove that flavor was important in keeping food safe.",
+              "To show that these methods of keeping food safe had some issues"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r4_011"
+          },
+          {
+            "passageId": "r4-p9-q0",
+            "passageText": "PASSAGE 10 (Irish Potato Famine)\\n(1) Under British rule, three quarters of Irish farmland was used to grow crops that were exported. The potato was the main source of food for most of the Irish people. In 1845, disaster struck. A blight or disease destroyed the potato crop. Other crops, such as wheat and oats, were not affected. Yet British landowners continued to ship these crops outside Ireland, leaving little for the Irish except the blighted potatoes.",
+            "q": "Why does the writer use the word “Yet” in Paragraph (1)?",
+            "opts": [
+              "To prove that the Irish only liked to eat potatoes most of the time",
+              "To give more information about which crops were sent to Canada",
+              "To show that crops, like wheat and oats, were also affected by disease",
+              "To show that British landowners sold good crops while people were hungry"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r4_012"
+          }
+        ],
+        "keywords": [
+          {
+            "f": "Because / Due to",
+            "b": "Since / Because of (لأن - بسبب)"
+          },
+          {
+            "f": "While",
+            "b": "Although (رغم أن)"
+          },
+          {
+            "f": "For example / as well",
+            "b": "For instance / too (على سبيل المثال / بالإضافة إلى)"
+          },
+          {
+            "f": "Then",
+            "b": "after that (بعد ذلك)"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Fourth Strategy: Conjunctions",
+  "nameEn": "Fourth Strategy: Conjunctions",
+  "emoji": "📖"
+}

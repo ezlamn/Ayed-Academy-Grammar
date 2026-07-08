@@ -1,0 +1,105 @@
+{
+  "id": 3,
+  "emoji": "📍",
+  "nameAr": "أسئلة المكان والزمان",
+  "nameEn": "Location & Time",
+  "page": {
+    "tag": "الوحدة الثالثة",
+    "mascot": "🗺️",
+    "strategies": [
+      {
+        "id": "L3S1",
+        "theme": "sc-theme-blue",
+        "icon": "📍",
+        "title": "مقاطع السؤال عن المكان",
+        "subtitle": "Location Questions",
+        "badge": "Strategy 4",
+        "usage": "سؤال عن مكان حدوث المحادثة. المكان لا يقال صراحة، ولكن نستنتج ذلك من السياق حسب الكلمات الموجودة في المقطع.",
+        "exception": {
+          "title": "مثال توضيحي",
+          "body": "\"Could you bring me the menu, please?\"<br>\"Sure, would you like to order now?\"<br>هذا يدل بوضوح على أن المكان هو مطعم (Restaurant)."
+        },
+        "practice": [
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "The conversation most likely takes place …………",
+            "opts": [
+              "In a grocery store",
+              "In a restaurant",
+              "In a house",
+              "In a train"
+            ],
+            "c": 1,
+            "expl": "بناءً على طلب قائمة الطعام والطلب، المحادثة في مطعم.",
+            "id": "q_listening_3_001"
+          },
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "Where might you hear this?",
+            "opts": [
+              "A school",
+              "An office",
+              "A hospital",
+              "A barber shop"
+            ],
+            "c": 0,
+            "expl": "الكلمات الدالة مثل teacher و students تدل على المدرسة.",
+            "id": "q_listening_3_002"
+          }
+        ]
+      },
+      {
+        "id": "L3S2",
+        "theme": "sc-theme-purple",
+        "icon": "⏱️",
+        "title": "مقاطع السؤال عن الزمان",
+        "subtitle": "Time Questions",
+        "badge": "Strategy 5",
+        "usage": "سؤال عن الزمان الذي تحدث فيه المحادثة. لا يقول الوقت صراحة، و لكن نستنتج ذلك من التحية (مثل Good morning تعني in the morning).",
+        "practice": [
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "The conversation takes place in the …………….",
+            "opts": [
+              "Morning",
+              "Afternoon",
+              "Evening",
+              "Night"
+            ],
+            "c": 1,
+            "expl": "المتحدث قال Good afternoon، إذن الوقت هو Afternoon.",
+            "id": "q_listening_3_003"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+        "q": "What is the location of the Panama Canal?",
+        "opts": [
+          "South American country of Panama",
+          "Central American country of Panama",
+          "North American country of Panama",
+          "East American country of Panama"
+        ],
+        "c": 1,
+        "expl": "Central American country of Panama.",
+        "id": "q_listening_3_004"
+      },
+      {
+        "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+        "q": "How long is the Panama Canal?",
+        "opts": [
+          "80 kilometers",
+          "83 kilometers",
+          "82 kilometers",
+          "90 kilometers"
+        ],
+        "c": 2,
+        "expl": "طول القناة 82 كيلومتراً.",
+        "id": "q_listening_3_005"
+      }
+    ]
+  }
+}

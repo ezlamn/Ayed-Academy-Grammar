@@ -1,0 +1,117 @@
+{
+  "id": 10,
+  "emoji": "🔀",
+  "nameAr": "حروف العطف",
+  "nameEn": "Conjunctions",
+  "page": {
+    "tag": "الوحدة العاشرة",
+    "mascot": "🔗",
+    "strategies": [
+      {
+        "id": "u10s1",
+        "theme": "sc-theme-teal",
+        "icon": "🔀",
+        "title": "حروف العطف والربط",
+        "subtitle": "Conjunctions",
+        "badge": "Linking Words",
+        "usage": "تربط الجمل وتوضح العلاقة المنطقية بينها (سبب / نتيجة / تناقض / شرط).",
+        "keywords": [
+          {
+            "f": "And",
+            "b": "إضافة — He is smart and hardworking."
+          },
+          {
+            "f": "But",
+            "b": "تناقض — He is rich but unhappy."
+          },
+          {
+            "f": "Although / Though",
+            "b": "رغم أن — Although it rained, we went."
+          },
+          {
+            "f": "So",
+            "b": "نتيجة — I was tired, so I slept."
+          },
+          {
+            "f": "Because",
+            "b": "سبب — I slept because I was tired."
+          },
+          {
+            "f": "Unless",
+            "b": "إلا إذا (= if not) — Unless he tries, he'll fail."
+          },
+          {
+            "f": "However",
+            "b": "ومع ذلك — It was cold. However, we went."
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "تناقض",
+            "form": "S + V, but + S + V",
+            "ex": "He is rich, <strong>but</strong> he is unhappy."
+          },
+          {
+            "subj": "رغم",
+            "form": "Although + S + V, S + V",
+            "ex": "<strong>Although</strong> she was tired, she kept working."
+          },
+          {
+            "subj": "سبب/نتيجة",
+            "form": "S + V because / so + S + V",
+            "ex": "I stayed home <strong>because</strong> it rained."
+          },
+          {
+            "subj": "شرط سلبي",
+            "form": "Unless + V (مضارع), will + V",
+            "ex": "<strong>Unless</strong> you hurry, you'll miss the bus."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ although vs but vs however",
+          "body": "<strong>Although</strong> = رابط داخل نفس الجملة: Although it was cold, I went.<br>\n                <strong>But</strong> = بين جملتين مستقلتين: It was cold, but I went.<br>\n                <strong>However</strong> = يبدأ جملة جديدة مع فصلة منقوطة أو فاصل: It was cold; however, I went."
+        },
+        "practice": [
+          {
+            "q": "We can't go to the beach …… the weather improves.",
+            "opts": [
+              "if",
+              "unless",
+              "because",
+              "although"
+            ],
+            "c": 1,
+            "expl": "لن نذهب إلا إذا تحسن الجو → <strong>unless</strong>.",
+            "id": "q_grammar_10_001"
+          },
+          {
+            "q": "I studied all night, …… I passed easily.",
+            "opts": [
+              "because",
+              "although",
+              "so",
+              "but"
+            ],
+            "c": 2,
+            "expl": "النجاح نتيجة للمذاكرة → <strong>so</strong>.",
+            "id": "q_grammar_10_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "He was very tired, …… he kept working.",
+        "opts": [
+          "so",
+          "because",
+          "but",
+          "unless"
+        ],
+        "c": 2,
+        "expl": "تناقض بين التعب والاستمرار → <strong>but</strong>.",
+        "id": "q_grammar_10_003"
+      }
+    ]
+  }
+}

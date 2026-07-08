@@ -1,0 +1,238 @@
+{
+  "id": "r1",
+  "title": "First Strategy: Figures Analysis",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs1",
+        "theme": "sc-theme-blue",
+        "icon": "📊",
+        "title": "Figures Analysis (تحليل الرسوم البيانية)",
+        "subtitle": "First Strategy",
+        "usage": "كيفية التعامل مع الرسوم البيانية والجداول والإحصاءات:\n1. الفئة المراد تقييمها (مثل: أنواع الرياضات)\n2. السنة التي يتم فيها التقييم\n3. قيمة هذه الفئة",
+        "keywords": [
+          {
+            "f": "the most - highest - largest",
+            "b": "القيمة الأكثر"
+          },
+          {
+            "f": "the least - lowest - fewest",
+            "b": "القيمة الأقل"
+          },
+          {
+            "f": "between",
+            "b": "الفارق بين قيمتين"
+          }
+        ],
+        "practice": [
+          {
+            "passageId": "r1-p1-q1",
+            "passageText": "PASSAGE 1",
+            "q": "What percentage of spending was on food in 1929?",
+            "opts": [
+              "10%",
+              "15%",
+              "24%",
+              "27%"
+            ],
+            "c": 3,
+            "expl": "بالنظر للرسم البياني لعام 1929 لعمود Food نجد أنه وصل لـ 27%.",
+            "imgUrl": "uploads/charts/chart_4_1.jpeg",
+            "id": "q_reading_r1_001"
+          },
+          {
+            "passageId": "r1-p1-q2",
+            "passageText": "PASSAGE 1",
+            "q": "In which year was the percentage of spending on transportation highest?",
+            "opts": [
+              "1929",
+              "1965",
+              "2001",
+              "2011"
+            ],
+            "c": 2,
+            "expl": "أعلى نسبة في قسم transportation كانت في عام 2001.",
+            "imgUrl": "uploads/charts/chart_4_1.jpeg",
+            "id": "q_reading_r1_002"
+          },
+          {
+            "passageId": "r1-p2-q1",
+            "passageText": "PASSAGE 2",
+            "q": "What was the homicide rate per 100,000 people in Europe in 2015?",
+            "opts": [
+              "2",
+              "5",
+              "12",
+              "15"
+            ],
+            "c": 1,
+            "expl": "معدل جرائم القتل في أوروبا (Europe) في عام 2015 من الرسم البياني هو 5.",
+            "imgUrl": "uploads/charts/chart_5_1.jpeg",
+            "id": "q_reading_r1_003"
+          },
+          {
+            "passageId": "r1-p2-q2",
+            "passageText": "PASSAGE 2",
+            "q": "How many homicides per 100,000 people happened in Africa in 2005?",
+            "opts": [
+              "7",
+              "13",
+              "19",
+              "24"
+            ],
+            "c": 3,
+            "expl": "في عام 2005، معدل جرائم القتل في أفريقيا كان 24.",
+            "imgUrl": "uploads/charts/chart_5_1.jpeg",
+            "id": "q_reading_r1_004"
+          },
+          {
+            "passageId": "r1-p3-q1",
+            "passageText": "PASSAGE 3",
+            "q": "Which year had the most pilgrims to Saudi Arabia?",
+            "opts": [
+              "2002",
+              "2008",
+              "2010",
+              "2012"
+            ],
+            "c": 3,
+            "expl": "أعلى عمود في الرسم البياني يمثل عام 2012.",
+            "imgUrl": "uploads/charts/chart_6_1.jpeg",
+            "id": "q_reading_r1_005"
+          },
+          {
+            "passageId": "r1-p4-q1",
+            "passageText": "PASSAGE 4",
+            "q": "Which year represents the highest wind investment?",
+            "opts": [
+              "2002",
+              "2004",
+              "2010",
+              "2012"
+            ],
+            "c": 3,
+            "expl": "من الرسم البياني، أعلى استثمار للرياح كان في 2012.",
+            "imgUrl": "uploads/charts/chart_6_2.jpeg",
+            "id": "q_reading_r1_006"
+          },
+          {
+            "passageId": "r1-p4-q2",
+            "passageText": "PASSAGE 4",
+            "q": "Which year represents the lowest solar investment?",
+            "opts": [
+              "2004",
+              "2006",
+              "2011",
+              "2015"
+            ],
+            "c": 0,
+            "expl": "أقل نسبة استثمار في الطاقة الشمسية كانت في عام 2004.",
+            "imgUrl": "uploads/charts/chart_6_2.jpeg",
+            "id": "q_reading_r1_007"
+          },
+          {
+            "passageId": "r1-p5-q1",
+            "passageText": "PASSAGE 5",
+            "q": "How many hectares of palm area did the Private Estate reach by 2008?",
+            "opts": [
+              "1 million",
+              "2.3 million",
+              "1.3 million",
+              "3.5 million"
+            ],
+            "c": 3,
+            "expl": "في عام 2008، مؤشر الـ Private Estate وصل إلى 3.5 مليون هكتار.",
+            "imgUrl": "uploads/charts/chart_7_1.jpeg",
+            "id": "q_reading_r1_008"
+          },
+          {
+            "passageId": "r1-p5-q2",
+            "passageText": "PASSAGE 5",
+            "q": "What year did the Government Estate reach 500,000 hectares?",
+            "opts": [
+              "1989",
+              "1997",
+              "2004",
+              "2009"
+            ],
+            "c": 1,
+            "expl": "مؤشر الحكومة (Government Estate) وصل إلى 0.5 مليون (أي 500,000) هكتار في عام 1997.",
+            "imgUrl": "uploads/charts/chart_7_1.jpeg",
+            "id": "q_reading_r1_009"
+          },
+          {
+            "passageId": "r1-p6-q1",
+            "passageText": "PASSAGE 6",
+            "q": "How much did the freshwater levels decrease in Syria between 1967 and 2011?",
+            "opts": [
+              "about 800 cubic meters",
+              "about 500 cubic meters",
+              "about 400 cubic meters",
+              "about 250 cubic meters"
+            ],
+            "c": 2,
+            "expl": "طرح القيمة في عام 2011 من القيمة في عام 1967 لدولة سوريا يعطي انخفاضاً بحوالي 400 متر مكعب.",
+            "imgUrl": "uploads/charts/chart_7_2.jpeg",
+            "id": "q_reading_r1_010"
+          },
+          {
+            "passageId": "r1-p7-q1",
+            "passageText": "PASSAGE 7",
+            "q": "How much did life expectancy increase in Latin America between 1960 and 2010?",
+            "opts": [
+              "almost 25 years",
+              "almost 20 years",
+              "almost 15 years",
+              "almost 10 years"
+            ],
+            "c": 1,
+            "expl": "الزيادة لمتوسط العمر في Latin America من عام 1960 إلى 2010 هي حوالي 20 عاماً.",
+            "imgUrl": "uploads/charts/chart_8_1.jpeg",
+            "id": "q_reading_r1_011"
+          },
+          {
+            "passageId": "r1-p7-q2",
+            "passageText": "PASSAGE 7",
+            "q": "What was the average life expectancy at birth in Sub-Saharan Africa in 1970?",
+            "opts": [
+              "about 45",
+              "about 50",
+              "about 55",
+              "about 60"
+            ],
+            "c": 0,
+            "expl": "مؤشر Sub-Saharan Africa في عام 1970 يشير تقريباً إلى الرقم 45.",
+            "imgUrl": "uploads/charts/chart_8_1.jpeg",
+            "id": "q_reading_r1_012"
+          },
+          {
+            "passageId": "r1-p8-q1",
+            "passageText": "PASSAGE 8",
+            "q": "What was the lowest number of paid holidays for any city?",
+            "opts": [
+              "4.2 days",
+              "6.1 days",
+              "8.0 days",
+              "9.7 days"
+            ],
+            "c": 1,
+            "expl": "أقل رقم مدون على الخريطة لمدينة ما هو 6.1 days.",
+            "imgUrl": "uploads/charts/chart_8_2.jpeg",
+            "id": "q_reading_r1_013"
+          }
+        ],
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+      }
+    ],
+    "videos": [
+      {
+        "title": "فيديو تعريفي بالوحدة (عيّنة)",
+        "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+      }
+    ]
+  },
+  "nameAr": "First Strategy: Figures Analysis",
+  "nameEn": "First Strategy: Figures Analysis",
+  "emoji": "📖"
+}

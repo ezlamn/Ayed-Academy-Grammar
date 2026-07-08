@@ -1,0 +1,106 @@
+{
+  "id": "r8",
+  "title": "Eighth Strategy: Deduction and Analysis",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs8",
+        "theme": "sc-theme-gold",
+        "icon": "🧠",
+        "title": "Deduction & Analysis (الفهم والاستنتاج)",
+        "subtitle": "Eighth Strategy",
+        "usage": "في هذا النوع من الأسئلة، الاحتياج للمعنى بيزيد.\nالإجابة الموجودة في القطعة ليست موجودة نصاً في الاختيارات ولكن هناك إجابة في الاختيارات تعطي نفس المعنى.\nالخطوة الأولى: فهم وتحليل المعلومات المذكورة في القطعة.\nالخطوة الثانية: موافقة إجابة القطعة بإحدى الخيارات.",
+        "practice": [
+          {
+            "passageId": "r8-p0-q0",
+            "passageText": "PASSAGE 1\\n1) The man received extensive therapy after the operation. He was able to move the thumb and fingers of his left hand eight months after surgery. After ten more months, the patient could move the fingers of his right hand and begin to feed himself...",
+            "q": "How long after his operation did it take for the man to be able to use his hands to eat by himself?",
+            "opts": [
+              "8 months",
+              "10 months",
+              "18 months",
+              "22 months"
+            ],
+            "c": 2,
+            "expl": "8 شهور + 10 شهور = 18 شهراً",
+            "id": "q_reading_r8_001"
+          },
+          {
+            "passageId": "r8-p1-q0",
+            "passageText": "PASSAGE 2\\nVitamins are organic compounds that the body needs in small amounts to function properly. Humans need 13 different vitamins, which have many roles in the body. For example, Vitamin A helps maintain good vision. Vitamin B helps form red blood cells. Vitamin K is needed for blood to clot when you have a cut or other wound.",
+            "q": "Why is vitamin K needed in the body?",
+            "opts": [
+              "to help muscles work normally",
+              "to help cuts stop bleeding",
+              "to make red blood cells",
+              "to improve the health of the skin"
+            ],
+            "c": 1,
+            "expl": "لتخثر الدم وإيقاف النزيف",
+            "id": "q_reading_r8_002"
+          },
+          {
+            "passageId": "r8-p2-q0",
+            "passageText": "PASSAGE 3\\nThe Saudi Food and Drug Authority SFDA) was established under the Council of Ministers in 2004, as an independent body corporate that directly reports to The President of Council of Ministers. The Authority’s objective is to regulate, oversee, and control food, drugs, medical devices, as well as to set their mandatory standard specifications, whether they are imported or locally manufactured.",
+            "q": "You can understand from the passage that the SFDA deals with goods that are……",
+            "opts": [
+              "controlled",
+              "foreign only",
+              "Saudi and foreign",
+              "manufactured only"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r8_003"
+          },
+          {
+            "passageId": "r8-p3-q0",
+            "passageText": "PASSAGE 4\\n(1) Muhammad Ali is a famous heavyweight boxer. He was born as Cassius Clay in Louisville, Kentucky, in the USA in 1942. (2) He had a very successful professional boxing career. In fact, he won the world heavyweight championship three times. The first time was when he beat the former champion, Sonny Liston, in 1964. In the same year, he became a Muslim and assumed the name Muhammad Ali. (3) Ten years later, in 1974, he became world champion again when he beat George Foreman in Zaire. He became champion for the third time in 1978 after beating Leon Spinks.",
+            "q": "How old was Muhammed Ali when he became Muslim?",
+            "opts": [
+              "34",
+              "36",
+              "22",
+              "1960"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r8_004"
+          },
+          {
+            "passageId": "r8-p3-q1",
+            "passageText": "PASSAGE 4\\n(1) Muhammad Ali is a famous heavyweight boxer. He was born as Cassius Clay in Louisville, Kentucky, in the USA in 1942. (2) He had a very successful professional boxing career. In fact, he won the world heavyweight championship three times. The first time was when he beat the former champion, Sonny Liston, in 1964. In the same year, he became a Muslim and assumed the name Muhammad Ali. (3) Ten years later, in 1974, he became world champion again when he beat George Foreman in Zaire. He became champion for the third time in 1978 after beating Leon Spinks.",
+            "q": "How old was Ali when he became champion for the third time?",
+            "opts": [
+              "34",
+              "36",
+              "22",
+              "62"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r8_005"
+          },
+          {
+            "passageId": "r8-p4-q0",
+            "passageText": "PASSAGE 5\\nNo matter whether you’re travelling for work or pleasure, wouldn’t you value the option to tailor your journey in accordance with your personal preferences and requirements? That’s exact why we developed our Red Services: a range of highly practical extra services that you can book along with your flight, as and when you need them.",
+            "q": "Which method of travel does the passage talk about?",
+            "opts": [
+              "road",
+              "rail",
+              "sea",
+              "air"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r8_006"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Eighth Strategy: Deduction and Analysis",
+  "nameEn": "Eighth Strategy: Deduction and Analysis",
+  "emoji": "📖"
+}
