@@ -1,0 +1,166 @@
+{
+  "id": 11,
+  "emoji": "📎",
+  "nameAr": "المبني للمجهول والكلام المنقول",
+  "nameEn": "Passive & Reported Speech",
+  "page": {
+    "tag": "الوحدة الحادية عشرة",
+    "mascot": "📋",
+    "strategies": [
+      {
+        "id": "u11s1",
+        "theme": "sc-theme-blue",
+        "icon": "🔄",
+        "title": "المبني للمجهول",
+        "subtitle": "Passive Voice",
+        "badge": "Passive",
+        "usage": "نستخدمه حين يكون المفعول به أهم من الفاعل، أو حين لا نعرف الفاعل أو لا نريد ذكره.",
+        "keywords": [
+          {
+            "f": "المضارع البسيط",
+            "b": "am / is / are + V3"
+          },
+          {
+            "f": "المضارع المستمر",
+            "b": "am / is / are + being + V3"
+          },
+          {
+            "f": "الماضي البسيط",
+            "b": "was / were + V3"
+          },
+          {
+            "f": "الماضي التام",
+            "b": "had + been + V3"
+          },
+          {
+            "f": "المستقبل",
+            "b": "will + be + V3"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "مضارع",
+            "form": "am/is/are + V3",
+            "ex": "English <strong>is spoken</strong> worldwide."
+          },
+          {
+            "subj": "ماضٍ",
+            "form": "was/were + V3",
+            "ex": "The pyramids <strong>were built</strong> thousands of years ago."
+          },
+          {
+            "subj": "مستقبل",
+            "form": "will + be + V3",
+            "ex": "The report <strong>will be sent</strong> tomorrow."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ كيف تحول من المعلوم للمجهول؟",
+          "body": "المفعول به → فاعل جديد | الفاعل → by + ... (اختياري)<br>\n                Active:  They <u>built</u> this bridge in 1990.<br>\n                Passive: This bridge <strong>was built</strong> in 1990 (by them)."
+        },
+        "practice": [
+          {
+            "q": "The Mona Lisa …… by Leonardo da Vinci.",
+            "opts": [
+              "painted",
+              "is painted",
+              "was painted",
+              "has painted"
+            ],
+            "c": 2,
+            "expl": "حدث في الماضي + مبني للمجهول: <strong>was painted</strong>.",
+            "id": "q_grammar_11_001"
+          },
+          {
+            "q": "Many emails …… every day in the company.",
+            "opts": [
+              "send",
+              "sent",
+              "are sent",
+              "were sent"
+            ],
+            "c": 2,
+            "expl": "كل يوم = مضارع + جمع (emails) → <strong>are sent</strong>.",
+            "id": "q_grammar_11_002"
+          }
+        ]
+      },
+      {
+        "id": "u11s2",
+        "theme": "sc-theme-purple",
+        "icon": "🗣️",
+        "title": "الكلام المنقول",
+        "subtitle": "Reported Speech",
+        "badge": "Reported",
+        "usage": "لنقل ما قاله شخص بالكلام غير المباشر، نُرجع الزمن خطوةً للخلف.",
+        "keywords": [
+          {
+            "f": "is / are",
+            "b": "→ was / were"
+          },
+          {
+            "f": "am",
+            "b": "→ was"
+          },
+          {
+            "f": "will",
+            "b": "→ would"
+          },
+          {
+            "f": "can",
+            "b": "→ could"
+          },
+          {
+            "f": "have/has",
+            "b": "→ had"
+          },
+          {
+            "f": "play (مضارع)",
+            "b": "→ played (ماضٍ)"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "فعل القول",
+            "form": "said / told + that",
+            "ex": "She <strong>said that</strong> she was tired."
+          },
+          {
+            "subj": "تغيير الزمن",
+            "form": "إرجاع الزمن للماضي",
+            "ex": "\"I will come\" → He said he <strong>would</strong> come."
+          }
+        ],
+        "exception": null,
+        "practice": [
+          {
+            "q": "Mona said, \"I will call you.\" → Mona said she …… call me.",
+            "opts": [
+              "will",
+              "would",
+              "can",
+              "is going to"
+            ],
+            "c": 1,
+            "expl": "will في الكلام المباشر → <strong>would</strong> في المنقول.",
+            "id": "q_grammar_11_003"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "\"I can swim,\" said Tom. → Tom said he …… swim.",
+        "opts": [
+          "can",
+          "could",
+          "will",
+          "would"
+        ],
+        "c": 1,
+        "expl": "can في المباشر → <strong>could</strong> في المنقول.",
+        "id": "q_grammar_11_004"
+      }
+    ]
+  }
+}

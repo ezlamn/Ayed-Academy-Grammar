@@ -1,0 +1,96 @@
+{
+  "id": 7,
+  "emoji": "🌈",
+  "nameAr": "الصفات والظروف",
+  "nameEn": "Adjectives & Adverbs",
+  "page": {
+    "tag": "الوحدة السابعة",
+    "mascot": "✨",
+    "strategies": [
+      {
+        "id": "u7s1",
+        "theme": "sc-theme-purple",
+        "icon": "📊",
+        "title": "درجات المقارنة والتفضيل",
+        "subtitle": "Degrees of Comparison",
+        "badge": "Comparison",
+        "usage": "نستخدم درجات المقارنة لمقارنة شخصين أو شيئين (Comparative) أو للتفضيل على مجموعة (Superlative).",
+        "keywords": [
+          {
+            "f": "Comparative (...than)",
+            "b": "مقارنة بين اثنين"
+          },
+          {
+            "f": "Superlative (the...)",
+            "b": "الأفضل بين مجموعة"
+          },
+          {
+            "f": "as ... as",
+            "b": "بنفس الدرجة: as tall as"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "قصيرة (1-2 مقطع)",
+            "form": "adj + <span class=\"s\">er</span> / the + adj + <span class=\"s\">est</span>",
+            "ex": "tall → <strong>taller</strong> than / <strong>the tallest</strong>"
+          },
+          {
+            "subj": "طويلة (3+ مقاطع)",
+            "form": "more + adj / the most + adj",
+            "ex": "beautiful → <strong>more beautiful</strong> / <strong>the most beautiful</strong>"
+          },
+          {
+            "subj": "الظرف (Adverb)",
+            "form": "more + adv / the most + adv",
+            "ex": "He plays <strong>well</strong> → <strong>better</strong> → <strong>the best</strong>"
+          }
+        ],
+        "exception": {
+          "title": "⚠️ صفات شاذة لا تأخذ er/est",
+          "body": "good → <strong>better</strong> → <strong>the best</strong><br>\n                bad  → <strong>worse</strong>  → <strong>the worst</strong><br>\n                far  → <strong>farther/further</strong> → <strong>the farthest/furthest</strong><br>\n                <em>ملاحظة: adj وصف اسم — adverb وصف فعل: She sings <strong>well</strong> (not good).</em>"
+        },
+        "practice": [
+          {
+            "q": "This is the …… movie I have ever seen.",
+            "opts": [
+              "more interesting",
+              "most interesting",
+              "interesting",
+              "interested"
+            ],
+            "c": 1,
+            "expl": "تفضيل على مجموعة + صفة طويلة: <strong>most interesting</strong> (the موجودة في السؤال).",
+            "id": "q_grammar_7_001"
+          },
+          {
+            "q": "My score is …… than yours.",
+            "opts": [
+              "bad",
+              "worse",
+              "worst",
+              "more bad"
+            ],
+            "c": 1,
+            "expl": "مقارنة بين اثنين + صفة شاذة: bad → <strong>worse</strong>.",
+            "id": "q_grammar_7_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "He plays tennis very ……",
+        "opts": [
+          "good",
+          "well",
+          "better",
+          "best"
+        ],
+        "c": 1,
+        "expl": "وصف الفعل plays → نستخدم الظرف: <strong>well</strong>.",
+        "id": "q_grammar_7_003"
+      }
+    ]
+  }
+}

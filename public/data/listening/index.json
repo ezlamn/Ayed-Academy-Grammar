@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "nameAr": "مقدمة وتعليمات عامة",
+    "nameEn": "Intro & Instructions",
+    "emoji": "🎧"
+  },
+  {
+    "id": 2,
+    "nameAr": "مقاطع السؤال والمقاطع المتعددة",
+    "nameEn": "Single & Multiple Questions",
+    "emoji": "🎯"
+  },
+  {
+    "id": 3,
+    "nameAr": "أسئلة المكان والزمان",
+    "nameEn": "Location & Time",
+    "emoji": "📍"
+  },
+  {
+    "id": 4,
+    "nameAr": "أسئلة الفهم والاستنتاج والمعاني",
+    "nameEn": "Inference & Meaning",
+    "emoji": "🧠"
+  },
+  {
+    "id": 5,
+    "nameAr": "كلمات الأماكن",
+    "nameEn": "Places Words",
+    "emoji": "🗺️"
+  }
+]

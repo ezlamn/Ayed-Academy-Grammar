@@ -1,0 +1,545 @@
+{
+  "id": 1,
+  "emoji": "⏱️",
+  "nameAr": "الأزمنة",
+  "nameEn": "Tenses",
+  "page": {
+    "tag": "الوحدة الأولى",
+    "mascot": "📅",
+    "strategies": [
+      {
+        "id": "u1s1",
+        "theme": "sc-theme-blue",
+        "icon": "🕐",
+        "title": "المضارع البسيط",
+        "subtitle": "Present Simple",
+        "badge": "Tense 1/6",
+        "usage": "يُعبِّر عن حقائق علمية، وعادات متكررة، وروتين يومي.",
+        "keywords": [
+          {
+            "f": "Always",
+            "b": "دائماً — 100%"
+          },
+          {
+            "f": "Usually",
+            "b": "عادةً — ~80%"
+          },
+          {
+            "f": "Often",
+            "b": "كثيراً — ~70%"
+          },
+          {
+            "f": "Sometimes",
+            "b": "أحياناً — ~50%"
+          },
+          {
+            "f": "Rarely",
+            "b": "نادراً — ~20%"
+          },
+          {
+            "f": "Never",
+            "b": "أبداً — 0%"
+          },
+          {
+            "f": "Every day / week",
+            "b": "كل يوم / أسبوع"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "I / You / We / They",
+            "form": "verb (base)",
+            "ex": "We always <strong>study</strong> in the library.",
+            "note": ""
+          },
+          {
+            "subj": "He / She / It",
+            "form": "verb + <span class=\"s\">s/es</span>",
+            "ex": "She <em>usually</em> <strong>meets</strong> them on Tuesdays.",
+            "note": ""
+          },
+          {
+            "subj": "Negative",
+            "form": "do/does + not + verb",
+            "ex": "He does<strong>n't</strong> <strong>play</strong> football.",
+            "note": ""
+          },
+          {
+            "subj": "Question",
+            "form": "Do/Does + S + verb?",
+            "ex": "<strong>Does</strong> she <strong>study</strong> every day?",
+            "note": ""
+          }
+        ],
+        "exception": {
+          "title": "⚠️ كيف تضيف (s/es) للمفرد؟",
+          "body": "<strong>s</strong> عادةً: <span dir=\"ltr\">play → plays, work → works</span><br>\n                <strong>es</strong> إذا انتهى بـ <span dir=\"ltr\">(o, ch, sh, ss, x)</span>: <span dir=\"ltr\">go → goes, watch → watches</span><br>\n                <strong>ies</strong> إذا انتهى بـ <span dir=\"ltr\">(y)</span> مسبوقاً بساكن: <span dir=\"ltr\">cry → cries, study → studies</span>"
+        },
+        "practice": [
+          {
+            "type": "fill",
+            "q": "✍️ He usually ___ to school by bus. (go)",
+            "answer": [
+              "goes"
+            ],
+            "expl": "مع الفاعل المفرد (He) في المضارع البسيط نضيف es للفعل go → goes."
+          },
+          {
+            "type": "order",
+            "q": "🔀 رتّب الكلمات لتكوين جملة صحيحة:",
+            "tokens": [
+              "She",
+              "always",
+              "drinks",
+              "coffee",
+              "in",
+              "the",
+              "morning"
+            ],
+            "expl": "المضارع البسيط: الفاعل المفرد (She) يأخذ الفعل + s، وظرف التكرار (always) يأتي قبل الفعل الأساسي."
+          },
+          {
+            "q": "We usually ....... in the library.",
+            "opts": [
+              "studies",
+              "studying",
+              "studied",
+              "study"
+            ],
+            "c": 3,
+            "expl": "الفاعل جمع (We)، لذا الفعل يبقى مجرداً: <strong>study</strong>. كلمة usually تدل على المضارع البسيط.",
+            "id": "q_grammar_1_001"
+          },
+          {
+            "q": "She …….. to school every morning.",
+            "opts": [
+              "go",
+              "going",
+              "goes",
+              "is go"
+            ],
+            "c": 2,
+            "expl": "الفاعل مفرد (She) → نضيف es للفعل go: <strong>goes</strong>.",
+            "id": "q_grammar_1_002"
+          }
+        ],
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "tip": "استخدم الفعل المجرّد (base) مع <b>I / You / We / They</b>، وأضِف <b>s</b> أو <b>es</b> مع <b>He / She / It</b>."
+      },
+      {
+        "id": "u1s2",
+        "theme": "sc-theme-teal",
+        "icon": "▶️",
+        "title": "المضارع المستمر",
+        "subtitle": "Present Continuous / Progressive",
+        "badge": "Tense 2/6",
+        "usage": "يُعبِّر عما يحدث الآن في لحظة الكلام، أو ترتيبات المستقبل القريبة.",
+        "keywords": [
+          {
+            "f": "Now",
+            "b": "الآن"
+          },
+          {
+            "f": "At the moment",
+            "b": "في هذه اللحظة"
+          },
+          {
+            "f": "Look! / Listen!",
+            "b": "يلفت الانتباه للحاضر"
+          },
+          {
+            "f": "Today / Tonight",
+            "b": "اليوم / الليلة"
+          },
+          {
+            "f": "These days",
+            "b": "هذه الأيام"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "I",
+            "form": "am + verb<span class=\"s\">+ing</span>",
+            "ex": "I <strong>am reading</strong> a book now."
+          },
+          {
+            "subj": "He / She / It",
+            "form": "is + verb<span class=\"s\">+ing</span>",
+            "ex": "Adam <strong>is studying</strong> at this moment."
+          },
+          {
+            "subj": "You / We / They",
+            "form": "are + verb<span class=\"s\">+ing</span>",
+            "ex": "They <strong>are meeting</strong> tonight."
+          },
+          {
+            "subj": "Negative",
+            "form": "am/is/are + not + v.ing",
+            "ex": "She <strong>isn't sleeping</strong> now."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ أفعال لا تأتي في صيغة المستمر (Stative Verbs)",
+          "body": "أفعال الحواس والمشاعر والملكية لا تُستخدم في صيغة المستمر عادةً:<br><span dir=\"ltr\">know, understand, love, hate, want, need, believe, have</span> (ملكية)<br><em>خطأ:</em> <span dir=\"ltr\">I am knowing the answer. ✗</span><br><em>صح:</em> <span dir=\"ltr\">I know the answer. ✓</span>"
+        },
+        "practice": [
+          {
+            "q": "Adam ....... a book now.",
+            "opts": [
+              "reads",
+              "reading",
+              "is reads",
+              "is reading"
+            ],
+            "c": 3,
+            "expl": "now دليل على المضارع المستمر. Adam مفرد → is + reading = <strong>is reading</strong>.",
+            "id": "q_grammar_1_003"
+          },
+          {
+            "q": "Look! The children …….. football.",
+            "opts": [
+              "play",
+              "played",
+              "are playing",
+              "plays"
+            ],
+            "c": 2,
+            "expl": "Look! تلفت الانتباه للحاضر → مضارع مستمر: <strong>are playing</strong>.",
+            "id": "q_grammar_1_004"
+          }
+        ]
+      },
+      {
+        "id": "u1s3",
+        "theme": "sc-theme-red",
+        "icon": "⏪",
+        "title": "الماضي البسيط",
+        "subtitle": "Past Simple",
+        "badge": "Tense 3/6",
+        "usage": "يُعبِّر عن حدث وقع وانتهى تماماً في الماضي.",
+        "keywords": [
+          {
+            "f": "Yesterday",
+            "b": "أمس"
+          },
+          {
+            "f": "Last (week/year)",
+            "b": "الأسبوع / السنة الماضية"
+          },
+          {
+            "f": "... ago",
+            "b": "منذ... (two days ago)"
+          },
+          {
+            "f": "In 2020",
+            "b": "في تاريخ ماضٍ"
+          },
+          {
+            "f": "Once / One day",
+            "b": "ذات مرة"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "Regular Verbs",
+            "form": "verb + <span class=\"s\">ed</span>",
+            "ex": "She <strong>studied</strong> hard last year."
+          },
+          {
+            "subj": "Irregular Verbs",
+            "form": "Verb2 (تصريف 2)",
+            "ex": "They <strong>went</strong> to Egypt last summer."
+          },
+          {
+            "subj": "Negative",
+            "form": "did not + verb (base)",
+            "ex": "He did<strong>n't arrive</strong> yesterday."
+          },
+          {
+            "subj": "Question",
+            "form": "Did + S + verb (base)?",
+            "ex": "<strong>Did</strong> you <strong>study</strong> last night?"
+          }
+        ],
+        "exception": {
+          "title": "⚠️ التصريف الثاني لأهم الأفعال الشاذة",
+          "body": "go→went · come→came · take→took · give→gave<br>\n                see→saw · know→knew · write→wrote · say→said<br>\n                make→made · have→had · be→was/were · buy→bought"
+        },
+        "practice": [
+          {
+            "q": "They ……. yesterday morning.",
+            "opts": [
+              "arrive",
+              "arrived",
+              "are arriving",
+              "were arrived"
+            ],
+            "c": 1,
+            "expl": "yesterday يدل على الماضي البسيط. arrive فعل منتظم: <strong>arrived</strong>.",
+            "id": "q_grammar_1_005"
+          },
+          {
+            "q": "Two students ….. a speech last night.",
+            "opts": [
+              "gave",
+              "have given",
+              "are giving",
+              "give"
+            ],
+            "c": 0,
+            "expl": "last night = الماضي البسيط. give فعل شاذ تصريفه الثاني: <strong>gave</strong>.",
+            "id": "q_grammar_1_006"
+          }
+        ]
+      },
+      {
+        "id": "u1s4",
+        "theme": "sc-theme-purple",
+        "icon": "⏳",
+        "title": "الماضي المستمر والماضي التام",
+        "subtitle": "Past Continuous & Past Perfect",
+        "badge": "Tense 4/6",
+        "usage": "الماضي المستمر: حدث طويل في الماضي اقتطع حدث آخر جزءاً منه. الماضي التام: لترتيب حدثين، الأقدم يأخذ الماضي التام.",
+        "keywords": [
+          {
+            "f": "While",
+            "b": "بينما → يأتي بعدها مستمر (was/were + ing)"
+          },
+          {
+            "f": "When",
+            "b": "عندما → يأتي بعدها ماضٍ بسيط (V2)"
+          },
+          {
+            "f": "After",
+            "b": "بعد → الحدث الأول ماضٍ تام"
+          },
+          {
+            "f": "Before",
+            "b": "قبل → الحدث الأول ماضٍ تام"
+          },
+          {
+            "f": "Because",
+            "b": "لأن → السبب الأقدم = ماضٍ تام"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "ماضٍ مستمر — I/He/She/It",
+            "form": "was + verb<span class=\"s\">+ing</span>",
+            "ex": "She <strong>was sleeping</strong> when he called."
+          },
+          {
+            "subj": "ماضٍ مستمر — You/We/They",
+            "form": "were + verb<span class=\"s\">+ing</span>",
+            "ex": "They <strong>were playing</strong> when it rained."
+          },
+          {
+            "subj": "ماضٍ تام — All Subjects",
+            "form": "had + <span class=\"s\">V3</span>",
+            "ex": "Tom passed because he <strong>had revised</strong> well."
+          }
+        ],
+        "treeDiagram": {
+          "groups": [
+            {
+              "subjects": [
+                "I",
+                "he",
+                "she",
+                "it"
+              ],
+              "label": "المفرد",
+              "aux": "was"
+            },
+            {
+              "subjects": [
+                "you",
+                "we",
+                "they"
+              ],
+              "label": "الجمع",
+              "aux": "were"
+            }
+          ],
+          "formula": "+ verb + ing",
+          "example": "While I <strong>was sleeping</strong>, he called me.",
+          "extraRows": [
+            {
+              "label": "الماضي التام",
+              "subjects": [
+                "All Subjects"
+              ],
+              "aux": "had",
+              "formula": "+ V3",
+              "example": "Tom passed because he <strong>had revised</strong> well."
+            }
+          ]
+        },
+        "exception": {
+          "title": "⚠️ الفارق بين While و When",
+          "body": "<strong>While</strong> تليها جملة الحدث الطويل (ماضٍ مستمر): <em>While I was cooking…</em><br>\n                <strong>When</strong> تليها جملة الحدث القصير الذي قطع الاستمرارية (ماضٍ بسيط): <em>…the phone rang</em><br>\n                كلاهما يمكن استخدامه مع الحدث القصير: <em>When I came home, she was sleeping.</em>"
+        },
+        "practice": [
+          {
+            "q": "While I ……, he called me.",
+            "opts": [
+              "sleep",
+              "slept",
+              "is sleeping",
+              "was sleeping"
+            ],
+            "c": 3,
+            "expl": "بعد While نختار الماضي المستمر (الحدث الطويل): <strong>was sleeping</strong>.",
+            "id": "q_grammar_1_007"
+          },
+          {
+            "q": "Tom answered easily because he ……. well.",
+            "opts": [
+              "has revised",
+              "revise",
+              "had revised",
+              "revised"
+            ],
+            "c": 2,
+            "expl": "المذاكرة حدثت قبل الإجابة → ماضٍ تام: <strong>had revised</strong>.",
+            "id": "q_grammar_1_008"
+          }
+        ]
+      },
+      {
+        "id": "u1s5",
+        "theme": "sc-theme-green",
+        "icon": "✅",
+        "title": "المضارع التام",
+        "subtitle": "Present Perfect",
+        "badge": "Tense 5/6",
+        "usage": "يُعبِّر عن حدث وقع في الماضي لكن له تأثير أو علاقة بالحاضر.",
+        "keywords": [
+          {
+            "f": "Already",
+            "b": "بالفعل ← في الجمل المثبتة"
+          },
+          {
+            "f": "Just",
+            "b": "للتو ← حدث منذ لحظات"
+          },
+          {
+            "f": "Yet",
+            "b": "بعد ← في النهاية، للنفي والسؤال"
+          },
+          {
+            "f": "Ever",
+            "b": "في حياتك ← للسؤال والنفي"
+          },
+          {
+            "f": "Never",
+            "b": "لم... قط"
+          },
+          {
+            "f": "Since",
+            "b": "منذ + نقطة زمنية (since 2020)"
+          },
+          {
+            "f": "For",
+            "b": "لمدة + فترة (for 3 years)"
+          },
+          {
+            "f": "Lately / Recently",
+            "b": "مؤخراً"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "I / You / We / They",
+            "form": "have + <span class=\"s\">V3</span>",
+            "ex": "We <strong>have finished</strong> the project."
+          },
+          {
+            "subj": "He / She / It",
+            "form": "has + <span class=\"s\">V3</span>",
+            "ex": "She <strong>has visited</strong> London twice."
+          },
+          {
+            "subj": "Negative",
+            "form": "have/has + not + V3",
+            "ex": "I <strong>haven't seen</strong> him lately."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ Since vs For — سؤال الامتحان الأكثر شيوعاً",
+          "body": "<strong>Since</strong> + نقطة زمنية محددة: since Monday, since 2018, since I was a child<br>\n                <strong>For</strong> + مدة زمنية: for two hours, for a week, for a long time<br>\n                <em>اختبر نفسك:</em> I haven't seen her _____ last Friday. → <strong>since</strong>"
+        },
+        "practice": [
+          {
+            "q": "She …… her work yet.",
+            "opts": [
+              "didn't finish",
+              "hasn't finished",
+              "doesn't finish",
+              "isn't finishing"
+            ],
+            "c": 1,
+            "expl": "yet في النهاية مع النفي → مضارع تام: <strong>hasn't finished</strong>.",
+            "id": "q_grammar_1_009"
+          },
+          {
+            "q": "I have lived here …… 2010.",
+            "opts": [
+              "for",
+              "since",
+              "ago",
+              "during"
+            ],
+            "c": 1,
+            "expl": "2010 نقطة زمنية محددة → <strong>since</strong>.",
+            "id": "q_grammar_1_010"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "You are very late, Matt. We ……for over an hour.",
+        "opts": [
+          "are waiting",
+          "had waited",
+          "waited",
+          "have been waiting"
+        ],
+        "c": 3,
+        "expl": "for + مدة مستمرة حتى الآن → مضارع تام مستمر: <strong>have been waiting</strong>.",
+        "id": "q_grammar_1_011"
+      },
+      {
+        "q": "When she …….. from her trip, we will have a party.",
+        "opts": [
+          "returns",
+          "will return",
+          "returned",
+          "is returning"
+        ],
+        "c": 0,
+        "expl": "الجملة الثانية مستقبل (will have) → جملة When تأخذ مضارعاً بسيطاً: <strong>returns</strong>.",
+        "id": "q_grammar_1_012"
+      },
+      {
+        "q": "22",
+        "opts": [
+          "22",
+          "2662",
+          "2662",
+          "26"
+        ],
+        "correct": 0,
+        "expl": "5165151",
+        "id": "q_grammar_1_013"
+      }
+    ],
+    "videos": [
+      {
+        "title": "فيديو تعريفي بالوحدة (عيّنة)",
+        "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+      }
+    ]
+  }
+}

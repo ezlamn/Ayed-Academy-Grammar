@@ -1,0 +1,98 @@
+{
+  "id": 4,
+  "emoji": "🧠",
+  "nameAr": "أسئلة الفهم والاستنتاج والمعاني",
+  "nameEn": "Inference & Meaning",
+  "page": {
+    "tag": "الوحدة الرابعة",
+    "mascot": "💡",
+    "strategies": [
+      {
+        "id": "L4S1",
+        "theme": "sc-theme-red",
+        "icon": "🔎",
+        "title": "مقاطع السؤال عن معاني الكلمات والتعبيرات",
+        "subtitle": "Advanced Strategies - Meaning",
+        "badge": "Strategy 6",
+        "usage": "يقول كلمة او تعبير معين في المقطع الصوتي ثم يطلب منك معناه. والاجابة أو المعنى يقوله بعد الكلمة التي يسأل عن معناها مباشرة.",
+        "practice": [
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "In the conversation, the word “focus” is closest in meaning to………….",
+            "opts": [
+              "separate",
+              "concentrate",
+              "participate",
+              "delegate"
+            ],
+            "c": 1,
+            "expl": "focus تعني يركز، وهي مرادفة لـ concentrate.",
+            "id": "q_listening_4_001"
+          },
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "The phrase “It’s anyone’s guess” is closest in meaning to…………….",
+            "opts": [
+              "Everyone can be sure",
+              "Only the office can be sure",
+              "No one can be sure",
+              "Anyone can be sure"
+            ],
+            "c": 2,
+            "expl": "عبارة It’s anyone’s guess تعني أنه لا أحد يعرف الإجابة بالتأكيد (No one can be sure).",
+            "id": "q_listening_4_002"
+          }
+        ]
+      },
+      {
+        "id": "L4S2",
+        "theme": "sc-theme-green",
+        "icon": "🧠",
+        "title": "مقاطع السؤال عن الفهم - الاستنتاج",
+        "subtitle": "Inference Questions",
+        "badge": "Strategy 7",
+        "usage": "الإجابة التي يتم سماعها في المقطع الصوتي غير موجوده نصاً في الاختيارات ولكن نستنتج الاختيار الذي يُعطي نفس المعنى للإجابة.",
+        "practice": [
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "What can we understand about Lisa?",
+            "opts": [
+              "she is not busy.",
+              "she is married.",
+              "she is single.",
+              "she is worried."
+            ],
+            "c": 1,
+            "expl": "من سياق الحديث عن زوجها نستنتج أنها متزوجة (she is married).",
+            "id": "q_listening_4_003"
+          }
+        ]
+      },
+      {
+        "id": "L4S3",
+        "theme": "sc-theme-blue",
+        "icon": "💡",
+        "title": "مقاطع السؤال عن الفكرة الرئيسية",
+        "subtitle": "Main Idea Questions",
+        "badge": "Strategy 8",
+        "usage": "في هذا النوع من الأسئلة، يختبر قدرة الطالب على فهم الفكرة الأساسية أو الهدف من الحوار، و ليس عن رقم أو معلومة أو كلمة محددة.",
+        "practice": [
+          {
+            "audioUrl": "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EzKlSRy+vakzE6T4rN5cqJJCxHhNblup8vHiV8lN72y5YjFhVxks7pyooiDgpTi9DuyoYrFxVyjMfoyo0sGxVujMjnyooqHBhpi8fpyosuHRtsjMXmyIotHBtsjMXmyIotHBtsjMXmyIo=",
+            "q": "What is the main idea of the recording?",
+            "opts": [
+              "How to lose weight quickly.",
+              "The importance of having a balanced and healthy lifestyle.",
+              "Why sleep is more important than exercise.",
+              "How to avoid going to the doctor."
+            ],
+            "c": 1,
+            "expl": "الهدف العام كان أهمية نمط الحياة الصحي والمتوازن.",
+            "id": "q_listening_4_004"
+          }
+        ]
+      }
+    ],
+    "quizzes": []
+  }
+}

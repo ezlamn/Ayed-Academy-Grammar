@@ -1,0 +1,175 @@
+{
+  "id": 5,
+  "emoji": "🗺️",
+  "nameAr": "كلمات الأماكن",
+  "nameEn": "Places Words",
+  "page": {
+    "tag": "الوحدة الخامسة",
+    "mascot": "📍",
+    "type": "vocabulary",
+    "vocabCategories": [
+      {
+        "title": "Restaurant",
+        "color": "#F5A623",
+        "words": [
+          {
+            "en": "Menu",
+            "ar": "قائمة طعام"
+          },
+          {
+            "en": "Dish",
+            "ar": "طبق"
+          },
+          {
+            "en": "Meal",
+            "ar": "وجبة"
+          },
+          {
+            "en": "Order",
+            "ar": "طلب"
+          },
+          {
+            "en": "Bill / Check",
+            "ar": "الفاتورة / الحساب"
+          },
+          {
+            "en": "Main course",
+            "ar": "الطبق الرئيسي"
+          },
+          {
+            "en": "Dessert",
+            "ar": "حلوى / تحلية"
+          },
+          {
+            "en": "Drinks",
+            "ar": "مشروبات"
+          },
+          {
+            "en": "Food",
+            "ar": "طعام"
+          },
+          {
+            "en": "Water / Juice",
+            "ar": "مياه / عصير"
+          }
+        ]
+      },
+      {
+        "title": "School",
+        "color": "#06D6A0",
+        "words": [
+          {
+            "en": "Books",
+            "ar": "كتب"
+          },
+          {
+            "en": "Teacher",
+            "ar": "معلّم / معلّمة"
+          },
+          {
+            "en": "Mr. / Mrs.",
+            "ar": "السيد / السيدة"
+          },
+          {
+            "en": "Board",
+            "ar": "سبورة"
+          },
+          {
+            "en": "Homework",
+            "ar": "واجب منزلي"
+          },
+          {
+            "en": "Page",
+            "ar": "صفحة"
+          },
+          {
+            "en": "Students",
+            "ar": "طلاب / تلاميذ"
+          },
+          {
+            "en": "Exam / Test",
+            "ar": "امتحان / اختبار"
+          },
+          {
+            "en": "Paragraph / Chapter",
+            "ar": "فقرة (نصية) / فصل"
+          },
+          {
+            "en": "Read",
+            "ar": "يقرأ"
+          }
+        ]
+      },
+      {
+        "title": "Airport",
+        "color": "#38BDF8",
+        "words": [
+          {
+            "en": "Passengers / travelers",
+            "ar": "ركّاب / مسافرون"
+          },
+          {
+            "en": "Passport",
+            "ar": "جواز سفر"
+          },
+          {
+            "en": "Gate",
+            "ar": "بوابة"
+          },
+          {
+            "en": "Flight",
+            "ar": "رحلة (جوية)"
+          },
+          {
+            "en": "Terminal",
+            "ar": "صالة / مبنى الركاب"
+          },
+          {
+            "en": "Departure / Arrival",
+            "ar": "/الوصول المغادرة"
+          },
+          {
+            "en": "Delay",
+            "ar": "تأخير"
+          },
+          {
+            "en": "Landing",
+            "ar": "هبوط"
+          }
+        ]
+      },
+      {
+        "title": "Hospital",
+        "color": "#EF233C",
+        "words": [
+          {
+            "en": "Doctor",
+            "ar": "طبيب"
+          },
+          {
+            "en": "Nurse",
+            "ar": "ممرضة"
+          },
+          {
+            "en": "Patient",
+            "ar": "مريض"
+          },
+          {
+            "en": "Medicine",
+            "ar": "دواء"
+          },
+          {
+            "en": "Appointment",
+            "ar": "موعد"
+          },
+          {
+            "en": "Prescription",
+            "ar": "وصفة طبية"
+          }
+        ]
+      }
+    ],
+    "strategies": [],
+    "quizzes": []
+  }
+}

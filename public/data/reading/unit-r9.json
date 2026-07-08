@@ -1,0 +1,92 @@
+{
+  "id": "r9",
+  "title": "Nineth Strategy: One Important Idea",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs9",
+        "theme": "sc-theme-blue",
+        "icon": "💡",
+        "title": "One Important Idea (الفكرة المحورية)",
+        "subtitle": "Nineth Strategy",
+        "usage": "ما هي أهم فكرة الكاتب ذكرها؟ (What is one important idea that the writer mentions?)\n1. نحدد نطاق البحث إذا حدد البرقراف.\n2. نقرأ القطعة جيداً.\n3. نختار الفكرة المحورية التي ركّز عليها الكاتب وليست مجرد معلومة فرعية.",
+        "practice": [
+          {
+            "passageId": "r9-p0-q0",
+            "passageText": "PASSAGE 1 (GMO Bananas)\\n1. Each year, thousands of children in East Africa go blind or die because they don’t get enough vitamin A... 3. Bananas are not the only food whose yield or nutritional profile could be improved with genetic engineering. With climate change threatening to disrupt existing crops and growing global populations demanding more of those supplies, genetic engineering could be a solution for making the most of limited space and resources.",
+            "q": "What is one important idea that the writer mentions?",
+            "opts": [
+              "That animals like to eat the orange bananas.",
+              "That a lack of vitamin A makes people go blind.",
+              "That children in Africa need better food.",
+              "That Uganda is a rich country in East Africa."
+            ],
+            "c": 1,
+            "expl": "الفكرة المحورية الأولى هي نقص فيتامين أ",
+            "id": "q_reading_r9_001"
+          },
+          {
+            "passageId": "r9-p0-q1",
+            "passageText": "PASSAGE 1 (GMO Bananas)\\n1. Each year, thousands of children in East Africa go blind or die because they don’t get enough vitamin A... 3. Bananas are not the only food whose yield or nutritional profile could be improved with genetic engineering. With climate change threatening to disrupt existing crops and growing global populations demanding more of those supplies, genetic engineering could be a solution for making the most of limited space and resources.",
+            "q": "What is one important idea that the writer mentions?",
+            "opts": [
+              "That Ugandans have grown bananas for centuries.",
+              "That the way we produce food is changing",
+              "That climate change is a serious global problem.",
+              "That genetically modified bananas may save lives."
+            ],
+            "c": 3,
+            "expl": "الموز المعدل وراثياً ينقذ الحياة",
+            "id": "q_reading_r9_002"
+          },
+          {
+            "passageId": "r9-p1-q0",
+            "passageText": "PASSAGE 2 (The human cost of Stalin's 5-year plans)\\n1. In 1927. Stalin’s main aim for his country, Russia, was to modernize its industry... 2. However, there was a human cost to achieving the targets set in the 5-year plans. This cost was paid by the workers... The most famous worker was Alexei Stakhanov. In 1935, with two helpers, he managed to cut 102 tons of coal in one day’s work. This was fourteen times the average. Stakhanov became a hero of the country, and the government newspapers and radio encouraged all Russian workers to be like him.",
+            "q": "What is one important idea related to the workers that the writer mentions in paragraph (2)?",
+            "opts": [
+              "They had to pay money.",
+              "They became famous.",
+              "They were foreigners.",
+              "They were hard working."
+            ],
+            "c": 3,
+            "expl": "العمال عملوا بجد",
+            "id": "q_reading_r9_003"
+          },
+          {
+            "passageId": "r9-p1-q1",
+            "passageText": "PASSAGE 2 (The human cost of Stalin's 5-year plans)\\n1. In 1927. Stalin’s main aim for his country, Russia, was to modernize its industry... 2. However, there was a human cost to achieving the targets set in the 5-year plans. This cost was paid by the workers... The most famous worker was Alexei Stakhanov. In 1935, with two helpers, he managed to cut 102 tons of coal in one day’s work. This was fourteen times the average. Stakhanov became a hero of the country, and the government newspapers and radio encouraged all Russian workers to be like him.",
+            "q": "What is one important idea mentioned about Alexei Stakhanov in Paragraph (2)?",
+            "opts": [
+              "He was an example of a good worker.",
+              "He had two helpers.",
+              "He worked in 1935.",
+              "He was a coal worker"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r9_004"
+          },
+          {
+            "passageId": "r9-p2-q0",
+            "passageText": "PASSAGE 4 (The Impact of Culture on Marketing Strategies)\\n(1) In marketing, a seller must understand the ways that consumers in different countries think about and use certain products before planning a marketing program. There are often surprises. For example, the average French man uses almost twice as many cosmetics and grooming devices as his wife...",
+            "q": "What is one important idea about marketing in Paragraph (1)?",
+            "opts": [
+              "consumers",
+              "cosmetics",
+              "surprises",
+              "devices"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r9_005"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Nineth Strategy: One Important Idea",
+  "nameEn": "Nineth Strategy: One Important Idea",
+  "emoji": "📖"
+}

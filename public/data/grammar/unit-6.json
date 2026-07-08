@@ -1,0 +1,120 @@
+{
+  "id": 6,
+  "emoji": "🔢",
+  "nameAr": "المعدود وغير المعدود",
+  "nameEn": "Countable & Uncountable",
+  "page": {
+    "tag": "الوحدة السادسة",
+    "mascot": "🧮",
+    "strategies": [
+      {
+        "id": "u6s1",
+        "theme": "sc-theme-red",
+        "icon": "🔢",
+        "title": "محددات الكمية",
+        "subtitle": "Quantifiers",
+        "badge": "Count/Uncount",
+        "usage": "نستخدم محددات كمية مختلفة حسب نوع الاسم (معدود / غير معدود).",
+        "keywords": [
+          {
+            "f": "Many",
+            "b": "كثير ← للمعدود فقط (Many books)"
+          },
+          {
+            "f": "Few",
+            "b": "قليل ← للمعدود (Few students)"
+          },
+          {
+            "f": "A few",
+            "b": "بعض (إيجابي) ← للمعدود (A few ideas)"
+          },
+          {
+            "f": "Much",
+            "b": "كثير ← لغير المعدود فقط (Much water)"
+          },
+          {
+            "f": "Little",
+            "b": "قليل ← لغير المعدود (Little time)"
+          },
+          {
+            "f": "A little",
+            "b": "بعض (إيجابي) ← لغير المعدود"
+          },
+          {
+            "f": "Some",
+            "b": "بعض ← للاثنين، في المثبت والعروض"
+          },
+          {
+            "f": "Any",
+            "b": "أي ← للاثنين، في النفي والسؤال"
+          },
+          {
+            "f": "A lot of / Lots of",
+            "b": "كثير جداً ← للاثنين"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "المعدود (Countable)",
+            "form": "Many / Few / A few / Several",
+            "ex": "<strong>Many</strong> students passed the exam."
+          },
+          {
+            "subj": "غير المعدود (Uncountable)",
+            "form": "Much / Little / A little",
+            "ex": "There isn't <strong>much</strong> water left."
+          },
+          {
+            "subj": "للاثنين",
+            "form": "Some / Any / A lot of",
+            "ex": "Do you have <strong>any</strong> milk? — Yes, <strong>some</strong>."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ Some في السؤال",
+          "body": "نستخدم <strong>some</strong> في السؤال عند تقديم عرض أو طلب مهذب:<br>\n                Would you like <strong>some</strong> coffee? (عرض) ✓<br>\n                Do you have <strong>any</strong> coffee? (سؤال عادي) ✓"
+        },
+        "practice": [
+          {
+            "q": "There isn't …… sugar in my tea.",
+            "opts": [
+              "many",
+              "few",
+              "much",
+              "a number of"
+            ],
+            "c": 2,
+            "expl": "sugar غير معدود والجملة منفية → <strong>much</strong>.",
+            "id": "q_grammar_6_001"
+          },
+          {
+            "q": "Would you like …… coffee?",
+            "opts": [
+              "any",
+              "many",
+              "some",
+              "few"
+            ],
+            "c": 2,
+            "expl": "عرض مهذب → <strong>some</strong> حتى في السؤال.",
+            "id": "q_grammar_6_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "We have very …… apples left, so buy more.",
+        "opts": [
+          "little",
+          "a little",
+          "few",
+          "much"
+        ],
+        "c": 2,
+        "expl": "apples معدود + معنى سلبي (قليل جداً) → <strong>few</strong>.",
+        "id": "q_grammar_6_003"
+      }
+    ]
+  }
+}

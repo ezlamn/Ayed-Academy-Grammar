@@ -1,0 +1,148 @@
+{
+  "id": "r3",
+  "title": "Third Strategy: Referring Technique",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs3",
+        "theme": "sc-theme-blue",
+        "icon": "📌",
+        "title": " Referring Technique",
+        "subtitle": "Third Strategy",
+        "usage": "هذا التكنيك يتناول السؤال بكلمة او عبارة او ضمير تم وضعه في القطعة ويطلب منك الى اي اختيار يعود هذا الضمير.\nصيغة السؤال:\nThe word\\pronoun (it) in paragraph (2) refers to...\n\nمراحل الحل:\n1. نوع الضمير: تحديده من ناحية المفرد والجمع.\n2. تحديد نطاق البحث: الضمير يعود على كلمة في الجملة التي قبله.\n3. السياق: يتطلب فهم السياق وترجمته.",
+        "practice": [
+          {
+            "passageId": "r3-p0-q0",
+            "passageText": "PASSAGE 1\\n3) In 1968, both countries formed a joint committee. They formed it to assess the financial undertaking required for the task. As a result, the World Bank was requested by the committee to contribute their assistance in methods of implementation of the mammoth sized project. This required taking into account the environmental and geographical aspects of the Saudi-Bahrain region.",
+            "q": "The word “it” in paragraph 3) refers to ……...",
+            "opts": [
+              "Saudi",
+              "Bahrain",
+              "The project",
+              "The joint committee"
+            ],
+            "c": 3,
+            "expl": "تعود على joint committee",
+            "id": "q_reading_r3_001"
+          },
+          {
+            "passageId": "r3-p1-q0",
+            "passageText": "PASSAGE 2 (الزراعة بين الحاضر والماضي)\\nA comparison was made between cultivation in the past in 1900 and the present time. Where it was found that in the year 1900, 40% of the workers were working in the field of agriculture, and farmers were producing per day enough food for an average of 5 people, for themselves and their families, and working manually. But at the moment there is much more equipment, machinery and production.",
+            "q": "The pronoun ‘themselves’ in paragraph (1) refers to ……",
+            "opts": [
+              "Agriculture",
+              "Americans",
+              "Labor force",
+              "Farmers"
+            ],
+            "c": 3,
+            "expl": "themselves تعود على farmers",
+            "id": "q_reading_r3_002"
+          },
+          {
+            "passageId": "r3-p2-q0",
+            "passageText": "PASSAGE 3 (fish - السمك)\\n(2) Fish can live in almost any conditions of water. They can live in the freezing waters of Antarctica, hot jungle streams, lakes and fast flowing mountain rivers. Nearly all fish get their oxygen from water. Although we cannot see it, water does contain oxygen. To get this oxygen, the fish forces water through its gills. The gills absorb oxygen and release carbon dioxide into the water which then passes out through the gills.",
+            "q": "The pronoun ‘it’ in Paragraph (2) refers to ……",
+            "opts": [
+              "fish",
+              "water",
+              "a river",
+              "oxygen"
+            ],
+            "c": 1,
+            "expl": "it تعود على water",
+            "id": "q_reading_r3_003"
+          },
+          {
+            "passageId": "r3-p3-q0",
+            "passageText": "PASSAGE 4 (اديسون المخترع العظيم)\\nThomas Edison was totally deaf in one ear and hard of hearing in the other. He thought of his deafness as a blessing in many ways. It kept conversations short, so that he could have more time for work. He called himself a “two-shift man “because he worked 16 out of every 24hours. Sometimes he worked so intensely that his wife had to remind him to sleep and eat. Thomas Edison died at the age of 84 on October 18, 1931, at his estate in West Orange, New Jersey. He left numerous inventions that improved the quality of life all over the world.",
+            "q": "The pronoun ‘it’ in paragraph (5), refers to his......",
+            "opts": [
+              "Blessing.",
+              "Deafness",
+              "Thought",
+              "Ear."
+            ],
+            "c": 1,
+            "expl": "it تعود على deafness",
+            "id": "q_reading_r3_004"
+          },
+          {
+            "passageId": "r3-p4-q0",
+            "passageText": "PASSAGE 5 Currencies\\n(6) Although the Germans and the Finns use the Euro now, their former currencies the German mark and the Finnish Markka, both have their origin in units of weight. While the Spanish peso meaning ‘weight” in Spanish, is also no longer used in Spain, it lives on as the currency of Mexico, Argentina and the Philippines. The British pound or pound sterling comes from the Latin pounds weight",
+            "q": "The pronoun ‘it’ in paragraph (6), refers to......",
+            "opts": [
+              "Peso",
+              "Spain",
+              "Weight.",
+              "Markka"
+            ],
+            "c": 0,
+            "expl": "it تعود على peso",
+            "id": "q_reading_r3_005"
+          },
+          {
+            "passageId": "r3-p5-q0",
+            "passageText": "PASSAGE 6 (النمل)\\n(5) Ants are interesting creatures. They have very tiny bodies but live in a complex social community. They are not simply pests, as many people think; in point of fact, they represent a positive example of how planning and teamwork should work in our societies.",
+            "q": "The pronoun ‘they’ in Paragraph (5) refers to ________.",
+            "opts": [
+              "Ants",
+              "pests.",
+              "bodies",
+              "people"
+            ],
+            "c": 0,
+            "expl": "they تعود على Ants",
+            "id": "q_reading_r3_006"
+          },
+          {
+            "passageId": "r3-p6-q0",
+            "passageText": "PASSAGE 7 (Pizza)\\nPizza, which originated in Italy. Is a fast food that is known and loved all around the world. How did it become so popular? Part of the reason is that tourists who went to Italy ate it there and loved it. When they returned to their countries, They looked for Italian restaurants that might have it. But much more significant in pizza becoming popular worldwide the fact that lots of American soldiers who were in Italy during World War II ate it there and then wanted it when they returned to the USA. This dramatic increase in the demand for pizza in the 1950s led to the development of special restaurants for pizza.",
+            "q": "The word there in paragraph 1 refers to……………",
+            "opts": [
+              "the United States",
+              "a pizza restaurant",
+              "Italy",
+              "the world"
+            ],
+            "c": 2,
+            "expl": "there تعود على Italy",
+            "id": "q_reading_r3_007"
+          },
+          {
+            "passageId": "r3-p7-q0",
+            "passageText": "PASSAGE 8\\nScientists at an Alaskan laboratory have been busy analyzing the unknown substance. They have concluded that it is a formation of microscopic eggs. One of the scientists said that there are traces of oil in the eggs, and this is what is causing the strange, orange color.",
+            "q": "The word it in Paragraph (2) refers to……………...",
+            "opts": [
+              "traces of oil",
+              "a microscope",
+              "the unknown substance",
+              "one of Alaska’s laboratories"
+            ],
+            "c": 2,
+            "expl": "it تعود على the unknown substance",
+            "id": "q_reading_r3_008"
+          }
+        ],
+        "keywords": [
+          {
+            "f": "It - its",
+            "b": "مفرد غير عاقل"
+          },
+          {
+            "f": "They - their - them",
+            "b": "جمع (عاقل أو غير عاقل)"
+          },
+          {
+            "f": "there",
+            "b": "يعود على مكان"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Third Strategy: Referring Technique",
+  "nameEn": "Third Strategy: Referring Technique",
+  "emoji": "📖"
+}

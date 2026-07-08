@@ -1,0 +1,276 @@
+/* ================================================================
+   TREE-DIAGRAM.CSS — Premium Cambridge Style Syntax Tree
+   Grammar Strategies — Ayed Academy
+   ================================================================ */
+
+.cg-wrapper {
+  margin-bottom: 2.5rem;
+  direction: ltr; /* English content always LTR */
+}
+
+.cg-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-sec);
+  margin-bottom: 1.2rem;
+  direction: rtl; /* Arabic header */
+}
+
+.cg-header-icon {
+  width: 20px; 
+  height: 20px; 
+  color: var(--accent);
+}
+
+.cg-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+/* Snap scrolling on mobile so it doesn't get squished */
+.cg-container.scroll-x.snap-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.cg-container::-webkit-scrollbar {
+  height: 6px;
+}
+.cg-container::-webkit-scrollbar-thumb {
+  background-color: var(--border-md);
+  border-radius: 4px;
+}
+
+.cg-flow {
+  display: flex;
+  align-items: stretch;
+  min-width: 650px; /* Force minimum width to prevent squishing */
+  margin: 0 auto;
+  gap: 0.5rem;
+}
+
+/* LEFT SIDE: Groups */
+.cg-groups {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1.5rem;
+  flex: 0 0 auto;
+}
+
+.cg-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── NODES ── */
+.cg-node {
+  background: var(--surface2);
+  border: 1px solid var(--border-md);
+  border-radius: var(--r-lg);
+  padding: 0.8rem 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+.cg-node:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+}
+
+/* SUBJECT NODE */
+.cg-node-subj {
+  min-width: 140px;
+  text-align: right;
+  border-left: 4px solid var(--primary-soft);
+}
+.cg-subj-list {
+  font-family: var(--ff-en);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.cg-comma { color: var(--text-muted); font-weight: 400; }
+.cg-subj-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.3rem;
+}
+
+/* CONNECTORS */
+.cg-connector-hz {
+  width: 25px;
+  height: 2px;
+  background: var(--border-md);
+  position: relative;
+  z-index: 1;
+}
+.cg-connector-hz.long { width: 40px; }
+.cg-connector-hz.cg-short { width: 15px; }
+
+/* AUXILIARY NODE */
+.cg-node-aux {
+  font-family: var(--ff-en);
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--r-pill);
+  min-width: 90px;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+/* Aux Colors (Pastel Hues for Glassmorphism) */
+.aux-was, .aux-were { background: rgba(139,92,246,0.1); color: #7C3AED; border-color: rgba(139,92,246,0.2); }
+.aux-have, .aux-has, .aux-had { background: rgba(245,158,11,0.1); color: #D97706; border-color: rgba(245,158,11,0.2); }
+.aux-will { background: rgba(14,165,233,0.1); color: #0284C7; border-color: rgba(14,165,233,0.2); }
+.aux-am, .aux-is, .aux-are { background: rgba(16,185,129,0.1); color: #059669; border-color: rgba(16,185,129,0.2); }
+.aux-do, .aux-does, .aux-did { background: rgba(239,68,68,0.1); color: #DC2626; border-color: rgba(239,68,68,0.2); }
+.aux-generic { background: var(--surface2); color: var(--text-primary); border-color: var(--border-md); }
+
+html.dark-mode .aux-was, html.dark-mode .aux-were { color: #A78BFA; }
+html.dark-mode .aux-have, html.dark-mode .aux-has, html.dark-mode .aux-had { color: #FBBF24; }
+html.dark-mode .aux-will { color: #38BDF8; }
+html.dark-mode .aux-am, html.dark-mode .aux-is, html.dark-mode .aux-are { color: #34D399; }
+html.dark-mode .aux-do, html.dark-mode .aux-does, html.dark-mode .aux-did { color: #F87171; }
+
+/* ── BRACE CONNECTOR (Pure CSS Curves) ── */
+.cg-brace-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  width: 40px;
+  padding: 1.5rem 0; /* Padding offsets the top/bottom curves */
+}
+.cg-brace-wrapper.single { justify-content: center; align-items: center; }
+
+/* The curved ends of the brace */
+.cg-brace-top, .cg-brace-bot {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid var(--border-md);
+}
+.cg-brace-top { border-top: 2px solid var(--border-md); border-top-right-radius: 12px; }
+.cg-brace-bot { border-bottom: 2px solid var(--border-md); border-bottom-right-radius: 12px; }
+
+/* The straight vertical line in the middle */
+.cg-brace-mid {
+  width: 100%;
+  border-right: 2px solid var(--border-md);
+  position: relative;
+}
+
+/* The joining horizontal line that points right to the Result */
+.cg-brace-join {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 20px;
+  height: 2px;
+  background: var(--border-md);
+  transform: translateY(-50%);
+}
+
+/* ── RIGHT SIDE: Result ── */
+.cg-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  flex: 1;
+  padding-left: 0.5rem;
+}
+
+/* FORMULA NODE */
+.cg-node-formula {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary-tint);
+  border-left: 4px solid var(--primary);
+  padding: 0.85rem 1.5rem;
+  font-family: var(--ff-en);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-deep);
+  width: fit-content;
+}
+html.dark-mode .cg-node-formula {
+  background: rgba(99,102,241,0.15);
+  color: var(--primary-soft);
+}
+.cg-plus { color: var(--text-muted); font-size: 1rem; font-weight: 600; margin: 0 6px; }
+.cg-hl-ing { color: var(--rose); font-size: 1.05em; }
+.cg-hl-ed { color: var(--emerald); font-size: 1.05em; }
+
+/* EXAMPLE NODE */
+.cg-node-example {
+  display: flex;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+}
+.cg-ex-icon { font-size: 1.2rem; line-height: 1.2; color: var(--amber); flex-shrink: 0; }
+.cg-ex-text {
+  font-family: var(--ff-en);
+  font-size: 1.05rem;
+  color: var(--text-sec);
+  line-height: 1.6;
+}
+.cg-ex-text strong { color: var(--text-primary); font-weight: 800; }
+
+/* ── EXTRAS (Notes at the bottom) ── */
+.cg-extras-container {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border-md);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.cg-extra-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cg-extra-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.cg-extra-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.cg-small {
+  font-size: 0.95rem;
+  padding: 0.5rem 1.2rem;
+}
+
+/* Legacy overrides */
+.legacy-flow .td-tree { background: transparent; border: none; }
+.legacy-flow .td-right { background: transparent; border: none; padding: 0; }
+.legacy-flow .td-subject-group { padding: 0; background: transparent; }
+.legacy-flow .td-subject-label { border-left: 4px solid var(--primary-soft); text-align: left; }
+.legacy-flow .td-formula-pill { background: var(--primary-tint); color: var(--primary-deep); border: 1px solid var(--primary-soft); }

@@ -1,0 +1,28 @@
+/* ================================================================
+   FEATURES.CSS — Dark Toggle, FAB, Highlight, Gamification & SRS
+   Grammar Strategies — Ayed Academy  [v4 Minimalist Premium]
+   ================================================================ */
+
+/* Dark Toggle Button — defined in layout.css, these are overrides */
+.dark-toggle {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text-muted); width: 34px; height: 34px; border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 0.95rem; transition: all 0.18s;
+}
+.dark-toggle:hover { background: var(--surface3); color: var(--text-primary); }
+
+/* ── OVERALL PROGRESS BAR (Sidebar) — override legacy ── */
+.overall-bar-wrap { background: var(--surface3); border-radius: var(--r-pill); height: 4px; overflow: hidden; margin-bottom: 0.35rem; }
+.overall-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); border-radius: var(--r-pill); transition: width 0.8s ease; width: 0%; }
+.overall-bar-label { color: var(--accent); font-weight: 600; font-size: 0.75rem; font-family: var(--ff-en); }
+
+/* ── SRS BUTTONS ── */
+.srs-buttons { display: flex; gap: 4px; margin-top: 12px; }
+.srs-btn { flex: 1; border: 1px solid var(--border); padding: 4px; border-radius: var(--r-sm); cursor: pointer; font-size: 0.76rem; font-weight: 600; transition: all 0.15s; }
+.srs-hard { background: var(--red-dim); color: var(--red); border-color: rgba(220,38,38,0.2); }
+.srs-hard:hover { background: var(--red); color: #fff; }
+.srs-good { background: var(--gold-dim); color: var(--gold); border-color: rgba(217,119,6,0.2); }
+.srs-good:hover { background: var(--gold-lt); color: #fff; }
+.srs-easy { background: var(--green-dim); color: var(--green); border-color: rgba(5,150,105,0.2); }
+.srs-easy:hover { background: var(--green); color: #fff; }

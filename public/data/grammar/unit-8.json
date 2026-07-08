@@ -1,0 +1,101 @@
+{
+  "id": 8,
+  "emoji": "⚡",
+  "nameAr": "الأفعال + To أو Ing",
+  "nameEn": "Verb Patterns",
+  "page": {
+    "tag": "الوحدة الثامنة",
+    "mascot": "🔧",
+    "strategies": [
+      {
+        "id": "u8s1",
+        "theme": "sc-theme-gold",
+        "icon": "⚡",
+        "title": "أنماط الأفعال (Verb Patterns)",
+        "subtitle": "Verb + Infinitive or Gerund",
+        "badge": "Verb Patterns",
+        "usage": "بعض الأفعال تتبعها حتماً صيغة (to + مصدر)، وأخرى تتبعها صيغة (v.ing). اعرف الفعل الأول لتعرف الصيغة التالية.",
+        "keywords": [
+          {
+            "f": "→ v.ing",
+            "b": "enjoy, finish, mind, avoid, suggest, consider, keep, risk, practise"
+          },
+          {
+            "f": "→ to + v",
+            "b": "want, need, decide, plan, hope, agree, refuse, promise, offer"
+          },
+          {
+            "f": "→ الاثنين (معنى مختلف)",
+            "b": "remember, forget, stop, try"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "Gerund (v.ing)",
+            "form": "Verb + v.ing",
+            "ex": "I enjoy <strong>reading</strong> novels."
+          },
+          {
+            "subj": "Infinitive (to+v)",
+            "form": "Verb + to + V",
+            "ex": "He decided <strong>to travel</strong> abroad."
+          },
+          {
+            "subj": "Stop (فرق المعنى)",
+            "form": "stop + v.ing = توقف",
+            "ex": "She stopped <strong>smoking</strong>. (تركت التدخين)"
+          },
+          {
+            "subj": "Stop (فرق المعنى)",
+            "form": "stop + to + V = توقف كي",
+            "ex": "She stopped <strong>to smoke</strong>. (توقفت لتدخن)"
+          }
+        ],
+        "exception": {
+          "title": "⚠️ Remember & Forget",
+          "body": "<strong>Remember + v.ing</strong>: تذكر شيئاً حدث سابقاً — I remember <strong>meeting</strong> him.<br>\n                <strong>Remember + to+V</strong>: لا تنسَ أن تفعل — Remember <strong>to lock</strong> the door.<br>\n                <strong>Forget + v.ing</strong>: نسي شيئاً حدث — I'll never forget <strong>seeing</strong> that movie.<br>\n                <strong>Forget + to+V</strong>: نسي أن يفعل — He forgot <strong>to buy</strong> milk."
+        },
+        "practice": [
+          {
+            "q": "She finished …… her homework.",
+            "opts": [
+              "do",
+              "to do",
+              "doing",
+              "did"
+            ],
+            "c": 2,
+            "expl": "finish يتبعه v.ing: <strong>doing</strong>.",
+            "id": "q_grammar_8_001"
+          },
+          {
+            "q": "We decided …… a new car.",
+            "opts": [
+              "buy",
+              "buying",
+              "to buy",
+              "bought"
+            ],
+            "c": 2,
+            "expl": "decide يتبعه to + مصدر: <strong>to buy</strong>.",
+            "id": "q_grammar_8_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "Would you mind …… the window?",
+        "opts": [
+          "open",
+          "to open",
+          "opening",
+          "opened"
+        ],
+        "c": 2,
+        "expl": "mind يتبعه v.ing: <strong>opening</strong>.",
+        "id": "q_grammar_8_003"
+      }
+    ]
+  }
+}

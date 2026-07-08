@@ -1,0 +1,96 @@
+{
+  "id": 5,
+  "emoji": "👤",
+  "nameAr": "الضمائر",
+  "nameEn": "Pronouns",
+  "page": {
+    "tag": "الوحدة الخامسة",
+    "mascot": "🪞",
+    "strategies": [
+      {
+        "id": "u5s1",
+        "theme": "sc-theme-gold",
+        "icon": "👤",
+        "title": "الضمائر الملكية والانعكاسية",
+        "subtitle": "Possessives & Reflexives",
+        "badge": "Pronouns",
+        "usage": "تُحدد ملكية الشيء أو تُشير إلى عودة الفعل على الفاعل نفسه.",
+        "keywords": [
+          {
+            "f": "Possessive Adj.",
+            "b": "صفة ملكية ← يأتي بعدها اسم دائماً\nmy/your/his/her/our/their"
+          },
+          {
+            "f": "Possessive Pron.",
+            "b": "ضمير ملكية ← لا يأتي بعده اسم\nmine/yours/his/hers/ours/theirs"
+          },
+          {
+            "f": "Reflexive",
+            "b": "ضمير انعكاسي ← يعود على الفاعل\nmyself/yourself/himself/herself/ourselves/themselves"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "Possessive Adj.",
+            "form": "صفة + اسم (noun)",
+            "ex": "This is <strong>my</strong> book. (my ← قبل book)"
+          },
+          {
+            "subj": "Possessive Pron.",
+            "form": "وحده، بدون اسم بعده",
+            "ex": "This book is <strong>mine</strong>. (mine ← لا يأتي بعده اسم)"
+          },
+          {
+            "subj": "Reflexive",
+            "form": "فاعل = مفعول به",
+            "ex": "She hurt <strong>herself</strong> while cooking."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ كيف تختار بسرعة في الامتحان؟",
+          "body": "هل يأتي بعد الفراغ اسم (noun)؟<br>\n                ← نعم: اختر صفة ملكية (my, his, her...)<br>\n                ← لا: اختر ضمير ملكية مستقلاً (mine, his, hers...)<br>\n                هل الفاعل والمفعول به نفس الشخص؟ → اختر انعكاسياً (himself, herself...)"
+        },
+        "practice": [
+          {
+            "q": "The red car parked outside is ……",
+            "opts": [
+              "me",
+              "my",
+              "mine",
+              "myself"
+            ],
+            "c": 2,
+            "expl": "لا يأتي بعد الفراغ اسم → ضمير ملكية مستقل: <strong>mine</strong>.",
+            "id": "q_grammar_5_001"
+          },
+          {
+            "q": "Ahmed injured …… while playing football.",
+            "opts": [
+              "he",
+              "him",
+              "himself",
+              "his"
+            ],
+            "c": 2,
+            "expl": "الفاعل (Ahmed) = المفعول به → انعكاسي: <strong>himself</strong>.",
+            "id": "q_grammar_5_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "Could you give …… the pen, please?",
+        "opts": [
+          "I",
+          "my",
+          "me",
+          "mine"
+        ],
+        "c": 2,
+        "expl": "بعد الفعل give نحتاج ضميراً مفعولاً به: <strong>me</strong>.",
+        "id": "q_grammar_5_003"
+      }
+    ]
+  }
+}

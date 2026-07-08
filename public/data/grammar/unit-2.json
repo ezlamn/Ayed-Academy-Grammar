@@ -1,0 +1,107 @@
+{
+  "id": 2,
+  "emoji": "🔗",
+  "nameAr": "الروابط الزمنية",
+  "nameEn": "Time Connectors",
+  "page": {
+    "tag": "الوحدة الثانية",
+    "mascot": "⏰",
+    "strategies": [
+      {
+        "id": "u2s1",
+        "theme": "sc-theme-blue",
+        "icon": "🔗",
+        "title": "القاعدة الذهبية للروابط الزمنية",
+        "subtitle": "Time Connectors Golden Rule",
+        "badge": "Core Rule",
+        "usage": "الرابط الزمني يوحِّد الزمن بين الجملتين. الزمن الأساسي للجملة الأولى يحدد الزمن في الجملة الثانية.",
+        "keywords": [
+          {
+            "f": "After",
+            "b": "بعد"
+          },
+          {
+            "f": "Before",
+            "b": "قبل"
+          },
+          {
+            "f": "When",
+            "b": "عندما"
+          },
+          {
+            "f": "While",
+            "b": "بينما"
+          },
+          {
+            "f": "As soon as",
+            "b": "بمجرد أن"
+          },
+          {
+            "f": "Until / Till",
+            "b": "حتى"
+          },
+          {
+            "f": "By the time",
+            "b": "بحلول الوقت الذي"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "ماضٍ ↔ ماضٍ",
+            "form": "V2  |  V2",
+            "ex": "He <strong>studied</strong> hard before he <strong>got</strong> the job."
+          },
+          {
+            "subj": "مضارع ↔ مستقبل",
+            "form": "V1  |  will + V",
+            "ex": "When I <strong>arrive</strong>, I <strong>will call</strong> you."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ حالة خاصة: الفراغ يأتي بعد الرابط مباشرةً (بدون فاعل)",
+          "body": "إذا جاء الفراغ بعد الرابط الزمني مباشرةً <strong>بدون فاعل</strong>، نختار الفعل + <strong>ing</strong>:<br>\n                Before <strong>going</strong> to bed, brush your teeth.<br>\n                After <strong>finishing</strong> work, he went home."
+        },
+        "practice": [
+          {
+            "q": "Paul studied before he …… to Marketing.",
+            "opts": [
+              "changes",
+              "is changing",
+              "changed",
+              "has changed"
+            ],
+            "c": 2,
+            "expl": "studied = ماضٍ → الفعل الثاني يكون ماضياً: <strong>changed</strong>.",
+            "id": "q_grammar_2_001"
+          },
+          {
+            "q": "Before ……. to bed, remember to brush your teeth.",
+            "opts": [
+              "go",
+              "to go",
+              "going",
+              "gone"
+            ],
+            "c": 2,
+            "expl": "فراغ بعد Before بدون فاعل → نختار: <strong>going</strong>.",
+            "id": "q_grammar_2_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "As soon as she ……. home, she started cooking.",
+        "opts": [
+          "arrives",
+          "arrived",
+          "will arrive",
+          "is arriving"
+        ],
+        "c": 1,
+        "expl": "الجملة الثانية ماضٍ (started) → الأولى ماضٍ: <strong>arrived</strong>.",
+        "id": "q_grammar_2_003"
+      }
+    ]
+  }
+}

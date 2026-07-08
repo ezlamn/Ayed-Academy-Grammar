@@ -1,0 +1,106 @@
+{
+  "id": "r10",
+  "title": "Tenth Strategy: Title, main idea, and topic",
+  "type": "reading_strategy",
+  "page": {
+    "strategies": [
+      {
+        "id": "rs10",
+        "theme": "sc-theme-red",
+        "icon": "📝",
+        "title": "Title, main idea, and topic (الفكرة الرئيسية)",
+        "subtitle": "Tenth Strategy",
+        "usage": "لما السؤال يطلب مني العنوان أو الموضوع أو الفكرة الرئيسية فهو يطلب فهم عام للقطعة.\n- الفهم العام: عنوان القطعة هو الفكرة المسيطرة على القطعة من البداية حتى النهاية (الشاملة).\n- إذا أي اقتباس مباشر (تفصيلة) نستبعدها.\n- كلمة history تأتي مع القطع اللي بتتكلم عن تسلسل زمني.",
+        "practice": [
+          {
+            "passageId": "r10-p0-q0",
+            "passageText": "PASSAGE 1\\n1. The traveler Marco Polo retuned from his famous expedition to the Far East with fruit-flavored ices... 2. The first wholesale manufacture of ice cream was in 1851 in Baltimore, Maryland by Jacob Fussel... 3. The making of ice cream slowly evolved for the next few decades...",
+            "q": "What is the best title for this passage?",
+            "opts": [
+              "Varieties of Ice Cream",
+              "The History of Ice Cream",
+              "The Demand for Ice Cream",
+              "Ice Cream During the Wars"
+            ],
+            "c": 1,
+            "expl": "القطعة تتحدث عن التسلسل الزمني لظهور الآيسكريم",
+            "id": "q_reading_r10_001"
+          },
+          {
+            "passageId": "r10-p1-q0",
+            "passageText": "PASSAGE 2 (Meetings)\\nMeetings can waste a great deal of time, but you can make your meeting run more smoothly by following a few simple rules. First, have an agenda. This will help keep you focused on what is important. Next, decide who needs to be involved. More people mean less efficient discussion. Finally, keep the discussion moving...",
+            "q": "The main idea of the passage is that meetings ………….",
+            "opts": [
+              "waste a lot of time",
+              "are NOT necessary",
+              "need to be held frequently",
+              "need to be planned and organized"
+            ],
+            "c": 3,
+            "expl": "الاجتماعات تحتاج لتنظيم",
+            "id": "q_reading_r10_002"
+          },
+          {
+            "passageId": "r10-p2-q0",
+            "passageText": "PASSAGE 3\\n1. If we look at the night sky carefully, we will see that the stars are of many different colors... 2. Astronomers have been able to classify stars according to color... 3. Suppose an astronomer observes two stars, one brighter than the other. If neither of them is a superstar. he will know immediately that the brighter star is closer...",
+            "q": "What is the main idea of the passage?",
+            "opts": [
+              "Astronomers have been able to measure how far the stars are from each other.",
+              "Astronomers have certain instruments to measure the color of the stars.",
+              "We can know the color of the stars by taking a photograph of the sky at night.",
+              "Stars can be categorized according to color and size."
+            ],
+            "c": 3,
+            "expl": "تصنيف النجوم بناء على اللون والحجم",
+            "id": "q_reading_r10_003"
+          },
+          {
+            "passageId": "r10-p3-q0",
+            "passageText": "PASSAGE 4 (The human cost of Stalin's 5-year plans)\\n1. In 1927. Stalin’s main aim for his country, Russia, was to modernize its industry... 2. However, there was a human cost to achieving the targets set in the 5-year plans. This cost was paid by the workers... 3. Life was very difficult under Stalin. Workers had targets to meet and were punished if they did not meet them...",
+            "q": "What is the main idea of the passage?",
+            "opts": [
+              "hard work in Russia’s factories",
+              "Stalin’s successful 5-year plan",
+              "Russia’s development in 1927",
+              "life working under Stalin"
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r10_004"
+          },
+          {
+            "passageId": "r10-p4-q0",
+            "passageText": "PASSAGE 5\\n2) Quantitative observations are measurements, which by definition consist of both a number and a unit. Examples of quantitative observations include the following the melting point of crystalline sulfur is 115.21 degrees Celsius, and 35.9 grams of table salt whose chemical name is sodium chloride dissolve in 100 grams of water at 20 degrees Celsius.",
+            "q": "Which sentence gives the main idea of Paragraph 2)?",
+            "opts": [
+              "Quantitative observations are measurements, which by definition consist of both a number and a unit.",
+              "Examples of quantitative observations include the following.",
+              "The melting point of crystalline sulfur is 115.21 degrees Celsius.",
+              "35.9 grams of table salt-whose chemical name is sodium chloride dissolve in 100 grams of water at 20 degrees Celsius."
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r10_005"
+          },
+          {
+            "passageId": "r10-p5-q0",
+            "passageText": "PASSAGE 6\\n1) At 1.05am on Sunday 13 August 1961, East German border guards and army combat groups took up positions on the demarcation line at the Brandenburg Gate in central Berlin... 5) The fall, when it came, was quick. There were large demonstrations in the GDR in September 1989. In October, the country’s lifelong leader, Erich Honecker, resigned. On 9 November, the East German authorities lifted border controls to the west. including for private journeys to west Berlin, from 17 November. Germany was formally reunified just 11 months later.",
+            "q": "Which sentence gives the main idea of Paragraph (5)?",
+            "opts": [
+              "The fall, when it came, was quick.",
+              "Germany was formally reunified just 11 months later.",
+              "There were large demonstrations in the GDR in September 1989.",
+              "In October, the country’s lifelong leader, Erik Honecker, resigned."
+            ],
+            "c": 0,
+            "expl": "تفسير هذه الإجابة موجود في ملف الشرح المرفق.",
+            "id": "q_reading_r10_006"
+          }
+        ]
+      }
+    ]
+  },
+  "nameAr": "Tenth Strategy: Title, main idea, and topic",
+  "nameEn": "Tenth Strategy: Title, main idea, and topic",
+  "emoji": "📖"
+}

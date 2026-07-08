@@ -1,0 +1,122 @@
+{
+  "id": 4,
+  "emoji": "🔍",
+  "nameAr": "جمل الوصل",
+  "nameEn": "Relative Clauses",
+  "page": {
+    "tag": "الوحدة الرابعة",
+    "mascot": "🔗",
+    "strategies": [
+      {
+        "id": "u4s1",
+        "theme": "sc-theme-green",
+        "icon": "🔍",
+        "title": "ضمائر الوصل",
+        "subtitle": "Relative Pronouns",
+        "badge": "Relative Clauses",
+        "usage": "ضمائر الوصل تربط بين جملتين وتعود على اسم محدد (مرجع) قبلها.",
+        "keywords": [
+          {
+            "f": "Who",
+            "b": "للعاقل — فاعل في جملة الوصل"
+          },
+          {
+            "f": "Whom",
+            "b": "للعاقل — مفعول أو بعد حرف جر"
+          },
+          {
+            "f": "Which",
+            "b": "لغير العاقل (أشياء/حيوانات)"
+          },
+          {
+            "f": "Whose",
+            "b": "الملكية (اسم يمتلك اسماً آخر)"
+          },
+          {
+            "f": "That",
+            "b": "بديل لـ who/which — إجباري بعد all"
+          },
+          {
+            "f": "Where",
+            "b": "للأماكن"
+          },
+          {
+            "f": "When",
+            "b": "للأوقات"
+          }
+        ],
+        "formulas": [
+          {
+            "subj": "Who",
+            "form": "للعاقل",
+            "ex": "The man <strong>who</strong> called me is my teacher."
+          },
+          {
+            "subj": "Whom",
+            "form": "للعاقل + جر",
+            "ex": "The person with <strong>whom</strong> I work is kind."
+          },
+          {
+            "subj": "Which",
+            "form": "لغير العاقل",
+            "ex": "The book <strong>which</strong> I bought is interesting."
+          },
+          {
+            "subj": "Whose",
+            "form": "الملكية",
+            "ex": "The boy <strong>whose</strong> bike was stolen is sad."
+          },
+          {
+            "subj": "That",
+            "form": "بديل، إجباري بعد all",
+            "ex": "All <strong>that</strong> he said was true."
+          }
+        ],
+        "exception": {
+          "title": "⚠️ متى تستخدم Whom وليس Who؟",
+          "body": "استخدم <strong>Whom</strong> إذا:<br>\n                1. سبقها حرف جر: with <strong>whom</strong>, to <strong>whom</strong><br>\n                2. كانت مفعولاً به في جملة الوصل<br>\n                وتذكر: بعد <strong>all</strong> → that وجوباً: All <strong>that</strong> glitters is not gold."
+        },
+        "practice": [
+          {
+            "q": "The boy, …… bicycle was stolen, got a new one.",
+            "opts": [
+              "who",
+              "that",
+              "which",
+              "whose"
+            ],
+            "c": 3,
+            "expl": "اسم يملك اسماً (الولد يملك الدراجة) → <strong>whose</strong>.",
+            "id": "q_grammar_4_001"
+          },
+          {
+            "q": "I'm sure all …… you told me was true.",
+            "opts": [
+              "what",
+              "who",
+              "whose",
+              "that"
+            ],
+            "c": 3,
+            "expl": "بعد all وجوباً → <strong>that</strong>.",
+            "id": "q_grammar_4_002"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "q": "The person …… I deal with is not here today.",
+        "opts": [
+          "with whom",
+          "with who",
+          "whom with",
+          "who with"
+        ],
+        "c": 0,
+        "expl": "حرف الجر (with) يسبق ضمير الوصل للعاقل → <strong>with whom</strong>.",
+        "id": "q_grammar_4_003"
+      }
+    ]
+  }
+}
