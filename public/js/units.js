@@ -53,9 +53,15 @@ function updateProgress() {
 function bindTopbar() {
   $('btn-menu').addEventListener('click', () => {
     const panel = $('units-panel');
-    const overlay = $('overlay');
-    panel.classList.toggle('open');
-    overlay.classList.toggle('hidden', !panel.classList.contains('open'));
+    if (window.innerWidth > 900) {
+      // Desktop: collapse to a mini rail (numbers only) — no overlay
+      panel.classList.toggle('collapsed');
+    } else {
+      // Mobile: slide-in drawer with overlay
+      const overlay = $('overlay');
+      panel.classList.toggle('open');
+      overlay.classList.toggle('hidden', !panel.classList.contains('open'));
+    }
   });
 
   $('overlay').addEventListener('click', closePanel);
