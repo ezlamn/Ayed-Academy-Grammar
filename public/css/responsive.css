@@ -1,0 +1,247 @@
+/* ================================================================
+   RESPONSIVE.CSS — Mobile-first fixes for ALL pages
+   Grammar Strategies — Ayed Academy
+   Loaded LAST so it wins over every other stylesheet.
+   Covers: splash, dashboard, learning UI, quiz modal, notes,
+   tracks (listening/reading), games, modals, mock exam, toasts.
+   ================================================================ */
+
+/* ── 1) GLOBAL HARDENING (all screen sizes) ─────────────────── */
+img, video, iframe, canvas, audio { max-width: 100%; }
+.page-content, .mx-main, .quiz-modal-body, .nb-modal-body { overflow-x: hidden; }
+
+/* Long English words / URLs must never force horizontal scroll */
+.mini-q-text, .quiz-q-text, .mx-qtext, .mx-passage, .rd-passage-text,
+.fb-form, .fb-ex, .kw-en-box, .nb-qf-q, .mx-ans-q, .ls-radio-text,
+.mini-opt, .q-opt, .mx-opt, .nb-token {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+}
+
+/* Dashboard analytics card should span the same width as the grid */
+#analytics-container { width: 100%; max-width: 1000px; }
+
+/* Modern dynamic viewport units (fixes hidden content behind the
+   mobile browser URL bar). Older browsers keep the 100vh values. */
+@supports (height: 100dvh) {
+  #app { height: 100dvh; }
+  .app-body { height: calc(100dvh - var(--topbar-h)); }
+  .quiz-modal { max-height: calc(100dvh - 3rem); }
+  .nb-modal-box { max-height: 88dvh; }
+  .mx-modal { max-height: 86dvh; }
+}
+
+/* ── 2) TABLET & DOWN (≤ 768px) ─────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Mobile toolbar height + iPhone home-indicator safe area */
+  :root { --mtb-h: calc(60px + env(safe-area-inset-bottom, 0px)); }
+
+  .mobile-toolbar {
+    height: var(--mtb-h);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .app-body {
+    height: calc(100vh - var(--topbar-h) - var(--mtb-h));
+    margin-bottom: var(--mtb-h);
+  }
+  @supports (height: 100dvh) {
+    .app-body { height: calc(100dvh - var(--topbar-h) - var(--mtb-h)); }
+  }
+  .units-panel { bottom: var(--mtb-h); }
+  .notes-panel { bottom: 0; }
+  .notes-actions { padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
+
+  /* iOS zooms the page when a focused input is < 16px */
+  .notes-area, .name-input, .nb-fill-input, input, textarea, select { font-size: 16px; }
+
+  /* Topbar: keep one tidy row, never overflow */
+  .topbar { gap: 0.5rem; }
+  .topbar-left, .topbar-right { min-width: 0; }
+  .topbar-right { overflow: hidden; flex-shrink: 1; }
+  .topbar-brand { display: none; }
+  #btn-notes-top { display: none; }
+
+  /* Quiz modal (bottom sheet) */
+  .quiz-modal-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.6rem; flex-wrap: wrap;
+    padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
+  }
+  .quiz-submit-btn { flex: 1; min-height: 44px; }
+  @supports (height: 100dvh) { .quiz-modal { max-height: 92dvh; } }
+
+  /* Toast: centered above the mobile toolbar instead of bottom-right */
+  .toast {
+    left: 1rem; right: 1rem; bottom: calc(var(--mtb-h) + 12px);
+    justify-content: center; text-align: center;
+  }
+
+  /* Scroll-to-top FAB clears the toolbar */
+  .fab-scroll { bottom: calc(var(--mtb-h) + 14px); }
+
+  /* Dashboard (track selection) */
+  #main-dashboard { padding: 2.25rem 1.25rem calc(2.25rem + env(safe-area-inset-bottom, 0px)); }
+  .dash-header { margin-bottom: 2rem; }
+  .dash-logo { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .dash-title { font-size: 1.55rem; }
+  .dash-subtitle { font-size: 1rem; }
+  .dash-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .dash-card { padding: 1.4rem 1.25rem; }
+  .dash-icon { width: 64px; height: 64px; line-height: 64px; font-size: 2.2rem; margin: 0 auto 1rem; }
+  .dash-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .dash-footer { margin-top: 2rem; }
+  .analytics-card { padding: 1.25rem !important; }
+
+  /* Tracks: listening & reading headers/sections */
+  .ls-section-header, .rd-section-header {
+    flex-wrap: wrap; text-align: center;
+    padding: 0.85rem 1rem; gap: 0.5rem 0.75rem; margin-bottom: 1.25rem;
+  }
+  .ls-header-icon, .rd-header-icon { font-size: 1.8rem; }
+  .ls-info-box { padding: 1rem 1.1rem; }
+  .ls-info-row { flex-wrap: wrap; gap: 0.4rem 0.7rem; }
+  .ls-info-label { min-width: 0; }
+  .ls-strategy-banner, .rd-strategy-banner {
+    padding: 0.85rem 1rem; font-size: 1.05rem; flex-wrap: wrap;
+  }
+  .ls-strategy-subtitle, .rd-strategy-subtitle { width: 100%; margin-right: 0; font-size: 0.75rem; }
+  .ls-usage-box, .rd-usage-box { padding: 0.85rem 1rem; }
+  .ls-keywords-grid, .rd-keywords-grid { padding: 0.85rem 1rem; }
+  .ls-kw-row, .rd-kw-row { flex-wrap: wrap; gap: 0.35rem 0.7rem; padding: 0.5rem 0.75rem; }
+  .ls-kw-en { min-width: 0; }
+  .ls-exception-box { margin: 1rem 0.85rem; padding: 0.85rem 1rem; }
+  .ls-split-wrap, .rd-split-wrap {
+    grid-template-columns: 1fr; margin: 1rem 0.85rem; min-height: 0;
+  }
+  .ls-split-left { border-left: none; border-bottom: 1px solid var(--border); }
+  .rd-split-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .ls-split-left, .rd-split-left, .ls-split-right, .rd-split-right { padding: 1rem; }
+  .ls-vocab-category-title { font-size: 1.15rem; }
+
+  /* Audio player stacks vertically on phones */
+  .listening-audio-wrap {
+    flex-direction: column; align-items: stretch;
+    gap: 0.6rem; padding: 0.85rem 1rem;
+  }
+  .listening-audio-label { text-align: center; white-space: normal; }
+
+  /* Flashcards: two comfortable columns */
+  .flashcard-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8rem; }
+
+  /* Generic modals (badges / stats / path / review) */
+  .nb-modal-overlay { padding: 0.85rem; }
+  .nb-modal-body { padding: 1rem; }
+  .nb-modal-head { padding: 0.9rem 1rem; }
+  .nb-path-node { width: 100%; }
+
+  /* ── Mock exam ── */
+  .mx-qtext { font-size: 1rem; }
+  .mx-passage { padding: 0.9rem 1rem; font-size: 0.9rem; max-height: 260px; }
+  .mx-opt { padding: 0.75rem 0.85rem; font-size: 0.92rem; min-height: 44px; }
+  .mx-qnav { flex-wrap: wrap; }
+  .mx-setup { padding: 1.5rem 1rem 3rem; }
+  .mx-setup-hero h1 { font-size: 1.35rem; }
+  .mx-setup-hero .mx-hero-icon { width: 62px; height: 62px; font-size: 1.7rem; }
+  .mx-breakdown { padding: 1.1rem 1rem; }
+  .mx-instructions { padding: 1rem 1.1rem; }
+  .mx-results { padding: 1.5rem 1rem calc(3rem + env(safe-area-inset-bottom, 0px)); }
+  .mx-res-hero { padding: 1.5rem 1rem; }
+  .mx-res-sections { padding: 1.1rem 1rem; }
+  .mx-res-quickstats { gap: 1.1rem; }
+  .mx-ans-item { padding: 1rem; }
+  .mx-modal { padding: 1.25rem; }
+  .mx-modal-actions { justify-content: stretch; }
+  .mx-modal-actions .mx-btn { flex: 1; }
+  .mx-main { padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px)); }
+  .mx-pal-toggle { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+  .mx-header { padding-top: max(0.6rem, env(safe-area-inset-top, 0px)); }
+}
+
+/* ── 3) PHONES (≤ 600px) ────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Progress pill duplicates the sidebar progress — drop it */
+  .progress-pill { display: none; }
+}
+
+/* ── 4) SMALL PHONES (≤ 480px) ──────────────────────────────── */
+@media (max-width: 480px) {
+
+  /* Topbar: essentials only */
+  .nb-streak-chip { display: none; }
+  .nb-xp-display { display: none; }
+  .topbar { padding: 0 0.6rem; }
+  .topbar-section { gap: 0.35rem; }
+  .icon-btn, .dark-toggle { width: 34px; height: 34px; }
+  .student-chip { max-width: 110px; }
+
+  /* Splash */
+  .splash-logo-wrap { margin-bottom: 1.5rem; gap: 0.75rem; }
+  .splash-book { font-size: 2.5rem; }
+  .splash-brand { font-size: 1.3rem; }
+  .splash-sub { margin-bottom: 1.25rem; }
+  .splash-cta { margin-bottom: 1.25rem; }
+  .s-stat { padding: 0 0.8rem; font-size: 0.78rem; }
+  .s-stat span { font-size: 1.1rem; }
+
+  /* Dashboard */
+  .dash-title { font-size: 1.35rem; }
+  #main-dashboard { padding: 1.75rem 1rem calc(1.75rem + env(safe-area-inset-bottom, 0px)); }
+
+  /* Content / cards */
+  .unit-h-title { font-size: 1.2rem; }
+  .bottom-nav { gap: 0.5rem; }
+  .bottom-unit-indicator { font-size: 0.8rem; padding: 3px 10px; }
+
+  /* Track headers */
+  .ls-header-ar, .rd-header-ar { font-size: 1.2rem; }
+  .ls-header-en, .rd-header-en { font-size: 0.9rem; }
+
+  /* Games */
+  .nb-match-grid { grid-template-columns: repeat(2, 1fr); }
+  .nb-review-actions { grid-template-columns: 1fr 1fr 1fr; gap: 0.4rem; }
+  .nb-rc-en { font-size: 1.5rem; }
+  .nb-rc-ar { font-size: 1.35rem; }
+
+  /* Mock exam */
+  .mx-header-actions { gap: 0.4rem; }
+  .mx-btn { padding: 0.55rem 0.9rem; font-size: 0.8rem; }
+  .mx-btn-lg { padding: 0.75rem 1.4rem; font-size: 0.9rem; }
+  .mx-timer { font-size: 0.95rem; padding: 4px 12px; }
+  .mx-bd-label { width: 96px; font-size: 0.72rem; }
+  .mx-review-stats { gap: 0.5rem; }
+  .mx-rstat { padding: 0.6rem 0.4rem; }
+  .mx-rstat .num { font-size: 1.2rem; }
+  .mx-qnum-badge .mx-qnum { width: 34px; height: 34px; font-size: 0.92rem; }
+  .mx-audio { flex-wrap: wrap; padding: 0.85rem 1rem; }
+
+  /* Quiz modal */
+  .quiz-modal-title { font-size: 1.05rem; }
+  .quiz-q-card { padding: 1rem; }
+}
+
+/* ── 5) LANDSCAPE PHONES ────────────────────────────────────── */
+@media (max-width: 768px) and (orientation: landscape) {
+  :root { --mtb-h: calc(52px + env(safe-area-inset-bottom, 0px)); }
+  .mobile-toolbar { height: var(--mtb-h); }
+  .app-body {
+    height: calc(100vh - var(--topbar-h) - var(--mtb-h));
+    margin-bottom: var(--mtb-h);
+  }
+  @supports (height: 100dvh) {
+    .app-body { height: calc(100dvh - var(--topbar-h) - var(--mtb-h)); }
+  }
+  .units-panel { bottom: var(--mtb-h); }
+}
+
+/* ── 6) TOUCH DEVICES ───────────────────────────────────────── */
+@media (hover: none) {
+  /* Comfortable tap targets */
+  .mini-opt, .q-opt, .ls-radio-opt, .mx-opt, .nb-qf-opt { min-height: 44px; }
+  .kw-en-box { min-height: 44px; }
+  /* No lift-on-hover artifacts on touch */
+  .nb-video-card:hover, .mx-mode-card:hover,
+  .nb-game-card:hover, .nb-match-cell:hover:not(.done),
+  .bottom-btn:hover, .mx-btn-primary:hover { transform: none; }
+}
