@@ -3,28 +3,12 @@
    Grammar Strategies — Ayed Academy
    ================================================================ */
 
-// ── SPLASH INTRO VIDEO ─────────────────────────────────────────
-function populateSplashVideo() {
-  const slot = $('splash-video-slot');
-  if (!slot) return;
-  const url = GS.ALL_DATA && GS.ALL_DATA.config && GS.ALL_DATA.config.introVideoUrl;
-  if (!url || typeof getVideoEmbed !== 'function') { slot.innerHTML = ''; return; }
-  const embed = getVideoEmbed(url);
-  if (!embed) { slot.innerHTML = ''; return; }
-  slot.innerHTML = `
-    <div class="splash-video-wrap">
-      <span class="splash-video-badge">▶ شاهد</span>
-      ${embed}
-    </div>`;
-}
-
 // ── BOOTSTRAP ──────────────────────────────────────────────────
 async function boot() {
   try {
     const res = await fetch('/api/units');
     if (!res.ok) throw new Error('API server returned error');
     GS.ALL_DATA = await res.json();
-    populateSplashVideo();
     initSplash();
   } catch (err) {
     console.warn('Failed to connect to local API server, trying static fallback...', err);
@@ -32,7 +16,6 @@ async function boot() {
       const res = await fetch('data/db.json');
       if (!res.ok) throw new Error('Static db.json not found');
       GS.ALL_DATA = await res.json();
-      populateSplashVideo();
       initSplash();
     } catch (fallbackErr) {
       console.error('All data loading attempts failed:', fallbackErr);
