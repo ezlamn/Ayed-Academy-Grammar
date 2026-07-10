@@ -25,8 +25,7 @@
   <!-- Icon System (SVG icons — replaces all emojis) -->
   <script src="public/js/icons.js"></script>
 
-  <!-- Firebase & External Scripts -->
-  <script type="module" src="public/firebase-config.js"></script>
+  <!-- External Scripts -->
   <script src="public/mock_exam.js"></script>
   <script src="public/analytics.js"></script>
 </head>
@@ -53,28 +52,15 @@
       </div>
     </div>
     <h1 class="splash-headline">مرحباً بك في رحلة التعلم <i data-icon="graduation-cap"></i></h1>
-    <p class="splash-sub">أنشئ حساباً لحفظ تقدمك السحابي أو ادخل كزائر</p>
+    <p class="splash-sub">اكتب اسمك وابدأ رحلتك التعليمية</p>
 
     <!-- Welcome intro video (populated from data/config) -->
     <div id="splash-video-slot"></div>
 
-    <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login">تسجيل دخول</button>
-      <button class="auth-tab" id="tab-guest">دخول كزائر</button>
-    </div>
-
-    <div id="auth-login-form">
-      <input type="email" id="student-email" class="name-input" placeholder="البريد الإلكتروني"/>
-      <input type="password" id="student-password" class="name-input" placeholder="كلمة المرور" style="margin-top:0.5rem;"/>
-      <button class="splash-cta" id="splash-start-login" style="margin-top:1rem;">
-        <span>دخول / إنشاء حساب</span>
-      </button>
-    </div>
-
-    <div id="auth-guest-form" class="hidden">
+    <div id="auth-guest-form">
       <input type="text" id="student-name-input" class="name-input" placeholder="اكتب اسمك هنا..."/>
       <button class="splash-cta" id="splash-start" style="margin-top:1rem;">
-        <span>دخول محلي (بدون حفظ سحابي)</span>
+        <span>ابدأ الآن</span>
       </button>
     </div>
     <div class="splash-stats-row">

@@ -16,7 +16,6 @@ function addXP(amount, event) {
   }
 
   localStorage.setItem('gs_xp', GS.student.xp);
-  syncProgressToCloud();
   localStorage.setItem('gs_level', GS.student.level);
 
   updateXPUI();
