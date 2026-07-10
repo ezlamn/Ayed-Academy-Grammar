@@ -71,7 +71,7 @@ window.MockExam = {
 
   /* ── QUESTION POOL ──────────────────────────────────────────── */
   buildPool: function () {
-    const D = (window.GS && GS.ALL_DATA) || {};
+    const D = (typeof GS !== 'undefined' && GS.ALL_DATA) || {};
     const pool = { listening: [], reading: [], grammar: [], writing: [] };
 
     // Grammar + Writing (from grammar track; "Writing Analysis" unit → writing section)
@@ -96,7 +96,7 @@ window.MockExam = {
         if (!groups.has(key)) groups.set(key, []);
         groups.get(key).push({
           q: q.q, opts: q.opts, c: q.c, expl: q.expl,
-          passage: (q.passageText && q.passageText.trim().length > 30) ? q.passageText : null,
+          passage: (q.passageText && q.passageText.trim().length > 30) ? q.passageText.replace(/\\n/g, '\n') : null,
           imgUrl: q.imgUrl || null
         });
       }));
@@ -186,6 +186,8 @@ window.MockExam = {
     this.teardown();
     const shell = document.getElementById('mock-exam-ui');
     if (shell) shell.remove();
+    // The exam lives on its own /mock-exam page — leaving it means navigating home
+    if (location.pathname === '/mock-exam') { location.href = '/'; return; }
     const dash = document.getElementById('main-dashboard');
     if (dash) dash.classList.remove('hidden');
     if (typeof initDashboard === 'function') initDashboard();

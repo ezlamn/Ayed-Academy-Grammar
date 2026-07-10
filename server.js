@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 app.use('/tests', express.static(path.join(__dirname, 'public', 'tests')));
 
 // Expose db.json read-only for test runners
@@ -22,6 +23,13 @@ app.get('/data/db.json', (req, res) => {
 // Serve index.html from root
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Each track lives on its own route — the client reads the path and opens that track directly
+['/dashboard', '/grammar', '/reading', '/listening', '/mock-exam'].forEach(route => {
+  app.get(route, (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
 });
 
 // Ensure data and uploads dirs exist

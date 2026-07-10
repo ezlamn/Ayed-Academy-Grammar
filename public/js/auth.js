@@ -9,21 +9,27 @@ function initSplash() {
   const nameInput = $('student-name-input');
   const startGuestBtn = $('splash-start');
 
-  if (GS.student.name) nameInput.value = GS.student.name;
+  const routeTrack = PATH_TO_TRACK[location.pathname];
+  const onDashboard = location.pathname === '/dashboard';
 
-  function goToDashboard() {
-    splash.classList.add('fade-out');
-    setTimeout(() => {
-      splash.style.display = 'none';
-      initDashboard();
-    }, 700);
+  // Inner pages (/dashboard or a track) — the splash only lives on '/'
+  if (routeTrack || onDashboard) {
+    if (!GS.student.name) { location.replace('/'); return; }
+    splash.style.display = 'none';
+    if (routeTrack) openTrack(routeTrack);
+    else initDashboard();
+    return;
   }
+
+  // Welcome page ('/')
+  if (GS.student.name) nameInput.value = GS.student.name;
 
   startGuestBtn.addEventListener('click', () => {
     const name = nameInput.value.trim() || 'طالب';
     GS.student.name = name;
     localStorage.setItem('gs_student_name', name);
-    goToDashboard();
+    splash.classList.add('fade-out');
+    setTimeout(() => { location.href = '/dashboard'; }, 400);
   });
 
   nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') startGuestBtn.click(); });

@@ -3,6 +3,31 @@
    Grammar Strategies — Ayed Academy
    ================================================================ */
 
+// ── TRACK ROUTES ───────────────────────────────────────────────
+// Each track has its own URL; the dashboard links to them and boot()
+// opens the right track when the page loads on one of these paths.
+const TRACK_ROUTES = { grammar: '/grammar', reading: '/reading', listening: '/listening', tests: '/mock-exam' };
+const PATH_TO_TRACK = { '/grammar': 'grammar', '/reading': 'reading', '/listening': 'listening', '/mock-exam': 'tests' };
+
+function openTrack(track) {
+  if (track === 'tests') {
+    if (window.MockExam) {
+      window.MockExam.start();
+    } else {
+      alert("نظام الاختبارات قيد التحميل...");
+    }
+    return;
+  }
+
+  GS.currentTrack = track;
+  GS.UNITS = GS.ALL_DATA[track] || [];
+  GS.currentUnit = 0;
+
+  $('main-dashboard').classList.add('hidden');
+  $('app').classList.remove('hidden');
+  initApp();
+}
+
 // ── DASHBOARD ──────────────────────────────────────────────────
 function initDashboard() {
   $('main-dashboard').classList.remove('hidden');
@@ -26,23 +51,7 @@ function initDashboard() {
   document.querySelectorAll('.dash-card').forEach(card => {
     card.onclick = function () {
       const track = this.dataset.track;
-
-      if (track === 'tests') {
-        if (window.MockExam) {
-          window.MockExam.start();
-        } else {
-          alert("نظام الاختبارات قيد التحميل...");
-        }
-        return;
-      }
-
-      GS.currentTrack = track;
-      GS.UNITS = GS.ALL_DATA[track] || [];
-      GS.currentUnit = 0;
-
-      $('main-dashboard').classList.add('hidden');
-      $('app').classList.remove('hidden');
-      initApp();
+      location.href = TRACK_ROUTES[track] || '/';
     };
   });
 
@@ -55,12 +64,4 @@ function initDashboard() {
     location.reload();
   };
 
-  const btnBack = $('btn-back-dash');
-  if (btnBack) {
-    btnBack.onclick = () => {
-      $('app').classList.add('hidden');
-      $('main-dashboard').classList.remove('hidden');
-      initDashboard();
-    };
-  }
 }

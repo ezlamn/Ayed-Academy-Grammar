@@ -13,7 +13,7 @@ async function boot() {
   } catch (err) {
     console.warn('Failed to connect to local API server, trying static fallback...', err);
     try {
-      const res = await fetch('data/db.json');
+      const res = await fetch('/data/db.json');
       if (!res.ok) throw new Error('Static db.json not found');
       GS.ALL_DATA = await res.json();
       initSplash();
@@ -84,6 +84,10 @@ function initApp() {
     bindTopbar();
     bindNotes();
     bindTools();
+
+    // Home button — each track is its own page now, so go back to the root URL
+    const btnBack = $('btn-back-dash');
+    if (btnBack) btnBack.onclick = () => { location.href = '/'; };
 
     // Init new UI features (dark mode + FAB)
     initNewFeatures();
