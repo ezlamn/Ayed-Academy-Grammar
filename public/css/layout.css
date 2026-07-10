@@ -19,7 +19,7 @@
 .o1 { width:500px; height:500px; background:rgba(245,166,35,0.18); top:-150px; right:-100px; }
 .o2 { width:400px; height:400px; background:rgba(0,180,216,0.15); bottom:-100px; left:-100px; animation-delay:-4s; }
 .o3 { width:250px; height:250px; background:rgba(6,214,160,0.12); top:40%; left:35%; animation-delay:-8s; }
-.o4 { width:200px; height:200px; background:rgba(124,58,237,0.1); bottom:20%; right:20%; animation-delay:-2s; }
+.o4 { width:200px; height:200px; background:rgba(37,99,235,0.1); bottom:20%; right:20%; animation-delay:-2s; }
 @keyframes orbFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(20px,-30px) scale(1.08); } }
 
 .splash-card {
