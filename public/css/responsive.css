@@ -49,6 +49,44 @@ img, video, iframe, canvas, audio { max-width: 100%; }
   @supports (height: 100dvh) {
     .app-body { height: calc(100dvh - var(--topbar-h) - var(--mtb-h)); }
   }
+  html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  #app {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+  @supports (height: 100dvh) {
+    #app { min-height: 100dvh; }
+  }
+  .app-body {
+    height: auto;
+    min-height: calc(100vh - var(--topbar-h));
+    margin-bottom: 0;
+    overflow: visible;
+    padding-bottom: var(--mtb-h);
+  }
+  @supports (height: 100dvh) {
+    .app-body { min-height: calc(100dvh - var(--topbar-h)); }
+  }
+  .content-area {
+    min-width: 0;
+    min-height: calc(100vh - var(--topbar-h) - var(--mtb-h));
+    overflow: visible;
+    padding-bottom: var(--mtb-h);
+  }
+  @supports (height: 100dvh) {
+    .content-area { min-height: calc(100dvh - var(--topbar-h) - var(--mtb-h)); }
+  }
+  .page-content {
+    flex: 0 0 auto;
+    overflow: visible;
+    -webkit-overflow-scrolling: touch;
+  }
   .units-panel { bottom: var(--mtb-h); }
   .notes-panel { bottom: 0; }
   .notes-actions { padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
@@ -93,6 +131,43 @@ img, video, iframe, canvas, audio { max-width: 100%; }
   .dash-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   .dash-footer { margin-top: 2rem; }
   .analytics-card { padding: 1.25rem !important; }
+
+  /* Grammar cards: keywords must become normal responsive content on phones */
+  .sc-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sc-keywords {
+    position: static;
+    top: auto;
+    align-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+    border-end-start-radius: 0;
+    padding: 1rem;
+  }
+  .kw-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  .sc-keywords-title {
+    grid-column: 1 / -1;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+    line-height: 1.5;
+  }
+  .kw-reveal {
+    min-width: 0;
+    margin-bottom: 0;
+  }
+  .kw-en-box,
+  .kw-ar-box {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 
   /* Tracks: listening & reading headers/sections */
   .ls-section-header, .rd-section-header {
@@ -193,6 +268,7 @@ img, video, iframe, canvas, audio { max-width: 100%; }
   .unit-h-title { font-size: 1.2rem; }
   .bottom-nav { gap: 0.5rem; }
   .bottom-unit-indicator { font-size: 0.8rem; padding: 3px 10px; }
+  .kw-grid { grid-template-columns: 1fr; }
 
   /* Track headers */
   .ls-header-ar, .rd-header-ar { font-size: 1.2rem; }
@@ -226,11 +302,14 @@ img, video, iframe, canvas, audio { max-width: 100%; }
   :root { --mtb-h: calc(52px + env(safe-area-inset-bottom, 0px)); }
   .mobile-toolbar { height: var(--mtb-h); }
   .app-body {
-    height: calc(100vh - var(--topbar-h) - var(--mtb-h));
-    margin-bottom: var(--mtb-h);
+    height: auto;
+    min-height: calc(100vh - var(--topbar-h));
+    margin-bottom: 0;
+    padding-bottom: var(--mtb-h);
+    overflow: visible;
   }
   @supports (height: 100dvh) {
-    .app-body { height: calc(100dvh - var(--topbar-h) - var(--mtb-h)); }
+    .app-body { min-height: calc(100dvh - var(--topbar-h)); }
   }
   .units-panel { bottom: var(--mtb-h); }
 }
