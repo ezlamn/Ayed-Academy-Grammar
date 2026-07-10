@@ -186,8 +186,8 @@ window.MockExam = {
     this.teardown();
     const shell = document.getElementById('mock-exam-ui');
     if (shell) shell.remove();
-    // The exam lives on its own /mock-exam page — leaving it means navigating home
-    if (location.pathname === '/mock-exam') { location.href = '/'; return; }
+    // The exam lives on its own /mock-exam page — leaving it means navigating to the dashboard
+    if (location.pathname === '/mock-exam') { location.href = '/dashboard'; return; }
     const dash = document.getElementById('main-dashboard');
     if (dash) dash.classList.remove('hidden');
     if (typeof initDashboard === 'function') initDashboard();

@@ -61,7 +61,7 @@ function initDashboard() {
 
   $('dash-logout').onclick = () => {
     localStorage.removeItem('gs_student_name');
-    location.reload();
+    location.href = '/';
   };
 
 }

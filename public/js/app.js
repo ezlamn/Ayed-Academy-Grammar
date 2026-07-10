@@ -85,9 +85,9 @@ function initApp() {
     bindNotes();
     bindTools();
 
-    // Home button — each track is its own page now, so go back to the root URL
+    // Home button — each track is its own page now, so go back to the dashboard page
     const btnBack = $('btn-back-dash');
-    if (btnBack) btnBack.onclick = () => { location.href = '/'; };
+    if (btnBack) btnBack.onclick = () => { location.href = '/dashboard'; };
 
     // Init new UI features (dark mode + FAB)
     initNewFeatures();
