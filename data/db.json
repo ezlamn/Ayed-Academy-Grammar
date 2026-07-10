@@ -5232,7 +5232,10 @@
             "url": "https://www.w3schools.com/html/mov_bbb.mp4"
           }
         ]
-      }
+      },
+      "emoji": "📊",
+      "nameAr": "تحليل الرسوم البيانية",
+      "nameEn": "Figures Analysis"
     },
     {
       "id": "r2",
@@ -5342,10 +5345,13 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "🔤",
+      "nameAr": "استراتيجية المعنى",
+      "nameEn": "Meaning Technique"
     },
     {
-      "id": "r3",
+      "id": "rv1",
       "title": "نماذج الكلمات (Vocabulary Models)",
       "type": "vocab",
       "page": {
@@ -6713,7 +6719,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "📚",
+      "nameAr": "نماذج الكلمات",
+      "nameEn": "Vocabulary Models"
     },
     {
       "id": "r3",
@@ -6850,7 +6859,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "🔗",
+      "nameAr": "استراتيجية الإشارة",
+      "nameEn": "Referring Technique"
     },
     {
       "id": "r4",
@@ -7043,7 +7055,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "🔀",
+      "nameAr": "أدوات الربط",
+      "nameEn": "Conjunctions"
     },
     {
       "id": "r5",
@@ -7210,7 +7225,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "🎯",
+      "nameAr": "الأسئلة المباشرة",
+      "nameEn": "Direct Questions"
     },
     {
       "id": "r6",
@@ -7321,7 +7339,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "🧭",
+      "nameAr": "الغرض من النص",
+      "nameEn": "Purpose"
     },
     {
       "id": "r7",
@@ -7423,7 +7444,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "💭",
+      "nameAr": "رأي الكاتب",
+      "nameEn": "Opinion"
     },
     {
       "id": "r8",
@@ -7520,7 +7544,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "🧠",
+      "nameAr": "الاستنتاج والتحليل",
+      "nameEn": "Deduction & Analysis"
     },
     {
       "id": "r9",
@@ -7604,7 +7631,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "💡",
+      "nameAr": "الفكرة المهمة",
+      "nameEn": "One Important Idea"
     },
     {
       "id": "r10",
@@ -7701,7 +7731,10 @@
             ]
           }
         ]
-      }
+      },
+      "emoji": "🏷️",
+      "nameAr": "العنوان والفكرة الرئيسية",
+      "nameEn": "Title & Main Idea"
     }
   ],
   "listening": [

@@ -500,9 +500,9 @@ function renderVocabUnit(unit) {
   let html = `
     <div class="listening-unit animate-in">
       <div class="ls-section-header">
-        <div class="ls-header-ar">كلمات الأماكن</div>
-        <div class="ls-header-en">( PLACES WORDS )</div>
-        <div class="ls-header-icon">🗺️</div>
+        <div class="ls-header-ar">${unit.nameAr || 'كلمات الأماكن'}</div>
+        <div class="ls-header-en">( ${unit.nameEn || 'PLACES WORDS'} )</div>
+        <div class="ls-header-icon">${unit.emoji || '🗺️'}</div>
       </div>
   `;
 

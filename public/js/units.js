@@ -12,6 +12,7 @@ function buildUnitsNav() {
     const active = i === GS.currentUnit;
     const el = document.createElement('div');
     el.className = `unit-nav-item${active ? ' active' : ''}${done ? ' completed' : ''}`;
+    el.title = u.nameAr + ' — ' + u.nameEn;
     el.innerHTML = `
       <div class="unit-nav-num">${done ? '✓' : u.id}</div>
       <div class="unit-nav-info">
