@@ -650,14 +650,6 @@ body { background: var(--bg); }
   background: var(--primary-tint); color: var(--primary-deep);
   border: 1px solid rgba(99,102,241,0.20); border-radius: var(--r-pill);
 }
-.btn-back-dash {
-  background: var(--surface); color: var(--text-sec);
-  border: 1px solid var(--border); border-radius: 50%;
-  box-shadow: var(--sh-md);
-  bottom: 5.2rem; left: 6.2rem;
-}
-.btn-back-dash:hover { border-color: var(--primary); color: var(--primary-deep); }
-
 /* Analytics card injected on the dashboard (has inline styles) */
 .analytics-card {
   background: var(--surface) !important;
