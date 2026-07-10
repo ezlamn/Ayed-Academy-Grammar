@@ -667,6 +667,20 @@ body { background: var(--bg); }
   color: var(--text-primary);
 }
 .analytics-card h3 { color: var(--ink); }
+.analytics-card .an-cat-label { color: var(--text-primary); }
+.analytics-card .an-cat-percent { color: var(--text-muted); }
+.analytics-card .an-track {
+  width: 100%; height: 10px; border-radius: 5px; overflow: hidden;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+.analytics-card .an-advice {
+  margin-top: 1.5rem; font-size: 0.95rem; line-height: 1.6; padding: 1rem;
+  border-radius: 8px;
+  background: var(--surface2);
+  color: var(--text-sec);
+  border: 1px solid var(--border);
+}
 
 /* ================================================================
    TRACK HEADERS (listening / reading)
@@ -894,6 +908,8 @@ body.dark-mode .dash-card:nth-child(4n+3) .dash-icon { background: rgba(52,211,1
 body.dark-mode .dash-card:nth-child(4n)   .dash-icon { background: rgba(251,191,36,0.12); }
 body.dark-mode .analytics-card { background: var(--surface) !important; border-color: var(--border) !important; }
 body.dark-mode .analytics-card h3 { color: var(--ink); }
+body.dark-mode .analytics-card .an-track { background: rgba(255,255,255,0.1); border-color: var(--border); }
+body.dark-mode .analytics-card .an-advice { background: rgba(255,255,255,0.05); color: var(--text-sec); }
 
 body.dark-mode .nb-video-library, body.dark-mode .nb-video-card { background: var(--surface); border-color: var(--border); }
 body.dark-mode .nb-video-library-head, body.dark-mode .nb-video-card-title { color: var(--ink); }
@@ -905,4 +921,180 @@ body.dark-mode .mock-header { background: var(--surface); border-color: var(--bo
 @media (hover: none) {
   .mini-opt:hover:not(:disabled), .q-opt:hover:not(:disabled),
   .strategy-card:hover, .dash-card:hover { transform: none; }
+}
+
+/* ================================================================
+   HIGHLIGHTER 2.0 — marks, selection bubble & floating mode bar
+   ================================================================ */
+.content-area { position: relative; }
+
+/* Selection tint inside the lesson page */
+#page-content ::selection { background: rgba(99,102,241,0.22); }
+#page-content.hl-mode { cursor: text; }
+#page-content.hl-mode ::selection { background: rgba(251,191,36,0.55); color: #292524; }
+
+/* ── Highlight marks (marker-pen look) ── */
+.gs-hl {
+  border-radius: 0.4em;
+  padding: 0.06em 0.22em;
+  margin: 0 -0.04em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background: linear-gradient(100deg,
+    rgba(251,191,36,0.14) 0%, rgba(251,191,36,0.44) 6%,
+    rgba(251,191,36,0.44) 94%, rgba(251,191,36,0.14) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(217,119,6,0.25);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+.gs-hl-green {
+  background: linear-gradient(100deg,
+    rgba(52,211,153,0.12) 0%, rgba(52,211,153,0.38) 6%,
+    rgba(52,211,153,0.38) 94%, rgba(52,211,153,0.12) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(5,150,105,0.25);
+}
+.gs-hl-rose {
+  background: linear-gradient(100deg,
+    rgba(251,113,133,0.12) 0%, rgba(251,113,133,0.32) 6%,
+    rgba(251,113,133,0.32) 94%, rgba(251,113,133,0.12) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(225,29,72,0.22);
+}
+.gs-hl-blue {
+  background: linear-gradient(100deg,
+    rgba(96,165,250,0.12) 0%, rgba(96,165,250,0.34) 6%,
+    rgba(96,165,250,0.34) 94%, rgba(96,165,250,0.12) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(37,99,235,0.22);
+}
+
+/* Pop pulse when a mark is created / recolored */
+@keyframes gsHlPop {
+  0%   { box-shadow: 0 0 0 0 rgba(251,191,36,0.55), inset 0 -0.14em 0 rgba(217,119,6,0.25); }
+  100% { box-shadow: 0 0 0 0.6em rgba(251,191,36,0), inset 0 -0.14em 0 rgba(217,119,6,0.25); }
+}
+.gs-hl-new { animation: gsHlPop 0.55s ease-out; }
+
+/* Eraser-mode affordance */
+#page-content.eraser-mode { cursor: crosshair; }
+#page-content.eraser-mode .gs-hl:hover,
+#page-content.eraser-mode span[style*="background"]:hover {
+  background: rgba(244,63,94,0.16) !important;
+  box-shadow: 0 0 0 2px rgba(244,63,94,0.45);
+  text-decoration: line-through;
+  text-decoration-color: rgba(190,18,60,0.55);
+  cursor: pointer;
+}
+
+/* ── Floating mode bar (pill) ── */
+.mode-bar {
+  position: absolute; top: 14px; left: 50%;
+  transform: translateX(-50%);
+  width: max-content; max-width: calc(100% - 2rem);
+  border-radius: 999px;
+  padding: 8px 10px 8px 18px;
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, #F59E0B, #FBBF24);
+  color: #451A03;
+  font-weight: 800; font-size: 0.88rem;
+  box-shadow: 0 10px 26px rgba(180,83,9,0.35);
+  z-index: 40;
+  animation: modeBarIn 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.mode-bar.hidden { display: none; }
+.mode-bar.eraser {
+  background: linear-gradient(135deg, #E11D48, #FB7185);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(190,18,60,0.35);
+}
+.mode-bar svg { width: 16px; height: 16px; vertical-align: -3px; }
+.mode-bar-close {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; color: inherit; opacity: 0.75;
+  background: rgba(255,255,255,0.3);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.mode-bar-close:hover { opacity: 1; transform: scale(1.1); }
+@keyframes modeBarIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-14px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── Floating selection bubble ── */
+.hl-popup {
+  position: fixed; z-index: 1300;
+  display: flex; align-items: center; gap: 7px;
+  background: #1E293B;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 999px;
+  padding: 7px 10px;
+  box-shadow: 0 12px 32px rgba(2,6,23,0.4);
+  opacity: 0; pointer-events: none;
+  transform: translateY(6px) scale(0.92);
+  transition: opacity 0.16s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hl-popup.show { opacity: 1; pointer-events: auto; transform: none; }
+.hl-popup::after {
+  content: '';
+  position: absolute; bottom: -5px; left: var(--arrow-x, 50%);
+  width: 10px; height: 10px;
+  margin-left: -5px;
+  background: #1E293B;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.hl-popup.below::after { bottom: auto; top: -5px; }
+.hl-swatch {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.28);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.hl-swatch:hover { transform: scale(1.18); border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
+.hl-swatch.gold  { background: #FBBF24; }
+.hl-swatch.green { background: #34D399; }
+.hl-swatch.rose  { background: #FB7185; }
+.hl-swatch.blue  { background: #60A5FA; }
+.hl-pop-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.16); }
+.hl-pop-erase {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #FDA4AF; cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.hl-pop-erase:hover { background: rgba(244,63,94,0.22); transform: scale(1.12); }
+.hl-pop-erase svg { width: 16px; height: 16px; }
+
+/* Dark mode */
+body.dark-mode .gs-hl {
+  background: linear-gradient(100deg,
+    rgba(251,191,36,0.16) 0%, rgba(251,191,36,0.32) 6%,
+    rgba(251,191,36,0.32) 94%, rgba(251,191,36,0.16) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(251,191,36,0.35);
+}
+body.dark-mode .gs-hl-green {
+  background: linear-gradient(100deg,
+    rgba(52,211,153,0.14) 0%, rgba(52,211,153,0.28) 6%,
+    rgba(52,211,153,0.28) 94%, rgba(52,211,153,0.14) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(52,211,153,0.35);
+}
+body.dark-mode .gs-hl-rose {
+  background: linear-gradient(100deg,
+    rgba(251,113,133,0.14) 0%, rgba(251,113,133,0.26) 6%,
+    rgba(251,113,133,0.26) 94%, rgba(251,113,133,0.14) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(251,113,133,0.35);
+}
+body.dark-mode .gs-hl-blue {
+  background: linear-gradient(100deg,
+    rgba(96,165,250,0.14) 0%, rgba(96,165,250,0.28) 6%,
+    rgba(96,165,250,0.28) 94%, rgba(96,165,250,0.14) 100%);
+  box-shadow: inset 0 -0.14em 0 rgba(96,165,250,0.35);
+}
+body.dark-mode #page-content.hl-mode ::selection { background: rgba(251,191,36,0.6); color: #1C1917; }
+
+/* Touch tweaks */
+@media (max-width: 768px) {
+  .mode-bar { top: 10px; font-size: 0.8rem; padding: 7px 8px 7px 14px; gap: 10px; }
+  .hl-popup { padding: 8px 12px; gap: 10px; }
+  .hl-swatch { width: 30px; height: 30px; }
+  .hl-pop-erase { width: 32px; height: 32px; }
 }

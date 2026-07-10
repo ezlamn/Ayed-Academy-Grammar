@@ -17,8 +17,6 @@ const HL_PALETTE = [
   { key: 'rose',  label: 'وردي' },
   { key: 'blue',  label: 'أزرق' },
 ];
-// Sentinel color used only to locate the spans execCommand just created
-const HL_SENTINEL = 'rgb(1,2,3)';
 
 // ── TOOLS BINDING ─────────────────────────────────────────────
 function bindTools() {
@@ -148,33 +146,57 @@ function applyHighlight(color) {
   const pc  = $('page-content');
   const sel = window.getSelection();
   if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+  const range = sel.getRangeAt(0);
+  if (!pc.contains(range.commonAncestorContainer)) return;
 
+  try { expandRangeToWordBoundaries(range); } catch (e) {}
+
+  // Split boundary text nodes so only the selected part gets wrapped.
+  // End first: splitting the start first would shift the end offset
+  // when both boundaries sit in the same text node.
   try {
-    const range = sel.getRangeAt(0);
-    expandRangeToWordBoundaries(range);
-    sel.removeAllRanges();
-    sel.addRange(range);
+    if (range.endContainer.nodeType === Node.TEXT_NODE &&
+        range.endOffset < range.endContainer.textContent.length) {
+      range.endContainer.splitText(range.endOffset);
+    }
+    if (range.startContainer.nodeType === Node.TEXT_NODE && range.startOffset > 0) {
+      const tail = range.startContainer.splitText(range.startOffset);
+      range.setStart(tail, 0);
+    }
   } catch (e) {
-    console.warn('Failed to expand selection to word boundaries:', e);
+    console.warn('Failed to split boundary text nodes:', e);
   }
 
-  // execCommand handles multi-node ranges reliably; we tag with a
-  // sentinel color, then swap the inline style for semantic classes.
-  pc.contentEditable = 'true';
-  try { document.execCommand('styleWithCSS', false, true); } catch (e) {}
-  document.execCommand('hiliteColor', false, HL_SENTINEL);
-  pc.contentEditable = 'false';
-  sel.removeAllRanges();
+  const anc  = range.commonAncestorContainer;
+  const root = anc.nodeType === Node.TEXT_NODE ? anc.parentNode : anc;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  let node;
+  while ((node = walker.nextNode())) {
+    if (!range.intersectsNode(node)) continue;
+    if (!node.textContent.trim()) continue;
+    const parent = node.parentElement;
+    if (!parent || parent.closest('svg, script, style, textarea, input, button')) continue;
+    nodes.push(node);
+  }
 
   let marked = 0;
-  pc.querySelectorAll('span[style*="background"]').forEach(sp => {
-    if (sp.style.backgroundColor.replace(/\s+/g, '') !== HL_SENTINEL) return;
-    sp.style.backgroundColor = '';
-    if (!sp.style.cssText.trim()) sp.removeAttribute('style');
-    setHlColor(sp, color);
+  nodes.forEach(n => {
+    const parent = n.parentElement;
+    // Text already alone inside a mark → just recolor it
+    if (parent.classList.contains('gs-hl') && parent.childNodes.length === 1) {
+      setHlColor(parent, color);
+      marked++;
+      return;
+    }
+    const span = document.createElement('span');
+    parent.insertBefore(span, n);
+    span.appendChild(n);
+    setHlColor(span, color);
     marked++;
   });
 
+  sel.removeAllRanges();
   if (marked) { saveHighlights(); refreshHlButtons(); }
 }
 
