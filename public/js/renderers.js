@@ -220,7 +220,10 @@ function renderStrategy(strat, si) {
 
   // Animated explainer plays first; the rule stays locked until it
   // finishes (or the user skips). Already-watched rules start open.
-  const hasAnim = typeof renderAnimExplainer === 'function';
+  // Solved question banks (id contains "bank") have no rule to teach —
+  // they're pure practice, so they skip the explainer entirely.
+  const isBank = /bank/i.test(strat.id || '');
+  const hasAnim = !isBank && typeof renderAnimExplainer === 'function';
   const animHtml = hasAnim ? renderAnimExplainer(strat) : '';
   const ruleLocked = hasAnim && typeof axIsWatched === 'function' && !axIsWatched(strat.id);
 
