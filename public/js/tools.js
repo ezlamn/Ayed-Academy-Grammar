@@ -1,7 +1,24 @@
 /* ================================================================
-   TOOLS.JS — Highlight, Erase, Notes, Zoom & Toolbar Controls
+   TOOLS.JS — Highlight 2.0, Erase, Notes, Zoom & Toolbar Controls
    Grammar Strategies — Ayed Academy
+
+   Highlighting UX:
+   - Select any text → floating bubble with color swatches + eraser
+     (no need to enter highlight mode first).
+   - Highlight mode → selection is instantly marked in gold.
+   - Click an existing mark (no mode) → bubble to recolor / remove it.
+   - Eraser mode → click any mark to remove it. Escape exits any mode.
    ================================================================ */
+
+// Palette of mark colors (class suffixes — styled in theme-modern.css)
+const HL_PALETTE = [
+  { key: 'gold',  label: 'ذهبي' },
+  { key: 'green', label: 'أخضر' },
+  { key: 'rose',  label: 'وردي' },
+  { key: 'blue',  label: 'أزرق' },
+];
+// Sentinel color used only to locate the spans execCommand just created
+const HL_SENTINEL = 'rgb(1,2,3)';
 
 // ── TOOLS BINDING ─────────────────────────────────────────────
 function bindTools() {
@@ -27,14 +44,16 @@ function bindTools() {
   const doHighlight = () => {
     GS.ui.highlightMode = !GS.ui.highlightMode;
     GS.ui.eraserMode = false;
+    hideHlPopup();
     updateToolState();
-    if (GS.ui.highlightMode) showToast('highlighter', 'حدد أي نص لتظليله');
+    if (GS.ui.highlightMode) showToast('highlighter', 'اسحب على أي نص ليتظلّل فورًا');
   };
   const doErase = () => {
     GS.ui.eraserMode = !GS.ui.eraserMode;
     GS.ui.highlightMode = false;
+    hideHlPopup();
     updateToolState();
-    if (GS.ui.eraserMode) showToast('eraser', 'انقر على أي نص مُظلَّل لإزالته');
+    if (GS.ui.eraserMode) showToast('eraser', 'انقر على أي تظليل لإزالته');
   };
   const doClearHl = () => {
     if (!confirm('مسح جميع التظليلات في هذا الدرس؟')) return;
@@ -58,52 +77,235 @@ function bindTools() {
     updateToolState();
   });
 
-  // ── HIGHLIGHT ──
-  pc.addEventListener('mouseup', () => {
-    if (!GS.ui.highlightMode) return;
+  // ── SELECTION END → instant mark (mode) or floating bubble ──
+  const onSelectEnd = () => {
+    if (GS.ui.eraserMode) return;
+    if (GS.ui.highlightMode) { applyHighlight('gold'); return; }
     const sel = window.getSelection();
-    if (!sel || sel.isCollapsed) return;
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    if (!pc.contains(range.commonAncestorContainer)) return;
+    if (!range.toString().trim()) return;
+    GS._hlPopupTarget = null;
+    showHlPopup(range.getBoundingClientRect());
+  };
+  pc.addEventListener('mouseup',  () => setTimeout(onSelectEnd, 10));
+  pc.addEventListener('touchend', () => setTimeout(onSelectEnd, 200));
 
-    try {
-      const range = sel.getRangeAt(0);
-      expandRangeToWordBoundaries(range);
-      sel.removeAllRanges();
-      sel.addRange(range);
-    } catch (e) {
-      console.warn("Failed to expand selection to word boundaries:", e);
+  // Hide the bubble when the selection collapses (unless targeting a mark)
+  document.addEventListener('selectionchange', () => {
+    clearTimeout(GS._hlSelTimer);
+    GS._hlSelTimer = setTimeout(() => {
+      const sel = window.getSelection();
+      if ((!sel || sel.isCollapsed) && !GS._hlPopupTarget) hideHlPopup();
+    }, 120);
+  });
+  pc.addEventListener('scroll', hideHlPopup, { passive: true });
+
+  // Clicking outside the bubble dismisses a mark-targeted bubble
+  document.addEventListener('mousedown', e => {
+    const popup = $('hl-popup');
+    if (popup && !popup.contains(e.target)) {
+      if (GS._hlPopupTarget && !findHlAncestor(e.target, pc)) hideHlPopup();
     }
-
-    pc.contentEditable = 'true';
-    document.execCommand('hiliteColor', false, 'rgba(245,166,35,0.35)');
-    pc.contentEditable = 'false';
-    sel.removeAllRanges();
-    saveHighlights();
-    erBtn.classList.remove('hidden');
-    clrBtn.classList.remove('hidden');
   });
 
-  // ── ERASE ──
+  // ── CLICK ON AN EXISTING MARK (no mode) → recolor / remove bubble ──
+  pc.addEventListener('click', e => {
+    if (GS.ui.highlightMode || GS.ui.eraserMode) return;
+    const sel = window.getSelection();
+    if (sel && !sel.isCollapsed) return; // selection bubble handles this
+    const mark = findHlAncestor(e.target, pc);
+    if (!mark) return;
+    GS._hlPopupTarget = mark;
+    showHlPopup(mark.getBoundingClientRect());
+  });
+
+  // ── ERASE (eraser mode) ──
   pc.addEventListener('click', e => {
     if (!GS.ui.eraserMode) return;
-    let t = e.target;
-    while (t && t !== pc) {
-      if (t.style && t.style.backgroundColor) {
-        t.style.backgroundColor = '';
-        if (t.tagName === 'SPAN' && !t.getAttribute('class') && !t.style.cssText.trim()) {
-          const p = t.parentNode;
-          while (t.firstChild) p.insertBefore(t.firstChild, t);
-          p.removeChild(t);
-        }
-        saveHighlights();
-        return;
-      }
-      t = t.parentNode;
+    const mark = findHlAncestor(e.target, pc);
+    if (!mark) return;
+    unwrapHl(mark);
+    saveHighlights();
+    refreshHlButtons();
+  });
+
+  // Escape exits highlight/eraser mode and closes the bubble
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    hideHlPopup();
+    if (GS.ui.highlightMode || GS.ui.eraserMode) {
+      GS.ui.highlightMode = false;
+      GS.ui.eraserMode = false;
+      updateToolState();
     }
   });
 }
 
+// ── APPLY A MARK TO THE CURRENT SELECTION ─────────────────────
+function applyHighlight(color) {
+  const pc  = $('page-content');
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+
+  try {
+    const range = sel.getRangeAt(0);
+    expandRangeToWordBoundaries(range);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  } catch (e) {
+    console.warn('Failed to expand selection to word boundaries:', e);
+  }
+
+  // execCommand handles multi-node ranges reliably; we tag with a
+  // sentinel color, then swap the inline style for semantic classes.
+  pc.contentEditable = 'true';
+  try { document.execCommand('styleWithCSS', false, true); } catch (e) {}
+  document.execCommand('hiliteColor', false, HL_SENTINEL);
+  pc.contentEditable = 'false';
+  sel.removeAllRanges();
+
+  let marked = 0;
+  pc.querySelectorAll('span[style*="background"]').forEach(sp => {
+    if (sp.style.backgroundColor.replace(/\s+/g, '') !== HL_SENTINEL) return;
+    sp.style.backgroundColor = '';
+    if (!sp.style.cssText.trim()) sp.removeAttribute('style');
+    setHlColor(sp, color);
+    marked++;
+  });
+
+  if (marked) { saveHighlights(); refreshHlButtons(); }
+}
+
+// ── FLOATING BUBBLE (color swatches + eraser) ─────────────────
+function buildHlPopup() {
+  let p = $('hl-popup');
+  if (p) return p;
+  p = document.createElement('div');
+  p.id = 'hl-popup';
+  p.className = 'hl-popup';
+  const eraseIcon = window.AyIcon ? AyIcon.svg('eraser') : '✕';
+  p.innerHTML =
+    HL_PALETTE.map(c =>
+      `<button type="button" class="hl-swatch ${c.key}" data-hl-color="${c.key}" title="تظليل ${c.label}"></button>`
+    ).join('') +
+    `<span class="hl-pop-sep"></span>` +
+    `<button type="button" class="hl-pop-erase" data-hl-erase title="إزالة التظليل">${eraseIcon}</button>`;
+
+  // Keep the text selection alive while interacting with the bubble
+  p.addEventListener('mousedown', e => e.preventDefault());
+
+  p.addEventListener('click', e => {
+    const swatch = e.target.closest('[data-hl-color]');
+    const erase  = e.target.closest('[data-hl-erase]');
+    const target = GS._hlPopupTarget;
+    if (swatch) {
+      if (target) { setHlColor(target, swatch.dataset.hlColor); saveHighlights(); }
+      else applyHighlight(swatch.dataset.hlColor);
+    } else if (erase) {
+      if (target) { unwrapHl(target); saveHighlights(); }
+      else eraseInSelection();
+    } else {
+      return;
+    }
+    hideHlPopup();
+    refreshHlButtons();
+  });
+
+  document.body.appendChild(p);
+  return p;
+}
+
+function showHlPopup(rect) {
+  const p  = buildHlPopup();
+  const pw = p.offsetWidth, ph = p.offsetHeight;
+
+  let top = rect.top - ph - 12, below = false;
+  if (top < 64) { top = rect.bottom + 12; below = true; }
+
+  let left = rect.left + rect.width / 2 - pw / 2;
+  left = Math.max(10, Math.min(left, window.innerWidth - pw - 10));
+
+  const arrowX = Math.max(16, Math.min(rect.left + rect.width / 2 - left, pw - 16));
+  p.style.setProperty('--arrow-x', arrowX + 'px');
+  p.classList.toggle('below', below);
+  p.style.top  = top + 'px';
+  p.style.left = left + 'px';
+  p.classList.add('show');
+}
+
+function hideHlPopup() {
+  const p = $('hl-popup');
+  if (p) p.classList.remove('show');
+  GS._hlPopupTarget = null;
+}
+
+// ── MARK HELPERS ──────────────────────────────────────────────
+function setHlColor(el, color) {
+  [...el.classList].filter(c => c.indexOf('gs-hl') === 0).forEach(c => el.classList.remove(c));
+  el.style.backgroundColor = '';
+  if (el.getAttribute('style') !== null && !el.style.cssText.trim()) el.removeAttribute('style');
+  el.classList.add('gs-hl', 'gs-hl-' + color, 'gs-hl-new');
+  setTimeout(() => el.classList.remove('gs-hl-new'), 700);
+}
+
+// Find the highlight mark wrapping a node (new class-based or legacy inline)
+function findHlAncestor(t, pc) {
+  while (t && t !== pc) {
+    if (t.classList && t.classList.contains('gs-hl')) return t;
+    if (t.style && t.style.backgroundColor) return t;
+    t = t.parentNode;
+  }
+  return null;
+}
+
+// Remove a mark; unwrap the span entirely if nothing else is on it
+function unwrapHl(el) {
+  [...el.classList].filter(c => c.indexOf('gs-hl') === 0).forEach(c => el.classList.remove(c));
+  el.style.backgroundColor = '';
+  if (el.getAttribute('style') !== null && !el.style.cssText.trim()) el.removeAttribute('style');
+  if (el.tagName === 'SPAN' && !el.className && !el.id && !el.getAttribute('style')) {
+    const parent = el.parentNode;
+    while (el.firstChild) parent.insertBefore(el.firstChild, el);
+    parent.removeChild(el);
+    parent.normalize();
+  }
+}
+
+// Remove every mark intersecting the current selection
+function eraseInSelection() {
+  const pc  = $('page-content');
+  const sel = window.getSelection();
+  if (!sel || !sel.rangeCount || sel.isCollapsed) return;
+  const range = sel.getRangeAt(0);
+  let removed = 0;
+  pc.querySelectorAll('.gs-hl, span[style*="background"]').forEach(sp => {
+    try {
+      if (range.intersectsNode(sp)) { unwrapHl(sp); removed++; }
+    } catch (e) { /* node detached by a previous unwrap */ }
+  });
+  sel.removeAllRanges();
+  if (removed) { saveHighlights(); refreshHlButtons(); }
+}
+
+// Show/hide the eraser & clear buttons based on remaining marks
+function refreshHlButtons() {
+  const pc  = $('page-content');
+  const has = !!pc.querySelector('.gs-hl, span[style*="background"]');
+  ['btn-eraser', 'btn-clear-hl', 'mob-btn-eraser', 'mob-btn-clear-hl'].forEach(id => {
+    const el = $(id);
+    if (el) el.classList.toggle('hidden', !has);
+  });
+  if (!has && GS.ui.eraserMode) {
+    GS.ui.eraserMode = false;
+    updateToolState();
+  }
+}
+
 // ── TOOL STATE UPDATE ─────────────────────────────────────────
 function updateToolState() {
+  const pc     = $('page-content');
   const hlBtn  = $('btn-highlight');
   const erBtn  = $('btn-eraser');
   const clrBtn = $('btn-clear-hl');
@@ -112,6 +314,11 @@ function updateToolState() {
 
   hlBtn.classList.toggle('active', GS.ui.highlightMode);
   erBtn.classList.toggle('active-eraser', GS.ui.eraserMode);
+
+  if (pc) {
+    pc.classList.toggle('hl-mode', GS.ui.highlightMode);
+    pc.classList.toggle('eraser-mode', GS.ui.eraserMode);
+  }
 
   const mobHl  = $('mob-btn-highlight');
   const mobEr  = $('mob-btn-eraser');
@@ -123,11 +330,11 @@ function updateToolState() {
 
   if (GS.ui.highlightMode) {
     modebar.classList.remove('hidden', 'eraser');
-    modeText.innerHTML = AyIcon.svg('highlighter') + '  وضع التظليل مفعَّل — حدد أي نص لتظليله بالذهبي';
+    modeText.innerHTML = AyIcon.svg('highlighter') + '  وضع التظليل — اسحب على أي نص ليتظلّل بالذهبي فورًا';
   } else if (GS.ui.eraserMode) {
     modebar.classList.remove('hidden');
     modebar.classList.add('eraser');
-    modeText.innerHTML = AyIcon.svg('eraser') + '  الممحاة مفعَّلة — انقر على أي نص مُظلَّل لإزالته';
+    modeText.innerHTML = AyIcon.svg('eraser') + '  وضع الممحاة — انقر على أي تظليل لإزالته';
   } else {
     modebar.classList.add('hidden');
     modebar.classList.remove('eraser');
@@ -137,7 +344,10 @@ function updateToolState() {
 // ── SAVE HIGHLIGHTS ───────────────────────────────────────────
 function saveHighlights() {
   const uid = GS.UNITS[GS.currentUnit].id;
-  GS.student.highlights[uid] = $('page-content').innerHTML;
+  // Strip the transient pop-animation class so it never replays on load
+  const clone = $('page-content').cloneNode(true);
+  clone.querySelectorAll('.gs-hl-new').forEach(el => el.classList.remove('gs-hl-new'));
+  GS.student.highlights[uid] = clone.innerHTML;
   localStorage.setItem('gs_highlights', JSON.stringify(GS.student.highlights));
 }
 

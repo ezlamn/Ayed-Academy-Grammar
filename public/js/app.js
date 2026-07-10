@@ -93,12 +93,18 @@ function initApp() {
     `;
   }
 
-  bindTopbar();
-  bindNotes();
-  bindTools();
+  // initApp() runs every time a track is opened from the dashboard, but the
+  // listeners below must only ever be attached once — re-binding stacks
+  // duplicate handlers (e.g. next/prev unit jumping 2 units per click).
+  if (!GS.ui.listenersBound) {
+    GS.ui.listenersBound = true;
+    bindTopbar();
+    bindNotes();
+    bindTools();
 
-  // Init new UI features (dark mode + FAB)
-  initNewFeatures();
+    // Init new UI features (dark mode + FAB)
+    initNewFeatures();
+  }
 }
 
 // ── START ──────────────────────────────────────────────────────
