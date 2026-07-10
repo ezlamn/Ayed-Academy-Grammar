@@ -65,7 +65,7 @@ body.dark-mode .tdx-board { background: var(--navy-mid); }
 }
 body.dark-mode .tdx-title { color: #fff; }
 .tdx-title .accent { color: var(--purple); }
-body.dark-mode .tdx-title .accent { color: #A78BFA; }
+body.dark-mode .tdx-title .accent { color: #60A5FA; }
 .tdx-spark {
   color: var(--gold);
   font-size: 0.55em;
