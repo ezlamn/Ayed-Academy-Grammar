@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ayed-academy-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ayed
+      POSTGRES_PASSWORD: ayed_local_dev
+      POSTGRES_DB: ayed_academy
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ayed -d ayed_academy"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:

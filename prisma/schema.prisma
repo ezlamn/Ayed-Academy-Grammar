@@ -1,0 +1,350 @@
+// Ayed Academy — Grammar Strategies
+// المبدأ: الأسئلة مفصّلة (normalized) عشان التحليلات وبناء الامتحانات،
+// وبلوكات العرض المتغيّرة الشكل تفضل JSONB زي ما الـ renderer محتاجها بالضبط.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  ENUMS
+// ═══════════════════════════════════════════════════════════════
+
+enum Track {
+  grammar
+  reading
+  listening
+}
+
+enum QuestionSource {
+  QUIZ // page.quizzes — سؤال على مستوى الوحدة
+  PRACTICE // strategy.practice — سؤال داخل استراتيجية
+}
+
+enum ExamSection {
+  listening
+  reading
+  grammar
+  writing
+}
+
+enum MediaKind {
+  audio
+  image
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  المحتوى
+// ═══════════════════════════════════════════════════════════════
+
+model Unit {
+  id        Int     @id @default(autoincrement())
+  track     Track
+  /// الـ id الأصلي في db.json: "1" للجرامر/الليسينينج، "r1"/"rv1" للريدينج.
+  /// نصّي دائماً هنا، والـ serializer بيحوّله لرقم للتراكات الرقمية.
+  legacyId  String
+  order     Int
+  emoji     String?
+  nameAr    String
+  nameEn    String
+  /// الريدينج بس بيستخدمه
+  title     String?
+  /// "reading_strategy" | "vocab" | null
+  type      String?
+  /// page.tag — "الوحدة الأولى"
+  tag       String?
+  /// page.mascot
+  mascot    String?
+  published Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  strategies      Strategy[]
+  questions       Question[]
+  videos          Video[]
+  vocabCategories VocabCategory[]
+  progress        UnitProgress[]
+
+  @@unique([track, legacyId])
+  @@index([track, order])
+}
+
+model Strategy {
+  id       Int    @id @default(autoincrement())
+  unitId   Int
+  /// "u1s1" / "L2S1" — نحافظ عليه لأن الواجهة بتستخدمه كـ DOM id
+  legacyId String
+  order    Int
+
+  theme    String? // "sc-theme-blue"
+  icon     String?
+  title    String
+  subtitle String?
+  badge    String?
+  usage    String? @db.Text
+  videoUrl String?
+  tip      String? @db.Text
+
+  /// بلوكات العرض: { keywords: [{f,b}], formulas: [{subj,form,ex,note}],
+  ///                exception: {title, body}, treeDiagram: {...} }
+  /// المفاتيح غير الموجودة تتحذف من الـ payload مش تترجع null.
+  blocks Json @default("{}")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  unit      Unit       @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  questions Question[]
+
+  @@index([unitId, order])
+}
+
+model Question {
+  id           Int            @id @default(autoincrement())
+  unitId       Int
+  /// null ⇒ السؤال في page.quizzes؛ غير null ⇒ داخل strategy.practice
+  strategyId   Int?
+  source       QuestionSource
+  order        Int
+  text         String         @db.Text
+  /// string[]
+  opts         Json
+  correctIndex Int
+  explanation  String?        @db.Text
+  /// رابط صوت خارجي (لو مش ملف مرفوع)
+  audioUrl     String?
+  audioAssetId Int?
+  imgUrl       String?
+  passageText  String?        @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  unit       Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  strategy   Strategy?         @relation(fields: [strategyId], references: [id], onDelete: Cascade)
+  audioAsset MediaAsset?       @relation(fields: [audioAssetId], references: [id], onDelete: SetNull)
+  attempts   QuestionAttempt[]
+
+  @@index([unitId, source, order])
+  @@index([strategyId, order])
+}
+
+model Video {
+  id     Int     @id @default(autoincrement())
+  unitId Int
+  order  Int
+  title  String?
+  url    String
+
+  unit Unit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  @@index([unitId, order])
+}
+
+model VocabCategory {
+  id     Int     @id @default(autoincrement())
+  unitId Int
+  order  Int
+  title  String
+  color  String?
+
+  unit  Unit        @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  words VocabWord[]
+
+  @@index([unitId, order])
+}
+
+model VocabWord {
+  id         Int    @id @default(autoincrement())
+  categoryId Int
+  order      Int
+  en         String
+  ar         String
+
+  category VocabCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([categoryId, order])
+}
+
+model MediaAsset {
+  id           Int       @id @default(autoincrement())
+  kind         MediaKind
+  /// اسم الملف على القرص = sha256 + الامتداد (يمنع تخزين نفس الملف مرتين)
+  filename     String    @unique
+  /// المسار العام: /uploads/audio/<filename>
+  publicPath   String
+  /// الاسم الأصلي وقت الرفع — للعرض في مكتبة الميديا
+  originalName String?
+  mimeType     String
+  sizeBytes    Int
+  sha256       String    @unique
+  createdAt    DateTime  @default(now())
+
+  questions     Question[]
+  examQuestions ExamQuestion[]
+}
+
+model SiteConfig {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  الحسابات
+// ═══════════════════════════════════════════════════════════════
+
+model Admin {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+}
+
+model Student {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String
+  name         String
+  active       Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  lastActiveAt DateTime?
+
+  state        StudentState?
+  progress     UnitProgress[]
+  attempts     QuestionAttempt[]
+  examAttempts ExamAttempt[]
+
+  @@index([lastActiveAt])
+}
+
+/// بديل الـ localStorage: كل مفاتيح gs_* اللي في state.js
+model StudentState {
+  studentId  Int     @id
+  xp         Int     @default(0)
+  level      Int     @default(1)
+  streak     Int     @default(0)
+  bestStreak Int     @default(0)
+  /// gs_last_active — نص التاريخ زي ما الواجهة بتخزنه
+  lastActive String?
+  /// gs_notes: { [unitId]: string }
+  notes      Json    @default("{}")
+  /// gs_highlights: { [unitId]: htmlString }
+  highlights Json    @default("{}")
+  /// gs_srs
+  srs        Json    @default("{}")
+  /// gs_analytics — نحفظه كما هو للتوافق
+  analytics  Json    @default("{}")
+  /// اتعمل ترحيل من localStorage قبل كده؟ (يحصل مرة واحدة بس)
+  migrated   Boolean @default(false)
+
+  updatedAt DateTime @updatedAt
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model UnitProgress {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  unitId      Int
+  completedAt DateTime @default(now())
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  unit    Unit    @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, unitId])
+  @@index([unitId])
+}
+
+model QuestionAttempt {
+  id            Int      @id @default(autoincrement())
+  studentId     Int
+  questionId    Int
+  selectedIndex Int
+  isCorrect     Boolean
+  answeredAt    DateTime @default(now())
+
+  student  Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([questionId, isCorrect])
+  @@index([studentId, answeredAt])
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  الاختبارات
+// ═══════════════════════════════════════════════════════════════
+
+model Exam {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String? @db.Text
+  durationMin Int     @default(120)
+  published   Boolean @default(false)
+  order       Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  questions ExamQuestion[]
+  attempts  ExamAttempt[]
+
+  @@index([published, order])
+}
+
+model ExamQuestion {
+  id     Int         @id @default(autoincrement())
+  examId Int
+  /// أقسام الامتحان بنفس ترتيب MockExam.ORDER
+  section ExamSection
+  order  Int
+  /// لو السؤال متسخ من بنك أسئلة الوحدات — للتتبّع فقط
+  sourceQuestionId Int?
+
+  text         String  @db.Text
+  opts         Json
+  correctIndex Int
+  explanation  String? @db.Text
+  audioUrl     String?
+  audioAssetId Int?
+  imgUrl       String?
+  passageText  String? @db.Text
+
+  exam       Exam        @relation(fields: [examId], references: [id], onDelete: Cascade)
+  audioAsset MediaAsset? @relation(fields: [audioAssetId], references: [id], onDelete: SetNull)
+
+  @@index([examId, section, order])
+}
+
+model ExamAttempt {
+  id        Int  @id @default(autoincrement())
+  studentId Int
+  /// null ⇒ امتحان عشوائي مولّد من mock_exam.js بدل نموذج محفوظ
+  examId    Int?
+  /// مفتاح الـ preset العشوائي ("full" / "quick" ...) لو مفيش examId
+  preset    String?
+
+  score Int
+  total Int
+  /// { listening: {correct, total}, reading: {...}, ... }
+  sectionScores Json @default("{}")
+  /// إجابات الطالب الخام للمراجعة
+  answers       Json @default("{}")
+
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  exam    Exam?   @relation(fields: [examId], references: [id], onDelete: SetNull)
+
+  @@index([studentId, finishedAt])
+  @@index([examId])
+}

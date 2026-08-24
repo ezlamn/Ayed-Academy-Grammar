@@ -1,17 +1,40 @@
 {
   "name": "grammarstrategies",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "version": "2.0.0",
+  "description": "Ayed Academy — Grammar Strategies: منصة تعليمية تفاعلية + لوحة تحكم",
+  "main": "server/index.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:generate": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset",
+    "migrate:json": "node scripts/migrate-json-to-db.js",
+    "verify:parity": "node scripts/verify-parity.js",
+    "admin:dev": "npm --prefix admin run dev",
+    "admin:build": "npm --prefix admin run build",
+    "admin:install": "npm --prefix admin install",
+    "setup": "docker compose up -d && prisma migrate deploy && node scripts/migrate-json-to-db.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
+    "@prisma/client": "^7.9.1",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.2.0",
+    "sanitize-html": "^2.17.7",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "prisma": "^7.9.1"
   }
 }
