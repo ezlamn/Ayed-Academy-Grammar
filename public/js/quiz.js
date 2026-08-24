@@ -102,8 +102,13 @@ function submitBigQuiz() {
 
   quizzes.forEach((q, qi) => {
     const ans = GS.quizState.answers[qi];
-    const isRight = ans === q.correct;
+    // الداتا بتستخدم `c` — نسيب `correct` كاحتياط لأي سجل قديم
+    const rightIndex = typeof q.c === 'number' ? q.c : q.correct;
+    const isRight = ans === rightIndex;
     if (isRight) correct++;
+
+    // تسجيل المحاولة على السيرفر — ده مصدر تحليلات لوحة التحكم
+    if (typeof ans === 'number') GSSync.queueAttempt(q.id, ans);
 
     html += `
       <div class="quiz-q-card" style="margin-bottom:1.5rem;">
@@ -121,7 +126,7 @@ function submitBigQuiz() {
         <div class="quiz-opts-grid">
           ${q.opts.map((o, oi) => {
             let cls = '';
-            if (oi === q.correct) cls = 'correct';
+            if (oi === rightIndex) cls = 'correct';
             else if (oi === ans) cls = 'wrong';
             return `
               <button class="q-opt ${cls}" disabled dir="ltr" style="text-align:left;">
@@ -142,6 +147,7 @@ function submitBigQuiz() {
   if (pct >= 60 && !GS.student.completedUnits.includes(unit.id)) {
     GS.student.completedUnits.push(unit.id);
     localStorage.setItem('gs_completed', JSON.stringify(GS.student.completedUnits));
+    GSSync.markUnitComplete(unit.id);
     buildUnitsNav();
   }
 

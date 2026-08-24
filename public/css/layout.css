@@ -40,6 +40,34 @@
 .splash-headline { font-size: 1.9rem; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 0.75rem; }
 .splash-sub { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; }
 
+/* ── تبويبات الدخول / التسجيل ─────────────────────────────── */
+.auth-tabs {
+  display: flex; gap: 0.35rem; margin-bottom: 1.25rem;
+  background: rgba(255,255,255,0.07); padding: 0.3rem;
+  border-radius: var(--r-md);
+}
+.auth-tab {
+  flex: 1; padding: 0.65rem 0.5rem;
+  background: transparent; border: none; border-radius: calc(var(--r-md) - 4px);
+  color: rgba(255,255,255,0.6);
+  font-family: inherit; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.auth-tab:hover { color: #fff; }
+.auth-tab.active { background: rgba(255,255,255,0.14); color: var(--gold); }
+
+/* حقول النموذج تتباعد عن بعضها */
+.auth-field { margin-bottom: 0.75rem; }
+
+.auth-error {
+  background: rgba(239,35,60,0.15); border: 1px solid rgba(239,35,60,0.4);
+  color: #ffb3bd; border-radius: var(--r-md);
+  padding: 0.7rem 0.9rem; margin-bottom: 1rem;
+  font-size: 0.9rem; font-weight: 600; text-align: right;
+}
+
+.splash-cta:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
 .name-input {
   width: 100%; padding: 1rem 1.2rem;
   background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);

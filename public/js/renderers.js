@@ -206,7 +206,7 @@ function renderStrategy(strat, si) {
               `).join('')}
             </div>
             <div class="mini-q-actions">
-              <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+              <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}" data-question-id="${pq.id ?? ''}">تحقق من الإجابة</button>
             </div>
             <div class="mini-expl" id="mq-expl-${qid}">
               <div class="expl-text">${pq.expl}</div>
@@ -320,7 +320,7 @@ function renderReadingUnit(unit) {
                         </label>
                       `).join('')}
                     </div>
-                    <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+                    <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}" data-question-id="${pq.id ?? ''}">تحقق من الإجابة</button>
                     <div class="mini-expl" id="mq-expl-${qid}" style="direction:rtl; text-align:right;">
                       <div class="expl-text">${pq.expl}</div>
                     </div>
@@ -424,7 +424,7 @@ function renderListeningStrategy(s, si) {
                 </label>
               `).join('')}
             </div>
-            <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+            <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}" data-question-id="${pq.id ?? ''}">تحقق من الإجابة</button>
             <div class="mini-expl" id="mq-expl-${qid}">
               <div class="expl-text">${pq.expl}</div>
             </div>
@@ -486,7 +486,7 @@ function renderListeningStrategy(s, si) {
                     </label>
                   `).join('')}
                 </div>
-                <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}">تحقق من الإجابة</button>
+                <button class="btn btn-primary btn-check-ans hidden" id="check-${qid}" data-qid="${qid}" data-correct="${pq.c}" data-question-id="${pq.id ?? ''}">تحقق من الإجابة</button>
                 <div class="mini-expl" id="mq-expl-${qid}"><div class="expl-text">${pq.expl}</div></div>
               </div>
             `;
@@ -597,6 +597,11 @@ function bindInteractiveElements() {
 
       wrap.dataset.answered = '1';
       this.classList.add('hidden');
+
+      // تسجيل المحاولة على السيرفر — مصدر تحليلات لوحة التحكم
+      if (this.dataset.questionId && Number.isInteger(selected)) {
+        GSSync.queueAttempt(this.dataset.questionId, selected);
+      }
 
       wrap.querySelectorAll('.mini-opt').forEach((b, i) => {
         b.disabled = true;

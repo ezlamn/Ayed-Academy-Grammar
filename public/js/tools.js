@@ -58,6 +58,7 @@ function bindTools() {
     const uid = GS.UNITS[GS.currentUnit].id;
     delete GS.student.highlights[uid];
     localStorage.setItem('gs_highlights', JSON.stringify(GS.student.highlights));
+    GSSync.queueState({ highlights: GS.student.highlights });
     loadUnit(GS.currentUnit);
     showToast('trash', 'تم مسح التظليلات', 't-success');
   };
@@ -371,6 +372,7 @@ function saveHighlights() {
   clone.querySelectorAll('.gs-hl-new').forEach(el => el.classList.remove('gs-hl-new'));
   GS.student.highlights[uid] = clone.innerHTML;
   localStorage.setItem('gs_highlights', JSON.stringify(GS.student.highlights));
+    GSSync.queueState({ highlights: GS.student.highlights });
 }
 
 // ── NOTES ─────────────────────────────────────────────────────
@@ -383,6 +385,7 @@ function bindNotes() {
     const uid = GS.UNITS[GS.currentUnit].id;
     GS.student.notes[uid] = $('notes-area').value;
     localStorage.setItem('gs_notes', JSON.stringify(GS.student.notes));
+    GSSync.queueState({ notes: GS.student.notes });
     const ind = $('notes-saved');
     ind.classList.remove('hidden');
     setTimeout(() => ind.classList.add('hidden'), 2500);
@@ -394,6 +397,7 @@ function bindNotes() {
       const uid = GS.UNITS[GS.currentUnit].id;
       GS.student.notes[uid] = $('notes-area').value;
       localStorage.setItem('gs_notes', JSON.stringify(GS.student.notes));
+    GSSync.queueState({ notes: GS.student.notes });
     }, 1000);
   });
 }

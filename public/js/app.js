@@ -4,23 +4,35 @@
    ================================================================ */
 
 // ── BOOTSTRAP ──────────────────────────────────────────────────
-async function boot() {
+// تحميل المحتوى: الـ API أولاً، وملف db.json الساكن كخطة بديلة
+async function loadContent() {
   try {
     const res = await fetch('/api/units');
     if (!res.ok) throw new Error('API server returned error');
-    GS.ALL_DATA = await res.json();
-    initSplash();
+    return await res.json();
   } catch (err) {
     console.warn('Failed to connect to local API server, trying static fallback...', err);
-    try {
-      const res = await fetch('/data/db.json');
-      if (!res.ok) throw new Error('Static db.json not found');
-      GS.ALL_DATA = await res.json();
-      initSplash();
-    } catch (fallbackErr) {
-      console.error('All data loading attempts failed:', fallbackErr);
-      alert('فشل تحميل البيانات! تأكد من تشغيل السيرفر محلياً أو وجود ملف data/db.json');
-    }
+    const res = await fetch('/data/db.json');
+    if (!res.ok) throw new Error('Static db.json not found');
+    return res.json();
+  }
+}
+
+async function boot() {
+  try {
+    GS.ALL_DATA = await loadContent();
+  } catch (err) {
+    console.error('All data loading attempts failed:', err);
+    alert('فشل تحميل البيانات! تأكد من تشغيل السيرفر محلياً أو وجود ملف data/db.json');
+    return;
+  }
+
+  // منفصل عن التحميل عن قصد: لو حصل خطأ هنا ما نعيدش تحميل الداتا
+  // ونستدعي initSplash مرتين
+  try {
+    await initSplash();
+  } catch (err) {
+    console.error('فشل تهيئة شاشة البداية:', err);
   }
 }
 

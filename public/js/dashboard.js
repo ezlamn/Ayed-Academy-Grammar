@@ -59,8 +59,12 @@ function initDashboard() {
     window.SmartAnalytics.renderDashboardStats();
   }
 
-  $('dash-logout').onclick = () => {
-    localStorage.removeItem('gs_student_name');
+  $('dash-logout').onclick = async () => {
+    // نرفع أي تغييرات معلّقة قبل ما نمسح الجلسة
+    await GSSync.flush();
+    try { await GSSync.logout(); } catch (e) { /* الجلسة خلصت أصلاً */ }
+    GSSync.enabled = false;
+    GSSync.clearLocal();
     location.href = '/';
   };
 

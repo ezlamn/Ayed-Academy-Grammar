@@ -65,7 +65,7 @@ const stateSchema = z.object({
   analytics: z.record(z.string(), z.any()).optional(),
 });
 
-router.patch('/state', validate(stateSchema), asyncHandler(async (req, res) => {
+const saveState = asyncHandler(async (req, res) => {
   const state = await prisma.studentState.upsert({
     where: { studentId: req.student.id },
     create: { studentId: req.student.id, ...req.body },
@@ -73,7 +73,13 @@ router.patch('/state', validate(stateSchema), asyncHandler(async (req, res) => {
   });
   touch(req.student.id);
   res.json(state);
-}));
+});
+
+router.patch('/state', validate(stateSchema), saveState);
+
+// نفس الحفظ بـ POST — navigator.sendBeacon (اللي بنستخدمه وقت إغلاق
+// الصفحة) بيبعت POST بس، فمحتاجين المسار ده عشان آخر تغيير ما يضيعش.
+router.post('/state', validate(stateSchema), saveState);
 
 // ═══════════════════════════════════════════════════════════════
 //  الترحيل من localStorage (مرة واحدة لكل حساب)

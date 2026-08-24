@@ -24,6 +24,39 @@ window.MockExam = {
     quick: { label: 'تدريب سريع',      sub: 'جولة قصيرة لقياس مستواك بسرعة',          em: '🎯', badge: 'سريع',          time: 30 * 60,  counts: { listening: 5,  reading: 10, grammar: 6,  writing: 3 } }
   },
 
+  /**
+   * النماذج المحفوظة من لوحة التحكم بتتحقن هنا كأنها presets عادية،
+   * عشان كل الكود اللي بيقرا PRESETS[preset].label/.time/.em يفضل
+   * شغال زي ما هو. الفرق الوحيد إن عندها `examId` و `questions`
+   * جاهزة بدل `counts` اللي بيتولّد منها امتحان عشوائي.
+   */
+  syncSavedExams: function () {
+    // نشيل نماذج قديمة من تشغيل سابق قبل ما نضيف الحالية
+    Object.keys(this.PRESETS).forEach(k => {
+      if (k.startsWith('exam-')) delete this.PRESETS[k];
+    });
+
+    const saved = (typeof GS !== 'undefined' && GS.ALL_DATA && GS.ALL_DATA.tests) || [];
+
+    saved.forEach(exam => {
+      const questions = (exam.questions || []).filter(q => this.isMCQ(q));
+      if (!questions.length) return;
+
+      this.PRESETS['exam-' + exam.id] = {
+        label: exam.title,
+        sub: `نموذج محفوظ — ${questions.length} سؤال بترتيب ثابت`,
+        em: '📄',
+        badge: 'نموذج رسمي',
+        time: (exam.durationMin || 120) * 60,
+        examId: exam.id,
+        questions,
+      };
+    });
+
+    // لو الـ preset المختار بقى مش موجود (اتحذف من اللوحة) نرجّع الافتراضي
+    if (!this.PRESETS[this.preset]) this.preset = 'full';
+  },
+
   /* ── STATE ──────────────────────────────────────────────────── */
   active: false,
   view: 'setup',
@@ -117,6 +150,21 @@ window.MockExam = {
 
   buildExam: function (presetKey) {
     const preset = this.PRESETS[presetKey];
+
+    // نموذج محفوظ: أسئلته ثابتة بترتيبها زي ما المعلّم رتّبها
+    if (preset.questions) {
+      return preset.questions.map(q => ({
+        section: q.section,
+        q: q.q,
+        opts: q.opts,
+        c: q.c,
+        expl: q.expl,
+        audioUrl: q.audioUrl || null,
+        imgUrl: q.imgUrl || null,
+        passage: q.passage || null,
+      }));
+    }
+
     const pool = this.buildPool();
     const exam = [];
 
@@ -248,6 +296,7 @@ window.MockExam = {
   /* ── SETUP SCREEN ───────────────────────────────────────────── */
   renderSetup: function () {
     const shell = document.getElementById('mock-exam-ui');
+    this.syncSavedExams();
     const pool = this.buildPool();
     const avail = {
       listening: pool.listening.length,
@@ -259,7 +308,9 @@ window.MockExam = {
 
     const modeCards = Object.keys(this.PRESETS).map(key => {
       const p = this.PRESETS[key];
-      const total = this.ORDER.reduce((a, s) => a + Math.min(p.counts[s], avail[s]), 0);
+      const total = p.questions
+        ? p.questions.length
+        : this.ORDER.reduce((a, s) => a + Math.min(p.counts[s], avail[s]), 0);
       return `
         <div class="mx-mode-card ${key === this.preset ? 'selected' : ''}" data-mode="${key}">
           <div class="mx-mode-badge">${p.badge}</div>
@@ -357,7 +408,10 @@ window.MockExam = {
     const p = this.PRESETS[this.preset];
     const rows = document.getElementById('mx-bd-rows');
     if (!rows) return;
-    const counts = this.ORDER.map(s => Math.min(p.counts[s], avail[s]));
+    // النموذج المحفوظ توزيعه معروف من أسئلته نفسها مش من counts
+    const counts = p.questions
+      ? this.ORDER.map(s => p.questions.filter(q => q.section === s).length)
+      : this.ORDER.map(s => Math.min(p.counts[s], avail[s]));
     const total = counts.reduce((a, b) => a + b, 0) || 1;
     rows.innerHTML = this.ORDER.map((s, i) => {
       const meta = this.SECTIONS[s];
@@ -715,6 +769,9 @@ window.MockExam = {
     });
     localStorage.setItem('gs_mock_history', JSON.stringify(hist.slice(0, 10)));
 
+    // حفظ على السيرفر كمان — ده مصدر تحليلات الامتحانات في لوحة التحكم
+    this.saveAttemptToServer({ correct, total, perSection, timeUsed });
+
     if (typeof addXP === 'function') addXP(correct * 5, null);
     if (pct >= 60 && typeof launchConfetti === 'function') launchConfetti();
 
@@ -724,6 +781,36 @@ window.MockExam = {
   getHistory: function () {
     try { return JSON.parse(localStorage.getItem('gs_mock_history')) || []; }
     catch (e) { return []; }
+  },
+
+  /**
+   * يبعت المحاولة للسيرفر. الفشل بيتسجّل في الكونسول بس ومش بيوقف
+   * أي حاجة — نتيجة الطالب معروضة قدامه بالفعل ومحفوظة محلياً.
+   */
+  saveAttemptToServer: function (result) {
+    const preset = this.PRESETS[this.preset] || {};
+
+    const sectionScores = {};
+    this.ORDER.forEach(s => {
+      if (result.perSection[s] && result.perSection[s].total > 0) {
+        sectionScores[s] = result.perSection[s];
+      }
+    });
+
+    fetch('/api/student/exam-attempts', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        examId: preset.examId || null,
+        preset: preset.examId ? null : this.preset,
+        score: result.correct,
+        total: result.total,
+        sectionScores,
+        answers: this.answers,
+        startedAt: new Date(this.startedAt).toISOString(),
+      }),
+    }).catch(err => console.warn('تعذّر حفظ نتيجة الامتحان على السيرفر:', err));
   },
 
   getBand: function (pct) {

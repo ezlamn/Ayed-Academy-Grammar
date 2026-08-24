@@ -58,7 +58,10 @@ function audioUrlOf(row) {
 //   fill  → { type:'fill',  q, answer: [...], expl? }
 //   order → { type:'order', q, tokens: [...], expl? }
 function serializeQuestion(row) {
-  const out = {};
+  // الـ id مش موجود في db.json الأصلي — بنضيفه عشان الواجهة تقدر
+  // تسجّل محاولات الطلاب (POST /api/student/attempts) وده مصدر
+  // التحليلات. الواجهة بتتجاهل المفاتيح اللي مش محتاجاها.
+  const out = { id: row.id };
 
   if (row.kind === 'fill') {
     out.type = 'fill';

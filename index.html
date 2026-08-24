@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Grammar Strategies — كتاب القواعد التفاعلي</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>"/>
   <meta name="description" content="منصة تعليمية تفاعلية لتعلم قواعد اللغة الإنجليزية بأسلوب Cambridge الاحترافي"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,14 +56,47 @@
       </div>
     </div>
     <h1 class="splash-headline">مرحباً بك في رحلة التعلم <i data-icon="graduation-cap"></i></h1>
-    <p class="splash-sub">اكتب اسمك وابدأ رحلتك التعليمية</p>
+    <p class="splash-sub" id="auth-sub">سجّل دخولك عشان تقدّمك يتحفظ على كل أجهزتك</p>
 
-    <div id="auth-guest-form">
-      <input type="text" id="student-name-input" class="name-input" placeholder="اكتب اسمك هنا..."/>
-      <button class="splash-cta" id="splash-start" style="margin-top:1rem;">
-        <span>ابدأ الآن</span>
-      </button>
+    <!-- تبديل بين الدخول والتسجيل -->
+    <div class="auth-tabs">
+      <button type="button" class="auth-tab active" data-auth-tab="login">تسجيل الدخول</button>
+      <button type="button" class="auth-tab" data-auth-tab="register">حساب جديد</button>
     </div>
+
+    <div id="auth-error" class="auth-error hidden"></div>
+
+    <form id="auth-form" autocomplete="on">
+      <input
+        type="text"
+        id="auth-name"
+        class="name-input auth-field hidden"
+        placeholder="اسمك الكامل"
+        autocomplete="name"
+      />
+      <input
+        type="email"
+        id="auth-email"
+        class="name-input auth-field"
+        placeholder="البريد الإلكتروني"
+        dir="ltr"
+        autocomplete="email"
+        required
+      />
+      <input
+        type="password"
+        id="auth-password"
+        class="name-input auth-field"
+        placeholder="كلمة المرور"
+        dir="ltr"
+        autocomplete="current-password"
+        required
+      />
+      <button class="splash-cta" id="splash-start" type="submit" style="margin-top:1rem;">
+        <span id="auth-submit-label">دخول</span>
+      </button>
+    </form>
+
     <div class="splash-stats-row">
       <div class="s-stat"><span>12</span> وحدة</div>
       <div class="s-divider"></div>
@@ -273,6 +307,7 @@
 
 <!-- JS Modules — in dependency order -->
 <script src="/public/js/state.js"></script>
+<script src="/public/js/sync.js"></script>
 <script src="/public/js/gamification.js"></script>
 <script src="/public/js/ui.js"></script>
 <script src="/public/js/auth.js"></script>

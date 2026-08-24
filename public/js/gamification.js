@@ -17,6 +17,7 @@ function addXP(amount, event) {
 
   localStorage.setItem('gs_xp', GS.student.xp);
   localStorage.setItem('gs_level', GS.student.level);
+  GSSync.queueState({ xp: GS.student.xp, level: GS.student.level });
 
   updateXPUI();
 
@@ -60,6 +61,11 @@ function initDailyStreak() {
     localStorage.setItem('gs_streak', GS.student.streak);
     localStorage.setItem('gs_best_streak', GS.student.bestStreak);
     localStorage.setItem('gs_last_active', today);
+    GSSync.queueState({
+      streak: GS.student.streak,
+      bestStreak: GS.student.bestStreak,
+      lastActive: today,
+    });
     if (GS.student.streak > 1) {
       setTimeout(() => showToast('🔥', `سلسلة ${GS.student.streak} أيام متتالية! استمر!`, 't-success'), 800);
     }
@@ -127,6 +133,7 @@ window.processSRS = function(word, quality) {
 
   srs[word] = card;
   localStorage.setItem("gs_srs", JSON.stringify(srs));
+  GSSync.queueState({ srs });
   showToast('تمت المراجعة بنجاح', `تمت جدولة مراجعة الكلمة بعد ${card.interval} يوم`, 'success');
   addXP(2, null);
 };

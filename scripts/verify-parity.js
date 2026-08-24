@@ -25,6 +25,7 @@ const DB_FILE = path.join(env.ROOT, 'data', 'db.json');
 const realDiffs = [];
 const benignDiffs = [];
 const repairs = [];
+const additions = new Set();
 
 const isEmptyArray = v => Array.isArray(v) && v.length === 0;
 const isObject = v => v !== null && typeof v === 'object' && !Array.isArray(v);
@@ -40,7 +41,22 @@ function benignAbsence(a, b) {
   return absent(a) && absent(b);
 }
 
+/**
+ * `id` على الأسئلة إضافة مقصودة مش في المصدر — الواجهة محتاجاه
+ * عشان تسجّل محاولات الطلاب. مش فرق حقيقي.
+ */
+function isAddedQuestionId(pathStr, expected, actual) {
+  return expected === undefined
+    && typeof actual === 'number'
+    && /\.(practice|quizzes)\[\d+\]\.id$/.test(pathStr);
+}
+
 function compare(expected, actual, pathStr) {
+  if (isAddedQuestionId(pathStr, expected, actual)) {
+    additions.add('id على الأسئلة (لتسجيل محاولات الطلاب)');
+    return;
+  }
+
   if (benignAbsence(expected, actual)) {
     benignDiffs.push(pathStr);
     return;
@@ -193,6 +209,11 @@ async function main() {
 
   const audioOk = originalAudio.data === dbAudio.file && originalAudio.external === dbAudio.external;
   console.log(`    ${audioOk ? '✓ كل الصوتيات اتنقلت' : '✗ عدد الصوتيات مش متطابق'}`);
+
+  if (additions.size) {
+    console.log('\n  ➕ إضافات مقصودة على الشكل الأصلي:');
+    additions.forEach(a => console.log(`     ${a}`));
+  }
 
   if (repairs.length) {
     console.log(`\n  🔧 ${repairs.length} إصلاح مقصود لبيانات تالفة في المصدر:`);
