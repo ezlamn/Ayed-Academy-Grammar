@@ -53,12 +53,31 @@ function audioUrlOf(row) {
 }
 
 // ── تحويل السؤال ───────────────────────────────────────────────
-// الشكل المتوقع: { q, opts, c, expl } + audioUrl/imgUrl/passageText
+// ثلاث أشكال حسب النوع، زي ما renderers.js:190-191 بيتوقعها:
+//   mcq   → { q, opts, c, expl? }
+//   fill  → { type:'fill',  q, answer: [...], expl? }
+//   order → { type:'order', q, tokens: [...], expl? }
 function serializeQuestion(row) {
-  const out = { q: row.text, opts: row.opts, c: row.correctIndex };
+  const out = {};
+
+  if (row.kind === 'fill') {
+    out.type = 'fill';
+    out.q = row.text;
+    put(out, 'answer', row.answers);
+  } else if (row.kind === 'order') {
+    out.type = 'order';
+    out.q = row.text;
+    put(out, 'tokens', row.tokens);
+  } else {
+    out.q = row.text;
+    out.opts = row.opts;
+    out.c = row.correctIndex;
+  }
+
   put(out, 'expl', row.explanation);
   put(out, 'audioUrl', audioUrlOf(row));
   put(out, 'imgUrl', row.imgUrl);
+  put(out, 'passageId', row.passageId);
   put(out, 'passageText', row.passageText);
   return out;
 }

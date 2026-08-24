@@ -89,31 +89,63 @@ const strategyUpdateSchema = strategyCreateSchema.partial().omit({ unitId: true 
 
 // ── السؤال ─────────────────────────────────────────────────────
 
-const questionCreateSchema = z.object({
+const questionKind = z.enum(['mcq', 'fill', 'order']);
+
+/** الحقول المشتركة بين كل أنواع الأسئلة. */
+const questionCommon = {
+  text: rich(5000),
+  explanation: rich(5000).nullish(),
+  audioUrl: z.string().trim().max(1000).nullish(),
+  audioAssetId: z.coerce.number().int().positive().nullish(),
+  imgUrl: z.string().trim().max(1000).nullish(),
+  passageId: plain(120).nullish(),
+  passageText: rich(20000).nullish(),
+};
+
+/**
+ * كل نوع سؤال له حقول إجابة مختلفة تماماً:
+ *   mcq   → opts + correctIndex
+ *   fill  → answers[]
+ *   order → tokens[]
+ * الـ discriminated union بيمنع خلط الحقول أو إرسال سؤال ناقص.
+ */
+function questionBodySchema(extra = {}) {
+  return z.discriminatedUnion('kind', [
+    z.object({
+      ...extra,
+      kind: z.literal('mcq'),
+      ...questionCommon,
+      opts: z.array(rich(1000)).min(2, 'محتاج اختيارين على الأقل').max(6, 'الحد الأقصى 6 اختيارات'),
+      correctIndex: z.coerce.number().int().min(0),
+    }).refine(d => d.correctIndex < d.opts.length, {
+      message: 'رقم الإجابة الصحيحة خارج نطاق الاختيارات',
+      path: ['correctIndex'],
+    }),
+    z.object({
+      ...extra,
+      kind: z.literal('fill'),
+      ...questionCommon,
+      answers: z.array(plain(300)).min(1, 'محتاج إجابة مقبولة واحدة على الأقل').max(20),
+    }),
+    z.object({
+      ...extra,
+      kind: z.literal('order'),
+      ...questionCommon,
+      tokens: z.array(plain(200)).min(2, 'محتاج كلمتين على الأقل').max(40),
+    }),
+  ]);
+}
+
+const questionCreateSchema = questionBodySchema({
   unitId: z.coerce.number().int().positive(),
   strategyId: z.coerce.number().int().positive().nullish(),
-  text: rich(5000),
-  opts: z.array(rich(1000)).min(2, 'محتاج اختيارين على الأقل').max(6, 'الحد الأقصى 6 اختيارات'),
-  correctIndex: z.coerce.number().int().min(0),
-  explanation: rich(5000).nullish(),
-  audioUrl: z.string().trim().max(1000).nullish(),
-  audioAssetId: z.coerce.number().int().positive().nullish(),
-  imgUrl: z.string().trim().max(1000).nullish(),
-  passageText: rich(20000).nullish(),
-}).refine(d => d.correctIndex < d.opts.length, {
-  message: 'رقم الإجابة الصحيحة خارج نطاق الاختيارات',
-  path: ['correctIndex'],
 });
 
-const questionUpdateSchema = z.object({
-  text: rich(5000).optional(),
-  opts: z.array(rich(1000)).min(2).max(6).optional(),
-  correctIndex: z.coerce.number().int().min(0).optional(),
-  explanation: rich(5000).nullish(),
-  audioUrl: z.string().trim().max(1000).nullish(),
-  audioAssetId: z.coerce.number().int().positive().nullish(),
-  imgUrl: z.string().trim().max(1000).nullish(),
-  passageText: rich(20000).nullish(),
+/**
+ * التعديل بيتطلب kind كمان — تغيير نوع السؤال بيغيّر حقول الإجابة
+ * كلها، فالإرسال الجزئي هنا بيسيب الداتابيز في حالة مختلطة.
+ */
+const questionUpdateSchema = questionBodySchema({
   strategyId: z.coerce.number().int().positive().nullish(),
 });
 
@@ -199,6 +231,7 @@ module.exports = {
   strategyCreateSchema,
   strategyUpdateSchema,
   blocksSchema,
+  questionKind,
   questionCreateSchema,
   questionUpdateSchema,
   videoSchema,

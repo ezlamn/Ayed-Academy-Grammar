@@ -153,8 +153,9 @@ router.post('/attempts', validate(z.object({
   })).min(1).max(100),
 })), asyncHandler(async (req, res) => {
   const ids = req.body.attempts.map(a => a.questionId);
+  // الاختيار من متعدد بس — أسئلة fill/order مالهاش correctIndex نقارن بيه
   const questions = await prisma.question.findMany({
-    where: { id: { in: ids } },
+    where: { id: { in: ids }, kind: 'mcq', correctIndex: { not: null } },
     select: { id: true, correctIndex: true },
   });
   const correctById = new Map(questions.map(q => [q.id, q.correctIndex]));

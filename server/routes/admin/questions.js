@@ -18,17 +18,19 @@ const bankQuery = z.object({
   track: z.enum(['grammar', 'reading', 'listening']).optional(),
   unitId: z.coerce.number().int().positive().optional(),
   source: z.enum(['QUIZ', 'PRACTICE']).optional(),
+  kind: z.enum(['mcq', 'fill', 'order']).optional(),
   q: z.string().trim().max(200).optional(),
   take: z.coerce.number().int().min(1).max(200).default(50),
   skip: z.coerce.number().int().min(0).default(0),
 });
 
 router.get('/', validate(bankQuery, 'query'), asyncHandler(async (req, res) => {
-  const { track, unitId, source, q, take, skip } = req.validatedQuery;
+  const { track, unitId, source, kind, q, take, skip } = req.validatedQuery;
 
   const where = {
     ...(unitId ? { unitId } : {}),
     ...(source ? { source } : {}),
+    ...(kind ? { kind } : {}),
     ...(track ? { unit: { track } } : {}),
     ...(q ? { text: { contains: q, mode: 'insensitive' } } : {}),
   };
@@ -78,8 +80,30 @@ router.get('/:id', validate(idParam, 'params'), asyncHandler(async (req, res) =>
   res.json(question);
 }));
 
+/**
+ * حقول الإجابة الخاصة بكل نوع. الحقول اللي مش بتاعة النوع الحالي
+ * بتتصفّر صراحةً — عشان سؤال اتحوّل من mcq لـ fill ما يفضلش شايل
+ * opts قديمة تربك الـ serializer.
+ */
+function answerFields(body) {
+  if (body.kind === 'fill') {
+    return { answers: body.answers, opts: null, correctIndex: null, tokens: null };
+  }
+  if (body.kind === 'order') {
+    return { tokens: body.tokens, opts: null, correctIndex: null, answers: null };
+  }
+  return { opts: body.opts, correctIndex: body.correctIndex, answers: null, tokens: null };
+}
+
+/** يفصل حقول الإجابة عن باقي الحقول المشتركة. */
+function splitBody(body) {
+  const { kind, opts, correctIndex, answers, tokens, unitId, strategyId, ...common } = body;
+  return { common, answers: answerFields(body), kind };
+}
+
 router.post('/', validate(questionCreateSchema), asyncHandler(async (req, res) => {
-  const { unitId, strategyId, ...rest } = req.body;
+  const { unitId, strategyId } = req.body;
+  const { common, answers, kind } = splitBody(req.body);
 
   // السؤال التابع لاستراتيجية = PRACTICE، والتابع للوحدة مباشرة = QUIZ
   const source = strategyId ? 'PRACTICE' : 'QUIZ';
@@ -101,8 +125,10 @@ router.post('/', validate(questionCreateSchema), asyncHandler(async (req, res) =
       unitId,
       strategyId: strategyId || null,
       source,
+      kind,
       order: await nextOrder('question', where),
-      ...rest,
+      ...common,
+      ...answers,
     },
     include: { audioAsset: true },
   });
@@ -115,21 +141,28 @@ router.patch('/:id', validate(idParam, 'params'), validate(questionUpdateSchema)
   asyncHandler(async (req, res) => {
     const existing = await prisma.question.findUnique({
       where: { id: req.params.id },
-      select: { opts: true, correctIndex: true },
+      select: { id: true, unitId: true },
     });
     if (!existing) throw new HttpError(404, 'السؤال غير موجود');
 
-    // التحقق المتقاطع: correctIndex لازم يبقى داخل الاختيارات النهائية
-    const opts = req.body.opts ?? existing.opts;
-    const correctIndex = req.body.correctIndex ?? existing.correctIndex;
-    if (correctIndex >= opts.length) {
-      throw new HttpError(400, 'رقم الإجابة الصحيحة خارج نطاق الاختيارات');
-    }
+    const { strategyId } = req.body;
+    const { common, answers, kind } = splitBody(req.body);
+    const data = { kind, ...common, ...answers };
 
-    const data = { ...req.body };
-    // نقل السؤال بين استراتيجية والوحدة بيغيّر نوعه
-    if ('strategyId' in data) {
-      data.source = data.strategyId ? 'PRACTICE' : 'QUIZ';
+    // نقل السؤال بين استراتيجية والوحدة بيغيّر مصدره
+    if ('strategyId' in req.body) {
+      if (strategyId) {
+        const strategy = await prisma.strategy.findUnique({
+          where: { id: strategyId },
+          select: { unitId: true },
+        });
+        if (!strategy) throw new HttpError(404, 'الاستراتيجية غير موجودة');
+        if (strategy.unitId !== existing.unitId) {
+          throw new HttpError(400, 'الاستراتيجية لا تنتمي لهذه الوحدة');
+        }
+      }
+      data.strategyId = strategyId || null;
+      data.source = strategyId ? 'PRACTICE' : 'QUIZ';
     }
 
     const question = await prisma.question.update({

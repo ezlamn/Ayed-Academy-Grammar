@@ -29,6 +29,9 @@ const stats = {
   videos: 0, vocabCategories: 0, vocabWords: 0,
   audioExtracted: 0, audioDeduped: 0, audioBytes: 0,
   config: 0,
+  kinds: { mcq: 0, fill: 0, order: 0 },
+  repaired: [],   // أسئلة استخدمت "correct" بدل "c"
+  malformed: [],  // أسئلة مفيش فيها إجابة صحيحة أصلاً
 };
 
 // ── مساعدات ────────────────────────────────────────────────────
@@ -52,18 +55,46 @@ function extractBlocks(strategy) {
 /**
  * يجهّز بيانات سؤال. لو فيه صوت base64 بيستخرجه لملف ويرجّع
  * audioAssetId بدل النص الضخم.
+ *
+ * ثلاث أنواع: mcq (الافتراضي) / fill (answer[]) / order (tokens[]).
  */
 async function prepareQuestion(q, label) {
+  const kind = q.type === 'fill' || q.type === 'order' ? q.type : 'mcq';
+
   const data = {
+    kind,
     text: q.q ?? '',
-    opts: q.opts ?? [],
-    correctIndex: typeof q.c === 'number' ? q.c : 0,
+    opts: null,
+    correctIndex: null,
+    answers: null,
+    tokens: null,
     explanation: nn(q.expl),
     imgUrl: nn(q.imgUrl),
+    passageId: nn(q.passageId),
     passageText: nn(q.passageText),
     audioUrl: null,
     audioAssetId: null,
   };
+
+  if (kind === 'fill') {
+    data.answers = Array.isArray(q.answer) ? q.answer : nn(q.answer) ? [q.answer] : [];
+  } else if (kind === 'order') {
+    data.tokens = Array.isArray(q.tokens) ? q.tokens : [];
+  } else {
+    data.opts = Array.isArray(q.opts) ? q.opts : [];
+    // سجل واحد في المصدر بيستخدم "correct" بدل "c" — بيانات تجريبية
+    // اتسابت بالغلط. بنستوعبها بدل ما نفقدها بصمت.
+    const index = typeof q.c === 'number' ? q.c
+      : typeof q.correct === 'number' ? q.correct
+        : null;
+    if (index === null) {
+      stats.malformed.push({ label, keys: Object.keys(q).join(',') });
+      data.correctIndex = 0;
+    } else {
+      if (typeof q.c !== 'number') stats.repaired.push(label);
+      data.correctIndex = index;
+    }
+  }
 
   if (typeof q.audioUrl === 'string' && q.audioUrl.trim()) {
     if (q.audioUrl.startsWith('data:')) {
@@ -85,6 +116,7 @@ async function prepareQuestion(q, label) {
     }
   }
 
+  stats.kinds[kind] += 1;
   return data;
 }
 
@@ -286,6 +318,16 @@ async function main() {
   console.log(`   الإعدادات          ${stats.config}`);
   console.log(`   ملفات صوت مستخرجة  ${stats.audioExtracted} (${(stats.audioBytes / 1024).toFixed(0)} KB)`);
   console.log(`   صوتيات مكرّرة      ${stats.audioDeduped} (اتخزنت مرة واحدة)`);
+  console.log(`   أنواع الأسئلة      mcq ${stats.kinds.mcq} · fill ${stats.kinds.fill} · order ${stats.kinds.order}`);
+
+  if (stats.repaired.length) {
+    console.log(`\n⚠️  ${stats.repaired.length} سؤال كان بيستخدم "correct" بدل "c" — اتصلّح:`);
+    stats.repaired.forEach(l => console.log(`     ${l}`));
+  }
+  if (stats.malformed.length) {
+    console.log(`\n⚠️  ${stats.malformed.length} سؤال من غير إجابة صحيحة — اتحطّ 0 مؤقتاً، راجعه من لوحة التحكم:`);
+    stats.malformed.forEach(m => console.log(`     ${m.label}  (المفاتيح: ${m.keys})`));
+  }
 
   console.log('\n✅ خلص النقل. الخطوة الجاية:  npm run verify:parity\n');
 }

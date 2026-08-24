@@ -6,9 +6,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Prisma 7: رابط الاتصال بقى في prisma.config.js مش هنا،
+// والـ client بياخد adapter من server/db/prisma.js
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -24,6 +25,13 @@ enum Track {
 enum QuestionSource {
   QUIZ // page.quizzes — سؤال على مستوى الوحدة
   PRACTICE // strategy.practice — سؤال داخل استراتيجية
+}
+
+/// أنواع الأسئلة اللي الواجهة بترندرها (renderers.js:190-191)
+enum QuestionKind {
+  mcq //  اختيار من متعدد — opts + correctIndex
+  fill // إكمال فراغ    — answers[]
+  order // ترتيب كلمات   — tokens[]
 }
 
 enum ExamSection {
@@ -106,22 +114,31 @@ model Strategy {
 }
 
 model Question {
-  id           Int            @id @default(autoincrement())
-  unitId       Int
+  id         Int            @id @default(autoincrement())
+  unitId     Int
   /// null ⇒ السؤال في page.quizzes؛ غير null ⇒ داخل strategy.practice
-  strategyId   Int?
-  source       QuestionSource
-  order        Int
-  text         String         @db.Text
-  /// string[]
-  opts         Json
-  correctIndex Int
-  explanation  String?        @db.Text
+  strategyId Int?
+  source     QuestionSource
+  kind       QuestionKind   @default(mcq)
+  order      Int
+  text       String         @db.Text
+
+  /// mcq فقط: string[] من الاختيارات + رقم الصحيح
+  opts         Json?
+  correctIndex Int?
+  /// fill فقط: string[] بالإجابات المقبولة
+  answers      Json?
+  /// order فقط: string[] بالكلمات بترتيبها الصحيح
+  tokens       Json?
+
+  explanation  String? @db.Text
   /// رابط صوت خارجي (لو مش ملف مرفوع)
   audioUrl     String?
   audioAssetId Int?
   imgUrl       String?
-  passageText  String?        @db.Text
+  passageText  String? @db.Text
+  /// معرّف القطعة اللي السؤال تابع لها (أسئلة الريدينج المجمّعة)
+  passageId    String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

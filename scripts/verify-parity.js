@@ -6,9 +6,10 @@
 
    الفروق بتتقسم نوعين:
    • حقيقية  → قيمة اختلفت أو اتفقدت. لازم تبقى صفر.
-   • مقبولة  → "مصفوفة فاضية" مقابل "مفتاح غير موجود". كل مستهلكي
-              البيانات في الواجهة بيستخدموا (x || []) فالحالتين
-              متطابقتين سلوكياً. بتتعرض للعلم بس.
+   • مقبولة  → "مصفوفة فاضية" أو null مقابل "مفتاح غير موجود".
+              الواجهة بتقرأ الأول بـ (x || []) والتاني بـ if (!x)
+              فالحالتين متطابقتين سلوكياً.
+   • إصلاحات → بيانات تالفة في المصدر اتصلّحت أثناء النقل عن قصد.
 
      node scripts/verify-parity.js
    ================================================================ */
@@ -23,13 +24,20 @@ const DB_FILE = path.join(env.ROOT, 'data', 'db.json');
 
 const realDiffs = [];
 const benignDiffs = [];
+const repairs = [];
 
 const isEmptyArray = v => Array.isArray(v) && v.length === 0;
 const isObject = v => v !== null && typeof v === 'object' && !Array.isArray(v);
 
-/** "مفتاح ناقص" ≡ "مصفوفة فاضية" — الواجهة بتعامل الاتنين بنفس الشكل. */
+/**
+ * "مفتاح ناقص" ≡ "مصفوفة فاضية" ≡ null — الواجهة بتعامل التلاتة بنفس
+ * الشكل: (x || []) للمصفوفات و if (!x) return '' للكائنات
+ * (شوف renderRuleBox في renderers.js:86).
+ */
 function benignAbsence(a, b) {
-  return (a === undefined && isEmptyArray(b)) || (isEmptyArray(a) && b === undefined);
+  const absent = v => v === undefined || v === null || isEmptyArray(v);
+  if (a === b) return false;
+  return absent(a) && absent(b);
 }
 
 function compare(expected, actual, pathStr) {
@@ -111,6 +119,28 @@ function normalizeAudio(node) {
   return node;
 }
 
+/**
+ * إصلاح مقصود: سجل واحد في db.json بيستخدم "correct" بدل "c"
+ * (بيانات تجريبية اتسابت بالغلط). isMCQ() في mock_exam.js بترفضه
+ * و quiz.js بيقرا q.c = undefined — يعني السؤال ده مكسور في الموقع
+ * الحالي أصلاً. النقل بيصلّحه، فبنطبّق نفس الإصلاح على المصدر هنا
+ * عشان المقارنة تفضل أمينة.
+ */
+function applyKnownRepairs(node, pathStr = '$') {
+  if (Array.isArray(node)) return node.map((n, i) => applyKnownRepairs(n, `${pathStr}[${i}]`));
+  if (isObject(node)) {
+    const out = {};
+    for (const [k, v] of Object.entries(node)) out[k] = applyKnownRepairs(v, `${pathStr}.${k}`);
+    if (typeof out.correct === 'number' && out.c === undefined && Array.isArray(out.opts)) {
+      out.c = out.correct;
+      delete out.correct;
+      repairs.push({ path: pathStr, note: '"correct" → "c"' });
+    }
+    return out;
+  }
+  return node;
+}
+
 /** يعدّ الصوتيات في كل جانب — لازم يتطابقوا حتى لو الشكل اتغيّر. */
 function countAudio(node, counter = { data: 0, file: 0, external: 0 }) {
   if (Array.isArray(node)) {
@@ -141,7 +171,11 @@ async function main() {
   const originalAudio = countAudio(original);
   const dbAudio = countAudio(fromDb);
 
-  compare(normalizeAudio(original), normalizeAudio(fromDb), '$');
+  compare(
+    normalizeAudio(applyKnownRepairs(original)),
+    normalizeAudio(fromDb),
+    '$'
+  );
 
   // ── التقرير ──
   console.log('\n══════════ تقرير المطابقة ══════════\n');
@@ -159,6 +193,11 @@ async function main() {
 
   const audioOk = originalAudio.data === dbAudio.file && originalAudio.external === dbAudio.external;
   console.log(`    ${audioOk ? '✓ كل الصوتيات اتنقلت' : '✗ عدد الصوتيات مش متطابق'}`);
+
+  if (repairs.length) {
+    console.log(`\n  🔧 ${repairs.length} إصلاح مقصود لبيانات تالفة في المصدر:`);
+    repairs.forEach(r => console.log(`     ${r.path}  ${r.note}`));
+  }
 
   if (benignDiffs.length) {
     console.log(`\n  ℹ️  ${benignDiffs.length} فرق مقبول (مصفوفة فاضية ↔ مفتاح غير موجود):`);

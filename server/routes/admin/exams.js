@@ -123,11 +123,14 @@ router.post('/questions/import', validate(z.object({
   const exam = await prisma.exam.findUnique({ where: { id: examId }, select: { id: true } });
   if (!exam) throw new HttpError(404, 'النموذج غير موجود');
 
+  // الامتحانات اختيار من متعدد بس — mock_exam.js بيفلتر بـ isMCQ()
   const sourceQuestions = await prisma.question.findMany({
-    where: { id: { in: questionIds } },
+    where: { id: { in: questionIds }, kind: 'mcq' },
     include: { unit: { select: { track: true, nameAr: true, nameEn: true } } },
   });
-  if (!sourceQuestions.length) throw new HttpError(404, 'مفيش أسئلة بالمعرّفات دي');
+  if (!sourceQuestions.length) {
+    throw new HttpError(404, 'مفيش أسئلة اختيار من متعدد بالمعرّفات دي');
+  }
 
   // نحافظ على الترتيب اللي الأدمن اختاره مش ترتيب الداتابيز
   const byId = new Map(sourceQuestions.map(q => [q.id, q]));
