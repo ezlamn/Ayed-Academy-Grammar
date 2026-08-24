@@ -3,6 +3,9 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { api, qs } from '../lib/api';
 import { ConfirmButton, DateText, Empty, ErrorBox, Loading } from '../components/ui.jsx';
+import PermMediaIcon from '@mui/icons-material/PermMedia';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 
 function formatSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
@@ -53,7 +56,7 @@ export default function MediaLibrary() {
     <>
       <div className="page-head">
         <div>
-          <h1>🎬 مكتبة الميديا</h1>
+          <h1><PermMediaIcon fontSize="inherit" /> مكتبة الميديا</h1>
           <div className="sub">
             {data ? `${data.total} ملف` : '...'} — الملفات بتتخزن مرة واحدة حتى لو رفعتها أكتر من مرة
           </div>
@@ -73,7 +76,7 @@ export default function MediaLibrary() {
           handleFiles(e.dataTransfer.files);
         }}
       >
-        <div style={{ fontSize: '1.8rem' }}>⬆</div>
+        <div style={{ fontSize: '1.8rem' }}><CloudUploadIcon fontSize="inherit" /></div>
         <div style={{ fontWeight: 700 }}>
           {upload.isPending ? 'جاري الرفع...' : 'اسحب الملفات هنا أو اضغط للاختيار'}
         </div>
@@ -106,7 +109,7 @@ export default function MediaLibrary() {
       {isLoading ? (
         <Loading />
       ) : !data.items.length ? (
-        <Empty icon="📂" title="المكتبة فاضية">ارفع أول ملف من فوق.</Empty>
+        <Empty icon={<FolderOpenIcon fontSize="inherit" />} title="المكتبة فاضية">ارفع أول ملف من فوق.</Empty>
       ) : (
         <div className="media-grid">
           {data.items.map(asset => {

@@ -7,6 +7,8 @@ import SortableList from '../components/SortableList.jsx';
 import {
   ConfirmButton, Empty, ErrorBox, Loading, Modal, TRACK_ICONS, TRACK_LABELS,
 } from '../components/ui.jsx';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function NewUnitModal({ track, onClose }) {
   const qc = useQueryClient();
@@ -143,7 +145,7 @@ export default function TrackUnits() {
 
       <div className="card">
         {units.length === 0 ? (
-          <Empty icon="📭" title="مفيش وحدات في المسار ده">
+          <Empty title="مفيش وحدات في المسار ده">
             اضغط «وحدة جديدة» عشان تبدأ.
           </Empty>
         ) : (
@@ -181,7 +183,7 @@ export default function TrackUnits() {
                     onClick={() => togglePublish.mutate({ id: unit.id, published: !unit.published })}
                     title={unit.published ? 'إخفاء من الموقع' : 'نشر على الموقع'}
                   >
-                    {unit.published ? '👁️' : '🚫'}
+                    {unit.published ? <VisibilityIcon fontSize="inherit" /> : <VisibilityOffIcon fontSize="inherit" />}
                   </button>
                   <ConfirmButton
                     message="هيتحذف كل محتواها"

@@ -4,6 +4,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '../lib/api';
 import { useAuth } from '../lib/auth.jsx';
 import { ErrorBox, Loading } from '../components/ui.jsx';
+import SettingsIcon from '@mui/icons-material/Settings';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function ConfigSection() {
   const { data, isLoading, refetch } = useQuery({
@@ -37,7 +39,7 @@ function ConfigSection() {
       <h3 style={{ marginBottom: '0.9rem' }}>إعدادات الموقع</h3>
 
       <ErrorBox error={error} onDismiss={() => setError(null)} />
-      {saved && <div className="alert alert-ok">✅ اتحفظت</div>}
+      {saved && <div className="alert alert-ok"><CheckCircleIcon fontSize="inherit" /> اتحفظت</div>}
 
       <div className="field">
         <label>رابط الفيديو التعريفي</label>
@@ -103,7 +105,7 @@ function PasswordSection() {
       <h3 style={{ marginBottom: '0.9rem' }}>تغيير كلمة المرور</h3>
 
       <ErrorBox error={error} onDismiss={() => setError(null)} />
-      {done && <div className="alert alert-ok">✅ اتغيّرت كلمة المرور</div>}
+      {done && <div className="alert alert-ok"><CheckCircleIcon fontSize="inherit" /> اتغيّرت كلمة المرور</div>}
 
       <div className="field">
         <label>كلمة المرور الحالية</label>
@@ -154,7 +156,7 @@ export default function Settings() {
     <>
       <div className="page-head">
         <div>
-          <h1>⚙️ الإعدادات</h1>
+          <h1><SettingsIcon fontSize="inherit" /> الإعدادات</h1>
           <div className="sub ltr">{admin?.email}</div>
         </div>
       </div>

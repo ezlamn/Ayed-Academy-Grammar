@@ -5,6 +5,14 @@ import { Navigate, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 
 import { AuthProvider, useAuth } from './lib/auth.jsx';
 import { Loading, TRACK_ICONS, TRACK_LABELS } from './components/ui.jsx';
+import SchoolIcon from '@mui/icons-material/School';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import PermMediaIcon from '@mui/icons-material/PermMedia';
+import PeopleIcon from '@mui/icons-material/People';
+import InsightsIcon from '@mui/icons-material/Insights';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LinkIcon from '@mui/icons-material/Link';
 
 import Login from './pages/Login.jsx';
 import Overview from './pages/Overview.jsx';
@@ -24,12 +32,12 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <span>📚</span>
+        <span><SchoolIcon fontSize="inherit" /></span>
         <span>عايد أكاديمي</span>
       </div>
 
       <NavLink to="/" end className="nav-link">
-        <span className="ico">📊</span> نظرة عامة
+        <span className="ico"><DashboardIcon fontSize="inherit" /></span> نظرة عامة
       </NavLink>
 
       <div className="nav-group-label">المحتوى</div>
@@ -39,26 +47,26 @@ function Sidebar() {
         </NavLink>
       ))}
       <NavLink to="/exams" className="nav-link">
-        <span className="ico">📝</span> نماذج الاختبارات
+        <span className="ico"><AssignmentIcon fontSize="inherit" /></span> نماذج الاختبارات
       </NavLink>
       <NavLink to="/media" className="nav-link">
-        <span className="ico">🎬</span> مكتبة الميديا
+        <span className="ico"><PermMediaIcon fontSize="inherit" /></span> مكتبة الميديا
       </NavLink>
 
       <div className="nav-group-label">الطلاب</div>
       <NavLink to="/students" className="nav-link">
-        <span className="ico">👥</span> قائمة الطلاب
+        <span className="ico"><PeopleIcon fontSize="inherit" /></span> قائمة الطلاب
       </NavLink>
       <NavLink to="/analytics" className="nav-link">
-        <span className="ico">📈</span> التحليلات
+        <span className="ico"><InsightsIcon fontSize="inherit" /></span> التحليلات
       </NavLink>
 
       <div className="nav-group-label">النظام</div>
       <NavLink to="/settings" className="nav-link">
-        <span className="ico">⚙️</span> الإعدادات
+        <span className="ico"><SettingsIcon fontSize="inherit" /></span> الإعدادات
       </NavLink>
       <a href="/" className="nav-link" target="_blank" rel="noreferrer">
-        <span className="ico">🔗</span> عرض الموقع
+        <span className="ico"><LinkIcon fontSize="inherit" /></span> عرض الموقع
       </a>
 
       <div className="sidebar-footer">

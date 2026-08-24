@@ -2,12 +2,18 @@
    UI.JSX — مكوّنات صغيرة مشتركة
    ================================================================ */
 import { useEffect, useRef, useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
 
 export function Loading({ label = 'جاري التحميل...' }) {
   return <div className="loading"><span className="spinner" /> {label}</div>;
 }
 
-export function Empty({ icon = '📭', title, children }) {
+export function Empty({ icon = <InboxOutlinedIcon fontSize="inherit" />, title, children }) {
   return (
     <div className="empty">
       <span className="ico">{icon}</span>
@@ -23,7 +29,7 @@ export function ErrorBox({ error, onDismiss }) {
   return (
     <div className="alert alert-error">
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.5rem' }}>
-        <span>⚠️ {error.message}</span>
+        <span><WarningAmberIcon fontSize="inherit" /> {error.message}</span>
         {onDismiss && (
           <button className="btn btn-sm" onClick={onDismiss} type="button">إغلاق</button>
         )}
@@ -57,7 +63,7 @@ export function Modal({ title, onClose, children, footer, wide }) {
       <div className="modal" style={wide ? { maxWidth: 900 } : undefined}>
         <div className="modal-head">
           <span>{title}</span>
-          <button className="btn btn-icon" onClick={onClose} type="button" aria-label="إغلاق">✕</button>
+          <button className="btn btn-icon" onClick={onClose} type="button" aria-label="إغلاق"><CloseIcon fontSize="inherit" /></button>
         </div>
         <div className="modal-body">{children}</div>
         {footer && <div className="modal-foot">{footer}</div>}
@@ -148,9 +154,9 @@ export const TRACK_LABELS = {
 };
 
 export const TRACK_ICONS = {
-  grammar: '📘',
-  reading: '📖',
-  listening: '🎧',
+  grammar: <MenuBookIcon fontSize="inherit" />,
+  reading: <AutoStoriesIcon fontSize="inherit" />,
+  listening: <HeadphonesIcon fontSize="inherit" />,
 };
 
 export const SECTION_LABELS = {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { api } from '../lib/api';
 import { DateText, Empty, ErrorBox, Loading, TRACK_ICONS, TRACK_LABELS } from '../components/ui.jsx';
+import PeopleIcon from '@mui/icons-material/People';
 
 function Stat({ label, value, note }) {
   return (
@@ -73,7 +74,7 @@ export default function Overview() {
             <Link to="/students" className="btn btn-sm">الكل</Link>
           </div>
           {data.recentStudents.length === 0 ? (
-            <Empty icon="👥" title="مفيش طلاب مسجّلين بعد">
+            <Empty icon={<PeopleIcon fontSize="inherit" />} title="مفيش طلاب مسجّلين بعد">
               أول ما طالب يسجّل من الموقع هيظهر هنا.
             </Empty>
           ) : (

@@ -5,6 +5,10 @@ import { api } from '../lib/api';
 import {
   Empty, ErrorBox, Loading, PercentBar, SECTION_LABELS, TRACK_LABELS, stripHtml,
 } from '../components/ui.jsx';
+import InsightsIcon from '@mui/icons-material/Insights';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import AdjustIcon from '@mui/icons-material/Adjust';
+import InfoIcon from '@mui/icons-material/Info';
 
 /** رسم بياني عمودي بسيط بـ SVG — من غير مكتبات خارجية. */
 function ActivityChart({ rows }) {
@@ -67,14 +71,14 @@ export default function Analytics() {
     <>
       <div className="page-head">
         <div>
-          <h1>📈 التحليلات</h1>
+          <h1><InsightsIcon fontSize="inherit" /> التحليلات</h1>
           <div className="sub">مبنية على إجابات الطلاب الفعلية</div>
         </div>
       </div>
 
       {!hasData && (
         <div className="alert alert-info">
-          ℹ️ لسه مفيش إجابات كفاية. الأرقام هنا بتظهر بعد ما الطلاب يبدأوا يحلّوا التمارين.
+          <InfoIcon fontSize="inherit" /> لسه مفيش إجابات كفاية. الأرقام هنا بتظهر بعد ما الطلاب يبدأوا يحلّوا التمارين.
         </div>
       )}
 
@@ -92,7 +96,7 @@ export default function Analytics() {
         <div className="card">
           <div className="card-head">أضعف الوحدات</div>
           {!weakestUnits.length ? (
-            <Empty icon="📊" title="">محتاج إجابات أكتر.</Empty>
+            <Empty icon={<QueryStatsIcon fontSize="inherit" />} title="">محتاج إجابات أكتر.</Empty>
           ) : (
             <div className="table-wrap">
               <table>
@@ -119,7 +123,7 @@ export default function Analytics() {
         <div className="card">
           <div className="card-head">أصعب الأسئلة</div>
           {!hardestQuestions.length ? (
-            <Empty icon="🎯" title="">محتاج إجابات أكتر.</Empty>
+            <Empty icon={<AdjustIcon fontSize="inherit" />} title="">محتاج إجابات أكتر.</Empty>
           ) : (
             <div className="table-wrap" style={{ maxHeight: 420, overflowY: 'auto' }}>
               <table>

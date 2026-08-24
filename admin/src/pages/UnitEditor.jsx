@@ -10,6 +10,13 @@ import {
   ConfirmButton, Empty, ErrorBox, KIND_LABELS, Loading,
   TRACK_LABELS, stripHtml,
 } from '../components/ui.jsx';
+import ExtensionIcon from '@mui/icons-material/Extension';
+import CheckIcon from '@mui/icons-material/Check';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import AdjustIcon from '@mui/icons-material/Adjust';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import FolderIcon from '@mui/icons-material/Folder';
+import CloseIcon from '@mui/icons-material/Close';
 
 /* ── تبويب: معلومات الوحدة ───────────────────────────────── */
 
@@ -170,7 +177,7 @@ function StrategiesTab({ unit, refetch, setError }) {
 
       <div className="card">
         {unit.strategies.length === 0 ? (
-          <Empty icon="🧩" title="مفيش استراتيجيات">أضف أول استراتيجية للوحدة.</Empty>
+          <Empty icon={<ExtensionIcon fontSize="inherit" />} title="مفيش استراتيجيات">أضف أول استراتيجية للوحدة.</Empty>
         ) : (
           <SortableList
             items={unit.strategies}
@@ -220,10 +227,10 @@ function StrategiesTab({ unit, refetch, setError }) {
                                 <span className="badge">{KIND_LABELS[q.kind]}</span>
                                 {q.kind === 'mcq' && (
                                   <span style={{ marginInlineStart: '0.4rem' }}>
-                                    ✓ {stripHtml(q.opts?.[q.correctIndex] ?? '')}
+                                    <CheckIcon fontSize="inherit" /> {stripHtml(q.opts?.[q.correctIndex] ?? '')}
                                   </span>
                                 )}
-                                {q.audioAsset && <span className="badge" style={{ marginInlineStart: '0.4rem' }}>🔊</span>}
+                                {q.audioAsset && <span className="badge" style={{ marginInlineStart: '0.4rem' }}><VolumeUpIcon fontSize="inherit" /></span>}
                               </div>
                             </div>
                             <div className="btn-row" style={{ gap: '0.3rem' }}>
@@ -327,7 +334,7 @@ function QuizzesTab({ unit, refetch, setError }) {
 
       <div className="card">
         {quizzes.length === 0 ? (
-          <Empty icon="🎯" title="مفيش أسئلة">
+          <Empty icon={<AdjustIcon fontSize="inherit" />} title="مفيش أسئلة">
             الاختبار الشامل مش هيظهر للطالب لحد ما تضيف أسئلة.
           </Empty>
         ) : (
@@ -343,7 +350,7 @@ function QuizzesTab({ unit, refetch, setError }) {
                     <span className="badge">{KIND_LABELS[q.kind]}</span>
                     {q.kind === 'mcq' && (
                       <span style={{ marginInlineStart: '0.4rem' }}>
-                        ✓ {stripHtml(q.opts?.[q.correctIndex] ?? '')}
+                        <CheckIcon fontSize="inherit" /> {stripHtml(q.opts?.[q.correctIndex] ?? '')}
                       </span>
                     )}
                   </div>
@@ -434,14 +441,14 @@ function VideosTab({ unit, refetch, setError }) {
 
       <div className="card">
         {unit.videos.length === 0 ? (
-          <Empty icon="🎥" title="مفيش فيديوهات">أضف رابط يوتيوب أو mp4 من فوق.</Empty>
+          <Empty icon={<VideocamIcon fontSize="inherit" />} title="مفيش فيديوهات">أضف رابط يوتيوب أو mp4 من فوق.</Empty>
         ) : (
           <SortableList
             items={unit.videos}
             onReorder={ids => reorder.mutate(ids)}
             renderItem={v => (
               <>
-                <span style={{ fontSize: '1.1rem' }}>🎥</span>
+                <span style={{ fontSize: '1.1rem' }}><VideocamIcon fontSize="inherit" /></span>
                 <div className="item-main">
                   <div className="item-title">{v.title || 'بدون عنوان'}</div>
                   <div className="item-sub ltr">{v.url}</div>
@@ -538,7 +545,7 @@ function VocabTab({ unit, refetch, setError }) {
       </div>
 
       {unit.vocabCategories.length === 0 ? (
-        <div className="card"><Empty icon="🗂️" title="مفيش تصنيفات مفردات" /></div>
+        <div className="card"><Empty icon={<FolderIcon fontSize="inherit" />} title="مفيش تصنيفات مفردات" /></div>
       ) : (
         <div className="grid grid-2">
           {unit.vocabCategories.map(cat => (
@@ -593,7 +600,7 @@ function VocabTab({ unit, refetch, setError }) {
                         <td className="ltr" style={{ fontWeight: 600 }}>{w.en}</td>
                         <td>{w.ar}</td>
                         <td style={{ width: '1%' }}>
-                          <ConfirmButton onConfirm={() => removeWord.mutate(w.id)}>✕</ConfirmButton>
+                          <ConfirmButton onConfirm={() => removeWord.mutate(w.id)}><CloseIcon fontSize="inherit" /></ConfirmButton>
                         </td>
                       </tr>
                     ))}

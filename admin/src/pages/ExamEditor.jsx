@@ -9,6 +9,12 @@ import {
   ConfirmButton, Empty, ErrorBox, Loading, Modal,
   SECTION_LABELS, TRACK_LABELS, stripHtml,
 } from '../components/ui.jsx';
+import SearchOffIcon from '@mui/icons-material/SearchOff';
+import DescriptionIcon from '@mui/icons-material/Description';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import CheckIcon from '@mui/icons-material/Check';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import InfoIcon from '@mui/icons-material/Info';
 
 const SECTIONS = ['listening', 'reading', 'grammar', 'writing'];
 
@@ -68,7 +74,7 @@ function ImportModal({ examId, onClose, onDone }) {
       <ErrorBox error={error} onDismiss={() => setError(null)} />
 
       <div className="alert alert-info">
-        ℹ️ الأسئلة بتتنسخ نسخ — تعديل الوحدة بعد كده مش هيغيّر النموذج.
+        <InfoIcon fontSize="inherit" /> الأسئلة بتتنسخ نسخ — تعديل الوحدة بعد كده مش هيغيّر النموذج.
         بيتم استيراد أسئلة الاختيار من متعدد بس.
       </div>
 
@@ -104,7 +110,7 @@ function ImportModal({ examId, onClose, onDone }) {
       {isLoading ? (
         <Loading />
       ) : !data?.items.length ? (
-        <Empty icon="🔍" title="مفيش نتائج" />
+        <Empty icon={<SearchOffIcon fontSize="inherit" />} title="مفيش نتائج" />
       ) : (
         <>
           <div className="btn-row" style={{ marginBottom: '0.6rem' }}>
@@ -209,7 +215,7 @@ export default function ExamEditor() {
       <div className="page-head">
         <div>
           <div className="small muted"><Link to="/exams">نماذج الاختبارات</Link> ‹</div>
-          <h1>📄 {exam.title}</h1>
+          <h1><DescriptionIcon fontSize="inherit" /> {exam.title}</h1>
           <div className="sub">
             {exam.questions.length} سؤال · {exam.durationMin} دقيقة
             {exam.published
@@ -219,7 +225,7 @@ export default function ExamEditor() {
         </div>
         <div className="btn-row">
           <button className="btn" type="button" onClick={() => setImporting(true)}>
-            ⬇ استيراد من الوحدات
+            <FileDownloadIcon fontSize="inherit" /> استيراد من الوحدات
           </button>
           <button
             className="btn"
@@ -267,9 +273,9 @@ export default function ExamEditor() {
                     <div className="item-main">
                       <div className="item-title" style={{ fontWeight: 600 }}>{stripHtml(q.text)}</div>
                       <div className="item-sub">
-                        ✓ {stripHtml(q.opts?.[q.correctIndex] ?? '')}
-                        {q.audioAsset && <span className="badge" style={{ marginInlineStart: '0.4rem' }}>🔊</span>}
-                        {q.passageText && <span className="badge" style={{ marginInlineStart: '0.3rem' }}>📄</span>}
+                        <CheckIcon fontSize="inherit" /> {stripHtml(q.opts?.[q.correctIndex] ?? '')}
+                        {q.audioAsset && <span className="badge" style={{ marginInlineStart: '0.4rem' }}><VolumeUpIcon fontSize="inherit" /></span>}
+                        {q.passageText && <span className="badge" style={{ marginInlineStart: '0.3rem' }}><DescriptionIcon fontSize="inherit" /></span>}
                       </div>
                     </div>
                     <div className="btn-row" style={{ gap: '0.3rem' }}>

@@ -7,6 +7,8 @@
    ================================================================ */
 import { useState } from 'react';
 import { ErrorBox, Modal } from './ui.jsx';
+import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
 
 const THEMES = [
   { value: 'sc-theme-blue', label: 'أزرق' },
@@ -77,7 +79,7 @@ function ObjectListEditor({ label, hint, items, fields, onChange, emptyItem }) {
                   onClick={() => onChange(items.filter((_, j) => j !== i))}
                   title="حذف"
                 >
-                  ✕
+                  <CloseIcon fontSize="inherit" />
                 </button>
               </div>
               {fields.map(f => (
@@ -331,7 +333,7 @@ export default function StrategyEditor({ initial, onSave, onClose, saving, error
 
           {Object.keys(form.passthrough).length > 0 && (
             <div className="alert alert-info">
-              ℹ️ الاستراتيجية دي فيها بلوكات مالهاش محرّر هنا
+              <InfoIcon fontSize="inherit" /> الاستراتيجية دي فيها بلوكات مالهاش محرّر هنا
               (<code>{Object.keys(form.passthrough).join(', ')}</code>) — هتتحفظ زي ما هي من غير تغيير.
             </div>
           )}

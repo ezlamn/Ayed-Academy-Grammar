@@ -5,6 +5,10 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '../lib/api';
 import SortableList from '../components/SortableList.jsx';
 import { ConfirmButton, Empty, ErrorBox, Loading, Modal } from '../components/ui.jsx';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import DescriptionIcon from '@mui/icons-material/Description';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function NewExamModal({ onClose }) {
   const qc = useQueryClient();
@@ -101,7 +105,7 @@ export default function Exams() {
     <>
       <div className="page-head">
         <div>
-          <h1>📝 نماذج الاختبارات</h1>
+          <h1><AssignmentIcon fontSize="inherit" /> نماذج الاختبارات</h1>
           <div className="sub">
             النماذج المنشورة بتظهر للطالب في صفحة الامتحانات جنب التوليد العشوائي
           </div>
@@ -115,7 +119,7 @@ export default function Exams() {
 
       <div className="card">
         {exams.length === 0 ? (
-          <Empty icon="📝" title="مفيش نماذج محفوظة">
+          <Empty icon={<AssignmentIcon fontSize="inherit" />} title="مفيش نماذج محفوظة">
             الطالب دلوقتي بياخد امتحانات مولّدة عشوائياً من أسئلة الوحدات.
             أنشئ نموذجاً ثابتاً لو عايز امتحاناً محدداً.
           </Empty>
@@ -125,7 +129,7 @@ export default function Exams() {
             onReorder={ids => reorder.mutate(ids)}
             renderItem={exam => (
               <>
-                <span style={{ fontSize: '1.15rem' }}>📄</span>
+                <span style={{ fontSize: '1.15rem' }}><DescriptionIcon fontSize="inherit" /></span>
                 <div className="item-main">
                   <div className="item-title">
                     <Link to={`/exams/${exam.id}`}>{exam.title}</Link>
@@ -150,7 +154,9 @@ export default function Exams() {
                     }
                     onClick={() => togglePublish.mutate({ id: exam.id, published: !exam.published })}
                   >
-                    {exam.published ? '👁️ منشور' : '🚫 مخفي'}
+                    {exam.published
+                      ? <><VisibilityIcon fontSize="inherit" /> منشور</>
+                      : <><VisibilityOffIcon fontSize="inherit" /> مخفي</>}
                   </button>
                   <ConfirmButton onConfirm={() => remove.mutate(exam.id)}>حذف</ConfirmButton>
                 </div>

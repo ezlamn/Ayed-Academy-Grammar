@@ -193,7 +193,7 @@
 /* ── MOBILE RESPONSIVE COMPONENTS ── */
 @media (max-width: 768px) {
   .unit-header { padding: 1.25rem 1rem; border-radius: var(--r-lg); margin-bottom: 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-  .unit-h-mascot { position: absolute; right: 1rem; top: 1rem; font-size: 2.5rem; opacity: 0.4; }
+  .unit-h-mascot { position: absolute; left: 1rem; top: 1rem; font-size: 2.5rem; opacity: 0.4; }
   .unit-h-title { font-size: 1.4rem; }
   .strategy-card { margin-bottom: 1.25rem; border-radius: var(--r-lg); }
   .sc-header { padding: 0.85rem 1rem; }

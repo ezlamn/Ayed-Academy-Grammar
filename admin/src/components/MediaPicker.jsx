@@ -6,6 +6,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { api, qs } from '../lib/api';
 import { Empty, ErrorBox, Loading, Modal } from './ui.jsx';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 
 export default function MediaPicker({ kind, onPick, onClose }) {
   const qc = useQueryClient();
@@ -65,14 +67,14 @@ export default function MediaPicker({ kind, onPick, onClose }) {
           onClick={() => fileInput.current?.click()}
           disabled={upload.isPending}
         >
-          {upload.isPending ? 'جاري الرفع...' : '⬆ رفع ملف جديد'}
+          {upload.isPending ? 'جاري الرفع...' : <><CloudUploadIcon fontSize="inherit" /> رفع ملف جديد</>}
         </button>
       </div>
 
       {isLoading ? (
         <Loading />
       ) : !data?.items.length ? (
-        <Empty icon="📂" title="المكتبة فاضية">ارفع ملفاً جديداً من الزر فوق.</Empty>
+        <Empty icon={<FolderOpenIcon fontSize="inherit" />} title="المكتبة فاضية">ارفع ملفاً جديداً من الزر فوق.</Empty>
       ) : (
         <div className="media-grid">
           {data.items.map(asset => (

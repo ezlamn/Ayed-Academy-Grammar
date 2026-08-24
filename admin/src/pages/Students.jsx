@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { api, qs } from '../lib/api';
 import { DateText, Empty, ErrorBox, Loading } from '../components/ui.jsx';
+import PeopleIcon from '@mui/icons-material/People';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 
 export default function Students() {
   const [filters, setFilters] = useState({ q: '', active: '', sort: 'recent' });
@@ -17,7 +19,7 @@ export default function Students() {
     <>
       <div className="page-head">
         <div>
-          <h1>👥 الطلاب</h1>
+          <h1><PeopleIcon fontSize="inherit" /> الطلاب</h1>
           <div className="sub">{data ? `${data.total} طالب مسجّل` : '...'}</div>
         </div>
       </div>
@@ -48,7 +50,7 @@ export default function Students() {
         {isLoading ? (
           <Loading />
         ) : !data.items.length ? (
-          <Empty icon="👥" title="مفيش طلاب">
+          <Empty icon={<PeopleIcon fontSize="inherit" />} title="مفيش طلاب">
             الطلاب بيسجّلوا بنفسهم من صفحة البداية في الموقع.
           </Empty>
         ) : (
@@ -77,7 +79,7 @@ export default function Students() {
                     </td>
                     <td><span className="badge badge-brand">{s.state?.level ?? 1}</span></td>
                     <td className="num">{s.state?.xp ?? 0}</td>
-                    <td className="num">{s.state?.streak ? `🔥 ${s.state.streak}` : '—'}</td>
+                    <td className="num">{s.state?.streak ? <><LocalFireDepartmentIcon fontSize="inherit" /> {s.state.streak}</> : '—'}</td>
                     <td className="num">{s._count.progress}</td>
                     <td className="num">{s._count.attempts}</td>
                     <td className="num">{s._count.examAttempts}</td>

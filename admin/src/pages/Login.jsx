@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/auth.jsx';
 import { ErrorBox, Loading } from '../components/ui.jsx';
+import SchoolIcon from '@mui/icons-material/School';
 
 export default function Login() {
   const { admin, loading, login } = useAuth();
@@ -33,7 +34,7 @@ export default function Login() {
   return (
     <div className="login-wrap">
       <form className="login-card" onSubmit={onSubmit}>
-        <div className="login-logo">📚</div>
+        <div className="login-logo"><SchoolIcon fontSize="inherit" /></div>
         <h1>لوحة التحكم</h1>
         <p className="sub">عايد أكاديمي — إدارة المحتوى</p>
 

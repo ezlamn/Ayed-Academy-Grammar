@@ -9,6 +9,7 @@
 import { useState } from 'react';
 import { Modal, ErrorBox, KIND_LABELS } from './ui.jsx';
 import MediaPicker from './MediaPicker.jsx';
+import CloseIcon from '@mui/icons-material/Close';
 
 const EMPTY = {
   kind: 'mcq',
@@ -217,7 +218,7 @@ export default function QuestionEditor({
                 disabled={form.opts.length <= 2}
                 title="حذف"
               >
-                ✕
+                <CloseIcon fontSize="inherit" />
               </button>
             </div>
           ))}

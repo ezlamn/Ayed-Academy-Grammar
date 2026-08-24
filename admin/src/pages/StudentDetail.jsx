@@ -7,6 +7,13 @@ import {
   ConfirmButton, DateText, Empty, ErrorBox, Loading, Modal,
   PercentBar, TRACK_LABELS,
 } from '../components/ui.jsx';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import BlockIcon from '@mui/icons-material/Block';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 function ResetPasswordModal({ studentId, onClose }) {
   const [password, setPassword] = useState('');
@@ -44,7 +51,7 @@ function ResetPasswordModal({ studentId, onClose }) {
       <ErrorBox error={error} onDismiss={() => setError(null)} />
       {done ? (
         <div className="alert alert-ok">
-          ✅ اتغيّرت. ابعت للطالب كلمة المرور الجديدة:
+          <CheckCircleIcon fontSize="inherit" /> اتغيّرت. ابعت للطالب كلمة المرور الجديدة:
           <div className="ltr mono" style={{ fontSize: '1.05rem', marginTop: '0.4rem' }}>{password}</div>
         </div>
       ) : (
@@ -103,10 +110,12 @@ export default function StudentDetail() {
         </div>
         <div className="btn-row">
           <button className="btn" type="button" onClick={() => setResetting(true)}>
-            🔑 كلمة مرور جديدة
+            <VpnKeyIcon fontSize="inherit" /> كلمة مرور جديدة
           </button>
           <button className="btn" type="button" onClick={() => toggleActive.mutate(!student.active)}>
-            {student.active ? '🚫 إيقاف الحساب' : '✅ تفعيل الحساب'}
+            {student.active
+              ? <><BlockIcon fontSize="inherit" /> إيقاف الحساب</>
+              : <><CheckCircleIcon fontSize="inherit" /> تفعيل الحساب</>}
           </button>
           <ConfirmButton
             message="هيتحذف مع كل تقدّمه"
@@ -128,7 +137,7 @@ export default function StudentDetail() {
         </div>
         <div className="stat">
           <div className="stat-label">السلسلة الحالية</div>
-          <div className="stat-value num">🔥 {st?.streak ?? 0}</div>
+          <div className="stat-value num"><LocalFireDepartmentIcon fontSize="inherit" /> {st?.streak ?? 0}</div>
           <div className="stat-note">أطول سلسلة: {st?.bestStreak ?? 0}</div>
         </div>
         <div className="stat">
@@ -152,7 +161,7 @@ export default function StudentDetail() {
         <div className="card">
           <div className="card-head">الأداء حسب المسار</div>
           {!student.perTrack.length ? (
-            <Empty icon="📊" title="">لسه ما جاوبش على أسئلة.</Empty>
+            <Empty icon={<QueryStatsIcon fontSize="inherit" />} title="">لسه ما جاوبش على أسئلة.</Empty>
           ) : (
             <div className="table-wrap">
               <table>
@@ -177,7 +186,7 @@ export default function StudentDetail() {
         <div className="card">
           <div className="card-head">آخر الامتحانات</div>
           {!student.examAttempts.length ? (
-            <Empty icon="📝" title="">لسه ما دخلش امتحان.</Empty>
+            <Empty icon={<AssignmentIcon fontSize="inherit" />} title="">لسه ما دخلش امتحان.</Empty>
           ) : (
             <div className="table-wrap">
               <table>
@@ -202,7 +211,7 @@ export default function StudentDetail() {
         <div className="card">
           <div className="card-head">الوحدات المكتملة</div>
           {!student.progress.length ? (
-            <Empty icon="✅" title="">لسه ما أنهاش وحدة.</Empty>
+            <Empty icon={<DoneAllIcon fontSize="inherit" />} title="">لسه ما أنهاش وحدة.</Empty>
           ) : (
             <div className="table-wrap" style={{ maxHeight: 340, overflowY: 'auto' }}>
               <table>
