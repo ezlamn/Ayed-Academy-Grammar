@@ -6,6 +6,12 @@ package-lock.json
 uploads/*
 !uploads/.gitkeep
 
+# لوحة التحكم المبنية — تتولّد بـ npm run admin:build
+public/admin/
+
+# نسخ احتياطية من الداتا
+data/db.backup-*.json
+
 # Environment variables / local configuration
 .env
 .env.local
